@@ -3,7 +3,7 @@ project:
 
 book:
   title: "Collecting and Analyzing Social Media Data with R"
-  author: "Norah Jones"
+  author: "Johannes Breuer"
   date: "15.4.2026"
   chapters:
     - index.qmd
