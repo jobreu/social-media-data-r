@@ -1,0 +1,8 @@
+project:
+  type: website
+  output-dir: ../docs/slides # Pushes the rendered slides into the book's output folder
+
+format:
+  revealjs:
+    theme: default
+    slide-number: true

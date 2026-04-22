@@ -1,5 +1,9 @@
 project:
   type: book
+  output-dir: docs
+  render:
+    - "*.qmd"
+    - "!slides/" # Tells the book compiler to ignore this folder
 
 book:
   title: "Collecting and Analyzing Social Media Data with R"
