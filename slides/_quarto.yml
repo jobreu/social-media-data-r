@@ -4,5 +4,6 @@ project:
 
 format:
   revealjs:
-    theme: default
+    theme: [default, custom.scss]
     slide-number: true
+    logo: ../images/logo.png

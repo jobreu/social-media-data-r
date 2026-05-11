@@ -3,20 +3,24 @@ project:
   output-dir: docs
   render:
     - "*.qmd"
-    - "!slides/" # Tells the book compiler to ignore this folder
-
+    - "!slides/"
+    
 book:
   title: "Collecting and Analyzing Social Media Data with R"
   author: "Johannes Breuer"
-  date: "15.4.2026"
+  date: "21.05.2026"
+  sidebar:                       
+    logo: images/logo.png
   chapters:
     - index.qmd
     - intro.qmd
     - summary.qmd
     - references.qmd
 
+# Citations configuration
 bibliography: references.bib
 
+# Output formats and styling
 format:
   html:
     theme:
@@ -24,6 +28,3 @@ format:
       - brand
   pdf:
     documentclass: scrreprt
-
-
-
