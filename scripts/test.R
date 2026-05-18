@@ -1,1 +1,2 @@
-# this is a complex script that can be used for the book and the slides
+# get api key from the environment variable
+my_key <- Sys.getenv("MY_COURSE_API_KEY")

@@ -13,9 +13,13 @@ book:
     logo: images/logo.png
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
-    - references.qmd
+    - part: "Introduction"
+      chapters:
+      - intro.qmd
+    - part: "End"
+      chapters:
+      - summary.qmd
+      - references.qmd
 
 # Citations configuration
 bibliography: references.bib
