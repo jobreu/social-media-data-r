@@ -1,0 +1,34 @@
+# Working with text data
+
+## Why use Regex?
+
+::: {.incremental}
+* It is extremely powerful
+* It requires less code than base R
+* It works beautifully with `stringr`
+:::
+
+## Building a Regex Pattern
+
+Let's extract the username from the text: **`@rstats_guru`**
+
+<br>
+
+::: {.fragment}
+**1.** `@` *(Matches the literal @ symbol)*
+:::
+
+::: {.fragment}
+**2.** `\\w` *(Matches the first word character, the 'r')*
+:::
+
+::: {.fragment}
+**3.** `+` *(Expands the match to the rest of the word 'stats_guru')*
+:::
+
+<br>
+
+::: {.fragment}
+**Final Code:** 
+`str_extract(text, "@\\w+")`
+:::

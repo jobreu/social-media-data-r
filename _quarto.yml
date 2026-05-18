@@ -16,6 +16,9 @@ book:
     - part: "Introduction"
       chapters:
       - intro.qmd
+    - part: "Data Wrangling"
+      chapters:
+      - 04-text-data.qmd
     - part: "End"
       chapters:
       - summary.qmd
