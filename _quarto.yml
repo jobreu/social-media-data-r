@@ -8,16 +8,17 @@ project:
 book:
   title: "Collecting and Analyzing Social Media Data with R"
   author: "Johannes Breuer"
-  date: "21.05.2026"
+  date: "05-21-2026"
   sidebar:                       
     logo: images/logo.png
   chapters:
     - index.qmd
     - part: "Introduction"
       chapters:
-      - intro.qmd
+      - 01-intro-to-r.qmd
     - part: "Data Wrangling"
       chapters:
+      - 03-import-export.qmd
       - 04-text-data.qmd
     - part: "End"
       chapters:

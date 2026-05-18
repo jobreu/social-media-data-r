@@ -1,0 +1,100 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Collecting and Analyzing Social Media Data with R",
+    "section": "",
+    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\n1 + 1\n\n[1] 2",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "01-intro-to-r.html",
+    "href": "01-intro-to-r.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n1 + 1\n\n[1] 2\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. (USA) 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "03-import-export.html",
+    "href": "03-import-export.html",
+    "title": "2  Data import & export",
+    "section": "",
+    "text": "2.1 JSON\n[   {     \"post_id\": \"7102938475\",     \"author\": \"@r_stats_guru\",     \"description\": \"Learn ggplot2 in 60 seconds! 📊 #rstats #dataviz\",     \"metrics\": {       \"views\": 14500,       \"likes\": 3200,       \"shares\": 150     }   },   {     \"post_id\": \"7102938476\",     \"author\": \"@quarto_tips\",     \"description\": \"Stop using standard markdown. Do this instead. 🚀 #coding\",     \"metrics\": {       \"views\": 89000,       \"likes\": 12400,       \"shares\": 890     }   } ]",
+    "crumbs": [
+      "Data Wrangling",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data import & export</span>"
+    ]
+  },
+  {
+    "objectID": "04-text-data.html",
+    "href": "04-text-data.html",
+    "title": "3  Working with text data",
+    "section": "",
+    "text": "3.1 Why use Regex?",
+    "crumbs": [
+      "Data Wrangling",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Working with text data</span>"
+    ]
+  },
+  {
+    "objectID": "04-text-data.html#why-use-regex",
+    "href": "04-text-data.html#why-use-regex",
+    "title": "3  Working with text data",
+    "section": "",
+    "text": "It is extremely powerful\nIt requires less code than base R\nIt works beautifully with stringr",
+    "crumbs": [
+      "Data Wrangling",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Working with text data</span>"
+    ]
+  },
+  {
+    "objectID": "04-text-data.html#core-regex-building-blocks",
+    "href": "04-text-data.html#core-regex-building-blocks",
+    "title": "3  Working with text data",
+    "section": "3.2 Core Regex Building Blocks",
+    "text": "3.2 Core Regex Building Blocks\n\n\n\n\n\n\n\n\n\nConcept\nSymbol in R\nWhat it matches\nExample Match\n\n\n\n\nAny Character\n.\nAny single character (except a new line)\na, 9, %\n\n\nDigits\n\\\\d\nAny single number\n0, 7\n\n\nWords\n\\\\w\nAny letter, number, or underscore\nR, x, _\n\n\nWhitespace\n\\\\s\nSpaces, tabs, or new lines\n(a space)",
+    "crumbs": [
+      "Data Wrangling",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Working with text data</span>"
+    ]
+  },
+  {
+    "objectID": "04-text-data.html#building-a-regex-pattern",
+    "href": "04-text-data.html#building-a-regex-pattern",
+    "title": "3  Working with text data",
+    "section": "3.3 Building a Regex Pattern",
+    "text": "3.3 Building a Regex Pattern\nLet’s extract the username from the text: @rstats_guru\n\n\n1. @ (Matches the literal @ symbol)\n\n\n2. \\\\w (Matches the first word character, the ‘r’)\n\n\n3. + (Expands the match to the rest of the word ‘stats_guru’)\n\n\n\nFinal Code: str_extract(text, \"@\\\\w+\")",
+    "crumbs": [
+      "Data Wrangling",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Working with text data</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "4  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
+    "crumbs": [
+      "End",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. (USA) 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "End",
+      "References"
+    ]
+  }
+]

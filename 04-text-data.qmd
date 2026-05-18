@@ -8,6 +8,15 @@
 * It works beautifully with `stringr`
 :::
 
+## Core Regex Building Blocks
+
+| Concept | Symbol in R | What it matches | Example Match |
+| :--- | :--- | :--- | :--- |
+| **Any Character** | `.` | Any single character (except a new line) | `a`, `9`, `%` |
+| **Digits** | `\\d` | Any single number | `0`, `7` |
+| **Words** | `\\w` | Any letter, number, or underscore | `R`, `x`, `_` |
+| **Whitespace** | `\\s` | Spaces, tabs, or new lines | (a space) |
+
 ## Building a Regex Pattern
 
 Let's extract the username from the text: **`@rstats_guru`**
