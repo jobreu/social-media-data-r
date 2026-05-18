@@ -5,3 +5,5 @@ This repository contains the materials for the slides and an accompanying book f
 *Note 1*: The course and the accompanying materials are still under development. The content will be updated and expanded as the course progresses.
 
 *Note 2*: The course and the book are in German.
+
+The book is available at https://jobreu.github.io/social-media-data-r/
