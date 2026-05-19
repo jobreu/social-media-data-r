@@ -1,0 +1,11 @@
+# Installation {#sec-install}
+
+Um mit `R` zu arbeiten, müssen wir zwei bzw. drei Programme installieren:
+
+1. `R` selbst: Der Download für verschiedene Betriebssysteme ist über die [CRAN-Webseite](https://cran.r-project.org/) möglich (CRAN steht für "The Comprehensive R Archive Network" und ist auch die Quelle für die meisten `R`-Pakete; mehr dazu später).
+
+2. *RStudio*: Eine integrierte Entwicklungsumgebung (Integrated Development Environment, kurz IDE), die das Arbeiten mit `R` erleichtert. Die aktuelle Desktop-Version kann für verschiedene Betriebssysteme von der [Webseite der Entwicklerfirma *posit*](https://posit.co/download/rstudio-desktop) heruntergeladen werden.
+
+3. Für Windows wird zudem [Rtools](https://cran.r-project.org/bin/windows/Rtools/) benötigt, um Pakete installieren zu können, die nur auf *GitHub* verfügbar sind.
+
+Detailliertere Instruktionen zur Installation von `R` und *RStudio* sind in den [entsprechenden Abschnitten des Online-Buchs *R Cookbook* zu finden](https://rc2e.com/gettingstarted#recipe-id001).

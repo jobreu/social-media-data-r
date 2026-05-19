@@ -2,6 +2,11 @@ project:
   type: website
   output-dir: ../docs/slides # Pushes the rendered slides into the book's output folder
 
+# Citations configuration
+bibliography: references.bib
+csl: apa.csl
+
+# Output formats and styling
 format:
   revealjs:
     theme: [default, custom.scss]

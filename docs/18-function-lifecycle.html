@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Johannes Breuer">
-<meta name="dcterms.date" content="2026-05-21">
 
-<title>Sammlung und Analyse von Social-Media-Daten mit R</title>
+<title>12&nbsp; Aus dem Leben einer Funktion – Sammlung und Analyse von Social-Media-Daten mit R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,27 +23,42 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -55,7 +68,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01-installation.html" rel="next">
+<link href="./references.html" rel="next">
+<link href="./names.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -106,7 +120,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Vorwort</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./13-comments.html">Tipps &amp; Tricks</a></li><li class="breadcrumb-item"><a href="./18-function-lifecycle.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Aus dem Leben einer Funktion</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -137,7 +151,7 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Vorwort</span></a>
   </div>
 </li>
@@ -240,7 +254,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./18-function-lifecycle.html" class="sidebar-item-text sidebar-link">
+  <a href="./18-function-lifecycle.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Aus dem Leben einer Funktion</span></span></a>
   </div>
 </li>
@@ -257,44 +271,22 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#vorwort" id="toc-vorwort" class="nav-link active" data-scroll-target="#vorwort">Vorwort</a>
-  <ul class="collapse">
-  <li><a href="#fokus-des-buchs" id="toc-fokus-des-buchs" class="nav-link" data-scroll-target="#fokus-des-buchs">Fokus des Buchs</a></li>
-  <li><a href="#credits" id="toc-credits" class="nav-link" data-scroll-target="#credits">Credits</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./13-comments.html">Tipps &amp; Tricks</a></li><li class="breadcrumb-item"><a href="./18-function-lifecycle.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Aus dem Leben einer Funktion</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Sammlung und Analyse von Social-Media-Daten mit R</h1>
+<h1 class="title"><span id="sec-lifecycle" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Aus dem Leben einer Funktion</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Johannes Breuer </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">May 21, 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -304,47 +296,15 @@ div.csl-indent {
 </header>
 
 
-<section id="vorwort" class="level1 unnumbered">
-<h1 class="unnumbered">Vorwort</h1>
-<p>Herzlich willkommen im Buch zum Kurs <em>Sammlung und Analyse von Social-Media-Daten mit R</em>! 👋</p>
-<p>Das Buch gliedert sich in fünf Teile:</p>
-<ol type="1">
-<li><strong>Grundlagen</strong>: Grundlegende Infos zur Installation und Nutzung von <code>R</code> und <em>RStudio</em></li>
-<li><strong>Data Wrangling</strong>: Aufbereitung von Daten und Umgang mit Textdaten in <code>R</code></li>
-<li><strong>Sammlung von Social-Media-Daten</strong>: Sammlung von Daten von <em>Bluesky</em>, <em>YouTube</em> und <em>TikTok</em></li>
-<li><strong>Analyse von Social-Media-Daten</strong>: Einführung in die Analyse von Textdaten von Social-Media-Plattformen</li>
-<li><strong>Tipps &amp; Tricks</strong>: Weiterführende Informationen zur Nutzung von <code>R</code></li>
-</ol>
-<section id="fokus-des-buchs" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="fokus-des-buchs">Fokus des Buchs</h2>
-<p>Das Buch bzw. der Kurs setzt Grundkenntnisse in <code>R</code> voraus. Der erste Teil des Buchs ist daher v.a. als Wiederholung bzw. Auffrischung der Grundlagen von <code>R</code> und <em>RStudio</em> gedacht. Er bietet keine vollständige Einführung. Im Netz gibt es zahlreiche solcher Einführungen in verschiedenen Formaten. Besonders empfehlenswert sind der Workshop <a href="https://utrechtuniversity.github.io/workshop-introduction-to-R-and-data/"><em>Introduction to R &amp; Data</em></a> von der Uni Utrecht sowie das Buch <a href="https://r4ds.hadley.nz/"><em>R for Data Science</em></a> von Hadley Wickham, Mine Çetinkaya-Rundel und Garrett Grolemund. Beide sind kostenfrei online verfügbar. Für eine grundlegende Einführung in Statistik mit <code>R</code> empfiehlt sich insbesondere das Online-Buch <a href="https://introstatistics.netlify.app/"><em>Introduction to Statistics and Data Analysis – A Case-Based Approach</em></a> von Conrad Ziller.</p>
-<p>In den Abschnitten 2 bis 4 liegt der Fokus auf Textdaten. Die Sammlung und Analyse von Netzwerkdaten wird in diesem Kurs nicht behandelt. Zudem werden in Abschnitt 4 nur einige der möglichen Analysemethoden für Textdaten vorgestellt. Eine umfassendere Einführung in die Nutzung von <code>R</code> für die Sammlung und Analyse von Social-Media-Daten bietet das Buch <a href="https://cssbook.net/"><em>Computational Analysis of Communication</em></a> von Wouter van Atteveldt, Damian Trilling und Carlos Arcila Calderón.</p>
-<p>Zudem fokussiert das Buch auf plattformzentrierte Ansätze <span class="citation" data-cites="BreuerEtAl2025a">(<a href="references.html#ref-BreuerEtAl2025a" role="doc-biblioref">Breuer et al., 2025</a>)</span> zur Sammlung von Social-Media-Daten über Application Programming Interfaces (APIs) und Web Scraping. Nutzendenzentrierte Ansätze wie z.B. die Datenspende <span class="citation" data-cites="CarriereEtAl2024 vanDrielEtAl2022">(siehe <a href="references.html#ref-CarriereEtAl2024" role="doc-biblioref">Carrière et al., 2024</a>; <a href="references.html#ref-vanDrielEtAl2022" role="doc-biblioref"><span class="nocase">van Driel et al.</span>, 2022</a>)</span> sind nicht Teil des Kurses. Wer sich für die Exploration eigener Social-Media-Daten mit <code>R</code> interessiert, kann z.B. einen Blick auf die <a href="https://github.com/jobreu/data-literacy-seminar-21-22">Materialien aus meinem Seminar <em>Digitale Mediennutzung und Data Literacy - Über Datenspuren und ihre Nutzung</em></a> werfen, das ich im Wintersemester 2021-2022 an der HHU Düsseldorf gegeben habe.</p>
-</section>
-<section id="credits" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="credits">Credits</h2>
-<p>Das Buch wurde mit <a href="https://quarto.org/docs/books">Quarto</a> erstellt und orientiert sich in Inhalt und Struktur an den folgenden Quellen:</p>
-<ul>
-<li><a href="https://cssbook.net/">Computational Analysis of Communication</a> von Wouter van Atteveldt, Damian Trilling und Carlos Arcila Calderón</li>
-<li><a href="https://dataliteracy.cc/getting-started/">Communication Science R Book</a> von Kasper Welbers</li>
-<li>dem <a href="https://github.com/StefanJuenger/r-intro-gesis-2022">Kurs <em>Introduction to R for Data Analysis</em></a> für die <em>GESIS Summer School in Survey Methodology</em> 2022 von Stefan Jünger, Veronika Batzdorfer und mir</li>
-<li>dem <a href="https://github.com/jobreu/youtube-workshop-gesis-2024">GESIS-Workshop <em>Automatic Sampling and Analysis of YouTube Comments</em></a> von Julian Kohne, M. Rohangis Mohseni, Annika Deubel und mir</li>
-</ul>
+<p>In summary, this book has no content whatsoever.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-BreuerEtAl2025a" class="csl-entry" role="listitem">
-Breuer, J., Stier, S., Lukito, J., Mangold, F., Wieland, M., &amp; Radovanović, D. (2025). <em>Overview of <span>Ethical Considerations</span> when <span>Working</span> with <span>Digital Behavioral Data</span> (<span>GESIS Guides</span> to <span>Digital Behavioral Data</span>, 14)</em>. GESIS - Leibniz-Institute for the Social Sciences. <a href="https://doi.org/10.60762/GGDBD25014.1.0">https://doi.org/10.60762/GGDBD25014.1.0</a>
-</div>
-<div id="ref-CarriereEtAl2024" class="csl-entry" role="listitem">
-Carrière, T. C., Boeschoten, L., Struminskaya, B., Janssen, H. L., De Schipper, N. C., &amp; Araujo, T. (2024). Best practices for studies using digital data donation. <em>Quality &amp; Quantity</em>. <a href="https://doi.org/10.1007/s11135-024-01983-x">https://doi.org/10.1007/s11135-024-01983-x</a>
-</div>
-<div id="ref-vanDrielEtAl2022" class="csl-entry" role="listitem">
-<span class="nocase">van Driel, I. I., Giachanou, A., Pouwels, J. L., Boeschoten, L., Beyens, I., &amp; Valkenburg, P. M.</span> (2022). Promises and <span>Pitfalls</span> of <span>Social Media Data Donations</span>. <em>Communication Methods and Measures</em>, <em>16</em>(4), 266–282. <a href="https://doi.org/10.1080/19312458.2022.2109608">https://doi.org/10.1080/19312458.2022.2109608</a>
-</div>
-</div>
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -756,10 +716,13 @@ Carrière, T. C., Boeschoten, L., Struminskaya, B., Janssen, H. L., De Schipper,
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./names.html" class="pagination-link" aria-label="Namen in `R`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Namen in <code>R</code></span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-installation.html" class="pagination-link" aria-label="Installation">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

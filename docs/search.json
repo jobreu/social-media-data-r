@@ -2,88 +2,273 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Collecting and Analyzing Social Media Data with R",
+    "title": "Sammlung und Analyse von Social-Media-Daten mit R",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\n1 + 1\n\n[1] 2",
+    "text": "Vorwort\nHerzlich willkommen im Buch zum Kurs Sammlung und Analyse von Social-Media-Daten mit R! 👋\nDas Buch gliedert sich in fünf Teile:",
     "crumbs": [
-      "Preface"
+      "Vorwort"
     ]
   },
   {
-    "objectID": "01-intro-to-r.html",
-    "href": "01-intro-to-r.html",
-    "title": "1  Introduction",
-    "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n1 + 1\n\n[1] 2\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. (USA) 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "objectID": "index.html#fokus-des-buchs",
+    "href": "index.html#fokus-des-buchs",
+    "title": "Sammlung und Analyse von Social-Media-Daten mit R",
+    "section": "Fokus des Buchs",
+    "text": "Fokus des Buchs\nDas Buch bzw. der Kurs setzt Grundkenntnisse in R voraus. Der erste Teil des Buchs ist daher v.a. als Wiederholung bzw. Auffrischung der Grundlagen von R und RStudio gedacht. Er bietet keine vollständige Einführung. Im Netz gibt es zahlreiche solcher Einführungen in verschiedenen Formaten. Besonders empfehlenswert sind der Workshop Introduction to R & Data von der Uni Utrecht sowie das Buch R for Data Science von Hadley Wickham, Mine Çetinkaya-Rundel und Garrett Grolemund. Beide sind kostenfrei online verfügbar. Für eine grundlegende Einführung in Statistik mit R empfiehlt sich insbesondere das Online-Buch Introduction to Statistics and Data Analysis – A Case-Based Approach von Conrad Ziller.\nIn den Abschnitten 2 bis 4 liegt der Fokus auf Textdaten. Die Sammlung und Analyse von Netzwerkdaten wird in diesem Kurs nicht behandelt. Zudem werden in Abschnitt 4 nur einige der möglichen Analysemethoden für Textdaten vorgestellt. Eine umfassendere Einführung in die Nutzung von R für die Sammlung und Analyse von Social-Media-Daten bietet das Buch Computational Analysis of Communication von Wouter van Atteveldt, Damian Trilling und Carlos Arcila Calderón.\nZudem fokussiert das Buch auf plattformzentrierte Ansätze (Breuer et al., 2025) zur Sammlung von Social-Media-Daten über Application Programming Interfaces (APIs) und Web Scraping. Nutzendenzentrierte Ansätze wie z.B. die Datenspende (siehe Carrière et al., 2024; van Driel et al., 2022) sind nicht Teil des Kurses. Wer sich für die Exploration eigener Social-Media-Daten mit R interessiert, kann z.B. einen Blick auf die Materialien aus meinem Seminar Digitale Mediennutzung und Data Literacy - Über Datenspuren und ihre Nutzung werfen, das ich im Wintersemester 2021-2022 an der HHU Düsseldorf gegeben habe.",
     "crumbs": [
-      "Introduction",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "Vorwort"
     ]
   },
   {
-    "objectID": "03-import-export.html",
-    "href": "03-import-export.html",
-    "title": "2  Data import & export",
+    "objectID": "index.html#credits",
+    "href": "index.html#credits",
+    "title": "Sammlung und Analyse von Social-Media-Daten mit R",
+    "section": "Credits",
+    "text": "Credits\nDas Buch wurde mit Quarto erstellt und orientiert sich in Inhalt und Struktur an den folgenden Quellen:\n\nComputational Analysis of Communication von Wouter van Atteveldt, Damian Trilling und Carlos Arcila Calderón\nCommunication Science R Book von Kasper Welbers\ndem Kurs Introduction to R for Data Analysis für die GESIS Summer School in Survey Methodology 2022 von Stefan Jünger, Veronika Batzdorfer und mir\ndem GESIS-Workshop Automatic Sampling and Analysis of YouTube Comments von Julian Kohne, M. Rohangis Mohseni, Annika Deubel und mir\n\n\n\n\n\nBreuer, J., Stier, S., Lukito, J., Mangold, F., Wieland, M., & Radovanović, D. (2025). Overview of Ethical Considerations when Working with Digital Behavioral Data (GESIS Guides to Digital Behavioral Data, 14). GESIS - Leibniz-Institute for the Social Sciences. https://doi.org/10.60762/GGDBD25014.1.0\n\n\nCarrière, T. C., Boeschoten, L., Struminskaya, B., Janssen, H. L., De Schipper, N. C., & Araujo, T. (2024). Best practices for studies using digital data donation. Quality & Quantity. https://doi.org/10.1007/s11135-024-01983-x\n\n\nvan Driel, I. I., Giachanou, A., Pouwels, J. L., Boeschoten, L., Beyens, I., & Valkenburg, P. M. (2022). Promises and Pitfalls of Social Media Data Donations. Communication Methods and Measures, 16(4), 266–282. https://doi.org/10.1080/19312458.2022.2109608",
+    "crumbs": [
+      "Vorwort"
+    ]
+  },
+  {
+    "objectID": "01-installation.html",
+    "href": "01-installation.html",
+    "title": "1  Installation",
     "section": "",
-    "text": "2.1 JSON\n[   {     \"post_id\": \"7102938475\",     \"author\": \"@r_stats_guru\",     \"description\": \"Learn ggplot2 in 60 seconds! 📊 #rstats #dataviz\",     \"metrics\": {       \"views\": 14500,       \"likes\": 3200,       \"shares\": 150     }   },   {     \"post_id\": \"7102938476\",     \"author\": \"@quarto_tips\",     \"description\": \"Stop using standard markdown. Do this instead. 🚀 #coding\",     \"metrics\": {       \"views\": 89000,       \"likes\": 12400,       \"shares\": 890     }   } ]",
+    "text": "Um mit R zu arbeiten, müssen wir zwei bzw. drei Programme installieren:\n\nR selbst: Der Download für verschiedene Betriebssysteme ist über die CRAN-Webseite möglich (CRAN steht für “The Comprehensive R Archive Network” und ist auch die Quelle für die meisten R-Pakete; mehr dazu später).\nRStudio: Eine integrierte Entwicklungsumgebung (Integrated Development Environment, kurz IDE), die das Arbeiten mit R erleichtert. Die aktuelle Desktop-Version kann für verschiedene Betriebssysteme von der Webseite der Entwicklerfirma posit heruntergeladen werden.\nFür Windows wird zudem Rtools benötigt, um Pakete installieren zu können, die nur auf GitHub verfügbar sind.\n\nDetailliertere Instruktionen zur Installation von R und RStudio sind in den entsprechenden Abschnitten des Online-Buchs R Cookbook zu finden.",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "02-rstudio.html",
+    "href": "02-rstudio.html",
+    "title": "2  Arbeiten mit RStudio",
+    "section": "",
+    "text": "2.1 Workflow\nSofern R und RStudio installiert sind (siehe Chapter 1), können Sie RStudio starten. Wenn alles korrekt installiert wurde, startet RStudio dann automatisch auch R.\nWenn Sie RStudio zum ersten Mal öffnen, sollten Sie drei Fenster im Programm sehen.\nIm ersten Schritt können Sie nun ein neues R-Skript erstellen. Im Kurs werden wir für die Sammlung, Aufbereitung und Analyse von Daten mit R-Skripten arbeiten. Diese enthalten Code, können zudem auch Kommentare enthalten und haben die Dateiendung .r.\nUm ein neues R-Skript in RStudio zu erstellen, gibt es drei Optionen:\nSobald Sie ein neues R-Skript erstellt haben, sollten Sie in RStudio vier Fenster sehen, die jeweils mehrere Tabs haben können und wie folgt angeordnet sind:\nOben links befindet sich der Texteditor für die Dateien, an denen Sie gerade arbeiten. Meistens sind dies R-Skripte.\nOben rechts ist das Fenster mit Informationen zum Arbeitsbereich (Workspace) zu finden. Der wichtigste Tab hier ist die “Environment” (Umgebung), in der Informationen zu den Objekten in Ihrer Arbeitsumgebung angezeigt werden. Dies können einzelne Werte, Vektoren oder ganze Datensätze sein (Erklärungen zu den unterschiedlichen Objekttypen in R sind im Abschnitt Chapter 3 zu finden). Im “History”-Tab können Sie hier auch den Verlauf der ausgeführten Befehle einsehen.\nUnten links ist die sogenannte Konsole (Console). Hier können Sie interaktiv Code ausführen. Auch Warnungen und Fehlermeldungen sowie Ausgaben zu ausgeführtem Code aus Skripten werden hier angezeigt, sofern es sich dabei um Text handelt. Im Fenster mit der Konsole wird auch ein “Terminal”-Tab angezeigt, über das Sie auf die Kommandozeile zugreifen können.\nIm Fenster unten rechts befinden sich mehrere Tabs, die auch für Einsteiger_innen in die Nutzung von R und RStudio interessant sind. - Im “Files”-Tab finden Sie die Dateien, die sich in Ihrem aktuellen Arbeitsverzeichnis (Working Directory; mehr dazu im nächsten Abschnitt) befinden. - Im “Packages”-Tab können Sie sehen, welche R-Pakete Sie installiert und in der aktuellen Sitzung (Session) geladen haben. - Im Tab “Help” können Sie die Dokumentation zu Funktionen und Paketen in R einsehen. Mehr dazu finden Sie im Abschnitt Chapter 7. - In den Tabs “Plots” und “Viewer” werden Grafiken (Plots) und HMTL-Ausgaben bzw. interaktive Inhalte (Viewer) angezeigt, die Sie mit R erstellen können.",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Arbeiten mit *RStudio*</span>"
+    ]
+  },
+  {
+    "objectID": "02-rstudio.html#workflow",
+    "href": "02-rstudio.html#workflow",
+    "title": "2  Arbeiten mit RStudio",
+    "section": "",
+    "text": "2.1.1 R-Skripte\nCode, der in der Kosole ausgeführt wird, wird nicht gespeichert. Alles was Sie behalten/speichern möchten, sollte daher in R-Skripten gemacht werden.\nSie können R-Skripte jederzeit speichern, indem Sie auf das Disketten-Symbol in der Symbolleiste klicken oder die Tastenkombination Strg + S (Windows) bzw. Cmd + S (Mac) verwenden. Es empfiehlt sich, Skripte regelmäßig zu speichern, um Datenverlust zu vermeiden.\nUm zu dokumentieren, was der Code in Ihrem Skript macht, können Sie Kommentare hinzufügen. Kommentare sind Zeilen, die mit einem Hashtag (#) beginnen und von R ignoriert werden. Sie können Kommentare verwenden, um zu erklären, was der Code tut, warum bestimmte Entscheidungen getroffen wurden oder um Notizen für sich selbst oder andere zu hinterlassen.\n\n# Dies ist ein Kommentar. Er wird von R ignoriert und dient nur zur Dokumentation.\n# Sie können hier z.B. erklären, was der folgende Code macht.\n\n# Berechnung der Summe von 1 und 1\n1 + 1\n\n[1] 2\n\n\nWeitere Tipps & Tricks zum Kommentieren von R-Skripten finden Sie im Abschnitt Chapter 6.\n\n\n2.1.2 Code ausführen\nIn der Konsole können Sie Code direkt eingeben und ausführen, indem Sie die Eingabetaste drücken. Wenn Sie in der letzten Zeile in der Konsole das &gt;-Zeichen sehen, bedeutet dies, dass R bereit für weitere Befehle ist. Wenn Sie am Anfang der Eingabezeile in der Konsole ein + sehen, bedeutet dies, dass der Befehl unvollständig ist. Ein häufiger Grund dafür ist eine fehlende Klammer ) oder ein fehlendes Anführungszeichen \" (weitere Tipps zum Umgang mit häufigen Fehlern in R finden Sie im Abschnitt Chapter 9). Sie können den Befehl entweder vervollständigen (und ihn dann durch Drücken der Eingabetaste ausführen) oder die Eingabe des Befehls durch Drücken der Esc-Taste abbrechen.\nSobald Sie mindestens einen Befehl ausgeführt haben, können Sie mit den Tasten ↑ und ↓ auf Ihrer Tastatur in der Konsole in RStudio durch die vorherigen Befehle “blättern” und diese erneut ausführen.\nFür R-Skripte gibt es mehrere Möglichkeiten, Code auszuführen:\n\nSie können das gesamte Skript ausführen, indem Sie auf das Symbol “Source” (weißes Rechteck mit blauem Pfeil) oben rechts in der Symbolleiste klicken oder die Tastenkombination Strg + Shift + Enter (Windows) bzw. Cmd + Shift + Enter (Mac) verwenden.\nMarkieren Sie die Code-Zeilen, die Sie ausführen möchten, und klicken Sie auf das Symbol “Run” (Ausführen) in der Symbolleiste oder verwenden Sie die Tastenkombination Strg + Enter (Windows) bzw. Cmd + Enter (Mac).\nKlicken Sie mit der Maus auf die Zeile, die Sie ausführen möchten, und verwenden Sie die Tastenkombination Strg + Enter (Windows) bzw. Cmd + Enter (Mac), um die aktuelle Zeile auszuführen. Wenn Sie mehrere Zeilen ausführen möchten, können Sie diese markieren und dann die gleiche Tastenkombination verwenden.\n\n\n\n2.1.3 Arbeitsverzeichnis & Arbeitsbereich\nDas Arbeitsverzeichnis (Working Directory) ist der Ordner auf Ihrem Computer, in dem R nach Dateien sucht, die Sie laden möchten, und in dem es Dateien speichert, die Sie erstellen.\nBegrifflich ähnlich aber technisch gesehen etwas anderes ist der sogenannte Arbeitsbereich (Workspace). Der Arbeitsbereich umfasst alle Objekte, die Sie in R erstellt oder geladen haben, wie z.B. Variablen, Funktionen oder Datensätze. Diese Objekte werden im “Environment”-Tab oben rechts in RStudio angezeigt.\nDer Inhalt der aktuellen Umgebung wird im Arbeitsspeicher (RAM) Ihres Computers gespeichert, bis Sie R (oder RStudio) beenden.\nDer aktuelle Inhalt des Arbeitsbereichs kann auch über den Befehl ls() angezeigt werden. Mit der Funktion rm()können Objekte aus dem Arbeitsbereich entfernen. ** Wichtig**: Dies kann nicht rückgängig gemacht werden. D.h. Objekte müssen dann ggf. neu erstellt werden.\nStandardmäßig speichert R den Arbeitsbereich in einer Datei namens .RData im aktuellen Arbeitsverzeichnis und stellt den Arbeitsbereich beim Neustart wieder her.\nDas Speichern des Arbeitsbereichs kann zwar nützlich sein, sollte jedoch nicht Ihre primäre – und v.a. nicht die ausschließliche – Methode zum Speichern Ihrer Arbeit sein. Stattdessen sollten Sie Skripte verwenden, um Ihren Code zu speichern, und alle Ausgaben (einschließlich relevanter Zwischenergebnisse; insbesondere wenn deren Erstellung viel Zeit in Anspruch nimmt) wie Datensätze oder Abbildungen (Plots) in Dateien mit einem geeigneten Format speichern (mehr dazu im Abschnitt Chapter 4).",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Arbeiten mit *RStudio*</span>"
+    ]
+  },
+  {
+    "objectID": "02-rstudio.html#einstellungen-in-rstudio",
+    "href": "02-rstudio.html#einstellungen-in-rstudio",
+    "title": "2  Arbeiten mit RStudio",
+    "section": "2.2 Einstellungen in RStudio",
+    "text": "2.2 Einstellungen in RStudio\nUm die Umsetzung des im vorherigen Abschnitts empfohlenen Workflows zu erleichtern, sollten Sie einige Einstellungen in RStudio vornehmen. Klicken Sie dazu auf “Tools” -&gt; “Global Options” und nehmen im Reiter “General” folgende Einstellungen vor:\n\nUnter “Workspace” Entfernen Sie das Häkchen bei “Restore .RData into workspace at startup” und wählen Sie “Never” aus dem Dropdown-Menü bei “Save workspace to .RData on exit”. So wird verhindert, dass Ihr Arbeitsbereich automatisch gespeichert wird, wenn Sie RStudio schließen und dass alte Objekte automatisch geladen werden, wenn Sie RStudio starten.\nEntfernen Sie das Häkchen unter “History” bei der Option “Always save history (even when not saving .RData)” aktivieren. So wird Ihre Befehls-Historie (Command History) nicht jedes Mal automatisch gespeichert. Wenn Sie die Command History explizit speicher möchten, können Sie dafür den Befehl savehistory() nutzen. Dieser erstellt dann eine .Rhistory-Datei im Arbeitsverzeichnis. Sie sollten Code, den Sie behalten und wiederverwenden möchten allerdings in eigenen R-Skripten speichern (s.o.).\n\nSie können in den Optionen noch viele weitere Einstellungen vornehmen. Z.B. können Sie dort das Aussehen von RStudio oder die Formatierung von Code in R-Skripten anpassen.",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Arbeiten mit *RStudio*</span>"
+    ]
+  },
+  {
+    "objectID": "03-objects.html",
+    "href": "03-objects.html",
+    "title": "3  Objekte in R",
+    "section": "",
+    "text": "tbd",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Objekte in `R`</span>"
+    ]
+  },
+  {
+    "objectID": "05-import-export.html",
+    "href": "05-import-export.html",
+    "title": "4  Data import & export",
+    "section": "",
+    "text": "4.1 JSON\n[   {     \"post_id\": \"7102938475\",     \"author\": \"@r_stats_guru\",     \"description\": \"Learn ggplot2 in 60 seconds! 📊 #rstats #dataviz\",     \"metrics\": {       \"views\": 14500,       \"likes\": 3200,       \"shares\": 150     }   },   {     \"post_id\": \"7102938476\",     \"author\": \"@quarto_tips\",     \"description\": \"Stop using standard markdown. Do this instead. 🚀 #coding\",     \"metrics\": {       \"views\": 89000,       \"likes\": 12400,       \"shares\": 890     }   } ]",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data import & export</span>"
+    ]
+  },
+  {
+    "objectID": "08-text-data.html",
+    "href": "08-text-data.html",
+    "title": "5  Working with text data",
+    "section": "",
+    "text": "5.1 Why use Regex?",
     "crumbs": [
       "Data Wrangling",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data import & export</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with text data</span>"
     ]
   },
   {
-    "objectID": "04-text-data.html",
-    "href": "04-text-data.html",
-    "title": "3  Working with text data",
-    "section": "",
-    "text": "3.1 Why use Regex?",
-    "crumbs": [
-      "Data Wrangling",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Working with text data</span>"
-    ]
-  },
-  {
-    "objectID": "04-text-data.html#why-use-regex",
-    "href": "04-text-data.html#why-use-regex",
-    "title": "3  Working with text data",
+    "objectID": "08-text-data.html#why-use-regex",
+    "href": "08-text-data.html#why-use-regex",
+    "title": "5  Working with text data",
     "section": "",
     "text": "It is extremely powerful\nIt requires less code than base R\nIt works beautifully with stringr",
     "crumbs": [
       "Data Wrangling",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Working with text data</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with text data</span>"
     ]
   },
   {
-    "objectID": "04-text-data.html#core-regex-building-blocks",
-    "href": "04-text-data.html#core-regex-building-blocks",
-    "title": "3  Working with text data",
-    "section": "3.2 Core Regex Building Blocks",
-    "text": "3.2 Core Regex Building Blocks\n\n\n\n\n\n\n\n\n\nConcept\nSymbol in R\nWhat it matches\nExample Match\n\n\n\n\nAny Character\n.\nAny single character (except a new line)\na, 9, %\n\n\nDigits\n\\\\d\nAny single number\n0, 7\n\n\nWords\n\\\\w\nAny letter, number, or underscore\nR, x, _\n\n\nWhitespace\n\\\\s\nSpaces, tabs, or new lines\n(a space)",
+    "objectID": "08-text-data.html#core-regex-building-blocks",
+    "href": "08-text-data.html#core-regex-building-blocks",
+    "title": "5  Working with text data",
+    "section": "5.2 Core Regex Building Blocks",
+    "text": "5.2 Core Regex Building Blocks\n\n\n\n\n\n\n\n\n\nConcept\nSymbol in R\nWhat it matches\nExample Match\n\n\n\n\nAny Character\n.\nAny single character (except a new line)\na, 9, %\n\n\nDigits\n\\\\d\nAny single number\n0, 7\n\n\nWords\n\\\\w\nAny letter, number, or underscore\nR, x, _\n\n\nWhitespace\n\\\\s\nSpaces, tabs, or new lines\n(a space)",
     "crumbs": [
       "Data Wrangling",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Working with text data</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with text data</span>"
     ]
   },
   {
-    "objectID": "04-text-data.html#building-a-regex-pattern",
-    "href": "04-text-data.html#building-a-regex-pattern",
-    "title": "3  Working with text data",
-    "section": "3.3 Building a Regex Pattern",
-    "text": "3.3 Building a Regex Pattern\nLet’s extract the username from the text: @rstats_guru\n\n\n1. @ (Matches the literal @ symbol)\n\n\n2. \\\\w (Matches the first word character, the ‘r’)\n\n\n3. + (Expands the match to the rest of the word ‘stats_guru’)\n\n\n\nFinal Code: str_extract(text, \"@\\\\w+\")",
+    "objectID": "08-text-data.html#building-a-regex-pattern",
+    "href": "08-text-data.html#building-a-regex-pattern",
+    "title": "5  Working with text data",
+    "section": "5.3 Building a Regex Pattern",
+    "text": "5.3 Building a Regex Pattern\nLet’s extract the username from the text: @rstats_guru\n\n\n1. @ (Matches the literal @ symbol)\n\n\n2. \\\\w (Matches the first word character, the ‘r’)\n\n\n3. + (Expands the match to the rest of the word ‘stats_guru’)\n\n\n\nFinal Code: str_extract(text, \"@\\\\w+\")",
     "crumbs": [
       "Data Wrangling",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Working with text data</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with text data</span>"
     ]
   },
   {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "4  Summary",
+    "objectID": "13-comments.html",
+    "href": "13-comments.html",
+    "title": "6  Kommentare in R-Skripten",
+    "section": "",
+    "text": "Wenn Sie einen in einem R-Skript in RStudio einen Kommentar vor einem Code-Block mit #### (oder mehreren # oder ---- oder mehreren Bindestrichen) beenden, können Sie einen Abschnitt in Ihrem Skript erstellen, der im Skriptfenster von RStudio ein- und ausgeblendet werden kann. Dadurch wird außerdem am unteren Rand des Skriptfensters ein kleines interaktives Inhaltsverzeichnis für das Skript erstellt.\nSie können auch die Tastenkombination Strg + Umschalt + R (Windows & Linux)/Cmd + Umschalt + R (Mac) verwenden, um Codeabschnitte einzufügen. In diesem Fall müssen Sie dann im Pop-Up-Fenster, dass sich öffnet, noch einen Namen für den Abschnitt vergeben.\n\n\n\nComments for a table of content in R scripts",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Kommentare in R-Skripten</span>"
+    ]
+  },
+  {
+    "objectID": "14-help.html",
+    "href": "14-help.html",
+    "title": "7  🆘 Hilfe!",
+    "section": "",
+    "text": "7.1 Help Files zu Funktionen und Paketen\nEs gibt viele Möglichkeiten, Hilfe für Probleme in/mit R zu finden. Die wichtigsten Optionen sind:\nAuf der Website des R-Projekts gibt es ein hilfreiches kurzes Tutorial zum Thema “Getting Help with R”.\nR hat ein eingebautes Hilfesystem, das es ermöglicht, Informationen zu Funktionen und Paketen abzurufen. Dazu kann man einfach die Funktion ? verwenden, gefolgt vom Namen eines Pakets oder einer Funktion. Zum Beispiel:\n# Funktion\n?mean\n\n# Paket\n?dplyr\nHierdurch öffnet sich im “Help”-Tab in RStudio die entsprechende Hilfeseite. Auf dieser Seite finden Sie eine kurze Beschreibung der Funktion oder des Pakets, Informationen zu den Argumenten, die die Funktion erwartet, sowie Beispiele für die Verwendung der Funktion.\nMan kann auch alle Hilfedateien für ein bestimmtes Paket mit dem Befehl help(package = „packagename“)durchsuchen.\n# Alle Hilfedateien für das Paket dplyr durchsuchen\nhelp(package = \"dplyr\")",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>🆘 Hilfe!</span>"
+    ]
+  },
+  {
+    "objectID": "14-help.html#vignetten",
+    "href": "14-help.html#vignetten",
+    "title": "7  🆘 Hilfe!",
+    "section": "7.2 Vignetten",
+    "text": "7.2 Vignetten\nViele R-Pakete bieten auch sogenannte Vignetten an. Bei diesen handelt es sich um Dokumente, die detailliertere Erläuterungen und Beispiele zu einigen Funktionen eines Pakets enthalten.\nUm Vignetten nutzen zu können, muss man zunächst wissen, ob ein Paket überhaupt Vignetten enthält und, falls ja, wie diese heißen. Mit diesen Informationen kann man dann auf die entsprechenden Vignetten zugreifen. In RStudio wird die Vignette aauch im “Help”-Tab angezeigt.\n\n# Alle Vignetten für das Paket dplyr anzeigen\nvignette(package = \"dplyr\")\n\n# Zugriff auf eine bestimmte Vignette\nvignette(\"colwise \")\n\nEs ist auch möglich, sich die Vignetten für ein Paket direkt im Browser anzeigen zu lassen.\n\n# Alle Vignetten für das Paket dplyr im Browser anzeigen\nbrowseVignettes(package = \"dplyr\")",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>🆘 Hilfe!</span>"
+    ]
+  },
+  {
+    "objectID": "14-help.html#dokumentation-zu-paketen",
+    "href": "14-help.html#dokumentation-zu-paketen",
+    "title": "7  🆘 Hilfe!",
+    "section": "7.3 Dokumentation zu Paketen",
+    "text": "7.3 Dokumentation zu Paketen\nPakete, die auf CRAN verfügbar sind, enthalten sogenannte Reference Manuals (Referenzhandbücher) im HTML- und PDF-Format. Diese sind auf den jeweiligen CRAN-Webseiten der Pakete unter “Documentation” / “Reference Manual” zu finden (siehe z.B. die CRAN-Webseite für das Paket dplyr).\nEinige Pakete verfügen zudem über eigene Websites mit ausführlicher Zusatzdokumentation (das quanteda-Paket für Textanalyse ist hierfür ein gutes Beispiel).\nWenn R-Pakete auf GitHub gehostet werden, enthält das zugehörige Repository in der Regel auch eine Dokumentation zum Paket (z.B. in der ReadMe-Datei). Sollten bei der Verwendung eines auf GitHub gehosteten Pakets Probleme auftreten, lohnt sich ggf. auch ein Blick in den Bereich “Issues” im GitHub-Repository zum Paket.",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>🆘 Hilfe!</span>"
+    ]
+  },
+  {
+    "objectID": "14-help.html#foren-und-mailinglisten",
+    "href": "14-help.html#foren-und-mailinglisten",
+    "title": "7  🆘 Hilfe!",
+    "section": "7.4 Foren und Mailinglisten",
+    "text": "7.4 Foren und Mailinglisten\nEs gibt zahlreiche R-bezogene Foren und Mailinglisten. Zwei wichtige (und hilfreiche) Foren für R sind Stack Overflow und die posit Community.\nDie Wahrscheinlichkeit ist groß, dass jemand die Frage(n), die Sie interessieren, bereits auf in einem dieser beiden Foren gestellt (und beantwortet) hat. Die Webseite des R-Projekts bietet auch einen Überblick über R-Mailinglisten.",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>🆘 Hilfe!</span>"
+    ]
+  },
+  {
+    "objectID": "14-help.html#ki-chatbots",
+    "href": "14-help.html#ki-chatbots",
+    "title": "7  🆘 Hilfe!",
+    "section": "7.5 KI-Chatbots",
+    "text": "7.5 KI-Chatbots\nKI-Chatbots wie z.B. ChatGPT können ebenfalls eine wertvolle Ressource sein, um Hilfe bei der Arbeit mit R zu erhalten. Sie können Code generieren oder Fragen zu Paketen, Funktionen oder Fehlermeldungen beantworten. Wie immer bei der Arbeit mit KI gilt, dass diese Fehler machen kann. Daher sollten die Ausgaben stets mit Vorsicht genutzt und überprüft werden.\nEs gibt zudem einige Tools, mit denen KI bzw. auf dieser basierende Chatbots in RStudio integriert werden können. Dies ist z.B. für GitHub Copilot möglich und posit bietet für RStudio und seine neue IDE positron auch das Tool Posit Assistant an.",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>🆘 Hilfe!</span>"
+    ]
+  },
+  {
+    "objectID": "15-message-warning-error.html",
+    "href": "15-message-warning-error.html",
+    "title": "8  Meldungen, Warnungen, Fehler",
     "section": "",
     "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
     "crumbs": [
-      "End",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Summary</span>"
+      "Tipps & Tricks",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Meldungen, Warnungen, Fehler</span>"
+    ]
+  },
+  {
+    "objectID": "16-errors.html",
+    "href": "16-errors.html",
+    "title": "9  🛠️Troubleshooting 101",
+    "section": "",
+    "text": "Wenn Sie in R eine Fehlermeldung erhalten und deren Bedeutung nicht (vollständig) verstehen, können Sie diese natürlich einfach in Ihre bevorzugte Suchmaschine eingeben. In der Regel liefert dies einige hilfreiche Ergebnisse. Alternativ können Sie die Fehlermeldung z.B. auch direkt in das Suchfeld auf Stack Overflow kopieren.\nWenn Sie Copy & Paste nicht so mögen, können Sie auch die Pakete searcher oder errorist verwenden, um direkt in R/RStudio (an verschiedenen Orten) nach Fehlermeldungen zu suchen. Das searcher-Paket kann auch verwendet werden, um nach anderen Dingen (neben Fehlermeldungen) zu suchen und bietet Optionen für die Nutzung von KI-Assistenten.",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>🛠️Troubleshooting 101</span>"
+    ]
+  },
+  {
+    "objectID": "17-paths.html",
+    "href": "17-paths.html",
+    "title": "10  Dateipfade",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Dateipfade</span>"
+    ]
+  },
+  {
+    "objectID": "names.html",
+    "href": "names.html",
+    "title": "11  Namen in R",
+    "section": "",
+    "text": "11.1 😷 Masking\nEs gibt eine sehr große Zahl von Paketen für R. Laut der Seite METACRAN gab es am 19. Mai 2025 fast 23.700 Pakete auf CRAN (hinzu kommen noch Pakete aus anderen Quellen wie GitHub). Diese werden von vielen unterschiedlichen Personen entwickelt (laut METACRAN waren es am 19.05.2025 insgesamt knapp 10.600 sogenannte “Package Maintainer”).\nAngesichts dieser Vielzahl ist es nicht verwunderlich, dass es in R viele Funktionen gibt, die denselben Namen haben (zumal es auch Grenzen für die Kreativität bei der Benennung von Funktionen gibt).Lädt man in einer R-Session verschiedene Pakete, die Funktionen mit demselben Namen verwenden, führt dies zu sogenannten “namespace conflicts”.\nWenn Sie ein Paket laden und einige seiner Funktionen dieselben Namen haben wie Funktionen aus Paketen, die Sie zuvor in Ihrer aktuellen R-Sitzung geladen haben, werden diese Funktionen „ausgeblendet“ (engl. “masked”).\nDie Reihenfolge, in der Pakete (innerhalb einer Sitzung) geladen werden, ist dabei von Bedeutung, da die “Maskierung” von Funktionen nacheinander erfolgt. Sie können jedoch weiterhin auf maskierte Funktionen zugreifen. Dazu müssen Sie den Namen des Pakets angeben, aus dem die Funktion stammt, gefolgt von :: und dem Namen der Funktion.\n# Zugriff auf die Funktion filter() aus base-R-Paket stats nach dem Laden von dplyr\nstats::filter()\nAuf diese Weise kann man auch auf einzelne Funktionen aus installierten Paketen zugreifen, ohne das gesamte Paket zu laden. Dies kann hilfreich sein, um Konflikte zu vermeiden oder um nur eine bestimmte Funktion aus einem Paket zu verwenden, ohne alle Funktionen dieses Pakets in den Arbeitsspeicher zu laden.",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Namen in `R`</span>"
+    ]
+  },
+  {
+    "objectID": "names.html#masking",
+    "href": "names.html#masking",
+    "title": "11  Namen in R",
+    "section": "",
+    "text": "The tidyverse masking functions",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Namen in `R`</span>"
+    ]
+  },
+  {
+    "objectID": "18-function-lifecycle.html",
+    "href": "18-function-lifecycle.html",
+    "title": "12  Aus dem Leben einer Funktion",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Aus dem Leben einer Funktion</span>"
     ]
   },
   {
@@ -91,9 +276,8 @@
     "href": "references.html",
     "title": "References",
     "section": "",
-    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. (USA) 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "text": "Breuer, J., Stier, S., Lukito, J., Mangold, F., Wieland, M., &\nRadovanović, D. (2025). Overview of Ethical\nConsiderations when Working with Digital\nBehavioral Data (GESIS Guides to Digital\nBehavioral Data, 14). GESIS - Leibniz-Institute for the\nSocial Sciences. https://doi.org/10.60762/GGDBD25014.1.0\n\n\nCarrière, T. C., Boeschoten, L., Struminskaya, B., Janssen, H. L., De\nSchipper, N. C., & Araujo, T. (2024). Best practices for studies\nusing digital data donation. Quality & Quantity. https://doi.org/10.1007/s11135-024-01983-x\n\n\nvan Driel, I. I., Giachanou, A., Pouwels, J. L.,\nBoeschoten, L., Beyens, I., & Valkenburg, P. M. (2022).\nPromises and Pitfalls of Social Media Data\nDonations. Communication Methods and Measures,\n16(4), 266–282. https://doi.org/10.1080/19312458.2022.2109608",
     "crumbs": [
-      "End",
       "References"
     ]
   }

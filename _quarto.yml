@@ -4,29 +4,40 @@ project:
   render:
     - "*.qmd"
     - "!slides/"
+
+engine: knitr
     
 book:
-  title: "Collecting and Analyzing Social Media Data with R"
+  title: "Sammlung und Analyse von Social-Media-Daten mit R"
   author: "Johannes Breuer"
   date: "05-21-2026"
   sidebar:                       
     logo: images/logo.png
   chapters:
     - index.qmd
-    - part: "Introduction"
+    - part: "Grundlagen"
       chapters:
-      - 01-intro-to-r.qmd
+      - 01-installation.qmd
+      - 02-rstudio.qmd
+      - 03-objects.qmd
+      - 05-import-export.qmd
     - part: "Data Wrangling"
       chapters:
-      - 03-import-export.qmd
-      - 04-text-data.qmd
-    - part: "End"
+      - 08-text-data.qmd
+    - part: "Tipps & Tricks"
       chapters:
-      - summary.qmd
-      - references.qmd
+      - 13-comments.qmd
+      - 14-help.qmd
+      - 15-message-warning-error.qmd
+      - 16-errors.qmd
+      - 17-paths.qmd
+      - names.qmd
+      - 18-function-lifecycle.qmd
+    - references.qmd
 
 # Citations configuration
 bibliography: references.bib
+csl: apa.csl
 
 # Output formats and styling
 format:
@@ -34,5 +45,7 @@ format:
     theme:
       - cosmo
       - brand
+    link-external-newwindow: true
+    link-external-icon: true
   pdf:
     documentclass: scrreprt

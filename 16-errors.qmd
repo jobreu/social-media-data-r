@@ -1,0 +1,5 @@
+# 🛠️Troubleshooting 101 {#sec-errors}
+
+Wenn Sie in `R` eine Fehlermeldung erhalten und deren Bedeutung nicht (vollständig) verstehen, können Sie diese natürlich einfach in Ihre bevorzugte Suchmaschine eingeben. In der Regel liefert dies einige hilfreiche Ergebnisse. Alternativ können Sie die Fehlermeldung z.B. auch direkt in das Suchfeld auf [*Stack Overflow*](https://stackoverflow.com/questions) kopieren.
+
+Wenn Sie Copy & Paste nicht so mögen, können Sie auch die Pakete [`searcher`](https://r-pkg.thecoatlessprofessor.com/searcher/) oder [`errorist`](https://r-pkg.thecoatlessprofessor.com/errorist/) verwenden, um direkt in `R`/*RStudio* (an verschiedenen Orten) nach Fehlermeldungen zu suchen. Das `searcher`-Paket kann auch verwendet werden, um nach anderen Dingen (neben Fehlermeldungen) zu suchen und bietet Optionen für die Nutzung von KI-Assistenten.

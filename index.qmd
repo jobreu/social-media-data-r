@@ -1,9 +1,28 @@
-# Preface {.unnumbered}
+# Vorwort {.unnumbered}
 
-This is a Quarto book.
+Herzlich willkommen im Buch zum Kurs *Sammlung und Analyse von Social-Media-Daten mit R*! 👋
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+Das Buch gliedert sich in fünf Teile:
 
-```{r}
-1 + 1
-```
+1.  **Grundlagen**: Grundlegende Infos zur Installation und Nutzung von `R` und *RStudio*
+2.  **Data Wrangling**: Aufbereitung von Daten und Umgang mit Textdaten in `R`
+3.  **Sammlung von Social-Media-Daten**: Sammlung von Daten von *Bluesky*, *YouTube* und *TikTok*
+4.  **Analyse von Social-Media-Daten**: Einführung in die Analyse von Textdaten von Social-Media-Plattformen
+5.  **Tipps & Tricks**: Weiterführende Informationen zur Nutzung von `R`
+
+## Fokus des Buchs {.unnumbered}
+
+Das Buch bzw. der Kurs setzt Grundkenntnisse in `R` voraus. Der erste Teil des Buchs ist daher v.a. als Wiederholung bzw. Auffrischung der Grundlagen von `R` und *RStudio* gedacht. Er bietet keine vollständige Einführung. Im Netz gibt es zahlreiche solcher Einführungen in verschiedenen Formaten. Besonders empfehlenswert sind der Workshop [*Introduction to R & Data*](https://utrechtuniversity.github.io/workshop-introduction-to-R-and-data/) von der Uni Utrecht sowie das Buch [*R for Data Science*](https://r4ds.hadley.nz/) von Hadley Wickham, Mine Çetinkaya-Rundel und Garrett Grolemund. Beide sind kostenfrei online verfügbar. Für eine grundlegende Einführung in Statistik mit `R` empfiehlt sich insbesondere das Online-Buch [*Introduction to Statistics and Data Analysis – A Case-Based Approach*](https://introstatistics.netlify.app/) von Conrad Ziller.
+
+In den Abschnitten 2 bis 4 liegt der Fokus auf Textdaten. Die Sammlung und Analyse von Netzwerkdaten wird in diesem Kurs nicht behandelt. Zudem werden in Abschnitt 4 nur einige der möglichen Analysemethoden für Textdaten vorgestellt. Eine umfassendere Einführung in die Nutzung von `R` für die Sammlung und Analyse von Social-Media-Daten bietet das Buch [*Computational Analysis of Communication*](https://cssbook.net/) von Wouter van Atteveldt, Damian Trilling und Carlos Arcila Calderón.
+
+Zudem fokussiert das Buch auf plattformzentrierte Ansätze [@BreuerEtAl2025a] zur Sammlung von Social-Media-Daten über Application Programming Interfaces (APIs) und Web Scraping. Nutzendenzentrierte Ansätze wie z.B. die Datenspende [siehe @CarriereEtAl2024; @vanDrielEtAl2022] sind nicht Teil des Kurses. Wer sich für die Exploration eigener Social-Media-Daten mit `R` interessiert, kann z.B. einen Blick auf die [Materialien aus meinem Seminar *Digitale Mediennutzung und Data Literacy - Über Datenspuren und ihre Nutzung*](https://github.com/jobreu/data-literacy-seminar-21-22) werfen, das ich im Wintersemester 2021-2022 an der HHU Düsseldorf gegeben habe.
+
+## Credits {.unnumbered}
+
+Das Buch wurde mit [Quarto](https://quarto.org/docs/books) erstellt und orientiert sich in Inhalt und Struktur an den folgenden Quellen:
+
+-   [Computational Analysis of Communication](https://cssbook.net/) von Wouter van Atteveldt, Damian Trilling und Carlos Arcila Calderón
+-   [Communication Science R Book](https://dataliteracy.cc/getting-started/) von Kasper Welbers
+-   dem [Kurs *Introduction to R for Data Analysis*](https://github.com/StefanJuenger/r-intro-gesis-2022) für die *GESIS Summer School in Survey Methodology* 2022 von Stefan Jünger, Veronika Batzdorfer und mir
+-   dem [GESIS-Workshop *Automatic Sampling and Analysis of YouTube Comments*](https://github.com/jobreu/youtube-workshop-gesis-2024) von Julian Kohne, M. Rohangis Mohseni, Annika Deubel und mir

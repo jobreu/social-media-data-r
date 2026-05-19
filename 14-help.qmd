@@ -1,0 +1,86 @@
+# 🆘 Hilfe! {#sec-help}
+
+Es gibt viele Möglichkeiten, Hilfe für Probleme in/mit `R` zu finden. Die wichtigsten Optionen sind:
+
+- Help Files zu Funktionen und Paketen
+
+- sogenannte Vignetten zu bestimmten Paketen
+
+- (zusätzliche) Dokumentation zu Paketen (z.B. über eigene Webseiten)
+
+- Foren und Mailinglisten
+
+- KI-Chatbots
+
+Auf der Website des R-Projekts gibt es ein hilfreiches [kurzes Tutorial zum Thema "Getting Help with R"](https://www.r-project.org/help.html).
+
+## Help Files zu Funktionen und Paketen
+
+`R` hat ein eingebautes Hilfesystem, das es ermöglicht, Informationen zu Funktionen und Paketen abzurufen. Dazu kann man einfach die Funktion `?` verwenden, gefolgt vom Namen eines Pakets oder einer Funktion. Zum Beispiel:
+
+```{r}
+#| eval: false
+
+# Funktion
+?mean
+
+# Paket
+?dplyr
+```
+
+Hierdurch öffnet sich im "Help"-Tab in *RStudio* die entsprechende Hilfeseite. Auf dieser Seite finden Sie eine kurze Beschreibung der Funktion oder des Pakets, Informationen zu den Argumenten, die die Funktion erwartet, sowie Beispiele für die Verwendung der Funktion.
+
+Man kann auch alle Hilfedateien für ein bestimmtes Paket mit dem Befehl `help(package = „packagename“)`durchsuchen.
+
+```{r}
+#| eval: false
+
+# Alle Hilfedateien für das Paket dplyr durchsuchen
+help(package = "dplyr")
+```
+
+## Vignetten
+
+Viele `R`-Pakete bieten auch sogenannte Vignetten an. Bei diesen handelt es sich um Dokumente, die detailliertere Erläuterungen und Beispiele zu einigen Funktionen eines Pakets enthalten.
+
+Um Vignetten nutzen zu können, muss man zunächst wissen, ob ein Paket überhaupt Vignetten enthält und, falls ja, wie diese heißen. Mit diesen Informationen kann man dann auf die entsprechenden Vignetten zugreifen.  In *RStudio* wird die Vignette aauch im "Help"-Tab angezeigt.
+
+```{r}
+#| eval: false
+
+# Alle Vignetten für das Paket dplyr anzeigen
+vignette(package = "dplyr")
+
+# Zugriff auf eine bestimmte Vignette
+vignette("colwise ")
+
+```
+
+Es ist auch möglich, sich die Vignetten für ein Paket direkt im Browser anzeigen zu lassen.
+
+```{r}
+#| eval: false
+
+# Alle Vignetten für das Paket dplyr im Browser anzeigen
+browseVignettes(package = "dplyr")
+```
+
+## Dokumentation zu Paketen
+
+Pakete, die auf *CRAN* verfügbar sind, enthalten sogenannte Reference Manuals (Referenzhandbücher) im `HTML`- und `PDF`-Format. Diese sind auf den jeweiligen *CRAN*-Webseiten der Pakete unter "Documentation" / "Reference Manual" zu finden (siehe z.B. die [*CRAN*-Webseite für das Paket `dplyr`](https://cran.r-project.org/web/packages/dplyr/index.html)).
+
+Einige Pakete verfügen zudem über eigene Websites mit ausführlicher Zusatzdokumentation (das [`quanteda`-Paket für Textanalyse](https://quanteda.io/) ist hierfür ein gutes Beispiel).
+
+Wenn `R`-Pakete auf *GitHub* gehostet werden, enthält das zugehörige Repository in der Regel auch eine Dokumentation zum Paket (z.B. in der ReadMe-Datei). Sollten bei der Verwendung eines auf *GitHub* gehosteten Pakets Probleme auftreten, lohnt sich ggf. auch ein Blick in den Bereich "Issues" im *GitHub*-Repository zum Paket.
+
+## Foren und Mailinglisten
+
+Es gibt zahlreiche `R`-bezogene Foren und Mailinglisten. Zwei wichtige (und hilfreiche) Foren für `R` sind [*Stack Overflow*](https://stackoverflow.com/) und die [*posit* Community](https://forum.posit.co/).
+
+Die Wahrscheinlichkeit ist groß, dass jemand die Frage(n), die Sie interessieren, bereits auf in einem dieser beiden Foren gestellt (und beantwortet) hat. Die Webseite des R-Projekts bietet auch einen [Überblick über `R`-Mailinglisten](https://www.r-project.org/mail.html).
+
+## KI-Chatbots
+
+KI-Chatbots wie z.B. *ChatGPT* können ebenfalls eine wertvolle Ressource sein, um Hilfe bei der Arbeit mit `R` zu erhalten. Sie können Code generieren oder Fragen zu Paketen, Funktionen oder Fehlermeldungen beantworten. Wie immer bei der Arbeit mit KI gilt, dass diese Fehler machen kann. Daher sollten die Ausgaben stets mit Vorsicht genutzt und überprüft werden. 
+
+Es gibt zudem einige Tools, mit denen KI bzw. auf dieser basierende Chatbots in *RStudio* integriert werden können. Dies ist z.B. [für *GitHub Copilot* möglich](https://docs.posit.co/ide/user/ide/guide/tools/copilot.html) und *posit* bietet für *RStudio* und seine neue IDE *positron* auch das Tool [*Posit Assistant*](https://posit-dev.github.io/assistant/) an.
