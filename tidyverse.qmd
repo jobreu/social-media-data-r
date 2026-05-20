@@ -1,0 +1,80 @@
+# `tidyverse` {#sec-tidyverse}
+
+## Was ist das `tidyverse`?
+
+Das [`tidyverse`](https://tidyverse.org/) ist eine Sammlung von R-Paketen, die das Importieren und Exportieren, die Aufbereitung und Visualisieren von Daten in `R` vereinfachen.
+
+> The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.
+
+Alle Pakete aus dem `tidyverse` können über das gleichnamige (Meta-)Paket installiert werden.
+
+```{r}
+#| eval: false
+
+install.packages("tidyverse")
+```
+
+Nach der Installation können die [Kernpakete (Core Packages) aus dem `tidyverse`](https://tidyverse.org/packages/#core-tidyverse) über das Paket `tidyverse` gleichzeitig geladen werden.
+
+```{r}
+library(tidyverse)
+```
+
+Wenn die Pakete aus dem `tidyverse` geladen werden, bekommt man in der Konsole eine Übersicht über die geladenen Pakete und deren Versionen sowie Informationen zu möglichen Konflikten mit anderen Paketen angezeigt. Diese Konflikte sind in der Regel unproblematisch, auch wenn das rote X in der Meldung dazu möglicherweise beängstigend aussieht. Detailliertere Informationen zu diesen Konflikten und dem Umgang damit gibt es im @sec-funcnames.
+
+::: {.callout-note title="tidyverse vs. base R" collapse="true"}
+Die meisten der Dinge, die man mit den Paketen aus dem `tidyverse` machen kann, sind auch mit Base `R` möglich. Die Syntax hierfür ist jedoch in der Regel umständlicher und nicht so intuitiv. Die Nutzung von base `R` für die Aufbereitung von Daten ist daher insbesondere für Einsteiger_innen schwieriger.
+
+Ein eigentlich positiver Aspekt, der allerdings auch ein Nachteil sein kann, ist, dass die Funktionen aus den Paketen im `tidyverse` sehr intensiv und z.T. auch sehr grundledend weiterentwickelt werden. Dies kann dazu führen, dass alter Code irgendwann nicht mehr (richtig) funktioniert. Base `R` ist im Vergleich dazu beständiger.
+
+Eine kurze Erklärung zum sogenannten Lifecycle von Funktionen im `tidyverse` findet sich im @sec-lifecycle.
+:::
+
+## Kernkonzepte des `tidyverse`
+
+Im Wesentlichen gibt es drei Kernkonzepte, die das `tidyverse` ausmachen:
+
+1. **Tidy Data**
+
+2. **Tibbles**
+
+2. Der sogenannte **Pipe Operator**
+
+Das Konzept von Tidy Data wurde von Hadley Wickham, einem der Hauptentwickler des `tidyverse`, entwickelt [@Wickham2014]
+
+Die wichtigsten Grundsätze für **Tidy Data** data lauten:
+
+1. Jede Variable ist in einer eigenen Spalte.
+
+2. Jede Beobachtung ist in einer eigenen Zeile.
+
+3. Jeder Wert ist in einer eigenen Zelle.
+
+![Tidy Data](./images/tidy_data.png){fig-align="center"}
+Quelle: https://r4ds.had.co.nz/tidy-data.html
+
+Tibbles sind eine besondere Art von Data Frames, die im `tidyverse` verwendet werden. Sie bieten einige Vorteile gegenüber traditionellen Data Frames, wie z.B. eine bessere Darstellung in der Konsole und eine einfachere Handhabung von fehlenden Werten. Eine umfangreichere Beschreibung von Tibbles findet sich in der [entsprechenden Vignette zum Paket `tibbles`](https://cran.r-project.org/web/packages/tibble/vignettes/tibble.html).
+
+Der Pipe Operator (`%>%`) ist ein zentrales Element des `tidyverse` und ermöglicht es, mehrere Funktionen miteinander zu verketten, ohne dass man Zwischenergebnisse speichern muss.
+
+Wie im @sec-functions erklärt, operieren Funktionen in `R` allgemein nach dem Muster `f(x)`, wobei `f` die Funktion ist und `x` die Eingabe (Input) für die Funktion. Mit dem Pipe Operator wird daraus `x %>% f()`.
+Hier wird das Objekt `x` an die Funktion `f` übergeben und wird (standardmäßig) zu deren erstem Argument (es kann jedoch auch an andere Argumente übergeben werden).
+
+Wie zuvor beschrieben, ist es mit dem Pipe Operator möglich, mehrere Funktionen miteinander zu verketten. Ein abstraktes Beispiel ist:
+
+```{r}
+#| eval: false
+
+data %>% 
+  mach_dies() %>% 
+  dann_das() %>% 
+  zuletzt_das()
+```
+
+Man kann den Pipe Operator also im Prinzip lesen als Nimm `data`, mache dies damit, dann das und zuletzt das. Das macht den Code oft lesbarer und übersichtlicher.
+
+Das mag aktuell noch sehr abstrakt klingen, aber die Nutzung sollte mit den konkreten Beispielen in den folgenden Kapiteln deutlicher werden.
+
+Seit Version 4.1.0 gibt es in `R` auch einen nativen Pipe Operator (`|>`), der ähnliche Funktionalitäten bietet. Es gibt jedoch einige Unterschiede zwischen den beiden Pipe-Operatoren. Diese werden im [Blog-Post [*Differences between the base R and magrittr pipes*] auf der `tidyverse`-Webseite](https://tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/) ausführlich erklärt.
+
+*RStudio* bietet eine Tastenkombination zum Einfügen des Pipe Operators aus dem `tidyverse` (`%>%`): `Strg + Alt + M` (Windows & Linux) bzw. `Cmd + Option + M` (Mac). Aus diesem Grund nutzen wir in diesem Kurs den Pipe Operator aus dem `tidyverse` und nicht den nativen Pipe Operator aus Base `R`.

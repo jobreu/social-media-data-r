@@ -1,5 +1,31 @@
 # 🛠️Troubleshooting 101 {#sec-errors}
 
+## Fehler
+
+Erschrecken Sie sich nicht, wenn Sie in `R` eine Fehlermeldung erhalten. Das kommt häufig vor, insbesondere wenn Sie gerade erst anfangen, mit `R` zu arbeiten. Die meisten Fehler lassen sich relativ einfach lösen.
+
+Klassiche Fehlerquellen sind z.B. folgende:
+
+- Tippfehler (`R` unterscheidet zwischen Groß- und Kleinschreibung)
+
+- fehlende Klammern `)` oder Anführungszeichen `"` (häufig am Ende eines Befehls)
+
+- falsche Dateipfade (z.B. `\` anstelle von `/` in beim Kopieren aus dem Windows Explorer; siehe dazu auch @sec-paths)
+
+- nicht installierte oder geladene Pakete
+
+- Code, der in falscher Reihenfolge ausgeführt wird
+
 Wenn Sie in `R` eine Fehlermeldung erhalten und deren Bedeutung nicht (vollständig) verstehen, können Sie diese natürlich einfach in Ihre bevorzugte Suchmaschine eingeben. In der Regel liefert dies einige hilfreiche Ergebnisse. Alternativ können Sie die Fehlermeldung z.B. auch direkt in das Suchfeld auf [*Stack Overflow*](https://stackoverflow.com/questions) kopieren.
 
 Wenn Sie Copy & Paste nicht so mögen, können Sie auch die Pakete [`searcher`](https://r-pkg.thecoatlessprofessor.com/searcher/) oder [`errorist`](https://r-pkg.thecoatlessprofessor.com/errorist/) verwenden, um direkt in `R`/*RStudio* (an verschiedenen Orten) nach Fehlermeldungen zu suchen. Das `searcher`-Paket kann auch verwendet werden, um nach anderen Dingen (neben Fehlermeldungen) zu suchen und bietet Optionen für die Nutzung von KI-Assistenten.
+
+## Abstürze
+
+Falls Ihre `R`-Sitzung beim Ausführen eines abstürzen, gibt es einige Dinge, die Sie ggf. probieren können, um das Problem zu lösen:
+
+- Beenden Sie den `R`-Prozess: über Session -> Terminate R im *RStudio*-Menü oder über das Stoppschild-Symbol in der oberen rechten Ecke der Konsole
+
+- Starten Sie `R` neu (*RStudio*-Menü: Session -> Restart R) 
+
+- Installieren Sie das Paket, das die Probleme verursacht, neu

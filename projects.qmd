@@ -1,3 +1,10 @@
 # Projekte in *RStudio* {#sec-projects}
 
-tbd
+Projekte in *RStudio* sind ein hilfreiches Werkzeug für die Umsezung eines projektorientierten Workflows wie in @sec-workflow beschrieben.
+
+Sie können ein neues Projekt über das *RStudio*-Menü erstellen: File -> New Project. 
+
+RStudio-Projekte sind mit `.Rproj`-Dateien verknüpft, die bestimmte Einstellungen für das Projekt enthalten.
+Wenn Sie auf eine `.Rproj`-Datei doppelklicken, wird eine neue Instanz von RStudio geöffnet, wobei das Arbeitsverzeichnis und der Dateibrowser auf den Speicherort dieser Datei eingestellt sind
+
+Eine detailliertere Erläuterung von *RStudio*-Projekten  finden Sie z. B. auf der [Supportseite von *posit*](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects) sowie im [entsprechenden Abschnitt im Online-Buch *R for Data Science*](https://r4ds.hadley.nz/workflow-scripts.html#rstudio-projects).

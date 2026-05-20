@@ -1,0 +1,9 @@
+# Codebücher {#sec-codebooks}
+
+Eine Codebuch (Codebook) ist eine Datei, die strukturierte Informationen zu Datensätzen und den darin enthaltenen Variablen enthält. Sie helfen dabei, die Bedeutung der Variablen und Werte zu verstehen und erleichtern die Datenanalyse.
+
+Codebücher werden zumeist als Dokumente (z.B. PDF, Word, HTML) oder z.T. auch als maschinenlesbare Dateien (z.B. CSV, JSON) bereitgestellt.
+
+Es gibt viele `R`-Pakete, mit denen Codebücher erstellt werden können. Die Präsentation [*A Comparison of Packages to Generate Codebooks in R*](https://cghlewis.com/talks/rladies_nyc/) von Crystal Lewis bietet einen guten Überblick.
+
+Ein recht flexibles und einfach zu verwendendes Paket ist [`codebookr`](https://brad-cannell.github.io/codebookr/).

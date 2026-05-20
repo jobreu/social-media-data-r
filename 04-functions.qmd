@@ -1,0 +1,55 @@
+# Funktionen {#sec-functions}
+
+Für das allermeiste, was wir in `R` machen, verwenden wir Funktionen. Eine Funktion in `R` ist wie eine Art Mini-Programm, mit dem wir bestimmte Aufgaben ausführen können.
+
+Vereinfacht gesagt: Eine Funktion nimmt eine Eingabe (Inpurt), verarbeitet diese und erzeugt eine Ausgabe (Output).
+
+Funktionen verfügen in der Regel über sogenannte Argumente, die festlegen, was genau eine Funktion macht. Im einfachsten Fall benötigt eine Funktion lediglich eine Eingabe (einen Wert oder ein Objekt) als einziges Argument (und manche Funktionen benötigen sogar gar kein Argument).
+
+Die grundlegende Anatomie einer Funktion in `R` sieht wie folgt aus:
+
+```{r}
+#| eval: FALSE
+funktionsname(argument1 = wert1, argument2 = wert2, ...)
+```
+ 
+Der `funktionsname` ist ein Name, der angibt, welche Funktion Sie verwenden möchten. Darauf folgen in Klammern ein oder mehrere Argumente, die bestimmte Werte annehmen können.
+
+Beispiele für einfache Funktionen in `R`:
+
+```{r}
+# Einfache Funktion ohne Argumente
+Sys.Date() # Gibt das aktuelle Datum zurück
+
+# Einfache Funktion mit einem Argument
+sqrt(16) # Berechnet die Quadratwurzel von 16
+
+# Einfache Funktion mit mehreren Argumenten
+round(3.14159, digits = 2) # Rundet die Zahl auf 2 Dezimalstellen
+```
+
+Funktionen können erforlicher (required) und optionale (optional) Argumente haben. Im vorherigen Beispiel war das Argument `digits` bei der Funktion `round()` optional. Für optionale Argumente gibt es in den Funktionen in der Regel Standardwerte, die man aber durch das Spezifizieren des Arguments überschreiben kann. Ob ein Argument erforderlich oder optional ist, kann man in der Dokumentation bzw. dem sogenannten Help File herausfinden. Die Hilfe zu Funktionen kann man in *RStudio* aufrufen, indem man ein `?` vor den Namen der Funktion schreibt und die `()` dahinter weglässt. 
+
+Wenn im Help File unter "Usage" hinter den Argumenten ein `=` und ein Wert stehen, handelt es sich um optionale Argumente. In vielen Funktionen ist das erste Argument eine Eingabe. Dies kann ein einzelner Wert, ein Vektor oder ein Dataframe sein. Dieses Argument ist erforderlich (required) und in der Dokumentation bzw. dem Help File i.d.R. mit `x` benannt. Mehr zum Thema Hilfe in `R` ist im @sec-help zu finden.
+
+```{r}
+#| eval: FALSE
+# Hilfe zu einer Funktion aufrufen
+?round
+```
+
+Das Ergebnis einer Funktion kann man natürlich auch einem Objekt zuweisen, um es später weiterzuverwenden.
+
+Verschiedene Funktionen können mit unterschiedlichen Arten von Eingaben (Inputs) arbeiten und produzieren auch unterschiedliche Ausgaben (Outputs).
+
+Die Funktion `mean()` beispielsweise benötigt einen numerischen Vektor aus Input und liefert einen einzelnen numerischen Wert (den Mittelwert der Werte aus dem Vektor) als Output.
+
+```{r}
+zahlen <- c(1, 2, 3, 4, 5)
+
+mittelwert <- mean(zahlen)
+
+mittelwert
+```
+
+Sie können in `R` Funktionen selbst definieren. Allerdings nutzen wir zumeist Funktionen, die in Paketen enthalten sind. Was es mit denen auf sich hat, betrachten wir im folgenden @sec-pkgs.

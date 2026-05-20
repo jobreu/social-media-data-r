@@ -1,9 +1,52 @@
-# Introduction
+---
+title: "Refresher R Basics"
+subtitle: "Seminarsitzung 4"
+author: "Prof. Dr. Johannes Breuer"
+date: "2026-05-21"
+date-format: long
 
-This is a presentation created from markdown and executable code.
+# Optional: Add branding just to the title slide
+title-slide-attributes:
+  data-background-color: "#0F2E3D" # A dark blue background
+  data-background-image: "../images/logo.png"
+  data-background-size: "15%"
+  data-background-position: "top right"
+---
 
-See @knuth84 for additional discussion of literate programming.
+# Einleitung {background-color="#4A90E2"}
 
-```{r}
-1 + 1
-```
+## 🎉 Book Release
+
+Exklusiv für Sie! Veröffentlichung von [*Sammlung und Analyse von Social-Media-Daten mit R*](https://jobreu.github.io/social-media-data-r/) - Das Buch zum Kurs
+
+::: fragment
+"Further content is needed!"...
+:::
+
+::: fragment
+... und wird in den nächsten Wochen nach und nach geliefert.
+:::
+
+## 📑 Hausaufgaben
+
+Schauen Sie sich Kapitel 1 bis 9 im [Online-Buch zum Kurs](https://jobreu.github.io/social-media-data-r/) an.
+
+Überlegen Sie dabei:
+
+- Was weiß/kann ich bereits?
+
+- Was weiß/kann ich noch nicht bzw. nicht mehr?
+
+Schauen Sie gerne auch in die Kapitel unter "Tipps & Tricks"; insbesondere dann, wenn Sie mit den Inhalten aus den Kapiteln 1 bis 9 schon vertraut sind.
+
+## The Source Pane
+
+{/\* This creates a standard slide \*/} This is where you write scripts to save for later.
+
+# Topic 2: Working with Data {background-color="#4A90E2"}
+
+{/\* This creates the next centered transition slide \*/}
+
+## Loading Datasets
+
+{/\* Standard slide \*/} Let's look at the `read_csv()` function...

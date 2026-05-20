@@ -1,6 +1,24 @@
-# Data import & export {#sec-import-export}
+# Importieren & exportieren von Daten in `R` {#sec-import}
 
-## JSON
+## Import
+
+Auch wenn wir Daten in `R` selbst generieren bzw. eingeben können, kommen Daten in der Regel aus externen Quellen. In unserem konkreten Fall z.B. von Social-Media-Plattformen.
+
+`R` kann Daten in vielen unterschiedlichen Formaten einlesen (importieren) und speichern (exportieren). Hierfür gibt es zahlreiche Funktionen und Pakete.
+
+Für die Arbeit mit Social-eMedia-Daten sind insbesondere folgende Formate relevant:
+
+- JSON (JavaScript Object Notation): Ein weit verbreitetes Format für den Austausch von Daten, insbesondere in Webanwendungen.
+
+- CSV (Comma-Separated Values): Ein einfaches Textformat, bei dem Daten durch Kommas getrennt werden. Es ist weit verbreitet und wird von vielen Anwendungen unterstützt.
+
+Beide Formate sind sowohl für Menschen als auch für Maschinen lesbar, wobei JSON für Menschen etwas schwieriger zu lesen ist.
+
+Sowohl JSON als auch CSV sind sogenannte Plain-Text-Formate, d.h. sie bestehen aus einfachem Text und können mit einem Texteditor wie z.B. Notepad++ (Win) oder Sublime Text (Win, macOS) geöffnet und bearbeitet werden.
+
+### JSON
+
+JSON-Daten bestehen aus sogenannten Key-Value-Pairs und können verschachtelt sein. Hier ist ein Beispiel für JSON-Daten, die Informationen über Social-Media-Posts enthalten:
 
 `
 [
@@ -26,3 +44,73 @@
   }
 ]
 `
+
+Es gibt verschiedene Pakete, um JSON-Daten in `R` zu importieren. Eine beliebte Option ist das Paket [`jsonlite`](https://github.com/jeroen/jsonlite).
+
+Wenn Sie `jsonlite` zum ersten Mal nutzen, müssen Sie das Paket vorher erst einmal installieren.
+
+```{r}
+#| eval: false
+install.packages("jsonlite")
+```
+
+Dann können Sie das Paket laden und die Funktion `fromJSON()` verwenden, um JSON-Daten zu importieren.
+
+*Hinweis*: Wenn Sie den nachfolgenden Code ausführen wollen, müssen Sie die Datei `json_example.json` erstellen, indem Sie die obigen Inhalte zwischen den `[]` kopieren, in einem Texteditor einfügen und die Datei dann als `json_example.json` speichern. Je nachdem, wo Sie die Datei speichern, müssen Sie dann auch noch den Dateipfad anpassen (mehr zu Dateipfaden in @sec-paths).
+
+```{r}
+library(jsonlite)
+
+json_data <- fromJSON("./data/json_example.json")
+
+json_data
+```
+
+Da JSON-Dateien oft verschachtelt sind, kann es sein, dass die importierten Daten in `R` nicht direkt in einem für die Analyse geeigneten Format vorliegen. In diesem Fall müssen Sie die Daten möglicherweise noch weiter aufbereiten, z.B. indem Sie verschachtelte Listen in Data Frames umwandeln.
+
+### CSV
+
+CSV-Dateien sind einfacher strukturiert als JSON-Dateien und bestehen aus Zeilen und Spalten.
+
+`R` bietet standardmäßig die Funktionen `read.csv()` und `read.csv2()` um CSV-Dateien einzulesen. Der Grund dafür, dass es zwei Funktionen gibt, ist, dass es verschiedene Varianten von CSV-Dateien gibt. Auch wenn wir sie als CSV für (Comma-Separated Values) heißen, sind Werte in den Dateien manchmal durch ein Semikolon oder ein Tabulator getrennt (für Letzteres wird manchmal auch die Dateiendung `.tsv` für tab-separated values verwendet). Je nach Sprache kann das Dezimaltrennzeichen zudem ein Komma oder ein Punkt sein.
+
+Ein Paket, das viele Funktionen für den Import und Export von verschiedenen Datentypen bietet, ist [`readr`](https://readr.tidyverse.org/). `readr` ist Teil der Paketsammlung `tidyverse`, mit der wir fürs Data Wrangling arbeiten werden (für weitere Informationen zum `tidyverse` siehe @sec-tidyverse). Zum Einlesen von CSV-Dateien bietet `readr` die Funktionen `read_csv()` und `read_csv2()`, die schneller und flexibler sind als die Funktionen `read.csv()` und `read.csv2()`, die `R` nativ mitbringt.
+
+*Tipp*: Wenn Sie unsicher sind, welche Art von CSV-Datei vorliegt, können Sie es zunächst einfach mit `read_csv()` versuchen, und falls das nicht funktioniert, versuchen Sie es mit `read_csv2()`. Sollte das auch nicht funktionieren, schauen sie sich die Datei ggf. mit einem Texteditor an und nutzen Sie dann z.B. `read_tsv()` für tab-separated values oder die allgemeinere Funktion `read_delim()`, in der Sie über Argumente festlegen können, was die Trennzeichen sind.
+
+**Wichtiger Hinweis**: Auch wenn es möglich ist, CSV-Dateien mtit *Excel* zu öffnen, sollten Sie dies vermeiden, da *Excel* die Daten oft automatisch formatiert und dabei Informationen verloren gehen können. Es ist daher besser, CSV-Dateien mit einem Texteditor oder direkt in `R` zu öffnen.
+
+Für die weiteren Beispiele nutzen wir simulierte *YouTube*-Daten aus dem [*KODAQS Toolbox Tutorial* zum `R`-Paket `tubecleanr`](https://kodaqs-toolbox.gesis.org/github.com/gesiscss/tubecleanr_tool/index/). Wir können die CSV-Datei, die diese Daten enthält, direkt aus dem *GitHub*-Repository zu dem Tutorial herunterladen.
+
+```{r}
+library(readr)
+
+yt_demo <- read_csv2("https://raw.githubusercontent.com/gesiscss/tubecleanr_tool/refs/heads/master/data/simulated_yt.csv")
+```
+
+Auch hier braucht die Funktion als Argument mindestens den Pfad zur Datei, die eingelesen werden soll. In diesem Fall ist das ein URL-Pfad zu der CSV-Datei auf *GitHub*. Sie können aber natürlich auch einen lokalen Pfad angeben, wenn Sie die Datei zuvor heruntergeladen und auf Ihrem Computer gespeichert haben.
+
+Man kann (lokal gespeicherte) Datensätze auch über den Button "Import Dataset" im "Environment"-Tab in *RStudio* importieren. Allerdings ist es empfehlenswerter, auch für den Import von Daten Code in einem `R`-Skript zu nutzen.
+
+Wenn man den Pfad zu einer lokalen Datei nicht kennt, kann man diesen z.B. über die Suche im Datei-Explorer des Betriebssystems finden (mehr zu Dateipfaden in @sec-paths). Alternativ kann man in `R` den Befehl `file.choose()` nutzen.
+
+```{r}
+#| eval: false
+file_path <- file.choose()
+data <- read_csv(file_path)
+```
+
+Aufgrund der reduzierten Nachvollziehbarkeit und Reproduzierbarkeit ist es jedoch nicht empfehlenswert, `file.choose()` zu verwenden. Es ist besser, den Pfad zur Datei direkt im Code anzugeben (idealiter in Form eines relativen Pfads, siehe @sec-paths), damit andere Personen (oder man selbst zu einem späteren Zeitpunkt) genau wissen, wo die Daten herkommen und wie sie importiert wurden.
+
+## Andere Datentypen
+
+Neben JSON und CSV gibt es noch viele weitere Datenformate, die in `R` importiert und exportiert werden können, z.B. Excel-Dateien (`.xlsx`), SPSS-Dateien (`.sav`), Stata-Dateien (`.dta`) und viele mehr. Für jedes dieser Formate gibt es spezielle Pakete und Funktionen, die den Import und Export erleichtern. Zum Beispiel können Sie das Paket [`readxl`](https://readxl.tidyverse.org/) verwenden, um Excel-Dateien zu importieren, und das Paket [`haven`](https://haven.tidyverse.org/) für SPSS- und Stata-Dateien.
+
+## Export
+
+Nachdem wir Dateien in `R` importiert und möglicherweise bearbeitet haben, möchten wir die Daten oft auch wieder exportieren, um sie z.B. in anderen Anwendungen weiterzuverwenden oder zu teilen.  
+Auch hier bietet `R` zahlreiche Funktionen und Pakete, um Daten in verschiedenen Formaten zu exportieren. Für CSV-Dateien können Sie die Funktion `write_csv()` aus dem Paket `readr` nutzen. Um Daten zu exportieren, benötigen die entsprechenden Funktionen als Argumente im Mindesten das Objekt, das die Daen enthält und einen Dateipfad, unter dem die exportierte Datei gespeichert werden soll (mehr zu Dateipfaden gibt es im @sec-paths).
+
+```{r}
+write_csv(yt_demo, "./data/simulated_yt_export.csv")
+```

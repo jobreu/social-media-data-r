@@ -1,0 +1,5 @@
+# Variablen verändern {#sec-wrangvar}
+
+## Variablen erstellen und verändern
+
+## Werte in einer Variable verändern

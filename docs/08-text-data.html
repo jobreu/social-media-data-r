@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Working with text data – Sammlung und Analyse von Social-Media-Daten mit R</title>
+<title>10&nbsp; Working with text data – Sammlung und Analyse von Social-Media-Daten mit R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -33,8 +68,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./13-comments.html" rel="next">
-<link href="./05-import-export.html" rel="prev">
+<link href="./names.html" rel="next">
+<link href="./07-wrangling-variables.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -85,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-text-data.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./08-text-data.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with text data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./08-text-data.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Working with text data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -149,8 +184,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./04-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pakete</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./05-import-export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data import &amp; export</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Importieren &amp; exportieren von Daten in `R`</span></span></a>
   </div>
 </li>
       </ul>
@@ -166,8 +213,26 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-wrangling-df.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Datensätze verändern</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-wrangling-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variablen verändern</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./08-text-data.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with text data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Working with text data</span></span></a>
   </div>
 </li>
       </ul>
@@ -183,44 +248,56 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-comments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Kommentare in R-Skripten</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./14-help.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">🆘 Hilfe!</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./15-message-warning-error.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Meldungen, Warnungen, Fehler</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./16-errors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./17-paths.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Dateipfade</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./names.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Namen in <code>R</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./codebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Codebücher</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-comments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kommentare in R-Skripten</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-help.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">🆘 Hilfe!</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-message-warning-error.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Meldungen, Warnungen, Fehler</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-paths.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Dateipfade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Projekte in <em>RStudio</em></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./18-function-lifecycle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Aus dem Leben einer Funktion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aus dem Leben einer Funktion</span></span></a>
   </div>
 </li>
       </ul>
@@ -241,18 +318,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-use-regex" id="toc-why-use-regex" class="nav-link active" data-scroll-target="#why-use-regex"><span class="header-section-number">5.1</span> Why use Regex?</a></li>
-  <li><a href="#core-regex-building-blocks" id="toc-core-regex-building-blocks" class="nav-link" data-scroll-target="#core-regex-building-blocks"><span class="header-section-number">5.2</span> Core Regex Building Blocks</a></li>
-  <li><a href="#building-a-regex-pattern" id="toc-building-a-regex-pattern" class="nav-link" data-scroll-target="#building-a-regex-pattern"><span class="header-section-number">5.3</span> Building a Regex Pattern</a></li>
+  <li><a href="#regular-expressions-regex" id="toc-regular-expressions-regex" class="nav-link active" data-scroll-target="#regular-expressions-regex"><span class="header-section-number">10.1</span> Regular Expressions (Regex)</a></li>
+  <li><a href="#core-regex-building-blocks" id="toc-core-regex-building-blocks" class="nav-link" data-scroll-target="#core-regex-building-blocks"><span class="header-section-number">10.2</span> Core Regex Building Blocks</a></li>
+  <li><a href="#building-a-regex-pattern" id="toc-building-a-regex-pattern" class="nav-link" data-scroll-target="#building-a-regex-pattern"><span class="header-section-number">10.3</span> Building a Regex Pattern</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-text-data.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./08-text-data.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with text data</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./08-text-data.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Working with text data</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Working with text data</span></h1>
+<h1 class="title"><span id="sec-textdata" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Working with text data</span></span></h1>
 </div>
 
 
@@ -269,8 +346,11 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="why-use-regex" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="why-use-regex"><span class="header-section-number">5.1</span> Why use Regex?</h2>
+<section id="regular-expressions-regex" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="regular-expressions-regex"><span class="header-section-number">10.1</span> Regular Expressions (Regex)</h2>
+<p>Ein sehr mächtiges Werkzeug, um bestimmte Muster in Texten zu erkennen und herauszufiltern oder zu extrahieren sind sog. Reguläre Ausdrücke (Regular Expressions oder Regex).</p>
+<p>Reguläre Ausdrücke sind im Grunde eine komplexe Suchsprache (die viel mehr und genauere Optionen anbietet als z.B. die Wildcard <code>*</code> in Suchanfragen).</p>
+<p>Es gibt viele Vorlagen (z.B. für Zahlen, Zeichen oder auch komplexere Muster wie Daten oder Telefonnummern) und Tools, die einem bei der Erstellung von Regex helfen können.</p>
 <div class="incremental">
 <ul class="incremental">
 <li>It is extremely powerful</li>
@@ -279,8 +359,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </div>
 </section>
-<section id="core-regex-building-blocks" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="core-regex-building-blocks"><span class="header-section-number">5.2</span> Core Regex Building Blocks</h2>
+<section id="core-regex-building-blocks" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="core-regex-building-blocks"><span class="header-section-number">10.2</span> Core Regex Building Blocks</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -324,8 +404,8 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </section>
-<section id="building-a-regex-pattern" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="building-a-regex-pattern"><span class="header-section-number">5.3</span> Building a Regex Pattern</h2>
+<section id="building-a-regex-pattern" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="building-a-regex-pattern"><span class="header-section-number">10.3</span> Building a Regex Pattern</h2>
 <p>Let’s extract the username from the text: <strong><code>@rstats_guru</code></strong></p>
 <p><br></p>
 <div class="fragment">
@@ -340,6 +420,14 @@ ul.task-list li input[type="checkbox"] {
 <p><br></p>
 <div class="fragment">
 <p><strong>Final Code:</strong> <code>str_extract(text, "@\\w+")</code></p>
+</div>
+<p>Extract user names and URLs from the <code>Comment</code> variable in the <code>yt_demo</code> dataset.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>yt_demo_cleaned <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span>  </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">username =</span> <span class="fu">str_extract</span>(Comment, <span class="st">"@</span><span class="sc">\\</span><span class="st">w+"</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">url =</span> <span class="fu">str_extract</span>(Comment, <span class="st">"https?://</span><span class="sc">\\</span><span class="st">S+"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
@@ -755,13 +843,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./05-import-export.html" class="pagination-link" aria-label="Data import &amp; export">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data import &amp; export</span></span>
+      <a href="./07-wrangling-variables.html" class="pagination-link" aria-label="Variablen verändern">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variablen verändern</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./13-comments.html" class="pagination-link" aria-label="Kommentare in R-Skripten">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Kommentare in R-Skripten</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./names.html" class="pagination-link" aria-label="Namen in `R`">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Namen in <code>R</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

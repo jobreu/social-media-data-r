@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>16&nbsp; 🛠️Troubleshooting 101 – Sammlung und Analyse von Social-Media-Daten mit R</title>
+<title>7&nbsp; tidyverse – Sammlung und Analyse von Social-Media-Daten mit R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,7 +23,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -33,8 +88,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./17-paths.html" rel="next">
-<link href="./15-message-warning-error.html" rel="prev">
+<link href="./06-wrangling-df.html" rel="next">
+<link href="./05-import-export.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -85,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./names.html">Tipps &amp; Tricks</a></li><li class="breadcrumb-item"><a href="./16-errors.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -178,7 +233,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></span></a>
   </div>
 </li>
@@ -243,7 +298,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-errors.html" class="sidebar-item-text sidebar-link active">
+  <a href="./16-errors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></span></a>
   </div>
 </li>
@@ -283,17 +338,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#fehler" id="toc-fehler" class="nav-link active" data-scroll-target="#fehler"><span class="header-section-number">16.1</span> Fehler</a></li>
-  <li><a href="#abstürze" id="toc-abstürze" class="nav-link" data-scroll-target="#abstürze"><span class="header-section-number">16.2</span> Abstürze</a></li>
+  <li><a href="#was-ist-das-tidyverse" id="toc-was-ist-das-tidyverse" class="nav-link active" data-scroll-target="#was-ist-das-tidyverse"><span class="header-section-number">7.1</span> Was ist das <code>tidyverse</code>?</a></li>
+  <li><a href="#kernkonzepte-des-tidyverse" id="toc-kernkonzepte-des-tidyverse" class="nav-link" data-scroll-target="#kernkonzepte-des-tidyverse"><span class="header-section-number">7.2</span> Kernkonzepte des <code>tidyverse</code></a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./names.html">Tipps &amp; Tricks</a></li><li class="breadcrumb-item"><a href="./16-errors.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-errors" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></span></h1>
+<h1 class="title"><span id="sec-tidyverse" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></span></h1>
 </div>
 
 
@@ -310,30 +365,98 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="fehler" class="level2" data-number="16.1">
-<h2 data-number="16.1" class="anchored" data-anchor-id="fehler"><span class="header-section-number">16.1</span> Fehler</h2>
-<p>Erschrecken Sie sich nicht, wenn Sie in <code>R</code> eine Fehlermeldung erhalten. Das kommt häufig vor, insbesondere wenn Sie gerade erst anfangen, mit <code>R</code> zu arbeiten. Die meisten Fehler lassen sich relativ einfach lösen.</p>
-<p>Klassiche Fehlerquellen sind z.B. folgende:</p>
-<ul>
-<li><p>Tippfehler (<code>R</code> unterscheidet zwischen Groß- und Kleinschreibung)</p></li>
-<li><p>fehlende Klammern <code>)</code> oder Anführungszeichen <code>"</code> (häufig am Ende eines Befehls)</p></li>
-<li><p>falsche Dateipfade (z.B. <code>\</code> anstelle von <code>/</code> in beim Kopieren aus dem Windows Explorer; siehe dazu auch <a href="17-paths.html" class="quarto-xref"><span>Chapter 17</span></a>)</p></li>
-<li><p>nicht installierte oder geladene Pakete</p></li>
-<li><p>Code, der in falscher Reihenfolge ausgeführt wird</p></li>
-</ul>
-<p>Wenn Sie in <code>R</code> eine Fehlermeldung erhalten und deren Bedeutung nicht (vollständig) verstehen, können Sie diese natürlich einfach in Ihre bevorzugte Suchmaschine eingeben. In der Regel liefert dies einige hilfreiche Ergebnisse. Alternativ können Sie die Fehlermeldung z.B. auch direkt in das Suchfeld auf <a href="https://stackoverflow.com/questions"><em>Stack Overflow</em></a> kopieren.</p>
-<p>Wenn Sie Copy &amp; Paste nicht so mögen, können Sie auch die Pakete <a href="https://r-pkg.thecoatlessprofessor.com/searcher/"><code>searcher</code></a> oder <a href="https://r-pkg.thecoatlessprofessor.com/errorist/"><code>errorist</code></a> verwenden, um direkt in <code>R</code>/<em>RStudio</em> (an verschiedenen Orten) nach Fehlermeldungen zu suchen. Das <code>searcher</code>-Paket kann auch verwendet werden, um nach anderen Dingen (neben Fehlermeldungen) zu suchen und bietet Optionen für die Nutzung von KI-Assistenten.</p>
+<section id="was-ist-das-tidyverse" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="was-ist-das-tidyverse"><span class="header-section-number">7.1</span> Was ist das <code>tidyverse</code>?</h2>
+<p>Das <a href="https://tidyverse.org/"><code>tidyverse</code></a> ist eine Sammlung von R-Paketen, die das Importieren und Exportieren, die Aufbereitung und Visualisieren von Daten in <code>R</code> vereinfachen.</p>
+<blockquote class="blockquote">
+<p>The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.</p>
+</blockquote>
+<p>Alle Pakete aus dem <code>tidyverse</code> können über das gleichnamige (Meta-)Paket installiert werden.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Nach der Installation können die <a href="https://tidyverse.org/packages/#core-tidyverse">Kernpakete (Core Packages) aus dem <code>tidyverse</code></a> über das Paket <code>tidyverse</code> gleichzeitig geladen werden.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Paket 'ggplot2' wurde unter R Version 4.5.3 erstellt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Paket 'purrr' wurde unter R Version 4.5.2 erstellt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Paket 'stringr' wurde unter R Version 4.5.2 erstellt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.6.0
+✔ ggplot2   4.0.3     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.2.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<p>Wenn die Pakete aus dem <code>tidyverse</code> geladen werden, bekommt man in der Konsole eine Übersicht über die geladenen Pakete und deren Versionen sowie Informationen zu möglichen Konflikten mit anderen Paketen angezeigt. Diese Konflikte sind in der Regel unproblematisch, auch wenn das rote X in der Meldung dazu möglicherweise beängstigend aussieht. Detailliertere Informationen zu diesen Konflikten und dem Umgang damit gibt es im <a href="names.html#sec-funcnames" class="quarto-xref"><span>Section 11.4</span></a>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="tidyverse vs. base R">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>tidyverse vs.&nbsp;base R
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Die meisten der Dinge, die man mit den Paketen aus dem <code>tidyverse</code> machen kann, sind auch mit Base <code>R</code> möglich. Die Syntax hierfür ist jedoch in der Regel umständlicher und nicht so intuitiv. Die Nutzung von base <code>R</code> für die Aufbereitung von Daten ist daher insbesondere für Einsteiger_innen schwieriger.</p>
+<p>Ein eigentlich positiver Aspekt, der allerdings auch ein Nachteil sein kann, ist, dass die Funktionen aus den Paketen im <code>tidyverse</code> sehr intensiv und z.T. auch sehr grundledend weiterentwickelt werden. Dies kann dazu führen, dass alter Code irgendwann nicht mehr (richtig) funktioniert. Base <code>R</code> ist im Vergleich dazu beständiger.</p>
+<p>Eine kurze Erklärung zum sogenannten Lifecycle von Funktionen im <code>tidyverse</code> findet sich im <a href="18-function-lifecycle.html" class="quarto-xref"><span>Chapter 19</span></a>.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="abstürze" class="level2" data-number="16.2">
-<h2 data-number="16.2" class="anchored" data-anchor-id="abstürze"><span class="header-section-number">16.2</span> Abstürze</h2>
-<p>Falls Ihre <code>R</code>-Sitzung beim Ausführen eines abstürzen, gibt es einige Dinge, die Sie ggf. probieren können, um das Problem zu lösen:</p>
-<ul>
-<li><p>Beenden Sie den <code>R</code>-Prozess: über Session -&gt; Terminate R im <em>RStudio</em>-Menü oder über das Stoppschild-Symbol in der oberen rechten Ecke der Konsole</p></li>
-<li><p>Starten Sie <code>R</code> neu (<em>RStudio</em>-Menü: Session -&gt; Restart R)</p></li>
-<li><p>Installieren Sie das Paket, das die Probleme verursacht, neu</p></li>
-</ul>
+<section id="kernkonzepte-des-tidyverse" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="kernkonzepte-des-tidyverse"><span class="header-section-number">7.2</span> Kernkonzepte des <code>tidyverse</code></h2>
+<p>Im Wesentlichen gibt es drei Kernkonzepte, die das <code>tidyverse</code> ausmachen:</p>
+<ol type="1">
+<li><p><strong>Tidy Data</strong></p></li>
+<li><p><strong>Tibbles</strong></p></li>
+<li><p>Der sogenannte <strong>Pipe Operator</strong></p></li>
+</ol>
+<p>Das Konzept von Tidy Data wurde von Hadley Wickham, einem der Hauptentwickler des <code>tidyverse</code>, entwickelt <span class="citation" data-cites="Wickham2014">(<a href="references.html#ref-Wickham2014" role="doc-biblioref">Wickham, 2014</a>)</span></p>
+<p>Die wichtigsten Grundsätze für <strong>Tidy Data</strong> data lauten:</p>
+<ol type="1">
+<li><p>Jede Variable ist in einer eigenen Spalte.</p></li>
+<li><p>Jede Beobachtung ist in einer eigenen Zeile.</p></li>
+<li><p>Jeder Wert ist in einer eigenen Zelle.</p></li>
+</ol>
+<p><img src="./images/tidy_data.png" class="img-fluid quarto-figure quarto-figure-center" alt="Tidy Data"> Quelle: https://r4ds.had.co.nz/tidy-data.html</p>
+<p>Tibbles sind eine besondere Art von Data Frames, die im <code>tidyverse</code> verwendet werden. Sie bieten einige Vorteile gegenüber traditionellen Data Frames, wie z.B. eine bessere Darstellung in der Konsole und eine einfachere Handhabung von fehlenden Werten. Eine umfangreichere Beschreibung von Tibbles findet sich in der <a href="https://cran.r-project.org/web/packages/tibble/vignettes/tibble.html">entsprechenden Vignette zum Paket <code>tibbles</code></a>.</p>
+<p>Der Pipe Operator (<code>%&gt;%</code>) ist ein zentrales Element des <code>tidyverse</code> und ermöglicht es, mehrere Funktionen miteinander zu verketten, ohne dass man Zwischenergebnisse speichern muss.</p>
+<p>Wie im <a href="04-functions.html" class="quarto-xref"><span>Chapter 4</span></a> erklärt, operieren Funktionen in <code>R</code> allgemein nach dem Muster <code>f(x)</code>, wobei <code>f</code> die Funktion ist und <code>x</code> die Eingabe (Input) für die Funktion. Mit dem Pipe Operator wird daraus <code>x %&gt;% f()</code>. Hier wird das Objekt <code>x</code> an die Funktion <code>f</code> übergeben und wird (standardmäßig) zu deren erstem Argument (es kann jedoch auch an andere Argumente übergeben werden).</p>
+<p>Wie zuvor beschrieben, ist es mit dem Pipe Operator möglich, mehrere Funktionen miteinander zu verketten. Ein abstraktes Beispiel ist:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mach_dies</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dann_das</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">zuletzt_das</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Man kann den Pipe Operator also im Prinzip lesen als Nimm <code>data</code>, mache dies damit, dann das und zuletzt das. Das macht den Code oft lesbarer und übersichtlicher.</p>
+<p>Das mag aktuell noch sehr abstrakt klingen, aber die Nutzung sollte mit den konkreten Beispielen in den folgenden Kapiteln deutlicher werden.</p>
+<p>Seit Version 4.1.0 gibt es in <code>R</code> auch einen nativen Pipe Operator (<code>|&gt;</code>), der ähnliche Funktionalitäten bietet. Es gibt jedoch einige Unterschiede zwischen den beiden Pipe-Operatoren. Diese werden im <a href="https://tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/">Blog-Post [<em>Differences between the base R and magrittr pipes</em>] auf der <code>tidyverse</code>-Webseite</a> ausführlich erklärt.</p>
+<p><em>RStudio</em> bietet eine Tastenkombination zum Einfügen des Pipe Operators aus dem <code>tidyverse</code> (<code>%&gt;%</code>): <code>Strg + Alt + M</code> (Windows &amp; Linux) bzw. <code>Cmd + Option + M</code> (Mac). Aus diesem Grund nutzen wir in diesem Kurs den Pipe Operator aus dem <code>tidyverse</code> und nicht den nativen Pipe Operator aus Base <code>R</code>.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-Wickham2014" class="csl-entry" role="listitem">
+Wickham, H. (2014). Tidy <span>Data</span>. <em>Journal of Statistical Software</em>, <em>59</em>(10). <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -746,13 +869,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./15-message-warning-error.html" class="pagination-link" aria-label="Meldungen, Warnungen, Fehler">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Meldungen, Warnungen, Fehler</span></span>
+      <a href="./05-import-export.html" class="pagination-link" aria-label="Importieren &amp; exportieren von Daten in `R`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Importieren &amp; exportieren von Daten in <code>R</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./17-paths.html" class="pagination-link" aria-label="Dateipfade">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Dateipfade</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./06-wrangling-df.html" class="pagination-link" aria-label="Datensätze verändern">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Datensätze verändern</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

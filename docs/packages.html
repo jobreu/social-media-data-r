@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>16&nbsp; 🛠️Troubleshooting 101 – Sammlung und Analyse von Social-Media-Daten mit R</title>
+<title>5&nbsp; Pakete – Sammlung und Analyse von Social-Media-Daten mit R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -33,8 +68,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./17-paths.html" rel="next">
-<link href="./15-message-warning-error.html" rel="prev">
+<link href="./05-import-export.html" rel="next">
+<link href="./04-functions.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -85,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./names.html">Tipps &amp; Tricks</a></li><li class="breadcrumb-item"><a href="./16-errors.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-installation.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./packages.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pakete</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -155,7 +190,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./packages.html" class="sidebar-item-text sidebar-link">
+  <a href="./packages.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pakete</span></span></a>
   </div>
 </li>
@@ -243,7 +278,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-errors.html" class="sidebar-item-text sidebar-link active">
+  <a href="./16-errors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></span></a>
   </div>
 </li>
@@ -283,17 +318,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#fehler" id="toc-fehler" class="nav-link active" data-scroll-target="#fehler"><span class="header-section-number">16.1</span> Fehler</a></li>
-  <li><a href="#abstürze" id="toc-abstürze" class="nav-link" data-scroll-target="#abstürze"><span class="header-section-number">16.2</span> Abstürze</a></li>
+  <li><a href="#informationen-über-die-aktuelle-r-sitzung-einschließlich-der-geladenen-pakete" id="toc-informationen-über-die-aktuelle-r-sitzung-einschließlich-der-geladenen-pakete" class="nav-link active" data-scroll-target="#informationen-über-die-aktuelle-r-sitzung-einschließlich-der-geladenen-pakete"><span class="header-section-number">6</span> Informationen über die aktuelle R-Sitzung, einschließlich der geladenen Pakete</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./names.html">Tipps &amp; Tricks</a></li><li class="breadcrumb-item"><a href="./16-errors.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-installation.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./packages.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pakete</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-errors" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></span></h1>
+<h1 class="title"><span id="sec-pkgs" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pakete</span></span></h1>
 </div>
 
 
@@ -310,28 +344,41 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="fehler" class="level2" data-number="16.1">
-<h2 data-number="16.1" class="anchored" data-anchor-id="fehler"><span class="header-section-number">16.1</span> Fehler</h2>
-<p>Erschrecken Sie sich nicht, wenn Sie in <code>R</code> eine Fehlermeldung erhalten. Das kommt häufig vor, insbesondere wenn Sie gerade erst anfangen, mit <code>R</code> zu arbeiten. Die meisten Fehler lassen sich relativ einfach lösen.</p>
-<p>Klassiche Fehlerquellen sind z.B. folgende:</p>
-<ul>
-<li><p>Tippfehler (<code>R</code> unterscheidet zwischen Groß- und Kleinschreibung)</p></li>
-<li><p>fehlende Klammern <code>)</code> oder Anführungszeichen <code>"</code> (häufig am Ende eines Befehls)</p></li>
-<li><p>falsche Dateipfade (z.B. <code>\</code> anstelle von <code>/</code> in beim Kopieren aus dem Windows Explorer; siehe dazu auch <a href="17-paths.html" class="quarto-xref"><span>Chapter 17</span></a>)</p></li>
-<li><p>nicht installierte oder geladene Pakete</p></li>
-<li><p>Code, der in falscher Reihenfolge ausgeführt wird</p></li>
-</ul>
-<p>Wenn Sie in <code>R</code> eine Fehlermeldung erhalten und deren Bedeutung nicht (vollständig) verstehen, können Sie diese natürlich einfach in Ihre bevorzugte Suchmaschine eingeben. In der Regel liefert dies einige hilfreiche Ergebnisse. Alternativ können Sie die Fehlermeldung z.B. auch direkt in das Suchfeld auf <a href="https://stackoverflow.com/questions"><em>Stack Overflow</em></a> kopieren.</p>
-<p>Wenn Sie Copy &amp; Paste nicht so mögen, können Sie auch die Pakete <a href="https://r-pkg.thecoatlessprofessor.com/searcher/"><code>searcher</code></a> oder <a href="https://r-pkg.thecoatlessprofessor.com/errorist/"><code>errorist</code></a> verwenden, um direkt in <code>R</code>/<em>RStudio</em> (an verschiedenen Orten) nach Fehlermeldungen zu suchen. Das <code>searcher</code>-Paket kann auch verwendet werden, um nach anderen Dingen (neben Fehlermeldungen) zu suchen und bietet Optionen für die Nutzung von KI-Assistenten.</p>
-</section>
-<section id="abstürze" class="level2" data-number="16.2">
-<h2 data-number="16.2" class="anchored" data-anchor-id="abstürze"><span class="header-section-number">16.2</span> Abstürze</h2>
-<p>Falls Ihre <code>R</code>-Sitzung beim Ausführen eines abstürzen, gibt es einige Dinge, die Sie ggf. probieren können, um das Problem zu lösen:</p>
-<ul>
-<li><p>Beenden Sie den <code>R</code>-Prozess: über Session -&gt; Terminate R im <em>RStudio</em>-Menü oder über das Stoppschild-Symbol in der oberen rechten Ecke der Konsole</p></li>
-<li><p>Starten Sie <code>R</code> neu (<em>RStudio</em>-Menü: Session -&gt; Restart R)</p></li>
-<li><p>Installieren Sie das Paket, das die Probleme verursacht, neu</p></li>
-</ul>
+<p>Pakete in <code>R</code> sind Sammlungen von Funktionen und teilweise auch Daten sowie Dokumentation dazu, die die Nutzungsmöglichkeiten von <code>R</code> umfassend erweitern.</p>
+<p>Sie können sich Pakete in etwa wie Apps auf Ihrem Smartphone vorstellen: Sie bieten zusätzliche Funktionen, mit denen Sie bestimmte Aufgaben ausführen können. Ebenso wie Apps lassen sich Pakete nach Bedarf direkt aus <code>R</code> heraus installieren, nutzen und deinstallieren.</p>
+<p>Die zentrale Quelle für <code>R</code>-Pakete ist das <a href="https://cran.r-project.org/"><em>Comprehensive R Archive Network</em> (CRAN)</a>.</p>
+<blockquote class="blockquote">
+<p>CRAN is a network of ftp and web servers around the world that store identical, up-to-date, versions of code and documentation for R.</p>
+</blockquote>
+<p>Es gibt auch andere Quellen für <code>R</code>-Pakete, z.B. <a href="https://www.bioconductor.org/"><em>Bioconductor</em></a> (für Pakete im Bereich der Bioinformatik) oder <a href="https://github.com/"><em>GitHub</em></a>. Letzteres wird v.a. auch für neue, experimentelle oder kleinere Pakete genutzt.</p>
+<p>Es gibt zehntausende Pakete für <code>R</code>. Laut der Seite <a href="https://www.r-pkg.org/">METACRAN</a> gab es am 19. Mai 2025 fast 23.700 Pakete auf <em>CRAN</em> (hinzu kommen noch Pakete aus anderen Quellen wie <em>GitHub</em>).</p>
+<p>Wenn wir <code>R</code> installieren, werden direkt einige sogenannte Kernpakete (core packages) mitgeliefert. Zu diesen gehören z.B. <code>base</code>, <code>stats</code>, <code>utils</code> oder <code>graphics</code>. Diese Pakete enthalten Funktionen, die für die grundlegende Funktionalität von <code>R</code> erforderlich sind. Sie müssen nicht separat installiert oder geladen werden, da sie automatisch verfügbar sind, sobald Sie <code>R</code> starten.</p>
+<p>Alle anderen Pakete müssen wir erst installieren, bevor wir sie verwenden können. Sobald ein Paket installiert ist, müssen wir es in jeder neuen <code>R</code>-Sitzung laden, um auf die Funktionen und Daten dieses Pakets zugreifen zu können. D.h. installieren müssen wir ein Paket i.d.R. nur einmale, aber laden müssen wir es in jeder Session neu.</p>
+<p>Um Pakete in <code>R</code> zu installieren, verwenden wir die Funktion <code>install.packages()</code>. Um ein Paket zu laden, verwenden wir die Funktion <code>library()</code>.</p>
+<p>In den weiteren Abschnitten des Buchs bzw. den weiteren Sitzungen des Kurses werden wir verschiedene Pakete installieren und nutzen, um Social-Media-Daten zu sammeln, aufzubereiten und zu analysieren. Pakete, die wir in den nächsten Schritten verwenden werden, sind die Pakete aus dem sogenannten <a href="https://tidyverse.org/"><code>tidyverse</code></a> (mehr dazu im <a href="tidyverse.html" class="quarto-xref"><span>Chapter 7</span></a>) sowie das Paket <a href="https://remotes.r-lib.org/"><code>remotes</code></a>, mit dem wir u.a. Pakete von <em>GitHub</em> installieren können.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># da es sich hierbei um eine Sammlung von Paketen handelt, kann die Installation etwas dauern.</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Nachdem wir die Pakete einmalig installiert haben, müssen wir sie in jeder neuen <code>R</code>-Sitzung laden, um auf die Funktionen und Daten dieser Pakete zugreifen zu können.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(remotes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Um Pakete von <em>GitHub</em> zu installieren, können wir die Funktion <code>install_github()</code> aus dem Paket <code>remotes</code> verwenden. Dazu müssen wir den Link zum sogenannten <em>GitHub</em> Repository kennen, in dem das Paket zu finden ist. Um Pakete von <em>GitHub</em> auf Windows-Systemen nutzen zu können, wird das Programm <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> benötigt.</p>
+<p>Für die Aufbereitung von <em>YouTube</em>-Daten werden wir später das Paket <a href="https://github.com/gesiscss/tubecleanR"><code>tubecleanr</code></a> verwenden, das es nur auf <em>GitHub</em> gibt.</p>
+<p><em>Hinweis</em>: Da wir dieses Paket noch nicht direkt benötigen, müssen Sie den nachfolgenden Code jetzt noch nicht ausführen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"gesiscss/tubecleanR"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Eine Übersicht darüber, welche Pakete man installiert und in der aktuellen Sitzung geladen hat, liefert der “Packages”-Tab in <em>RStudio</em>.</p>
+<p>Alternativ kann man aber auch die Funktionen <code>installed.packages()</code> und <code>sessionInfo()</code> verwenden.</p>
+<p>#| eval: false # Alle installierten Pakete auflisten installed.packages()</p>
+<section id="informationen-über-die-aktuelle-r-sitzung-einschließlich-der-geladenen-pakete" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Informationen über die aktuelle R-Sitzung, einschließlich der geladenen Pakete</h1>
+<p>sessionInfo()</p>
 
 
 </section>
@@ -746,13 +793,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./15-message-warning-error.html" class="pagination-link" aria-label="Meldungen, Warnungen, Fehler">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Meldungen, Warnungen, Fehler</span></span>
+      <a href="./04-functions.html" class="pagination-link" aria-label="Funktionen">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./17-paths.html" class="pagination-link" aria-label="Dateipfade">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Dateipfade</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./05-import-export.html" class="pagination-link" aria-label="Importieren &amp; exportieren von Daten in `R`">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Importieren &amp; exportieren von Daten in <code>R</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

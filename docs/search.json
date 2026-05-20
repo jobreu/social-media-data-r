@@ -45,18 +45,29 @@
     "href": "02-rstudio.html",
     "title": "2  Arbeiten mit RStudio",
     "section": "",
-    "text": "2.1 Workflow\nSofern R und RStudio installiert sind (siehe Chapter 1), können Sie RStudio starten. Wenn alles korrekt installiert wurde, startet RStudio dann automatisch auch R.\nWenn Sie RStudio zum ersten Mal öffnen, sollten Sie drei Fenster im Programm sehen.\nIm ersten Schritt können Sie nun ein neues R-Skript erstellen. Im Kurs werden wir für die Sammlung, Aufbereitung und Analyse von Daten mit R-Skripten arbeiten. Diese enthalten Code, können zudem auch Kommentare enthalten und haben die Dateiendung .r.\nUm ein neues R-Skript in RStudio zu erstellen, gibt es drei Optionen:\nSobald Sie ein neues R-Skript erstellt haben, sollten Sie in RStudio vier Fenster sehen, die jeweils mehrere Tabs haben können und wie folgt angeordnet sind:\nOben links befindet sich der Texteditor für die Dateien, an denen Sie gerade arbeiten. Meistens sind dies R-Skripte.\nOben rechts ist das Fenster mit Informationen zum Arbeitsbereich (Workspace) zu finden. Der wichtigste Tab hier ist die “Environment” (Umgebung), in der Informationen zu den Objekten in Ihrer Arbeitsumgebung angezeigt werden. Dies können einzelne Werte, Vektoren oder ganze Datensätze sein (Erklärungen zu den unterschiedlichen Objekttypen in R sind im Abschnitt Chapter 3 zu finden). Im “History”-Tab können Sie hier auch den Verlauf der ausgeführten Befehle einsehen.\nUnten links ist die sogenannte Konsole (Console). Hier können Sie interaktiv Code ausführen. Auch Warnungen und Fehlermeldungen sowie Ausgaben zu ausgeführtem Code aus Skripten werden hier angezeigt, sofern es sich dabei um Text handelt. Im Fenster mit der Konsole wird auch ein “Terminal”-Tab angezeigt, über das Sie auf die Kommandozeile zugreifen können.\nIm Fenster unten rechts befinden sich mehrere Tabs, die auch für Einsteiger_innen in die Nutzung von R und RStudio interessant sind. - Im “Files”-Tab finden Sie die Dateien, die sich in Ihrem aktuellen Arbeitsverzeichnis (Working Directory; mehr dazu im nächsten Abschnitt) befinden. - Im “Packages”-Tab können Sie sehen, welche R-Pakete Sie installiert und in der aktuellen Sitzung (Session) geladen haben. - Im Tab “Help” können Sie die Dokumentation zu Funktionen und Paketen in R einsehen. Mehr dazu finden Sie im Abschnitt Chapter 7. - In den Tabs “Plots” und “Viewer” werden Grafiken (Plots) und HMTL-Ausgaben bzw. interaktive Inhalte (Viewer) angezeigt, die Sie mit R erstellen können.",
+    "text": "2.1 Das Interface von RStudio\nSofern R und RStudio installiert sind (siehe Chapter 1), können Sie RStudio starten. Wenn alles korrekt installiert wurde, startet RStudio dann automatisch auch R.\nWenn Sie RStudio zum ersten Mal öffnen, sollten Sie drei Fenster im Programm sehen.\nIm ersten Schritt können Sie nun ein neues R-Skript erstellen. Im Kurs werden wir für die Sammlung, Aufbereitung und Analyse von Daten mit R-Skripten arbeiten. Diese enthalten Code, können zudem auch Kommentare enthalten und haben die Dateiendung .r.\nUm ein neues R-Skript in RStudio zu erstellen, gibt es drei Optionen:\nSobald Sie ein neues R-Skript erstellt haben, sollten Sie in RStudio vier Fenster sehen, die jeweils mehrere Tabs haben können und wie folgt angeordnet sind:\nOben links befindet sich der Texteditor für die Dateien, an denen Sie gerade arbeiten. Meistens sind dies R-Skripte.\nOben rechts ist das Fenster mit Informationen zum Arbeitsbereich (Workspace) zu finden. Der wichtigste Tab hier ist die “Environment” (Umgebung), in der Informationen zu den Objekten in Ihrer Arbeitsumgebung angezeigt werden. Dies können einzelne Werte, Vektoren oder ganze Datensätze sein (Erklärungen zu den unterschiedlichen Objekttypen in R sind im Abschnitt Chapter 3 zu finden). Im “History”-Tab können Sie hier auch den Verlauf der ausgeführten Befehle einsehen.\nUnten links ist die sogenannte Konsole (Console). Hier können Sie interaktiv Code ausführen. Auch Warnungen und Fehlermeldungen sowie Ausgaben zu ausgeführtem Code aus Skripten werden hier angezeigt, sofern es sich dabei um Text handelt. Im Fenster mit der Konsole wird auch ein “Terminal”-Tab angezeigt, über das Sie auf die Kommandozeile zugreifen können.\nIm Fenster unten rechts befinden sich mehrere Tabs, die auch für Einsteiger_innen in die Nutzung von R und RStudio interessant sind:\nDer Tab “Git” wird nur angezeigt, wenn Sie git installiert und in RStudio eingerichtet haben und in einem RStudio-Projekt arbeiten, das mit einem Git-Repository verbunden ist. Wenn Sie mehr dazu erfahren möchten, ist das Online-Buch Happy Git and GitHub for the useR vo Jenny Bryan sehr empfehlenswert.",
     "crumbs": [
       "Grundlagen",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Arbeiten mit *RStudio*</span>"
     ]
   },
   {
-    "objectID": "02-rstudio.html#workflow",
-    "href": "02-rstudio.html#workflow",
+    "objectID": "02-rstudio.html#das-interface-von-rstudio",
+    "href": "02-rstudio.html#das-interface-von-rstudio",
     "title": "2  Arbeiten mit RStudio",
     "section": "",
-    "text": "2.1.1 R-Skripte\nCode, der in der Kosole ausgeführt wird, wird nicht gespeichert. Alles was Sie behalten/speichern möchten, sollte daher in R-Skripten gemacht werden.\nSie können R-Skripte jederzeit speichern, indem Sie auf das Disketten-Symbol in der Symbolleiste klicken oder die Tastenkombination Strg + S (Windows) bzw. Cmd + S (Mac) verwenden. Es empfiehlt sich, Skripte regelmäßig zu speichern, um Datenverlust zu vermeiden.\nUm zu dokumentieren, was der Code in Ihrem Skript macht, können Sie Kommentare hinzufügen. Kommentare sind Zeilen, die mit einem Hashtag (#) beginnen und von R ignoriert werden. Sie können Kommentare verwenden, um zu erklären, was der Code tut, warum bestimmte Entscheidungen getroffen wurden oder um Notizen für sich selbst oder andere zu hinterlassen.\n\n# Dies ist ein Kommentar. Er wird von R ignoriert und dient nur zur Dokumentation.\n# Sie können hier z.B. erklären, was der folgende Code macht.\n\n# Berechnung der Summe von 1 und 1\n1 + 1\n\n[1] 2\n\n\nWeitere Tipps & Tricks zum Kommentieren von R-Skripten finden Sie im Abschnitt Chapter 6.\n\n\n2.1.2 Code ausführen\nIn der Konsole können Sie Code direkt eingeben und ausführen, indem Sie die Eingabetaste drücken. Wenn Sie in der letzten Zeile in der Konsole das &gt;-Zeichen sehen, bedeutet dies, dass R bereit für weitere Befehle ist. Wenn Sie am Anfang der Eingabezeile in der Konsole ein + sehen, bedeutet dies, dass der Befehl unvollständig ist. Ein häufiger Grund dafür ist eine fehlende Klammer ) oder ein fehlendes Anführungszeichen \" (weitere Tipps zum Umgang mit häufigen Fehlern in R finden Sie im Abschnitt Chapter 9). Sie können den Befehl entweder vervollständigen (und ihn dann durch Drücken der Eingabetaste ausführen) oder die Eingabe des Befehls durch Drücken der Esc-Taste abbrechen.\nSobald Sie mindestens einen Befehl ausgeführt haben, können Sie mit den Tasten ↑ und ↓ auf Ihrer Tastatur in der Konsole in RStudio durch die vorherigen Befehle “blättern” und diese erneut ausführen.\nFür R-Skripte gibt es mehrere Möglichkeiten, Code auszuführen:\n\nSie können das gesamte Skript ausführen, indem Sie auf das Symbol “Source” (weißes Rechteck mit blauem Pfeil) oben rechts in der Symbolleiste klicken oder die Tastenkombination Strg + Shift + Enter (Windows) bzw. Cmd + Shift + Enter (Mac) verwenden.\nMarkieren Sie die Code-Zeilen, die Sie ausführen möchten, und klicken Sie auf das Symbol “Run” (Ausführen) in der Symbolleiste oder verwenden Sie die Tastenkombination Strg + Enter (Windows) bzw. Cmd + Enter (Mac).\nKlicken Sie mit der Maus auf die Zeile, die Sie ausführen möchten, und verwenden Sie die Tastenkombination Strg + Enter (Windows) bzw. Cmd + Enter (Mac), um die aktuelle Zeile auszuführen. Wenn Sie mehrere Zeilen ausführen möchten, können Sie diese markieren und dann die gleiche Tastenkombination verwenden.\n\n\n\n2.1.3 Arbeitsverzeichnis & Arbeitsbereich\nDas Arbeitsverzeichnis (Working Directory) ist der Ordner auf Ihrem Computer, in dem R nach Dateien sucht, die Sie laden möchten, und in dem es Dateien speichert, die Sie erstellen.\nBegrifflich ähnlich aber technisch gesehen etwas anderes ist der sogenannte Arbeitsbereich (Workspace). Der Arbeitsbereich umfasst alle Objekte, die Sie in R erstellt oder geladen haben, wie z.B. Variablen, Funktionen oder Datensätze. Diese Objekte werden im “Environment”-Tab oben rechts in RStudio angezeigt.\nDer Inhalt der aktuellen Umgebung wird im Arbeitsspeicher (RAM) Ihres Computers gespeichert, bis Sie R (oder RStudio) beenden.\nDer aktuelle Inhalt des Arbeitsbereichs kann auch über den Befehl ls() angezeigt werden. Mit der Funktion rm()können Objekte aus dem Arbeitsbereich entfernen. ** Wichtig**: Dies kann nicht rückgängig gemacht werden. D.h. Objekte müssen dann ggf. neu erstellt werden.\nStandardmäßig speichert R den Arbeitsbereich in einer Datei namens .RData im aktuellen Arbeitsverzeichnis und stellt den Arbeitsbereich beim Neustart wieder her.\nDas Speichern des Arbeitsbereichs kann zwar nützlich sein, sollte jedoch nicht Ihre primäre – und v.a. nicht die ausschließliche – Methode zum Speichern Ihrer Arbeit sein. Stattdessen sollten Sie Skripte verwenden, um Ihren Code zu speichern, und alle Ausgaben (einschließlich relevanter Zwischenergebnisse; insbesondere wenn deren Erstellung viel Zeit in Anspruch nimmt) wie Datensätze oder Abbildungen (Plots) in Dateien mit einem geeigneten Format speichern (mehr dazu im Abschnitt Chapter 4).",
+    "text": "Klicken Sie auf das Symbol “New File” (kleines weißes Rechteck mit grün-weißem + oben links in der Ecke) in der Symbolleiste und wählen dann “R script” aus dem Dropdown-Menü.\nWählen Sie im RStudio-Menü ganz oben File -&gt; New File -&gt; R script.\nNutzen Sie die Tastenkombination Strg + Shift + N (Windows) bzw. Cmd + Shift + N (Mac).\n\n\n\n\n\n\n\nIm “Files”-Tab finden Sie die Dateien, die sich in Ihrem aktuellen Arbeitsverzeichnis (Working Directory; mehr dazu im nächsten Abschnitt) befinden.\nIm “Packages”-Tab können Sie sehen, welche R-Pakete Sie installiert und in der aktuellen Sitzung (Session) geladen haben.\nIm Tab “Help” können Sie die Dokumentation zu Funktionen und Paketen in R einsehen. Mehr dazu finden Sie im Abschnitt Chapter 14.\nIn den Tabs “Plots” und “Viewer” werden Grafiken (Plots) und HMTL-Ausgaben bzw. interaktive Inhalte (Viewer) angezeigt, die Sie mit R erstellen können.\n\n\n\n\n\nDas RStudio-Interface",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Arbeiten mit *RStudio*</span>"
+    ]
+  },
+  {
+    "objectID": "02-rstudio.html#sec-workflow",
+    "href": "02-rstudio.html#sec-workflow",
+    "title": "2  Arbeiten mit RStudio",
+    "section": "2.2 Workflow",
+    "text": "2.2 Workflow\n\n2.2.1 R-Skripte\nCode, der in der Kosole ausgeführt wird, wird nicht gespeichert. Alles was Sie behalten/speichern möchten, sollte daher in R-Skripten gemacht werden.\nSie können R-Skripte jederzeit speichern, indem Sie auf das Disketten-Symbol in der Symbolleiste klicken oder die Tastenkombination Strg + S (Windows) bzw. Cmd + S (Mac) verwenden. Es empfiehlt sich, Skripte regelmäßig zu speichern, um Datenverlust zu vermeiden.\nUm zu dokumentieren, was der Code in Ihrem Skript macht, können Sie Kommentare hinzufügen. Kommentare sind Zeilen, die mit einem Hashtag (#) beginnen und von R ignoriert werden. Sie können Kommentare verwenden, um zu erklären, was der Code tut, warum bestimmte Entscheidungen getroffen wurden oder um Notizen für sich selbst oder andere zu hinterlassen.\n\n# Dies ist ein Kommentar. Er wird von R ignoriert und dient nur zur Dokumentation.\n# Sie können hier z.B. erklären, was der folgende Code macht.\n\n# Berechnung der Summe von 1 und 1\n1 + 1\n\n[1] 2\n\n\nWeitere Tipps & Tricks zum Kommentieren von R-Skripten finden Sie im Abschnitt Chapter 13.\n\n\n2.2.2 Code ausführen\n\n2.2.2.1 Konsole\nIn der Konsole können Sie Code direkt eingeben und ausführen, indem Sie die Eingabetaste drücken. Wenn Sie in der letzten Zeile in der Konsole das &gt;-Zeichen sehen, bedeutet dies, dass R bereit für weitere Befehle ist. Wenn Sie am Anfang der Eingabezeile in der Konsole ein + sehen, bedeutet dies, dass der Befehl unvollständig ist. Ein häufiger Grund dafür ist eine fehlende Klammer ) oder ein fehlendes Anführungszeichen \" (weitere Tipps zum Umgang mit häufigen Fehlern in R finden Sie im Abschnitt Chapter 16). Sie können den Befehl entweder vervollständigen (und ihn dann durch Drücken der Eingabetaste ausführen) oder die Eingabe des Befehls durch Drücken der Esc-Taste abbrechen.\nSobald Sie mindestens einen Befehl ausgeführt haben, können Sie mit den Tasten ↑ und ↓ auf Ihrer Tastatur in der Konsole in RStudio durch die vorherigen Befehle “blättern” und diese erneut ausführen.\nDas Einfachste, was Sie mit der R-Konsole tun können, ist, sie als Taschenrechner zu verwenden.\n\n2 + 2\n\n[1] 4\n\n7 - 6\n\n[1] 1\n\n3 * 4\n\n[1] 12\n\n10 / 2\n\n[1] 5\n\n2^3\n\n[1] 8\n\n\nDas [1] vor dem Ergebnis zeigt an, dass es sich um den ersten Ausgabewert des Befehls handelt (komplexere Befehle können mehr als einen Ausgabewert haben).\n\n\n\n2.2.3 R-Skripte\nFür R-Skripte gibt es mehrere Möglichkeiten, Code auszuführen:\n\nSie können das gesamte Skript ausführen, indem Sie auf das Symbol “Source” (weißes Rechteck mit blauem Pfeil) oben rechts in der Symbolleiste klicken oder die Tastenkombination Strg + Shift + Enter (Windows) bzw. Cmd + Shift + Enter (Mac) verwenden.\nMarkieren Sie die Code-Zeilen, die Sie ausführen möchten, und klicken Sie auf das Symbol “Run” (Ausführen) in der Symbolleiste oder verwenden Sie die Tastenkombination Strg + Enter (Windows) bzw. Cmd + Enter (Mac).\nKlicken Sie mit der Maus auf die Zeile, die Sie ausführen möchten, und verwenden Sie die Tastenkombination Strg + Enter (Windows) bzw. Cmd + Enter (Mac), um die aktuelle Zeile auszuführen. Wenn Sie mehrere Zeilen ausführen möchten, können Sie diese markieren und dann die gleiche Tastenkombination verwenden.\n\n\n\n2.2.4 Arbeitsverzeichnis & Arbeitsbereich\nDas Arbeitsverzeichnis (Working Directory) ist der Ordner auf Ihrem Computer, in dem R nach Dateien sucht, die Sie laden möchten, und in dem es Dateien speichert, die Sie erstellen.\nDas aktuelle Arbeitsverzeichnis wird in der Zeile über der Konsole in RStudio angezeigt, wo auch die aktuell genutzte Version von R zu sehen ist. Sie können es sich auch über den Befehl getwd() anzeigen lassen.\n\n# Aktuelles Arbeitsverzeichnis anzeigen\ngetwd()\n\n[1] \"C:/Users/johannes.breuer/OneDrive - Center for Advanced Internet Studies (CAIS) gGmbH/Dokumente/teaching/ude/SoSe26/seminar_social-media-data-r/social-media-data-r\"\n\n\nSie können das Arbeitsverzeichnis in RStudio auf zwei Arten ändern:\n\nIndem Sie im Menü in RStudio auf “Session” -&gt; “Set Working Directory” -&gt; “Choose Directory” klicken und dann den gewünschten Ordner auswählen. Alternativ können Sie hier auch die Optionen “To Project Directory” (Hauptverzeichnis des Projekts, wenn Sie mit RStudio-Projekten arbeiten; mehr dazu in Chapter 18), “To Source File Location” (= Speicherort des aktuell aktiven R-Skripts) oder “To Files Pane Location” (= Ordner, der aktuell im “Files”-Tab angezeigt wird) auswählen.\nÜber den Befehl setwd().\n\nBegrifflich ähnlich aber technisch gesehen etwas anderes ist der sogenannte Arbeitsbereich (Workspace). Der Arbeitsbereich umfasst alle Objekte, die Sie in R erstellt oder geladen haben, wie z.B. Variablen, Funktionen oder Datensätze. Diese Objekte werden im “Environment”-Tab oben rechts in RStudio angezeigt.\nDer Inhalt der aktuellen Umgebung wird im Arbeitsspeicher (RAM) Ihres Computers gespeichert, bis Sie R (oder RStudio) beenden.\nDer aktuelle Inhalt des Arbeitsbereichs kann auch über den Befehl ls() angezeigt werden. Mit der Funktion rm()können Objekte aus dem Arbeitsbereich entfernen. Wichtig: Dies kann nicht rückgängig gemacht werden. D.h. Objekte müssen dann ggf. neu erstellt werden.\nStandardmäßig speichert R den Arbeitsbereich in einer Datei namens .RData im aktuellen Arbeitsverzeichnis und stellt den Arbeitsbereich beim Neustart wieder her.\nDas Speichern des Arbeitsbereichs kann zwar nützlich sein, sollte jedoch nicht Ihre primäre – und v.a. nicht die ausschließliche – Methode zum Speichern Ihrer Arbeit sein. Stattdessen sollten Sie Skripte verwenden, um Ihren Code zu speichern, und alle Ausgaben (einschließlich relevanter Zwischenergebnisse; insbesondere wenn deren Erstellung viel Zeit in Anspruch nimmt) wie Datensätze oder Abbildungen (Plots) in Dateien mit einem geeigneten Format speichern (mehr dazu im Abschnitt Chapter 6).",
     "crumbs": [
       "Grundlagen",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Arbeiten mit *RStudio*</span>"
@@ -66,8 +77,19 @@
     "objectID": "02-rstudio.html#einstellungen-in-rstudio",
     "href": "02-rstudio.html#einstellungen-in-rstudio",
     "title": "2  Arbeiten mit RStudio",
-    "section": "2.2 Einstellungen in RStudio",
-    "text": "2.2 Einstellungen in RStudio\nUm die Umsetzung des im vorherigen Abschnitts empfohlenen Workflows zu erleichtern, sollten Sie einige Einstellungen in RStudio vornehmen. Klicken Sie dazu auf “Tools” -&gt; “Global Options” und nehmen im Reiter “General” folgende Einstellungen vor:\n\nUnter “Workspace” Entfernen Sie das Häkchen bei “Restore .RData into workspace at startup” und wählen Sie “Never” aus dem Dropdown-Menü bei “Save workspace to .RData on exit”. So wird verhindert, dass Ihr Arbeitsbereich automatisch gespeichert wird, wenn Sie RStudio schließen und dass alte Objekte automatisch geladen werden, wenn Sie RStudio starten.\nEntfernen Sie das Häkchen unter “History” bei der Option “Always save history (even when not saving .RData)” aktivieren. So wird Ihre Befehls-Historie (Command History) nicht jedes Mal automatisch gespeichert. Wenn Sie die Command History explizit speicher möchten, können Sie dafür den Befehl savehistory() nutzen. Dieser erstellt dann eine .Rhistory-Datei im Arbeitsverzeichnis. Sie sollten Code, den Sie behalten und wiederverwenden möchten allerdings in eigenen R-Skripten speichern (s.o.).\n\nSie können in den Optionen noch viele weitere Einstellungen vornehmen. Z.B. können Sie dort das Aussehen von RStudio oder die Formatierung von Code in R-Skripten anpassen.",
+    "section": "2.3 Einstellungen in RStudio",
+    "text": "2.3 Einstellungen in RStudio\nUm die Umsetzung des im vorherigen Abschnitts empfohlenen Workflows zu erleichtern, sollten Sie einige Einstellungen in RStudio vornehmen. Klicken Sie dazu auf “Tools” -&gt; “Global Options” und nehmen im Reiter “General” folgende Einstellungen vor:\n\nUnter “Workspace” Entfernen Sie das Häkchen bei “Restore .RData into workspace at startup” und wählen Sie “Never” aus dem Dropdown-Menü bei “Save workspace to .RData on exit”. So wird verhindert, dass Ihr Arbeitsbereich automatisch gespeichert wird, wenn Sie RStudio schließen und dass alte Objekte automatisch geladen werden, wenn Sie RStudio starten.\nEntfernen Sie das Häkchen unter “History” bei der Option “Always save history (even when not saving .RData)” aktivieren. So wird Ihre Befehls-Historie (Command History) nicht jedes Mal automatisch gespeichert. Wenn Sie die Command History explizit speicher möchten, können Sie dafür den Befehl savehistory() nutzen. Dieser erstellt dann eine .Rhistory-Datei im Arbeitsverzeichnis. Sie sollten Code, den Sie behalten und wiederverwenden möchten allerdings in eigenen R-Skripten speichern (s.o.).\n\nSie können in den Optionen noch viele weitere Einstellungen vornehmen. Z.B. können Sie dort das Aussehen von RStudio oder die Formatierung von Code in R-Skripten anpassen.\n\n\n\nEmpfohlene Einstellungen in RStudio",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Arbeiten mit *RStudio*</span>"
+    ]
+  },
+  {
+    "objectID": "02-rstudio.html#hilfreiche-funktionen-in-rstudio",
+    "href": "02-rstudio.html#hilfreiche-funktionen-in-rstudio",
+    "title": "2  Arbeiten mit RStudio",
+    "section": "2.4 Hilfreiche Funktionen in RStudio",
+    "text": "2.4 Hilfreiche Funktionen in RStudio\nNeben den Einstellungen gibt es zwei weitere Funktionalitäten, die die Arbeit mit RStudio erleichtern können:\n\nTastaturkürzel: RStudio bietet eine Vielzahl von Tastenkombinationen, mit denen Sie schneller und effizienter arbeiten können. Einige davon haben wir zuvor bereits gesehen. Eine Übersicht über die verfügbaren Tastenkombinationen finden Sie unter “Help” -&gt; “Keyboard Shortcuts Help” in RStudio.\nTab Completion: In RStudio können Sie die Tab-Taste verwenden, um Code zu vervollständigen. Wenn Sie z.B. den Namen einer Funktion oder eines Objekts eingeben und dann die Tab-Taste drücken, zeigt RStudio eine Liste der möglichen Vervollständigungen an. Dies kann besonders hilfreich sein, wenn Sie sich nicht sicher sind, wie der Name einer Funktion oder eines Objekts lautet oder wenn Sie Tippfehler vermeiden möchten.\n\n\n\n\nTab Completion in RStudio",
     "crumbs": [
       "Grundlagen",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Arbeiten mit *RStudio*</span>"
@@ -78,164 +100,263 @@
     "href": "03-objects.html",
     "title": "3  Objekte in R",
     "section": "",
-    "text": "tbd",
+    "text": "3.1 Objekttypen in R\nR ist eine sogenannte objektorientierte Programmiersprache. Das bedeutet, dass alles in R als Objekt betrachtet wird. Allgemein formuliert ist ein Objekt eine spezifische Datenstruktur, die Informationen enthält und bestimmte Eigenschaften und Verhaltensweisen aufweist.\nEs gibt verschiedene Arten von Objekten in R. Die wichigsten sind:\nFür diesen Kurs werden wir uns hauptsächlich mit Vektoren und Dataframes beschäftigen, da diese die am häufigsten verwendeten Objekttypen in der Datenanalyse sind.",
     "crumbs": [
       "Grundlagen",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Objekte in `R`</span>"
     ]
   },
   {
-    "objectID": "05-import-export.html",
-    "href": "05-import-export.html",
-    "title": "4  Data import & export",
+    "objectID": "03-objects.html#objekttypen-in-r",
+    "href": "03-objects.html#objekttypen-in-r",
+    "title": "3  Objekte in R",
     "section": "",
-    "text": "4.1 JSON\n[   {     \"post_id\": \"7102938475\",     \"author\": \"@r_stats_guru\",     \"description\": \"Learn ggplot2 in 60 seconds! 📊 #rstats #dataviz\",     \"metrics\": {       \"views\": 14500,       \"likes\": 3200,       \"shares\": 150     }   },   {     \"post_id\": \"7102938476\",     \"author\": \"@quarto_tips\",     \"description\": \"Stop using standard markdown. Do this instead. 🚀 #coding\",     \"metrics\": {       \"views\": 89000,       \"likes\": 12400,       \"shares\": 890     }   } ]",
+    "text": "Vektoren: Ein Vektor ist eine eindimensionale Datenstruktur, die Elemente desselben Typs enthält. Vektoren können numerisch (numeric), logisch (logical) oder Zeichenketten (string/character) sein (siehe das nachfolgende Section 3.2). Sie sind die grundlegendste Datenstruktur in R und bilden die Basis für komplexere Strukturen. Vektoren können einen oder mehrere Werte enthalten.\nMatrizen: Eine Matrix ist eine zweidimensionale Datenstruktur, die Elemente desselben Typs enthält. Matrizen kennt man aus der linearen Algebra und sie sind besonders nützlich für mathematische Operationen.\nDataframes: Ein Dataframe ist eine zweidimensionale Datenstruktur, die Spalten mit unterschiedlichen Datentypen enthalten kann. Man kann sich einen Dataframe als eine Sammlung von Vektoren vorstellen, wobei jeder Vektor eine Spalte darstellt. Dies entspricht im Wesentlichen einem Datensatz, wie man ihn auch aus anderen Programmen für die Datenalyse wie Stata, SPSS oder Excel kennt.\nListen: Eine Liste ist eine flexible Datenstruktur, die Elemente unterschiedlichen Typs enthalten kann. Listen können auch andere Listen enthalten, was sie sehr mflexibelacht. In diesem Fall spricht man auch von verschachtelten Listen (engl. nested lists).",
     "crumbs": [
       "Grundlagen",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data import & export</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Objekte in `R`</span>"
+    ]
+  },
+  {
+    "objectID": "03-objects.html#sec-datatypes",
+    "href": "03-objects.html#sec-datatypes",
+    "title": "3  Objekte in R",
+    "section": "3.2 Datentypen in R",
+    "text": "3.2 Datentypen in R\nR kann mit vielen verschiedenen Arten von Daten und Variablen umgehen. Die wichtigsten Typen für die Datenanalyse sind:\n\nNumerisch (numeric): Dies ist der Standarddatentyp für Zahlen in R. Er umfasst sowohl ganze Zahlen (integer) als auch Dezimalzahlen (double).\nZeichenketten (character): Dieser Datentyp wird für Text verwendet. Zeichenketten können Buchstaben, Wörter, Sätze oder sogar längere Texte enthalten. Sie werden in Anführungszeichen gesetzt, z.B. \"Ich liebe R!\".\nFaktoren (factor): Faktoren sind eine spezielle Art von Daten, die für kategoriale Variablen verwendet werden. Sie können eine feste Anzahl von Kategorien oder Stufen haben, z.B. “männlich”, “weiblich” und “non-binär” für das Geschlecht einer Person. Faktoren sind ein besonderer Datentyp in R, den es in der Form in anderen Programmiersprachen nicht gibt.\nLogisch (logical): Dieser Datentyp kann nur die Werte TRUE oder FALSE annehmen. Logische Werte werden beim Programmieren in R z.B. in Bedingungen und Schleifen verwendet.\n\nIm Kurs werden wir v.a. mit den Typen character (Textdaten) und numeric (Zahlen) arbeiten.\nDer Typ eines Objekts bestimmt, was damit in R gemacht werden kann. Z.B. können mathematische Operationen mit numerischen Objekten durchgeführt werden, aber nicht mit Zeichenobjekten.\n\n10 + 10 \n\n[1] 20\n\n\"10\" + 10\n\nError in \"10\" + 10: nicht-numerisches Argument für binären Operator\n\n\nDer zweite Befehl führt zu einem Fehler, da R nicht weiß, wie es eine Zeichenkette (“10”) mit einer Zahl (10) addieren soll (mehr zu Fehlermeldungen finden Sie im Chapter 16).\nEs gibt Funktionen, mit denen sich die Datentypen von Objekten in R ändern lassen. Mehr dazu finden Sie im Abschnitt Chapter 9.",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Objekte in `R`</span>"
+    ]
+  },
+  {
+    "objectID": "03-objects.html#assignment",
+    "href": "03-objects.html#assignment",
+    "title": "3  Objekte in R",
+    "section": "3.3 Assignment",
+    "text": "3.3 Assignment\nIn R können Sie Objekte erstellen und ihnen Werte zuweisen. Dies geschieht durch den sogenannten “Assignment Operator” &lt;-.\nDas einfachste Beispiel für eine Zuweisung in R ist die Zuweisung eines einzelnen Werts an ein Objekt. Dieser Wert kann beispielsweise eine einzelne Zahl oder eine Zeichenkette sein.\n\n# Zuweisung eines einzelnen Werts\nx &lt;- 42\ny &lt;- \"Ich liebe R!\"\n\nIn diesem Beispiel haben wir zwei Objekte erstellt: x, dem der numerische Wert 42 zugewiesen wurde, und y, dem die Zeichenkette \"Ich liebe R!\" zugewiesen wurde. Zur Erinnerung: Erstellte Objekte werden in RStudio im Environment-Tab angezeigt.\nSobald sie zugewiesen wurden, können diese Objekte verwenden, z.B. um ihren Inhalt anzuzeigen.\n\nx \n\n[1] 42\n\ny\n\n[1] \"Ich liebe R!\"\n\n\nSie können in R nicht nur Werte, sondern auch Ergebnisse einem Objekt zuweisen.\n\n# Zuweisung eines Ergebnisses\nz &lt;- x * 2\n\nz\n\n[1] 84\n\n\nDen Datentyp eines Objekts kann man in R mit der Funktion class() überprüfen.\n\n# Datentyp eines Objekts überprüfen\nclass(x)\n\n[1] \"numeric\"\n\nclass(y)\n\n[1] \"character\"\n\nclass(z)\n\n[1] \"numeric\"\n\n\nWichtig: Objekte sind nur so lange verfügbar, wie Ihre R-Sitzung aktiv ist. Wenn Sie Ihre R-Sitzung beenden oder neu starten, werden alle erstellten Objekte gelöscht. Objekte, die Sie behalten möchten bzw. mit denen Sie später weiterarbeiten möchten, müssen Sie exportieten. Wie das funktioniert, wird in Chapter 6 erklärt.\nWie in Section 2.2.4 erläutert, können Sie erstellte Objekte mit der Funktion ls() auflisten und wenn Sie ein bestimmtes Objekt löschen möchten, können Sie die Funktion rm() verwenden (mehr zu Funktionen finden Sie im Chapter 4).\n\n# Alle Objekte auflisten\nls()\n\n[1] \"x\" \"y\" \"z\"\n\n\n\n# Ein bestimmtes Objekt löschen\nrm(z)\n\nls()\n\n[1] \"x\" \"y\"\n\n\nErstellte Objekte können Sie auch als Eingabe (Argumente) für Funktionen verwenden. Dies wird in Chapter 4 erklärt.\nWie das vorherige Beispiel zeigt, gibt es einen Unterschied zwischen der Zuweisung und der Anzeige von Objekten. Generell gilt: Wenn Sie Code ausführen und das Ergebnis keinem Objekt zuweisen, gibt R das Ergebnis nur in der Konsole aus.\nEs ist auch möglich, mehrere Werte gleichzeitig einem Objekt zuzuweisen. Dies geschieht durch die Verwendung von Funktionen wie c(), die Werte zu einem Vektor kombinieret oder data.frame(), die Vektoren zu einem Dataframe kombiniert.\n\n# Mehrere Werte einem Objekt zuweisen\nage &lt;- c(25, 30, 35, 40)\nnames &lt;- c(\"Alice\", \"Bob\", \"Charlie\", \"David\")\n\nage\n\n[1] 25 30 35 40\n\nnames\n\n[1] \"Alice\"   \"Bob\"     \"Charlie\" \"David\"  \n\n\n\n# Einen Dataframe erstellen\ndf &lt;- data.frame(name = names, age = age)\ndf\n\n     name age\n1   Alice  25\n2     Bob  30\n3 Charlie  35\n4   David  40\n\n\nIn diesem Beispiel haben wir den Spalten (Variablen) im Dataframe df die Namen name und age gegeben. Diese können wir später verwenden, um auf die entsprechenden Spalten zuzugreifen oder um sie in Funktionen zu verwenden.\n\nnames(df)\n\n[1] \"name\" \"age\" \n\n\nSowohl class() als auch c(), data.frame() und names() sind Funktionen, die wir uns im folgenden Chapter 4 genauer anschauen.",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Objekte in `R`</span>"
+    ]
+  },
+  {
+    "objectID": "04-functions.html",
+    "href": "04-functions.html",
+    "title": "4  Funktionen",
+    "section": "",
+    "text": "Für das allermeiste, was wir in R machen, verwenden wir Funktionen. Eine Funktion in R ist wie eine Art Mini-Programm, mit dem wir bestimmte Aufgaben ausführen können.\nVereinfacht gesagt: Eine Funktion nimmt eine Eingabe (Inpurt), verarbeitet diese und erzeugt eine Ausgabe (Output).\nFunktionen verfügen in der Regel über sogenannte Argumente, die festlegen, was genau eine Funktion macht. Im einfachsten Fall benötigt eine Funktion lediglich eine Eingabe (einen Wert oder ein Objekt) als einziges Argument (und manche Funktionen benötigen sogar gar kein Argument).\nDie grundlegende Anatomie einer Funktion in R sieht wie folgt aus:\n\nfunktionsname(argument1 = wert1, argument2 = wert2, ...)\n\nDer funktionsname ist ein Name, der angibt, welche Funktion Sie verwenden möchten. Darauf folgen in Klammern ein oder mehrere Argumente, die bestimmte Werte annehmen können.\nBeispiele für einfache Funktionen in R:\n\n# Einfache Funktion ohne Argumente\nSys.Date() # Gibt das aktuelle Datum zurück\n\n[1] \"2026-05-20\"\n\n# Einfache Funktion mit einem Argument\nsqrt(16) # Berechnet die Quadratwurzel von 16\n\n[1] 4\n\n# Einfache Funktion mit mehreren Argumenten\nround(3.14159, digits = 2) # Rundet die Zahl auf 2 Dezimalstellen\n\n[1] 3.14\n\n\nFunktionen können erforlicher (required) und optionale (optional) Argumente haben. Im vorherigen Beispiel war das Argument digits bei der Funktion round() optional. Für optionale Argumente gibt es in den Funktionen in der Regel Standardwerte, die man aber durch das Spezifizieren des Arguments überschreiben kann. Ob ein Argument erforderlich oder optional ist, kann man in der Dokumentation bzw. dem sogenannten Help File herausfinden. Die Hilfe zu Funktionen kann man in RStudio aufrufen, indem man ein ? vor den Namen der Funktion schreibt und die () dahinter weglässt.\nWenn im Help File unter “Usage” hinter den Argumenten ein = und ein Wert stehen, handelt es sich um optionale Argumente. In vielen Funktionen ist das erste Argument eine Eingabe. Dies kann ein einzelner Wert, ein Vektor oder ein Dataframe sein. Dieses Argument ist erforderlich (required) und in der Dokumentation bzw. dem Help File i.d.R. mit x benannt. Mehr zum Thema Hilfe in R ist im Chapter 14 zu finden.\n\n# Hilfe zu einer Funktion aufrufen\n?round\n\nDas Ergebnis einer Funktion kann man natürlich auch einem Objekt zuweisen, um es später weiterzuverwenden.\nVerschiedene Funktionen können mit unterschiedlichen Arten von Eingaben (Inputs) arbeiten und produzieren auch unterschiedliche Ausgaben (Outputs).\nDie Funktion mean() beispielsweise benötigt einen numerischen Vektor aus Input und liefert einen einzelnen numerischen Wert (den Mittelwert der Werte aus dem Vektor) als Output.\n\nzahlen &lt;- c(1, 2, 3, 4, 5)\n\nmittelwert &lt;- mean(zahlen)\n\nmittelwert\n\n[1] 3\n\n\nSie können in R Funktionen selbst definieren. Allerdings nutzen wir zumeist Funktionen, die in Paketen enthalten sind. Was es mit denen auf sich hat, betrachten wir im folgenden Chapter 5.",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Funktionen</span>"
+    ]
+  },
+  {
+    "objectID": "packages.html",
+    "href": "packages.html",
+    "title": "5  Pakete",
+    "section": "",
+    "text": "Pakete in R sind Sammlungen von Funktionen und teilweise auch Daten sowie Dokumentation dazu, die die Nutzungsmöglichkeiten von R umfassend erweitern.\nSie können sich Pakete in etwa wie Apps auf Ihrem Smartphone vorstellen: Sie bieten zusätzliche Funktionen, mit denen Sie bestimmte Aufgaben ausführen können. Ebenso wie Apps lassen sich Pakete nach Bedarf direkt aus R heraus installieren, nutzen und deinstallieren.\nDie zentrale Quelle für R-Pakete ist das Comprehensive R Archive Network (CRAN).\n\nCRAN is a network of ftp and web servers around the world that store identical, up-to-date, versions of code and documentation for R.\n\nEs gibt auch andere Quellen für R-Pakete, z.B. Bioconductor (für Pakete im Bereich der Bioinformatik) oder GitHub. Letzteres wird v.a. auch für neue, experimentelle oder kleinere Pakete genutzt.\nEs gibt zehntausende Pakete für R. Laut der Seite METACRAN gab es am 19. Mai 2025 fast 23.700 Pakete auf CRAN (hinzu kommen noch Pakete aus anderen Quellen wie GitHub).\nWenn wir R installieren, werden direkt einige sogenannte Kernpakete (core packages) mitgeliefert. Zu diesen gehören z.B. base, stats, utils oder graphics. Diese Pakete enthalten Funktionen, die für die grundlegende Funktionalität von R erforderlich sind. Sie müssen nicht separat installiert oder geladen werden, da sie automatisch verfügbar sind, sobald Sie R starten.\nAlle anderen Pakete müssen wir erst installieren, bevor wir sie verwenden können. Sobald ein Paket installiert ist, müssen wir es in jeder neuen R-Sitzung laden, um auf die Funktionen und Daten dieses Pakets zugreifen zu können. D.h. installieren müssen wir ein Paket i.d.R. nur einmale, aber laden müssen wir es in jeder Session neu.\nUm Pakete in R zu installieren, verwenden wir die Funktion install.packages(). Um ein Paket zu laden, verwenden wir die Funktion library().\nIn den weiteren Abschnitten des Buchs bzw. den weiteren Sitzungen des Kurses werden wir verschiedene Pakete installieren und nutzen, um Social-Media-Daten zu sammeln, aufzubereiten und zu analysieren. Pakete, die wir in den nächsten Schritten verwenden werden, sind die Pakete aus dem sogenannten tidyverse (mehr dazu im Chapter 7) sowie das Paket remotes, mit dem wir u.a. Pakete von GitHub installieren können.\n\ninstall.packages(\"tidyverse\")\n# da es sich hierbei um eine Sammlung von Paketen handelt, kann die Installation etwas dauern.\n\ninstall.packages(\"remotes\")\n\nNachdem wir die Pakete einmalig installiert haben, müssen wir sie in jeder neuen R-Sitzung laden, um auf die Funktionen und Daten dieser Pakete zugreifen zu können.\n\nlibrary(tidyverse)\nlibrary(remotes)\n\nUm Pakete von GitHub zu installieren, können wir die Funktion install_github() aus dem Paket remotes verwenden. Dazu müssen wir den Link zum sogenannten GitHub Repository kennen, in dem das Paket zu finden ist. Um Pakete von GitHub auf Windows-Systemen nutzen zu können, wird das Programm Rtools benötigt.\nFür die Aufbereitung von YouTube-Daten werden wir später das Paket tubecleanr verwenden, das es nur auf GitHub gibt.\nHinweis: Da wir dieses Paket noch nicht direkt benötigen, müssen Sie den nachfolgenden Code jetzt noch nicht ausführen:\n\nremotes::install_github(\"gesiscss/tubecleanR\")\n\nEine Übersicht darüber, welche Pakete man installiert und in der aktuellen Sitzung geladen hat, liefert der “Packages”-Tab in RStudio.\nAlternativ kann man aber auch die Funktionen installed.packages() und sessionInfo() verwenden.\n#| eval: false # Alle installierten Pakete auflisten installed.packages()\n\n6 Informationen über die aktuelle R-Sitzung, einschließlich der geladenen Pakete\nsessionInfo()",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Pakete</span>"
+    ]
+  },
+  {
+    "objectID": "05-import-export.html",
+    "href": "05-import-export.html",
+    "title": "6  Importieren & exportieren von Daten in R",
+    "section": "",
+    "text": "6.1 Import\nAuch wenn wir Daten in R selbst generieren bzw. eingeben können, kommen Daten in der Regel aus externen Quellen. In unserem konkreten Fall z.B. von Social-Media-Plattformen.\nR kann Daten in vielen unterschiedlichen Formaten einlesen (importieren) und speichern (exportieren). Hierfür gibt es zahlreiche Funktionen und Pakete.\nFür die Arbeit mit Social-eMedia-Daten sind insbesondere folgende Formate relevant:\nBeide Formate sind sowohl für Menschen als auch für Maschinen lesbar, wobei JSON für Menschen etwas schwieriger zu lesen ist.\nSowohl JSON als auch CSV sind sogenannte Plain-Text-Formate, d.h. sie bestehen aus einfachem Text und können mit einem Texteditor wie z.B. Notepad++ (Win) oder Sublime Text (Win, macOS) geöffnet und bearbeitet werden.",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Importieren & exportieren von Daten in `R`</span>"
+    ]
+  },
+  {
+    "objectID": "05-import-export.html#import",
+    "href": "05-import-export.html#import",
+    "title": "6  Importieren & exportieren von Daten in R",
+    "section": "",
+    "text": "JSON (JavaScript Object Notation): Ein weit verbreitetes Format für den Austausch von Daten, insbesondere in Webanwendungen.\nCSV (Comma-Separated Values): Ein einfaches Textformat, bei dem Daten durch Kommas getrennt werden. Es ist weit verbreitet und wird von vielen Anwendungen unterstützt.\n\n\n\n\n6.1.1 JSON\nJSON-Daten bestehen aus sogenannten Key-Value-Pairs und können verschachtelt sein. Hier ist ein Beispiel für JSON-Daten, die Informationen über Social-Media-Posts enthalten:\n[   {     \"post_id\": \"7102938475\",     \"author\": \"@r_stats_guru\",     \"description\": \"Learn ggplot2 in 60 seconds! 📊 #rstats #dataviz\",     \"metrics\": {       \"views\": 14500,       \"likes\": 3200,       \"shares\": 150     }   },   {     \"post_id\": \"7102938476\",     \"author\": \"@quarto_tips\",     \"description\": \"Stop using standard markdown. Do this instead. 🚀 #coding\",     \"metrics\": {       \"views\": 89000,       \"likes\": 12400,       \"shares\": 890     }   } ]\nEs gibt verschiedene Pakete, um JSON-Daten in R zu importieren. Eine beliebte Option ist das Paket jsonlite.\nWenn Sie jsonlite zum ersten Mal nutzen, müssen Sie das Paket vorher erst einmal installieren.\n\ninstall.packages(\"jsonlite\")\n\nDann können Sie das Paket laden und die Funktion fromJSON() verwenden, um JSON-Daten zu importieren.\nHinweis: Wenn Sie den nachfolgenden Code ausführen wollen, müssen Sie die Datei json_example.json erstellen, indem Sie die obigen Inhalte zwischen den [] kopieren, in einem Texteditor einfügen und die Datei dann als json_example.json speichern. Je nachdem, wo Sie die Datei speichern, müssen Sie dann auch noch den Dateipfad anpassen (mehr zu Dateipfaden in Chapter 17).\n\nlibrary(jsonlite)\n\njson_data &lt;- fromJSON(\"./data/json_example.json\")\n\njson_data\n\n     post_id        author\n1 7102938475 @r_stats_guru\n2 7102938476  @quarto_tips\n                                               description metrics.views\n1          Learn ggplot2 in 60 seconds! 📊 #rstats #dataviz         14500\n2 Stop using standard markdown. Do this instead. 🚀 #coding         89000\n  metrics.likes metrics.shares\n1          3200            150\n2         12400            890\n\n\nDa JSON-Dateien oft verschachtelt sind, kann es sein, dass die importierten Daten in R nicht direkt in einem für die Analyse geeigneten Format vorliegen. In diesem Fall müssen Sie die Daten möglicherweise noch weiter aufbereiten, z.B. indem Sie verschachtelte Listen in Data Frames umwandeln.\n\n\n6.1.2 CSV\nCSV-Dateien sind einfacher strukturiert als JSON-Dateien und bestehen aus Zeilen und Spalten.\nR bietet standardmäßig die Funktionen read.csv() und read.csv2() um CSV-Dateien einzulesen. Der Grund dafür, dass es zwei Funktionen gibt, ist, dass es verschiedene Varianten von CSV-Dateien gibt. Auch wenn wir sie als CSV für (Comma-Separated Values) heißen, sind Werte in den Dateien manchmal durch ein Semikolon oder ein Tabulator getrennt (für Letzteres wird manchmal auch die Dateiendung .tsv für tab-separated values verwendet). Je nach Sprache kann das Dezimaltrennzeichen zudem ein Komma oder ein Punkt sein.\nEin Paket, das viele Funktionen für den Import und Export von verschiedenen Datentypen bietet, ist readr. readr ist Teil der Paketsammlung tidyverse, mit der wir fürs Data Wrangling arbeiten werden (für weitere Informationen zum tidyverse siehe Chapter 7). Zum Einlesen von CSV-Dateien bietet readr die Funktionen read_csv() und read_csv2(), die schneller und flexibler sind als die Funktionen read.csv() und read.csv2(), die R nativ mitbringt.\nTipp: Wenn Sie unsicher sind, welche Art von CSV-Datei vorliegt, können Sie es zunächst einfach mit read_csv() versuchen, und falls das nicht funktioniert, versuchen Sie es mit read_csv2(). Sollte das auch nicht funktionieren, schauen sie sich die Datei ggf. mit einem Texteditor an und nutzen Sie dann z.B. read_tsv() für tab-separated values oder die allgemeinere Funktion read_delim(), in der Sie über Argumente festlegen können, was die Trennzeichen sind.\nWichtiger Hinweis: Auch wenn es möglich ist, CSV-Dateien mtit Excel zu öffnen, sollten Sie dies vermeiden, da Excel die Daten oft automatisch formatiert und dabei Informationen verloren gehen können. Es ist daher besser, CSV-Dateien mit einem Texteditor oder direkt in R zu öffnen.\nFür die weiteren Beispiele nutzen wir simulierte YouTube-Daten aus dem KODAQS Toolbox Tutorial zum R-Paket tubecleanr. Wir können die CSV-Datei, die diese Daten enthält, direkt aus dem GitHub-Repository zu dem Tutorial herunterladen.\n\nlibrary(readr)\n\nyt_demo &lt;- read_csv2(\"https://raw.githubusercontent.com/gesiscss/tubecleanr_tool/refs/heads/master/data/simulated_yt.csv\")\n\nℹ Using \"','\" as decimal and \"'.'\" as grouping mark. Use `read_delim()` for more control.\n\n\nRows: 245 Columns: 8\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \";\"\nchr  (4): VideoID, AuthorDisplayName, Comment, CommentID\ndbl  (1): LikeCount\nlgl  (1): ParentID\ndttm (2): PublishedAt, UpdatedAt\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\nAuch hier braucht die Funktion als Argument mindestens den Pfad zur Datei, die eingelesen werden soll. In diesem Fall ist das ein URL-Pfad zu der CSV-Datei auf GitHub. Sie können aber natürlich auch einen lokalen Pfad angeben, wenn Sie die Datei zuvor heruntergeladen und auf Ihrem Computer gespeichert haben.\nMan kann (lokal gespeicherte) Datensätze auch über den Button “Import Dataset” im “Environment”-Tab in RStudio importieren. Allerdings ist es empfehlenswerter, auch für den Import von Daten Code in einem R-Skript zu nutzen.\nWenn man den Pfad zu einer lokalen Datei nicht kennt, kann man diesen z.B. über die Suche im Datei-Explorer des Betriebssystems finden (mehr zu Dateipfaden in Chapter 17). Alternativ kann man in R den Befehl file.choose() nutzen.\n\nfile_path &lt;- file.choose()\ndata &lt;- read_csv(file_path)\n\nAufgrund der reduzierten Nachvollziehbarkeit und Reproduzierbarkeit ist es jedoch nicht empfehlenswert, file.choose() zu verwenden. Es ist besser, den Pfad zur Datei direkt im Code anzugeben (idealiter in Form eines relativen Pfads, siehe Chapter 17), damit andere Personen (oder man selbst zu einem späteren Zeitpunkt) genau wissen, wo die Daten herkommen und wie sie importiert wurden.",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Importieren & exportieren von Daten in `R`</span>"
+    ]
+  },
+  {
+    "objectID": "05-import-export.html#andere-datentypen",
+    "href": "05-import-export.html#andere-datentypen",
+    "title": "6  Importieren & exportieren von Daten in R",
+    "section": "6.2 Andere Datentypen",
+    "text": "6.2 Andere Datentypen\nNeben JSON und CSV gibt es noch viele weitere Datenformate, die in R importiert und exportiert werden können, z.B. Excel-Dateien (.xlsx), SPSS-Dateien (.sav), Stata-Dateien (.dta) und viele mehr. Für jedes dieser Formate gibt es spezielle Pakete und Funktionen, die den Import und Export erleichtern. Zum Beispiel können Sie das Paket readxl verwenden, um Excel-Dateien zu importieren, und das Paket haven für SPSS- und Stata-Dateien.",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Importieren & exportieren von Daten in `R`</span>"
+    ]
+  },
+  {
+    "objectID": "05-import-export.html#export",
+    "href": "05-import-export.html#export",
+    "title": "6  Importieren & exportieren von Daten in R",
+    "section": "6.3 Export",
+    "text": "6.3 Export\nNachdem wir Dateien in R importiert und möglicherweise bearbeitet haben, möchten wir die Daten oft auch wieder exportieren, um sie z.B. in anderen Anwendungen weiterzuverwenden oder zu teilen.\nAuch hier bietet R zahlreiche Funktionen und Pakete, um Daten in verschiedenen Formaten zu exportieren. Für CSV-Dateien können Sie die Funktion write_csv() aus dem Paket readr nutzen. Um Daten zu exportieren, benötigen die entsprechenden Funktionen als Argumente im Mindesten das Objekt, das die Daen enthält und einen Dateipfad, unter dem die exportierte Datei gespeichert werden soll (mehr zu Dateipfaden gibt es im Chapter 17).\n\nwrite_csv(yt_demo, \"./data/simulated_yt_export.csv\")",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Importieren & exportieren von Daten in `R`</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse.html",
+    "href": "tidyverse.html",
+    "title": "7  tidyverse",
+    "section": "",
+    "text": "7.1 Was ist das tidyverse?\nDas tidyverse ist eine Sammlung von R-Paketen, die das Importieren und Exportieren, die Aufbereitung und Visualisieren von Daten in R vereinfachen.\nAlle Pakete aus dem tidyverse können über das gleichnamige (Meta-)Paket installiert werden.\ninstall.packages(\"tidyverse\")\nNach der Installation können die Kernpakete (Core Packages) aus dem tidyverse über das Paket tidyverse gleichzeitig geladen werden.\nlibrary(tidyverse)\n\nWarning: Paket 'ggplot2' wurde unter R Version 4.5.3 erstellt\n\n\nWarning: Paket 'purrr' wurde unter R Version 4.5.2 erstellt\n\n\nWarning: Paket 'stringr' wurde unter R Version 4.5.2 erstellt\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.6.0\n✔ ggplot2   4.0.3     ✔ tibble    3.3.0\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.2.0     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\nWenn die Pakete aus dem tidyverse geladen werden, bekommt man in der Konsole eine Übersicht über die geladenen Pakete und deren Versionen sowie Informationen zu möglichen Konflikten mit anderen Paketen angezeigt. Diese Konflikte sind in der Regel unproblematisch, auch wenn das rote X in der Meldung dazu möglicherweise beängstigend aussieht. Detailliertere Informationen zu diesen Konflikten und dem Umgang damit gibt es im Section 11.4.",
+    "crumbs": [
+      "Data Wrangling",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`tidyverse`</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse.html#was-ist-das-tidyverse",
+    "href": "tidyverse.html#was-ist-das-tidyverse",
+    "title": "7  tidyverse",
+    "section": "",
+    "text": "The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.\n\n\n\n\n\n\n\n\n\n\n\n\nNotetidyverse vs. base R\n\n\n\n\n\nDie meisten der Dinge, die man mit den Paketen aus dem tidyverse machen kann, sind auch mit Base R möglich. Die Syntax hierfür ist jedoch in der Regel umständlicher und nicht so intuitiv. Die Nutzung von base R für die Aufbereitung von Daten ist daher insbesondere für Einsteiger_innen schwieriger.\nEin eigentlich positiver Aspekt, der allerdings auch ein Nachteil sein kann, ist, dass die Funktionen aus den Paketen im tidyverse sehr intensiv und z.T. auch sehr grundledend weiterentwickelt werden. Dies kann dazu führen, dass alter Code irgendwann nicht mehr (richtig) funktioniert. Base R ist im Vergleich dazu beständiger.\nEine kurze Erklärung zum sogenannten Lifecycle von Funktionen im tidyverse findet sich im Chapter 19.",
+    "crumbs": [
+      "Data Wrangling",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`tidyverse`</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse.html#kernkonzepte-des-tidyverse",
+    "href": "tidyverse.html#kernkonzepte-des-tidyverse",
+    "title": "7  tidyverse",
+    "section": "7.2 Kernkonzepte des tidyverse",
+    "text": "7.2 Kernkonzepte des tidyverse\nIm Wesentlichen gibt es drei Kernkonzepte, die das tidyverse ausmachen:\n\nTidy Data\nTibbles\nDer sogenannte Pipe Operator\n\nDas Konzept von Tidy Data wurde von Hadley Wickham, einem der Hauptentwickler des tidyverse, entwickelt (Wickham, 2014)\nDie wichtigsten Grundsätze für Tidy Data data lauten:\n\nJede Variable ist in einer eigenen Spalte.\nJede Beobachtung ist in einer eigenen Zeile.\nJeder Wert ist in einer eigenen Zelle.\n\n Quelle: https://r4ds.had.co.nz/tidy-data.html\nTibbles sind eine besondere Art von Data Frames, die im tidyverse verwendet werden. Sie bieten einige Vorteile gegenüber traditionellen Data Frames, wie z.B. eine bessere Darstellung in der Konsole und eine einfachere Handhabung von fehlenden Werten. Eine umfangreichere Beschreibung von Tibbles findet sich in der entsprechenden Vignette zum Paket tibbles.\nDer Pipe Operator (%&gt;%) ist ein zentrales Element des tidyverse und ermöglicht es, mehrere Funktionen miteinander zu verketten, ohne dass man Zwischenergebnisse speichern muss.\nWie im Chapter 4 erklärt, operieren Funktionen in R allgemein nach dem Muster f(x), wobei f die Funktion ist und x die Eingabe (Input) für die Funktion. Mit dem Pipe Operator wird daraus x %&gt;% f(). Hier wird das Objekt x an die Funktion f übergeben und wird (standardmäßig) zu deren erstem Argument (es kann jedoch auch an andere Argumente übergeben werden).\nWie zuvor beschrieben, ist es mit dem Pipe Operator möglich, mehrere Funktionen miteinander zu verketten. Ein abstraktes Beispiel ist:\n\ndata %&gt;% \n  mach_dies() %&gt;% \n  dann_das() %&gt;% \n  zuletzt_das()\n\nMan kann den Pipe Operator also im Prinzip lesen als Nimm data, mache dies damit, dann das und zuletzt das. Das macht den Code oft lesbarer und übersichtlicher.\nDas mag aktuell noch sehr abstrakt klingen, aber die Nutzung sollte mit den konkreten Beispielen in den folgenden Kapiteln deutlicher werden.\nSeit Version 4.1.0 gibt es in R auch einen nativen Pipe Operator (|&gt;), der ähnliche Funktionalitäten bietet. Es gibt jedoch einige Unterschiede zwischen den beiden Pipe-Operatoren. Diese werden im Blog-Post [Differences between the base R and magrittr pipes] auf der tidyverse-Webseite ausführlich erklärt.\nRStudio bietet eine Tastenkombination zum Einfügen des Pipe Operators aus dem tidyverse (%&gt;%): Strg + Alt + M (Windows & Linux) bzw. Cmd + Option + M (Mac). Aus diesem Grund nutzen wir in diesem Kurs den Pipe Operator aus dem tidyverse und nicht den nativen Pipe Operator aus Base R.\n\n\n\n\nWickham, H. (2014). Tidy Data. Journal of Statistical Software, 59(10). https://doi.org/10.18637/jss.v059.i10",
+    "crumbs": [
+      "Data Wrangling",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>`tidyverse`</span>"
+    ]
+  },
+  {
+    "objectID": "06-wrangling-df.html",
+    "href": "06-wrangling-df.html",
+    "title": "8  Datensätze verändern",
+    "section": "",
+    "text": "8.1 👀 Erster Eindruck\nSobald wir Daten importiert haben, müssen wir diese in der Regel noch aufbereiten, bevor wir mit der Analyse beginnen können. Das Aufbereiten von Daten wird auch als Data Wrangling oder Data Cleaning bezeichnet.\nUm einen Eindruck davon zu bekommen, welche Aufbereitungsschritte nötig oder sinnvoll sein könnten, ist es hilfreich, sich die Daten zunächst einmal anzuschauen.\nFür einen ersten Eindruck bietet das Paket dplyr die Funktion glimpse().\nSofern dies in der aktuellen Sitzung noch nicht passiert ist, müssen wir zunächst wieder die tidyverse-Pakete laden und die Daten in R importieren (siehe dazu auch Chapter 7 und Chapter 6). Danach können wir uns die Daten mit glimpse() anschauen.\nHinweis: Je nachdem, ob bzw. wo Sie die Daten aus Chapter 6 gespeichert haben, müssen Sie den Dateipfad im folgenden Code ggf. anpassen.\nlibrary(tidyverse)\n\nWarning: Paket 'ggplot2' wurde unter R Version 4.5.3 erstellt\n\n\nWarning: Paket 'purrr' wurde unter R Version 4.5.2 erstellt\n\n\nWarning: Paket 'stringr' wurde unter R Version 4.5.2 erstellt\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.6.0\n✔ ggplot2   4.0.3     ✔ tibble    3.3.0\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.2.0     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nyt_demo &lt;- read_csv(\"./data/simulated_yt_export.csv\")\n\nRows: 245 Columns: 8\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (4): VideoID, AuthorDisplayName, Comment, CommentID\ndbl  (1): LikeCount\nlgl  (1): ParentID\ndttm (2): PublishedAt, UpdatedAt\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nglimpse(yt_demo)\n\nRows: 245\nColumns: 8\n$ VideoID           &lt;chr&gt; \"dQw4w9WgXcQ\", \"xyz789AbCde\", \"fGHjKlMnOpq\", \"PqRsTu…\n$ AuthorDisplayName &lt;chr&gt; \"TechGuru88\", \"ArtLover22\", \"GamerProX\", \"MusicFanat…\n$ Comment           &lt;chr&gt; \"This video changed my perspective! Highly recommend…\n$ LikeCount         &lt;dbl&gt; 154, 87, 301, 210, 95, 180, 120, 65, 250, 110, 190, …\n$ PublishedAt       &lt;dttm&gt; 2024-06-20 14:35:01, 2024-06-19 18:02:10, 2024-06-1…\n$ UpdatedAt         &lt;dttm&gt; 2024-06-20 14:35:01, 2024-06-19 18:02:10, 2024-06-1…\n$ ParentID          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ CommentID         &lt;chr&gt; \"Ugw3KPnh-5QJnBpeymd4AaABAg\", \"Ugy9J-5h-1RKnBpeymd4A…\nWenn wir uns den gesamten Datenstz in RStudio anschauen wollen, können wir die Funktion View() verwenden. Diese öffnet die Daten in einem neuen Tab und zeigt sie in einer tabellarischen Ansicht an.\nView(yt_demo)",
+    "crumbs": [
+      "Data Wrangling",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Datensätze verändern</span>"
+    ]
+  },
+  {
+    "objectID": "06-wrangling-df.html#variablen-auswählen",
+    "href": "06-wrangling-df.html#variablen-auswählen",
+    "title": "8  Datensätze verändern",
+    "section": "8.2 Variablen auswählen",
+    "text": "8.2 Variablen auswählen\nUm bestimmte Variablen aus einem Datensatz auszuwählen, können wir die Funktion select() aus dem Paket dplyr verwenden. Diese Funktion ermöglicht es uns, eine oder mehrere Variablen aus einem Datensatz auszuwählen und einen neuen Datensatz zu erstellen, der nur diese Variablen enthält.\n\nyt_selected &lt;- yt_demo %&gt;%\n  select(AuthorDisplayName, Comment, LikeCount)\n\nglimpse(yt_selected)\n\nRows: 245\nColumns: 3\n$ AuthorDisplayName &lt;chr&gt; \"TechGuru88\", \"ArtLover22\", \"GamerProX\", \"MusicFanat…\n$ Comment           &lt;chr&gt; \"This video changed my perspective! Highly recommend…\n$ LikeCount         &lt;dbl&gt; 154, 87, 301, 210, 95, 180, 120, 65, 250, 110, 190, …\n\n\nDurch die Verwendung von select() ändert sich die Anzahl der Spalten im Datensatz.\n\nncol(yt_demo)\n\n[1] 8\n\nncol(yt_selected)\n\n[1] 3\n\n\nUm nicht alle Variablennamen tippen zu müssen, gibt es einige Möglichkeiten. Z.B. kann man im Datensatz aufeinanderfolgende Variablen im Befehl select() auswählen, indem man nur den Namen der ersten und letzten Variable nennt und diese durch einèn : trennt.\n\nyt_selected &lt;- yt_demo %&gt;%\n  select(AuthorDisplayName:LikeCount)\n\nEs gibt auch noch viele weitere Optionen, um Variablen auszuwählen, z.B. die Auswahl von Variablen, die bestimmte Zeichenketten in ihren Namen enthalten oder die Auswahl von Variablen anhand ihres Typs. Weitere Informationen zu diesen Möglichkeiten finden Sie in der Dokumentation zur Funktion select().",
+    "crumbs": [
+      "Data Wrangling",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Datensätze verändern</span>"
+    ]
+  },
+  {
+    "objectID": "06-wrangling-df.html#variablen-umbenennen",
+    "href": "06-wrangling-df.html#variablen-umbenennen",
+    "title": "8  Datensätze verändern",
+    "section": "8.3 Variablen umbenennen",
+    "text": "8.3 Variablen umbenennen\nFür die Umbenennung von Variablen gibt es zwei Optionen: Direkt bei der Auswahl mit select() oder unabhängig davon mit der Funktion rename().\n\nyt_renamed &lt;- yt_demo %&gt;%\n  select(author = AuthorDisplayName, comment = Comment, likes = LikeCount)\n\nglimpse(yt_renamed)\n\nRows: 245\nColumns: 3\n$ author  &lt;chr&gt; \"TechGuru88\", \"ArtLover22\", \"GamerProX\", \"MusicFanatic_1\", \"Co…\n$ comment &lt;chr&gt; \"This video changed my perspective! Highly recommend. 👍 https:…\n$ likes   &lt;dbl&gt; 154, 87, 301, 210, 95, 180, 120, 65, 250, 110, 190, 70, 350, 1…\n\n\n\nyt_renamed &lt;- yt_demo %&gt;%\n  rename(video_id = VideoID,\n         author = AuthorDisplayName,\n         comment = Comment,\n         likes = LikeCount,\n         published_at = PublishedAt,\n         updated_at = UpdatedAt,\n         parent_id = ParentID,\n         comment_id = CommentID)\n\nglimpse(yt_renamed)\n\nRows: 245\nColumns: 8\n$ video_id     &lt;chr&gt; \"dQw4w9WgXcQ\", \"xyz789AbCde\", \"fGHjKlMnOpq\", \"PqRsTuVwXyz…\n$ author       &lt;chr&gt; \"TechGuru88\", \"ArtLover22\", \"GamerProX\", \"MusicFanatic_1\"…\n$ comment      &lt;chr&gt; \"This video changed my perspective! Highly recommend. 👍 h…\n$ likes        &lt;dbl&gt; 154, 87, 301, 210, 95, 180, 120, 65, 250, 110, 190, 70, 3…\n$ published_at &lt;dttm&gt; 2024-06-20 14:35:01, 2024-06-19 18:02:10, 2024-06-18 10:…\n$ updated_at   &lt;dttm&gt; 2024-06-20 14:35:01, 2024-06-19 18:02:10, 2024-06-18 10:…\n$ parent_id    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ comment_id   &lt;chr&gt; \"Ugw3KPnh-5QJnBpeymd4AaABAg\", \"Ugy9J-5h-1RKnBpeymd4AabGAg…\n\n\nDie Syntax für die Umbenennung von Variablen ist dabei neuer_name = alter_name. Es ist natürlich auch möglich, nur einige Variablen umzubenennen und die anderen unverändert zu lassen.",
+    "crumbs": [
+      "Data Wrangling",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Datensätze verändern</span>"
+    ]
+  },
+  {
+    "objectID": "06-wrangling-df.html#zeilen-filtern",
+    "href": "06-wrangling-df.html#zeilen-filtern",
+    "title": "8  Datensätze verändern",
+    "section": "9.1 Zeilen filtern",
+    "text": "9.1 Zeilen filtern\nUm bestimmte Zeilen aus einem Datensatz auszuwählen, können Sie die Funktion filter() aus dem Paket dplyr verwenden. Diese Funktion ermöglicht es, Zeilen basierend auf bestimmten Bedingungen auszuwählen und einen neuen Datensatz zu erstellen, der nur diese Zeilen enthält.\nUm die Funktion filter() sinnvoll einsetzen zu können, ist es wichtig, die wichtigsten logischen Operatoren zu kennen, die in den Bedingungen verwendet werden können. Dazu gehören:\n\n== (gleich)\n!= (ungleich)\n&lt; (kleiner als)\n&gt; (größer als)\n&lt;= (kleiner oder gleich)\n&gt;= (größer oder gleich)\n& (und)\n| (oder)\n! (nicht)\n\nEine besondere zusätzliche Option bietet die Funktion between(), mit der Sie Zeilen auswählen können, deren Werte in einem bestimmten Bereich liegen.\n\nyt_popular &lt;- yt_demo %&gt;%\n  filter(LikeCount &gt; 100)\n\nDurch die Verwendung von filter() ändert sich die Anzahl der Zeilen im Datensatz.\n\nnrow(yt_demo)\n\n[1] 245\n\nnrow(yt_popular)\n\n[1] 132",
+    "crumbs": [
+      "Data Wrangling",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Datensätze verändern</span>"
+    ]
+  },
+  {
+    "objectID": "06-wrangling-df.html#veränderung-der-reihenfolge-der-zeilen",
+    "href": "06-wrangling-df.html#veränderung-der-reihenfolge-der-zeilen",
+    "title": "8  Datensätze verändern",
+    "section": "9.2 Veränderung der Reihenfolge der Zeilen",
+    "text": "9.2 Veränderung der Reihenfolge der Zeilen\nMit der Funktion arrange() aus dem Paket dplyr kann man die Reihenfolge der Zeilen in einem Datensatz zu ändern. Sie können die Zeilen basierend auf den Werten einer oder mehrerer Variablen sortieren. Standardmäßig werden die Zeilen in aufsteigender Reihenfolge sortiert. Sie können jedoch auch die Option desc() verwenden, um die Zeilen in absteigender Reihenfolge zu sortieren.\n\nyt_sorted &lt;- yt_demo %&gt;%\n  arrange(desc(LikeCount))\n\nglimpse(yt_sorted)\n\nRows: 245\nColumns: 8\n$ VideoID           &lt;chr&gt; \"sTuVwXyZaSs\", \"jKlMnOoPpJj\", \"zAbCdEfGgZz\", \"rStUvW…\n$ AuthorDisplayName &lt;chr&gt; \"PetFanatic\", \"PetLoverB\", \"PetLoverA\", \"PetLoverL\",…\n$ Comment           &lt;chr&gt; \"Can't get enough of this! 😍\", \"Made me smile from e…\n$ LikeCount         &lt;dbl&gt; 400, 390, 380, 370, 360, 350, 350, 340, 330, 330, 32…\n$ PublishedAt       &lt;dttm&gt; 2024-02-02 20:00:00, 2024-02-11 20:20:00, 2024-02-2…\n$ UpdatedAt         &lt;dttm&gt; 2024-02-02 20:00:00, 2024-02-11 20:20:00, 2024-02-2…\n$ ParentID          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ CommentID         &lt;chr&gt; \"Ugy5u-2b-7JL4\", \"Ugy5l-2s-7ZAu\", \"Ugw3b-9i-5OIn\", \"…",
+    "crumbs": [
+      "Data Wrangling",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Datensätze verändern</span>"
+    ]
+  },
+  {
+    "objectID": "07-wrangling-variables.html",
+    "href": "07-wrangling-variables.html",
+    "title": "9  Variablen verändern",
+    "section": "",
+    "text": "9.1 Variablen erstellen und verändern",
+    "crumbs": [
+      "Data Wrangling",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Variablen verändern</span>"
+    ]
+  },
+  {
+    "objectID": "07-wrangling-variables.html#werte-in-einer-variable-verändern",
+    "href": "07-wrangling-variables.html#werte-in-einer-variable-verändern",
+    "title": "9  Variablen verändern",
+    "section": "9.2 Werte in einer Variable verändern",
+    "text": "9.2 Werte in einer Variable verändern",
+    "crumbs": [
+      "Data Wrangling",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Variablen verändern</span>"
     ]
   },
   {
     "objectID": "08-text-data.html",
     "href": "08-text-data.html",
-    "title": "5  Working with text data",
+    "title": "10  Working with text data",
     "section": "",
-    "text": "5.1 Why use Regex?",
+    "text": "10.1 Regular Expressions (Regex)\nEin sehr mächtiges Werkzeug, um bestimmte Muster in Texten zu erkennen und herauszufiltern oder zu extrahieren sind sog. Reguläre Ausdrücke (Regular Expressions oder Regex).\nReguläre Ausdrücke sind im Grunde eine komplexe Suchsprache (die viel mehr und genauere Optionen anbietet als z.B. die Wildcard * in Suchanfragen).\nEs gibt viele Vorlagen (z.B. für Zahlen, Zeichen oder auch komplexere Muster wie Daten oder Telefonnummern) und Tools, die einem bei der Erstellung von Regex helfen können.",
     "crumbs": [
       "Data Wrangling",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with text data</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Working with text data</span>"
     ]
   },
   {
-    "objectID": "08-text-data.html#why-use-regex",
-    "href": "08-text-data.html#why-use-regex",
-    "title": "5  Working with text data",
+    "objectID": "08-text-data.html#regular-expressions-regex",
+    "href": "08-text-data.html#regular-expressions-regex",
+    "title": "10  Working with text data",
     "section": "",
     "text": "It is extremely powerful\nIt requires less code than base R\nIt works beautifully with stringr",
     "crumbs": [
       "Data Wrangling",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with text data</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Working with text data</span>"
     ]
   },
   {
     "objectID": "08-text-data.html#core-regex-building-blocks",
     "href": "08-text-data.html#core-regex-building-blocks",
-    "title": "5  Working with text data",
-    "section": "5.2 Core Regex Building Blocks",
-    "text": "5.2 Core Regex Building Blocks\n\n\n\n\n\n\n\n\n\nConcept\nSymbol in R\nWhat it matches\nExample Match\n\n\n\n\nAny Character\n.\nAny single character (except a new line)\na, 9, %\n\n\nDigits\n\\\\d\nAny single number\n0, 7\n\n\nWords\n\\\\w\nAny letter, number, or underscore\nR, x, _\n\n\nWhitespace\n\\\\s\nSpaces, tabs, or new lines\n(a space)",
+    "title": "10  Working with text data",
+    "section": "10.2 Core Regex Building Blocks",
+    "text": "10.2 Core Regex Building Blocks\n\n\n\n\n\n\n\n\n\nConcept\nSymbol in R\nWhat it matches\nExample Match\n\n\n\n\nAny Character\n.\nAny single character (except a new line)\na, 9, %\n\n\nDigits\n\\\\d\nAny single number\n0, 7\n\n\nWords\n\\\\w\nAny letter, number, or underscore\nR, x, _\n\n\nWhitespace\n\\\\s\nSpaces, tabs, or new lines\n(a space)",
     "crumbs": [
       "Data Wrangling",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with text data</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Working with text data</span>"
     ]
   },
   {
     "objectID": "08-text-data.html#building-a-regex-pattern",
     "href": "08-text-data.html#building-a-regex-pattern",
-    "title": "5  Working with text data",
-    "section": "5.3 Building a Regex Pattern",
-    "text": "5.3 Building a Regex Pattern\nLet’s extract the username from the text: @rstats_guru\n\n\n1. @ (Matches the literal @ symbol)\n\n\n2. \\\\w (Matches the first word character, the ‘r’)\n\n\n3. + (Expands the match to the rest of the word ‘stats_guru’)\n\n\n\nFinal Code: str_extract(text, \"@\\\\w+\")",
+    "title": "10  Working with text data",
+    "section": "10.3 Building a Regex Pattern",
+    "text": "10.3 Building a Regex Pattern\nLet’s extract the username from the text: @rstats_guru\n\n\n1. @ (Matches the literal @ symbol)\n\n\n2. \\\\w (Matches the first word character, the ‘r’)\n\n\n3. + (Expands the match to the rest of the word ‘stats_guru’)\n\n\n\nFinal Code: str_extract(text, \"@\\\\w+\")\n\nExtract user names and URLs from the Comment variable in the yt_demo dataset.\n\nyt_demo_cleaned &lt;- yt_demo %&gt;%  \n  mutate(\n    username = str_extract(Comment, \"@\\\\w+\"),\n    url = str_extract(Comment, \"https?://\\\\S+\")\n  )",
     "crumbs": [
       "Data Wrangling",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with text data</span>"
-    ]
-  },
-  {
-    "objectID": "13-comments.html",
-    "href": "13-comments.html",
-    "title": "6  Kommentare in R-Skripten",
-    "section": "",
-    "text": "Wenn Sie einen in einem R-Skript in RStudio einen Kommentar vor einem Code-Block mit #### (oder mehreren # oder ---- oder mehreren Bindestrichen) beenden, können Sie einen Abschnitt in Ihrem Skript erstellen, der im Skriptfenster von RStudio ein- und ausgeblendet werden kann. Dadurch wird außerdem am unteren Rand des Skriptfensters ein kleines interaktives Inhaltsverzeichnis für das Skript erstellt.\nSie können auch die Tastenkombination Strg + Umschalt + R (Windows & Linux)/Cmd + Umschalt + R (Mac) verwenden, um Codeabschnitte einzufügen. In diesem Fall müssen Sie dann im Pop-Up-Fenster, dass sich öffnet, noch einen Namen für den Abschnitt vergeben.\n\n\n\nComments for a table of content in R scripts",
-    "crumbs": [
-      "Tipps & Tricks",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Kommentare in R-Skripten</span>"
-    ]
-  },
-  {
-    "objectID": "14-help.html",
-    "href": "14-help.html",
-    "title": "7  🆘 Hilfe!",
-    "section": "",
-    "text": "7.1 Help Files zu Funktionen und Paketen\nEs gibt viele Möglichkeiten, Hilfe für Probleme in/mit R zu finden. Die wichtigsten Optionen sind:\nAuf der Website des R-Projekts gibt es ein hilfreiches kurzes Tutorial zum Thema “Getting Help with R”.\nR hat ein eingebautes Hilfesystem, das es ermöglicht, Informationen zu Funktionen und Paketen abzurufen. Dazu kann man einfach die Funktion ? verwenden, gefolgt vom Namen eines Pakets oder einer Funktion. Zum Beispiel:\n# Funktion\n?mean\n\n# Paket\n?dplyr\nHierdurch öffnet sich im “Help”-Tab in RStudio die entsprechende Hilfeseite. Auf dieser Seite finden Sie eine kurze Beschreibung der Funktion oder des Pakets, Informationen zu den Argumenten, die die Funktion erwartet, sowie Beispiele für die Verwendung der Funktion.\nMan kann auch alle Hilfedateien für ein bestimmtes Paket mit dem Befehl help(package = „packagename“)durchsuchen.\n# Alle Hilfedateien für das Paket dplyr durchsuchen\nhelp(package = \"dplyr\")",
-    "crumbs": [
-      "Tipps & Tricks",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>🆘 Hilfe!</span>"
-    ]
-  },
-  {
-    "objectID": "14-help.html#vignetten",
-    "href": "14-help.html#vignetten",
-    "title": "7  🆘 Hilfe!",
-    "section": "7.2 Vignetten",
-    "text": "7.2 Vignetten\nViele R-Pakete bieten auch sogenannte Vignetten an. Bei diesen handelt es sich um Dokumente, die detailliertere Erläuterungen und Beispiele zu einigen Funktionen eines Pakets enthalten.\nUm Vignetten nutzen zu können, muss man zunächst wissen, ob ein Paket überhaupt Vignetten enthält und, falls ja, wie diese heißen. Mit diesen Informationen kann man dann auf die entsprechenden Vignetten zugreifen. In RStudio wird die Vignette aauch im “Help”-Tab angezeigt.\n\n# Alle Vignetten für das Paket dplyr anzeigen\nvignette(package = \"dplyr\")\n\n# Zugriff auf eine bestimmte Vignette\nvignette(\"colwise \")\n\nEs ist auch möglich, sich die Vignetten für ein Paket direkt im Browser anzeigen zu lassen.\n\n# Alle Vignetten für das Paket dplyr im Browser anzeigen\nbrowseVignettes(package = \"dplyr\")",
-    "crumbs": [
-      "Tipps & Tricks",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>🆘 Hilfe!</span>"
-    ]
-  },
-  {
-    "objectID": "14-help.html#dokumentation-zu-paketen",
-    "href": "14-help.html#dokumentation-zu-paketen",
-    "title": "7  🆘 Hilfe!",
-    "section": "7.3 Dokumentation zu Paketen",
-    "text": "7.3 Dokumentation zu Paketen\nPakete, die auf CRAN verfügbar sind, enthalten sogenannte Reference Manuals (Referenzhandbücher) im HTML- und PDF-Format. Diese sind auf den jeweiligen CRAN-Webseiten der Pakete unter “Documentation” / “Reference Manual” zu finden (siehe z.B. die CRAN-Webseite für das Paket dplyr).\nEinige Pakete verfügen zudem über eigene Websites mit ausführlicher Zusatzdokumentation (das quanteda-Paket für Textanalyse ist hierfür ein gutes Beispiel).\nWenn R-Pakete auf GitHub gehostet werden, enthält das zugehörige Repository in der Regel auch eine Dokumentation zum Paket (z.B. in der ReadMe-Datei). Sollten bei der Verwendung eines auf GitHub gehosteten Pakets Probleme auftreten, lohnt sich ggf. auch ein Blick in den Bereich “Issues” im GitHub-Repository zum Paket.",
-    "crumbs": [
-      "Tipps & Tricks",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>🆘 Hilfe!</span>"
-    ]
-  },
-  {
-    "objectID": "14-help.html#foren-und-mailinglisten",
-    "href": "14-help.html#foren-und-mailinglisten",
-    "title": "7  🆘 Hilfe!",
-    "section": "7.4 Foren und Mailinglisten",
-    "text": "7.4 Foren und Mailinglisten\nEs gibt zahlreiche R-bezogene Foren und Mailinglisten. Zwei wichtige (und hilfreiche) Foren für R sind Stack Overflow und die posit Community.\nDie Wahrscheinlichkeit ist groß, dass jemand die Frage(n), die Sie interessieren, bereits auf in einem dieser beiden Foren gestellt (und beantwortet) hat. Die Webseite des R-Projekts bietet auch einen Überblick über R-Mailinglisten.",
-    "crumbs": [
-      "Tipps & Tricks",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>🆘 Hilfe!</span>"
-    ]
-  },
-  {
-    "objectID": "14-help.html#ki-chatbots",
-    "href": "14-help.html#ki-chatbots",
-    "title": "7  🆘 Hilfe!",
-    "section": "7.5 KI-Chatbots",
-    "text": "7.5 KI-Chatbots\nKI-Chatbots wie z.B. ChatGPT können ebenfalls eine wertvolle Ressource sein, um Hilfe bei der Arbeit mit R zu erhalten. Sie können Code generieren oder Fragen zu Paketen, Funktionen oder Fehlermeldungen beantworten. Wie immer bei der Arbeit mit KI gilt, dass diese Fehler machen kann. Daher sollten die Ausgaben stets mit Vorsicht genutzt und überprüft werden.\nEs gibt zudem einige Tools, mit denen KI bzw. auf dieser basierende Chatbots in RStudio integriert werden können. Dies ist z.B. für GitHub Copilot möglich und posit bietet für RStudio und seine neue IDE positron auch das Tool Posit Assistant an.",
-    "crumbs": [
-      "Tipps & Tricks",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>🆘 Hilfe!</span>"
-    ]
-  },
-  {
-    "objectID": "15-message-warning-error.html",
-    "href": "15-message-warning-error.html",
-    "title": "8  Meldungen, Warnungen, Fehler",
-    "section": "",
-    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
-    "crumbs": [
-      "Tipps & Tricks",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Meldungen, Warnungen, Fehler</span>"
-    ]
-  },
-  {
-    "objectID": "16-errors.html",
-    "href": "16-errors.html",
-    "title": "9  🛠️Troubleshooting 101",
-    "section": "",
-    "text": "Wenn Sie in R eine Fehlermeldung erhalten und deren Bedeutung nicht (vollständig) verstehen, können Sie diese natürlich einfach in Ihre bevorzugte Suchmaschine eingeben. In der Regel liefert dies einige hilfreiche Ergebnisse. Alternativ können Sie die Fehlermeldung z.B. auch direkt in das Suchfeld auf Stack Overflow kopieren.\nWenn Sie Copy & Paste nicht so mögen, können Sie auch die Pakete searcher oder errorist verwenden, um direkt in R/RStudio (an verschiedenen Orten) nach Fehlermeldungen zu suchen. Das searcher-Paket kann auch verwendet werden, um nach anderen Dingen (neben Fehlermeldungen) zu suchen und bietet Optionen für die Nutzung von KI-Assistenten.",
-    "crumbs": [
-      "Tipps & Tricks",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>🛠️Troubleshooting 101</span>"
-    ]
-  },
-  {
-    "objectID": "17-paths.html",
-    "href": "17-paths.html",
-    "title": "10  Dateipfade",
-    "section": "",
-    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
-    "crumbs": [
-      "Tipps & Tricks",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Dateipfade</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Working with text data</span>"
     ]
   },
   {
@@ -243,32 +364,197 @@
     "href": "names.html",
     "title": "11  Namen in R",
     "section": "",
-    "text": "11.1 😷 Masking\nEs gibt eine sehr große Zahl von Paketen für R. Laut der Seite METACRAN gab es am 19. Mai 2025 fast 23.700 Pakete auf CRAN (hinzu kommen noch Pakete aus anderen Quellen wie GitHub). Diese werden von vielen unterschiedlichen Personen entwickelt (laut METACRAN waren es am 19.05.2025 insgesamt knapp 10.600 sogenannte “Package Maintainer”).\nAngesichts dieser Vielzahl ist es nicht verwunderlich, dass es in R viele Funktionen gibt, die denselben Namen haben (zumal es auch Grenzen für die Kreativität bei der Benennung von Funktionen gibt).Lädt man in einer R-Session verschiedene Pakete, die Funktionen mit demselben Namen verwenden, führt dies zu sogenannten “namespace conflicts”.\nWenn Sie ein Paket laden und einige seiner Funktionen dieselben Namen haben wie Funktionen aus Paketen, die Sie zuvor in Ihrer aktuellen R-Sitzung geladen haben, werden diese Funktionen „ausgeblendet“ (engl. “masked”).\nDie Reihenfolge, in der Pakete (innerhalb einer Sitzung) geladen werden, ist dabei von Bedeutung, da die “Maskierung” von Funktionen nacheinander erfolgt. Sie können jedoch weiterhin auf maskierte Funktionen zugreifen. Dazu müssen Sie den Namen des Pakets angeben, aus dem die Funktion stammt, gefolgt von :: und dem Namen der Funktion.\n# Zugriff auf die Funktion filter() aus base-R-Paket stats nach dem Laden von dplyr\nstats::filter()\nAuf diese Weise kann man auch auf einzelne Funktionen aus installierten Paketen zugreifen, ohne das gesamte Paket zu laden. Dies kann hilfreich sein, um Konflikte zu vermeiden oder um nur eine bestimmte Funktion aus einem Paket zu verwenden, ohne alle Funktionen dieses Pakets in den Arbeitsspeicher zu laden.",
+    "text": "11.1 Namen für Objekte\nAls generelle Regeln für die Benennung von Dingen in R ist Folgendes zu empfehlen:\nBeim Programmieren gibt es verschiedene sogenannte “Cases”. Zwei der gebräuchlichsten, die auch in R gut funktionieren sind camelCase (mehrere Wörter zusammengeschrieben ohne Leerzeichen; erstes Wort kleingeschrieben, alle folgenden großgeschrieben) oder die leichte Abwandlung UpperCamelCase (wie camelCase, nur dass auch das erste Wort großgeschrieben wird) und snake_case (alle Wörter kleingeschrieben und durch _ getrennt).\nDie Namen von Objekten (z.B. Variablen, Funktionen, Dateien) sollten den o.g. Regeln folgen.\nWichtig zu beachten ist, dass Objekte überschrieben werden, wenn man ihnen einen Namen gibt, der bereits für ein anderes Objekt verwendet wird.",
     "crumbs": [
       "Tipps & Tricks",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Namen in `R`</span>"
     ]
   },
   {
-    "objectID": "names.html#masking",
-    "href": "names.html#masking",
+    "objectID": "names.html#namen-für-variablen",
+    "href": "names.html#namen-für-variablen",
     "title": "11  Namen in R",
-    "section": "",
-    "text": "The tidyverse masking functions",
+    "section": "11.2 Namen für Variablen",
+    "text": "11.2 Namen für Variablen\nNamen für Variablen sollten möglichst kurz sein. Idealiter sind sie auch “sprechend” (z.B. “age” für das Alter) oder folgen einem bestimmten Schema, dass in einem Codebuch erklärt wird (z.B. wenn bestimmte Abkürzungen und Nummerierungen verwendet werden; siehe auch Chapter 12 zu Codebüchern).\nAuch wenn R mit Leerzeichen in Variablennamen umgehen kann, macht es die Arbeit leichter, wenn man diese vermeidet und stattdessen z.B. snake_case oder camelCase verwendet (s.o.).",
     "crumbs": [
       "Tipps & Tricks",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Namen in `R`</span>"
+    ]
+  },
+  {
+    "objectID": "names.html#namen-für-dateien",
+    "href": "names.html#namen-für-dateien",
+    "title": "11  Namen in R",
+    "section": "11.3 Namen für Dateien",
+    "text": "11.3 Namen für Dateien\nAuch bei der Benennung von Dateien sollte man die o.g. Regeln beachten. Es ist auch hilfreich, wenn die Dateinamen Informationen über den Inhalt der Datei enthalten (z.B. “data.csv” für eine Datendatei oder “analysis.R” für eine Datei mit Analysecode).\nEbenso wie bei Objekten gilt auch hier, dass Dateien überschrieben werden, wenn man ihnen einen Namen gibt, der bereits für eine andere Datei verwendet wird.",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Namen in `R`</span>"
+    ]
+  },
+  {
+    "objectID": "names.html#sec-funcnames",
+    "href": "names.html#sec-funcnames",
+    "title": "11  Namen in R",
+    "section": "11.4 Namen für Funktionen",
+    "text": "11.4 Namen für Funktionen\nEs gibt eine sehr große Zahl von Paketen für R. Laut der Seite METACRAN gab es am 19. Mai 2025 fast 23.700 Pakete auf CRAN (hinzu kommen noch Pakete aus anderen Quellen wie GitHub). Diese werden von vielen unterschiedlichen Personen entwickelt (laut METACRAN waren es am 19.05.2025 insgesamt knapp 10.600 sogenannte “Package Maintainer”).\nAngesichts dieser Vielzahl ist es nicht verwunderlich, dass es in R viele Funktionen gibt, die denselben Namen haben (zumal es auch Grenzen für die Kreativität bei der Benennung von Funktionen gibt).Lädt man in einer R-Session verschiedene Pakete, die Funktionen mit demselben Namen verwenden, führt dies zu sogenannten “namespace conflicts”.\n\n11.4.1 😷 Masking\nWenn Sie ein Paket laden und einige seiner Funktionen dieselben Namen haben wie Funktionen aus Paketen, die Sie zuvor in Ihrer aktuellen R-Sitzung geladen haben, werden diese Funktionen „ausgeblendet“ (engl. “masked”).\n\n\n\nFunction Masking durch das tidyverse\n\n\nDie Reihenfolge, in der Pakete (innerhalb einer Sitzung) geladen werden, ist dabei von Bedeutung, da die “Maskierung” von Funktionen nacheinander erfolgt. Sie können jedoch weiterhin auf maskierte Funktionen zugreifen. Dazu müssen Sie den Namen des Pakets angeben, aus dem die Funktion stammt, gefolgt von :: und dem Namen der Funktion.\n\n# Zugriff auf die Funktion filter() aus base-R-Paket stats nach dem Laden von dplyr\nstats::filter()\n\nAuf diese Weise kann man auch auf einzelne Funktionen aus installierten Paketen zugreifen, ohne das gesamte Paket zu laden. Dies kann hilfreich sein, um Konflikte zu vermeiden oder um nur eine bestimmte Funktion aus einem Paket zu verwenden, ohne alle Funktionen dieses Pakets in den Arbeitsspeicher zu laden.",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Namen in `R`</span>"
+    ]
+  },
+  {
+    "objectID": "codebooks.html",
+    "href": "codebooks.html",
+    "title": "12  Codebücher",
+    "section": "",
+    "text": "Eine Codebuch (Codebook) ist eine Datei, die strukturierte Informationen zu Datensätzen und den darin enthaltenen Variablen enthält. Sie helfen dabei, die Bedeutung der Variablen und Werte zu verstehen und erleichtern die Datenanalyse.\nCodebücher werden zumeist als Dokumente (z.B. PDF, Word, HTML) oder z.T. auch als maschinenlesbare Dateien (z.B. CSV, JSON) bereitgestellt.\nEs gibt viele R-Pakete, mit denen Codebücher erstellt werden können. Die Präsentation A Comparison of Packages to Generate Codebooks in R von Crystal Lewis bietet einen guten Überblick.\nEin recht flexibles und einfach zu verwendendes Paket ist codebookr.",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Codebücher</span>"
+    ]
+  },
+  {
+    "objectID": "13-comments.html",
+    "href": "13-comments.html",
+    "title": "13  Kommentare in R-Skripten",
+    "section": "",
+    "text": "Wenn Sie einen in einem R-Skript in RStudio einen Kommentar vor einem Code-Block mit #### (oder mehreren # oder ---- oder mehreren Bindestrichen) beenden, können Sie einen Abschnitt in Ihrem Skript erstellen, der im Skriptfenster von RStudio ein- und ausgeblendet werden kann. Dadurch wird außerdem am unteren Rand des Skriptfensters ein kleines interaktives Inhaltsverzeichnis für das Skript erstellt.\nSie können auch die Tastenkombination Strg + Umschalt + R (Windows & Linux)/Cmd + Umschalt + R (Mac) verwenden, um Codeabschnitte einzufügen. In diesem Fall müssen Sie dann im Pop-Up-Fenster, dass sich öffnet, noch einen Namen für den Abschnitt vergeben.\n\n\n\nCode-Kommentare für ein Inhaltsverzeichnis",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Kommentare in R-Skripten</span>"
+    ]
+  },
+  {
+    "objectID": "14-help.html",
+    "href": "14-help.html",
+    "title": "14  🆘 Hilfe!",
+    "section": "",
+    "text": "14.1 Help Files zu Funktionen und Paketen\nEs gibt viele Möglichkeiten, Hilfe für Probleme in/mit R zu finden. Die wichtigsten Optionen sind:\nAuf der Website des R-Projekts gibt es ein hilfreiches kurzes Tutorial zum Thema “Getting Help with R”.\nR hat ein eingebautes Hilfesystem, das es ermöglicht, Informationen zu Funktionen und Paketen abzurufen. Dazu kann man einfach die Funktion ? verwenden, gefolgt vom Namen eines Pakets oder einer Funktion. Zum Beispiel:\n# Funktion\n?mean\n\n# Paket\n?dplyr\nHierdurch öffnet sich im “Help”-Tab in RStudio die entsprechende Hilfeseite. Auf dieser Seite finden Sie eine kurze Beschreibung der Funktion oder des Pakets, Informationen zu den Argumenten, die die Funktion erwartet, sowie Beispiele für die Verwendung der Funktion.\nMan kann auch alle Hilfedateien für ein bestimmtes Paket mit dem Befehl help(package = „packagename“)durchsuchen.\n# Alle Hilfedateien für das Paket dplyr durchsuchen\nhelp(package = \"dplyr\")",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>🆘 Hilfe!</span>"
+    ]
+  },
+  {
+    "objectID": "14-help.html#vignetten",
+    "href": "14-help.html#vignetten",
+    "title": "14  🆘 Hilfe!",
+    "section": "14.2 Vignetten",
+    "text": "14.2 Vignetten\nViele R-Pakete bieten auch sogenannte Vignetten an. Bei diesen handelt es sich um Dokumente, die detailliertere Erläuterungen und Beispiele zu einigen Funktionen eines Pakets enthalten.\nUm Vignetten nutzen zu können, muss man zunächst wissen, ob ein Paket überhaupt Vignetten enthält und, falls ja, wie diese heißen. Mit diesen Informationen kann man dann auf die entsprechenden Vignetten zugreifen. In RStudio wird die Vignette aauch im “Help”-Tab angezeigt.\n\n# Alle Vignetten für das Paket dplyr anzeigen\nvignette(package = \"dplyr\")\n\n# Zugriff auf eine bestimmte Vignette\nvignette(\"colwise \")\n\nEs ist auch möglich, sich die Vignetten für ein Paket direkt im Browser anzeigen zu lassen.\n\n# Alle Vignetten für das Paket dplyr im Browser anzeigen\nbrowseVignettes(package = \"dplyr\")",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>🆘 Hilfe!</span>"
+    ]
+  },
+  {
+    "objectID": "14-help.html#dokumentation-zu-paketen",
+    "href": "14-help.html#dokumentation-zu-paketen",
+    "title": "14  🆘 Hilfe!",
+    "section": "14.3 Dokumentation zu Paketen",
+    "text": "14.3 Dokumentation zu Paketen\nPakete, die auf CRAN verfügbar sind, enthalten sogenannte Reference Manuals (Referenzhandbücher) im HTML- und PDF-Format. Diese sind auf den jeweiligen CRAN-Webseiten der Pakete unter “Documentation” / “Reference Manual” zu finden (siehe z.B. die CRAN-Webseite für das Paket dplyr).\nEinige Pakete verfügen zudem über eigene Websites mit ausführlicher Zusatzdokumentation (das quanteda-Paket für Textanalyse ist hierfür ein gutes Beispiel).\nWenn R-Pakete auf GitHub gehostet werden, enthält das zugehörige Repository in der Regel auch eine Dokumentation zum Paket (z.B. in der ReadMe-Datei). Sollten bei der Verwendung eines auf GitHub gehosteten Pakets Probleme auftreten, lohnt sich ggf. auch ein Blick in den Bereich “Issues” im GitHub-Repository zum Paket.",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>🆘 Hilfe!</span>"
+    ]
+  },
+  {
+    "objectID": "14-help.html#foren-und-mailinglisten",
+    "href": "14-help.html#foren-und-mailinglisten",
+    "title": "14  🆘 Hilfe!",
+    "section": "14.4 Foren und Mailinglisten",
+    "text": "14.4 Foren und Mailinglisten\nEs gibt zahlreiche R-bezogene Foren und Mailinglisten. Zwei wichtige (und hilfreiche) Foren für R sind Stack Overflow und die posit Community.\nDie Wahrscheinlichkeit ist groß, dass jemand die Frage(n), die Sie interessieren, bereits auf in einem dieser beiden Foren gestellt (und beantwortet) hat. Die Webseite des R-Projekts bietet auch einen Überblick über R-Mailinglisten.",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>🆘 Hilfe!</span>"
+    ]
+  },
+  {
+    "objectID": "14-help.html#ki-chatbots",
+    "href": "14-help.html#ki-chatbots",
+    "title": "14  🆘 Hilfe!",
+    "section": "14.5 KI-Chatbots",
+    "text": "14.5 KI-Chatbots\nKI-Chatbots wie z.B. ChatGPT können ebenfalls eine wertvolle Ressource sein, um Hilfe bei der Arbeit mit R zu erhalten. Sie können Code generieren oder Fragen zu Paketen, Funktionen oder Fehlermeldungen beantworten. Wie immer bei der Arbeit mit KI gilt, dass diese Fehler machen kann. Daher sollten die Ausgaben stets mit Vorsicht genutzt und überprüft werden.\nEs gibt zudem einige Tools, mit denen KI bzw. auf dieser basierende Chatbots in RStudio integriert werden können. Dies ist z.B. für GitHub Copilot möglich und posit bietet für RStudio und seine neue IDE positron auch das Tool Posit Assistant an.",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>🆘 Hilfe!</span>"
+    ]
+  },
+  {
+    "objectID": "15-message-warning-error.html",
+    "href": "15-message-warning-error.html",
+    "title": "15  Meldungen, Warnungen, Fehler",
+    "section": "",
+    "text": "tbd",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Meldungen, Warnungen, Fehler</span>"
+    ]
+  },
+  {
+    "objectID": "16-errors.html",
+    "href": "16-errors.html",
+    "title": "16  🛠️Troubleshooting 101",
+    "section": "",
+    "text": "16.1 Fehler\nErschrecken Sie sich nicht, wenn Sie in R eine Fehlermeldung erhalten. Das kommt häufig vor, insbesondere wenn Sie gerade erst anfangen, mit R zu arbeiten. Die meisten Fehler lassen sich relativ einfach lösen.\nKlassiche Fehlerquellen sind z.B. folgende:\nWenn Sie in R eine Fehlermeldung erhalten und deren Bedeutung nicht (vollständig) verstehen, können Sie diese natürlich einfach in Ihre bevorzugte Suchmaschine eingeben. In der Regel liefert dies einige hilfreiche Ergebnisse. Alternativ können Sie die Fehlermeldung z.B. auch direkt in das Suchfeld auf Stack Overflow kopieren.\nWenn Sie Copy & Paste nicht so mögen, können Sie auch die Pakete searcher oder errorist verwenden, um direkt in R/RStudio (an verschiedenen Orten) nach Fehlermeldungen zu suchen. Das searcher-Paket kann auch verwendet werden, um nach anderen Dingen (neben Fehlermeldungen) zu suchen und bietet Optionen für die Nutzung von KI-Assistenten.",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>🛠️Troubleshooting 101</span>"
+    ]
+  },
+  {
+    "objectID": "16-errors.html#fehler",
+    "href": "16-errors.html#fehler",
+    "title": "16  🛠️Troubleshooting 101",
+    "section": "",
+    "text": "Tippfehler (R unterscheidet zwischen Groß- und Kleinschreibung)\nfehlende Klammern ) oder Anführungszeichen \" (häufig am Ende eines Befehls)\nfalsche Dateipfade (z.B. \\ anstelle von / in beim Kopieren aus dem Windows Explorer; siehe dazu auch Chapter 17)\nnicht installierte oder geladene Pakete\nCode, der in falscher Reihenfolge ausgeführt wird",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>🛠️Troubleshooting 101</span>"
+    ]
+  },
+  {
+    "objectID": "16-errors.html#abstürze",
+    "href": "16-errors.html#abstürze",
+    "title": "16  🛠️Troubleshooting 101",
+    "section": "16.2 Abstürze",
+    "text": "16.2 Abstürze\nFalls Ihre R-Sitzung beim Ausführen eines abstürzen, gibt es einige Dinge, die Sie ggf. probieren können, um das Problem zu lösen:\n\nBeenden Sie den R-Prozess: über Session -&gt; Terminate R im RStudio-Menü oder über das Stoppschild-Symbol in der oberen rechten Ecke der Konsole\nStarten Sie R neu (RStudio-Menü: Session -&gt; Restart R)\nInstallieren Sie das Paket, das die Probleme verursacht, neu",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>🛠️Troubleshooting 101</span>"
+    ]
+  },
+  {
+    "objectID": "17-paths.html",
+    "href": "17-paths.html",
+    "title": "17  Dateipfade",
+    "section": "",
+    "text": "R verwendet Dateipfade im Unix-Format mit /, während Windows in Dateipfaden \\ verwendet. \\\\ funktioniert in R für beide Betriebssystemtypen (Windows sowie macOS und Linux).\nEin hilfreiches Tool für das Kopieren und Umwandeln von Dateipfaden auf Windows ist Path Copy Copy, das ein Add-on für den Datei-Explorer in Windows liefert.\nEs gibt absolute Dateipfade (Beispiel: C:/Users/user/Documents/example.R) und relative Dateipfade (Beispiel: ./r-scripts/example.R).\nRelative Dateipfade beziehen sich auf das aktuelle Arbeitsverzeichnis. Gängige Kurzschreibweisen für relative Dateipfade sind . für das aktuelle (Arbeits-)Verzeichnis, .. für die übergeordnete Verzeichnisebene (übergeordnetes Verzeichnis) und ~ für das sogenannte Home-Verzeichnis (das in R als Standard-Arbeitsverzeichnis dient).\nUm die Wiederverwendung von Code auf anderen Systemen zu erleichtern, ist es im Allgemeinen vorzuziehen, relative Dateipfade zu verwenden. RStudio-Projekte sind eine Möglichkeit, um die Verwendung von relativen Dateipfaden zu erleichtern, da sie das Arbeitsverzeichnis automatisch auf den Speicherort der Projektdatei einstellen. Weitere Informationen zu RStudio-Projekten finden Sie in Chapter 18.",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Dateipfade</span>"
+    ]
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "18  Projekte in RStudio",
+    "section": "",
+    "text": "Projekte in RStudio sind ein hilfreiches Werkzeug für die Umsezung eines projektorientierten Workflows wie in Section 2.2 beschrieben.\nSie können ein neues Projekt über das RStudio-Menü erstellen: File -&gt; New Project.\nRStudio-Projekte sind mit .Rproj-Dateien verknüpft, die bestimmte Einstellungen für das Projekt enthalten. Wenn Sie auf eine .Rproj-Datei doppelklicken, wird eine neue Instanz von RStudio geöffnet, wobei das Arbeitsverzeichnis und der Dateibrowser auf den Speicherort dieser Datei eingestellt sind\nEine detailliertere Erläuterung von RStudio-Projekten finden Sie z. B. auf der Supportseite von posit sowie im entsprechenden Abschnitt im Online-Buch R for Data Science.",
+    "crumbs": [
+      "Tipps & Tricks",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Projekte in *RStudio*</span>"
     ]
   },
   {
     "objectID": "18-function-lifecycle.html",
     "href": "18-function-lifecycle.html",
-    "title": "12  Aus dem Leben einer Funktion",
+    "title": "19  Aus dem Leben einer Funktion",
     "section": "",
-    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
+    "text": "tbd",
     "crumbs": [
       "Tipps & Tricks",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Aus dem Leben einer Funktion</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Aus dem Leben einer Funktion</span>"
     ]
   },
   {
@@ -276,7 +562,7 @@
     "href": "references.html",
     "title": "References",
     "section": "",
-    "text": "Breuer, J., Stier, S., Lukito, J., Mangold, F., Wieland, M., &\nRadovanović, D. (2025). Overview of Ethical\nConsiderations when Working with Digital\nBehavioral Data (GESIS Guides to Digital\nBehavioral Data, 14). GESIS - Leibniz-Institute for the\nSocial Sciences. https://doi.org/10.60762/GGDBD25014.1.0\n\n\nCarrière, T. C., Boeschoten, L., Struminskaya, B., Janssen, H. L., De\nSchipper, N. C., & Araujo, T. (2024). Best practices for studies\nusing digital data donation. Quality & Quantity. https://doi.org/10.1007/s11135-024-01983-x\n\n\nvan Driel, I. I., Giachanou, A., Pouwels, J. L.,\nBoeschoten, L., Beyens, I., & Valkenburg, P. M. (2022).\nPromises and Pitfalls of Social Media Data\nDonations. Communication Methods and Measures,\n16(4), 266–282. https://doi.org/10.1080/19312458.2022.2109608",
+    "text": "Breuer, J., Stier, S., Lukito, J., Mangold, F., Wieland, M., &\nRadovanović, D. (2025). Overview of Ethical\nConsiderations when Working with Digital\nBehavioral Data (GESIS Guides to Digital\nBehavioral Data, 14). GESIS - Leibniz-Institute for the\nSocial Sciences. https://doi.org/10.60762/GGDBD25014.1.0\n\n\nCarrière, T. C., Boeschoten, L., Struminskaya, B., Janssen, H. L., De\nSchipper, N. C., & Araujo, T. (2024). Best practices for studies\nusing digital data donation. Quality & Quantity. https://doi.org/10.1007/s11135-024-01983-x\n\n\nvan Driel, I. I., Giachanou, A., Pouwels, J. L.,\nBoeschoten, L., Beyens, I., & Valkenburg, P. M. (2022).\nPromises and Pitfalls of Social Media Data\nDonations. Communication Methods and Measures,\n16(4), 266–282. https://doi.org/10.1080/19312458.2022.2109608\n\n\nWickham, H. (2014). Tidy Data. Journal of Statistical\nSoftware, 59(10). https://doi.org/10.18637/jss.v059.i10",
     "crumbs": [
       "References"
     ]

@@ -1,14 +1,46 @@
 # Namen in `R` {#sec-names}
 
+Als generelle Regeln für die Benennung von Dingen in `R` ist Folgendes zu empfehlen:
+
+- möglichst klar/passend
+
+- möglichst kurz
+
+- möglichst einheitlich innerhalb eines Projekts
+
+- möglichst ohne Leerzeichen
+
+Beim Programmieren gibt es verschiedene sogenannte "Cases". Zwei der gebräuchlichsten, die auch in `R` gut funktionieren sind `camelCase` (mehrere Wörter zusammengeschrieben ohne Leerzeichen; erstes Wort kleingeschrieben, alle folgenden großgeschrieben) oder die leichte Abwandlung `UpperCamelCase` (wie `camelCase`, nur dass auch das erste Wort großgeschrieben wird) und `snake_case` (alle Wörter kleingeschrieben und durch `_` getrennt).
+
+## Namen für Objekte
+
+Die Namen von Objekten (z.B. Variablen, Funktionen, Dateien) sollten den o.g. Regeln folgen. 
+
+**Wichtig** zu beachten ist, dass Objekte überschrieben werden, wenn man ihnen einen Namen gibt, der bereits für ein anderes Objekt verwendet wird.
+
+## Namen für Variablen
+
+Namen für Variablen sollten möglichst kurz sein. Idealiter sind sie auch "sprechend" (z.B. "age" für das Alter) oder folgen einem bestimmten Schema, dass in einem Codebuch erklärt wird (z.B. wenn bestimmte Abkürzungen und Nummerierungen verwendet werden; siehe auch @sec-codebooks zu Codebüchern). 
+
+Auch wenn `R` mit Leerzeichen in Variablennamen umgehen kann, macht es die Arbeit leichter, wenn man diese vermeidet und stattdessen z.B. `snake_case` oder `camelCase` verwendet (s.o.).
+
+## Namen für Dateien
+
+Auch bei der Benennung von Dateien sollte man die o.g. Regeln beachten. Es ist auch hilfreich, wenn die Dateinamen Informationen über den Inhalt der Datei enthalten (z.B. "data.csv" für eine Datendatei oder "analysis.R" für eine Datei mit Analysecode).
+
+Ebenso wie bei Objekten gilt auch hier, dass Dateien überschrieben werden, wenn man ihnen einen Namen gibt, der bereits für eine andere Datei verwendet wird.
+
+## Namen für Funktionen {#sec-funcnames}
+
 Es gibt eine sehr große Zahl von Paketen für `R`. Laut der Seite [METACRAN](https://www.r-pkg.org/) gab es am 19. Mai 2025 fast 23.700 Pakete auf *CRAN* (hinzu kommen noch Pakete aus anderen Quellen wie *GitHub*). Diese werden von vielen unterschiedlichen Personen entwickelt (laut METACRAN waren es am 19.05.2025 insgesamt knapp 10.600 sogenannte "Package Maintainer").
 
 Angesichts dieser Vielzahl ist es nicht verwunderlich, dass es in `R` viele Funktionen gibt, die denselben Namen haben (zumal es auch Grenzen für die Kreativität bei der Benennung von Funktionen gibt).Lädt man in einer `R`-Session verschiedene Pakete, die Funktionen mit demselben Namen verwenden, führt dies zu sogenannten "namespace conflicts".
 
-## 😷 Masking
+### 😷 Masking
 
 Wenn Sie ein Paket laden und einige seiner Funktionen dieselben Namen haben wie Funktionen aus Paketen, die Sie zuvor in Ihrer aktuellen `R`-Sitzung geladen haben, werden diese Funktionen „ausgeblendet“ (engl. "masked").
 
-![The tidyverse masking functions](./images/tidyverse_conflicts.png){width="80%" fig-align="center"}
+![Function Masking durch das tidyverse](./images/tidyverse_conflicts.png){width="80%" fig-align="center"}
 
 Die Reihenfolge, in der Pakete (innerhalb einer Sitzung) geladen werden, ist dabei von Bedeutung, da die "Maskierung" von Funktionen nacheinander erfolgt. Sie können jedoch weiterhin auf maskierte Funktionen zugreifen. Dazu müssen Sie den Namen des Pakets angeben, aus dem die Funktion stammt, gefolgt von `::` und dem Namen der Funktion.
 

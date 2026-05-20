@@ -1,6 +1,12 @@
-# Working with text data
+# Working with text data {#sec-textdata}
 
-## Why use Regex?
+## Regular Expressions (Regex)
+
+Ein sehr mächtiges Werkzeug, um bestimmte Muster in Texten zu erkennen und herauszufiltern oder zu extrahieren sind sog. Reguläre Ausdrücke (Regular Expressions oder Regex).
+
+Reguläre Ausdrücke sind im Grunde eine komplexe Suchsprache (die viel mehr und genauere Optionen anbietet als z.B. die Wildcard `*` in Suchanfragen).
+
+Es gibt viele Vorlagen (z.B. für Zahlen, Zeichen oder auch komplexere Muster wie Daten oder Telefonnummern) und Tools, die einem bei der Erstellung von Regex helfen können.
 
 ::: {.incremental}
 * It is extremely powerful
@@ -41,3 +47,15 @@ Let's extract the username from the text: **`@rstats_guru`**
 **Final Code:** 
 `str_extract(text, "@\\w+")`
 :::
+
+Extract user names and URLs from the `Comment` variable in the `yt_demo` dataset.
+
+```{r}
+#| eval: false
+yt_demo_cleaned <- yt_demo %>%  
+  mutate(
+    username = str_extract(Comment, "@\\w+"),
+    url = str_extract(Comment, "https?://\\S+")
+  )
+```
+

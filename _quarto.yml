@@ -20,20 +20,32 @@ book:
       - 01-installation.qmd
       - 02-rstudio.qmd
       - 03-objects.qmd
+      - 04-functions.qmd
+      - packages.qmd
       - 05-import-export.qmd
     - part: "Data Wrangling"
       chapters:
+      - tidyverse.qmd
+      - 06-wrangling-df.qmd
+      - 07-wrangling-variables.qmd
       - 08-text-data.qmd
     - part: "Tipps & Tricks"
       chapters:
+      - names.qmd
+      - codebooks.qmd
       - 13-comments.qmd
       - 14-help.qmd
       - 15-message-warning-error.qmd
       - 16-errors.qmd
       - 17-paths.qmd
-      - names.qmd
+      - projects.qmd
       - 18-function-lifecycle.qmd
     - references.qmd
+
+crossref:
+  sec-prefix: "Kapitel"
+  fig-prefix: "Abbildung"
+  tbl-prefix: "Tabelle"
 
 # Citations configuration
 bibliography: references.bib

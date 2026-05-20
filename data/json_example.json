@@ -1,0 +1,22 @@
+[
+  {
+    "post_id": "7102938475",
+    "author": "@r_stats_guru",
+    "description": "Learn ggplot2 in 60 seconds! 📊 #rstats #dataviz",
+    "metrics": {
+      "views": 14500,
+      "likes": 3200,
+      "shares": 150
+    }
+  },
+  {
+    "post_id": "7102938476",
+    "author": "@quarto_tips",
+    "description": "Stop using standard markdown. Do this instead. 🚀 #coding",
+    "metrics": {
+      "views": 89000,
+      "likes": 12400,
+      "shares": 890
+    }
+  }
+]

@@ -1,3 +1,130 @@
 # Objekte in `R` {#sec-objects}
 
-tbd
+`R` ist eine sogenannte objektorientierte Programmiersprache. Das bedeutet, dass alles in `R` als Objekt betrachtet wird. Allgemein formuliert ist ein Objekt eine spezifische Datenstruktur, die Informationen enthält und bestimmte Eigenschaften und Verhaltensweisen aufweist. 
+
+## Objekttypen in `R`
+
+Es gibt verschiedene Arten von Objekten in `R`. Die wichigsten sind:
+
+- **Vektoren**: Ein Vektor ist eine eindimensionale Datenstruktur, die Elemente desselben Typs enthält. Vektoren können numerisch (numeric), logisch (logical) oder Zeichenketten (string/character) sein (siehe das nachfolgende @sec-datatypes). Sie sind die grundlegendste Datenstruktur in `R` und bilden die Basis für komplexere Strukturen. Vektoren können einen oder mehrere Werte enthalten.
+
+- **Matrizen**: Eine Matrix ist eine zweidimensionale Datenstruktur, die Elemente desselben Typs enthält. Matrizen kennt man aus der linearen Algebra und sie sind besonders nützlich für mathematische Operationen.
+
+- **Dataframes**: Ein Dataframe ist eine zweidimensionale Datenstruktur, die Spalten mit unterschiedlichen Datentypen enthalten kann. Man kann sich einen Dataframe als eine Sammlung von Vektoren vorstellen, wobei jeder Vektor eine Spalte darstellt. Dies entspricht im Wesentlichen einem Datensatz, wie man ihn auch aus anderen Programmen für die Datenalyse wie *Stata*, *SPSS* oder *Excel* kennt.
+
+- **Listen**: Eine Liste ist eine flexible Datenstruktur, die Elemente unterschiedlichen Typs enthalten kann. Listen können auch andere Listen enthalten, was sie sehr mflexibelacht. In diesem Fall spricht man auch von verschachtelten Listen (engl. nested lists).
+
+Für diesen Kurs werden wir uns hauptsächlich mit **Vektoren** und **Dataframes** beschäftigen, da diese die am häufigsten verwendeten Objekttypen in der Datenanalyse sind.
+
+## Datentypen in `R` {#sec-datatypes}
+
+`R` kann mit vielen verschiedenen Arten von Daten und Variablen umgehen. Die wichtigsten Typen für die Datenanalyse sind:
+
+- **Numerisch (numeric)**: Dies ist der Standarddatentyp für Zahlen in `R`. Er umfasst sowohl ganze Zahlen (integer) als auch Dezimalzahlen (double). 
+
+- **Zeichenketten (character)**: Dieser Datentyp wird für Text verwendet. Zeichenketten können Buchstaben, Wörter, Sätze oder sogar längere Texte enthalten. Sie werden in Anführungszeichen gesetzt, z.B. `"Ich liebe R!"`.
+
+- **Faktoren (factor)**: Faktoren sind eine spezielle Art von Daten, die für kategoriale Variablen verwendet werden. Sie können eine feste Anzahl von Kategorien oder Stufen haben, z.B. "männlich", "weiblich" und "non-binär" für das Geschlecht einer Person. Faktoren sind ein besonderer Datentyp in `R`, den es in der Form in anderen Programmiersprachen nicht gibt. 
+
+- **Logisch (logical)**: Dieser Datentyp kann nur die Werte `TRUE` oder `FALSE` annehmen. Logische Werte werden beim Programmieren in `R` z.B. in Bedingungen und Schleifen verwendet.
+
+Im Kurs werden wir v.a. mit den Typen `character` (Textdaten) und `numeric` (Zahlen) arbeiten.
+
+Der Typ eines Objekts bestimmt, was damit in `R` gemacht werden kann. Z.B. können mathematische Operationen mit numerischen Objekten durchgeführt werden, aber nicht mit Zeichenobjekten.
+
+```{r}
+#| error: true
+10 + 10 
+
+"10" + 10
+```
+
+Der zweite Befehl führt zu einem Fehler, da `R` nicht weiß, wie es eine Zeichenkette ("10") mit einer Zahl (10) addieren soll (mehr zu Fehlermeldungen finden Sie im @sec-errors).
+
+Es gibt Funktionen, mit denen sich die Datentypen von Objekten in `R` ändern lassen. Mehr dazu finden Sie im Abschnitt @sec-wrangvar.
+
+
+## Assignment
+
+In `R` können Sie Objekte erstellen und ihnen Werte zuweisen. Dies geschieht durch den sogenannten "Assignment Operator" `<-`. 
+
+Das einfachste Beispiel für eine Zuweisung in `R` ist die Zuweisung eines einzelnen Werts an ein Objekt. Dieser Wert kann beispielsweise eine einzelne Zahl oder eine Zeichenkette sein.
+
+```{r}
+# Zuweisung eines einzelnen Werts
+x <- 42
+y <- "Ich liebe R!"
+```
+
+In diesem Beispiel haben wir zwei Objekte erstellt: `x`, dem der numerische Wert `42` zugewiesen wurde, und `y`, dem die Zeichenkette `"Ich liebe R!"` zugewiesen wurde. Zur Erinnerung: Erstellte Objekte werden in *RStudio* im Environment-Tab angezeigt.
+
+Sobald sie zugewiesen wurden, können diese Objekte verwenden, z.B. um ihren Inhalt anzuzeigen.
+
+```{r}
+x 
+
+y
+```
+
+Sie können in `R` nicht nur Werte, sondern auch Ergebnisse einem Objekt zuweisen.
+
+```{r}
+# Zuweisung eines Ergebnisses
+z <- x * 2
+
+z
+```
+
+Den Datentyp eines Objekts kann man in `R` mit der Funktion `class()` überprüfen.
+
+```{r}
+# Datentyp eines Objekts überprüfen
+class(x)
+class(y)
+class(z)
+```
+
+**Wichtig**: Objekte sind nur so lange verfügbar, wie Ihre R-Sitzung aktiv ist. Wenn Sie Ihre R-Sitzung beenden oder neu starten, werden alle erstellten Objekte gelöscht. Objekte, die Sie behalten möchten bzw. mit denen Sie später weiterarbeiten möchten, müssen Sie exportieten. Wie das funktioniert, wird in @sec-import erklärt.
+
+Wie in @sec-wd erläutert, können Sie erstellte Objekte mit der Funktion `ls()` auflisten und wenn Sie ein bestimmtes Objekt löschen möchten, können Sie die Funktion `rm()` verwenden (mehr zu Funktionen finden Sie im @sec-functions).
+
+```{r}
+# Alle Objekte auflisten
+ls()
+```
+
+```{r}
+# Ein bestimmtes Objekt löschen
+rm(z)
+
+ls()
+```
+
+Erstellte Objekte können Sie auch als Eingabe (Argumente) für Funktionen verwenden. Dies wird in @sec-functions erklärt.
+
+Wie das vorherige Beispiel zeigt, gibt es einen Unterschied zwischen der Zuweisung und der Anzeige von Objekten. Generell gilt: Wenn Sie Code ausführen und das Ergebnis keinem Objekt zuweisen, gibt `R` das Ergebnis nur in der Konsole aus.
+
+Es ist auch möglich, mehrere Werte gleichzeitig einem Objekt zuzuweisen. Dies geschieht durch die Verwendung von Funktionen wie `c()`, die Werte zu einem Vektor kombinieret oder `data.frame()`, die Vektoren zu einem Dataframe kombiniert.
+
+```{r}
+# Mehrere Werte einem Objekt zuweisen
+age <- c(25, 30, 35, 40)
+names <- c("Alice", "Bob", "Charlie", "David")
+
+age
+names
+```
+
+```{r}
+# Einen Dataframe erstellen
+df <- data.frame(name = names, age = age)
+df
+```
+
+In diesem Beispiel haben wir den Spalten (Variablen) im Dataframe `df` die Namen `name` und `age` gegeben. Diese können wir später verwenden, um auf die entsprechenden Spalten zuzugreifen oder um sie in Funktionen zu verwenden.
+
+```{r}
+names(df)
+```
+
+Sowohl `class()` als auch `c()`, `data.frame()` und `names()` sind Funktionen, die wir uns im folgenden @sec-functions genauer anschauen.

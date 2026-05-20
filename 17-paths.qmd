@@ -1,7 +1,11 @@
 # Dateipfade {#sec-paths}
 
-In summary, this book has no content whatsoever.
+`R` verwendet Dateipfade im Unix-Format mit `/`, während Windows in Dateipfaden `\` verwendet. `\\` funktioniert in `R` für beide Betriebssystemtypen (Windows sowie macOS und Linux).
 
-```{r}
-1 + 1
-```
+Ein hilfreiches Tool für das Kopieren und Umwandeln von Dateipfaden auf Windows ist [*Path Copy Copy*](https://pathcopycopy.github.io/), das ein Add-on für den Datei-Explorer in Windows liefert.
+
+Es gibt absolute Dateipfade (Beispiel: `C:/Users/user/Documents/example.R`) und relative Dateipfade (Beispiel: `./r-scripts/example.R`).
+
+Relative Dateipfade beziehen sich auf das aktuelle Arbeitsverzeichnis. Gängige Kurzschreibweisen für relative Dateipfade sind . für das aktuelle (Arbeits-)Verzeichnis, .. für die übergeordnete Verzeichnisebene (übergeordnetes Verzeichnis) und ~ für das sogenannte Home-Verzeichnis (das in `R` als Standard-Arbeitsverzeichnis dient).
+
+Um die Wiederverwendung von Code auf anderen Systemen zu erleichtern, ist es im Allgemeinen vorzuziehen, relative Dateipfade zu verwenden. *RStudio*-Projekte sind eine Möglichkeit, um die Verwendung von relativen Dateipfaden zu erleichtern, da sie das Arbeitsverzeichnis automatisch auf den Speicherort der Projektdatei einstellen. Weitere Informationen zu *RStudio*-Projekten finden Sie in @sec-projects.
