@@ -23,7 +23,7 @@ In den ersten drei Seminarsitzungen haben wir uns mit folgenden Fragen beschäft
 
 2. Wie sehen aktuelle Beispiele für die Sammlung und Analyse von Social-Media-Daten aus der Literatur aus? Was können wir für unsere Arbeit daraus lernen?
 
-## Was machen wir jetz?
+## Was machen wir jetzt?
 
 In der heutigen Sitzungen sowie den beiden folgenden wollen wir uns damit befassen, wie wir `R` (und *RStudio*) nutzen können, um Social-Media-Daten zu sammeln und zu analysieren.
 
@@ -109,10 +109,9 @@ Genauere Infsos hierzu finden Sie im Online-Buch im Abschnitt zum [*Arbeiten mit
 
 Das Arbeitsverzeichnis (*Working Directory*) ist der Ordner auf Ihrem Computer, in dem `R` nach Dateien sucht, die Sie laden möchten, und in dem es Dateien speichert, die Sie erstellen.
 
-as aktuelle Arbeitsverzeichnis wird in der Zeile über der Konsole in *RStudio* angezeigt, wo auch die aktuell genutzte Version von `R` zu sehen ist. Sie können es sich auch über den Befehl `getwd()` anzeigen lassen.
+Das aktuelle Arbeitsverzeichnis wird in der Zeile über der Konsole in *RStudio* angezeigt, wo auch die aktuell genutzte Version von `R` zu sehen ist. Sie können es sich auch über den Befehl `getwd()` anzeigen lassen.
 
 ```{r}
-# Aktuelles Arbeitsverzeichnis anzeigen
 getwd()
 ```
 
@@ -120,9 +119,9 @@ Verändern können Sie das Arbeitsverzeichnis über das *RStudio*-Menü unter Se
 
 ## Hilfreiche Funktionen in *RStudio*
 
-- Tastaturkürzel: *RStudio* bietet eine Vielzahl von Tastenkombinationen, mit denen Sie schneller und effizienter arbeiten können. Einige davon haben wir zuvor bereits gesehen. Eine Übersicht über die verfügbaren Tastenkombinationen finden Sie unter "Help" -> "Keyboard Shortcuts Help" in *RStudio*.
+- Tastaturkürzel: *RStudio* bietet eine Vielzahl von Tastenkombinationen, mit denen Sie schneller und effizienter arbeiten können. Eine Übersicht über die verfügbaren Tastenkombinationen finden Sie unter "Help" -> "Keyboard Shortcuts Help" in *RStudio*.
 
-- Tab Completion: In *RStudio* können Sie die Tab-Taste verwenden, um Code zu vervollständigen. Wenn Sie z.B. den Namen einer Funktion oder eines Objekts eingeben und dann die Tab-Taste drücken, zeigt *RStudio* eine Liste der möglichen Vervollständigungen an.
+- Tab Completion: In *RStudio* können Sie die Tab-Taste verwenden, um Code zu vervollständigen. Wenn Sie z.B. beginnen, den Namen einer Funktion oder eines Objekts einzugeben, zeigt *RStudio* eine Liste der möglichen Vervollständigungen an. Diese können Sie dann auswählen und mit der Tab-Taste einfügen.
 
 ## Objekte
 
@@ -153,14 +152,13 @@ y <- "Ich liebe R!"
 Den Datentyp eines Objekts kann man in `R` mit der Funktion `class()` überprüfen.
 
 ```{r}
-# Datentyp eines Objekts überprüfen
 class(x)
 class(y)
 ```
 
 ## Vektoren
 
-Ein Vektor ist eine eindimensionale Datenstruktur, die Elemente desselben Typs enthält. Vektoren können z.B. numerisch (numeric), oder Zeichenketten (string/character) sein.
+Ein Vektor ist eine eindimensionale Datenstruktur, die Elemente desselben Typs enthält. Vektoren können z.B. numerisch (numeric), oder Zeichenketten (character) sein.
 
 ```{r}
 # Mehrere Werte einem Objekt zuweisen
@@ -374,7 +372,7 @@ Eine besondere zusätzliche Option bietet die Funktion `between()`, mit der Sie 
 
 ## Befehle verketten
 
-Wie bereits erwähnt, können Sie mit dem  "Pipe"-Operator `%>%`mehrere Befehle miteinander verketten.
+Wie bereits erwähnt, können wir mit dem  "Pipe"-Operator `%>%`mehrere Befehle miteinander verketten.
 
 ```{r}
 yt_demo_new <- yt_demo %>%
@@ -432,13 +430,7 @@ yt_demo <- yt_demo %>%
 
 ## Textdaten
 
-Das Paket `stringr` aus dem `tidyverse` bietet eine Vielzahl von Funktionen, mit denen Sie Textdaten in `R` bearbeiten und analysieren können.
-
-siehe Buch bzw. Live Coding
-
-## Regular Expressions
-
-siehe Buch bzw. Live Coding
+Das Paket [`stringr`](https://stringr.tidyverse.org/) aus dem `tidyverse` bietet eine Vielzahl von Funktionen, mit denen Sie Textdaten in `R` bearbeiten und analysieren können.
 
 # 🔭 Ausblick {background-color="#4A90E2"}
 

@@ -7,3 +7,6 @@ This repository contains the materials for the slides and an accompanying book f
 *Note 2*: The course and the book are in German.
 
 The book is available at https://jobreu.github.io/social-media-data-r/
+
+The accompanying slides for the course can be found at https://jobreu.github.io/social-media-data-r/slides/session-01
+(and ".../session-02", ".../session-03").

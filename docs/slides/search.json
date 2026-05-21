@@ -7,11 +7,11 @@
     "text": "Was bisher geschah\nIn den ersten drei Seminarsitzungen haben wir uns mit folgenden Fragen beschäftigt:\n\nWas sind Social-Media-Daten? Wie kann man diese sammeln?\nWie sehen aktuelle Beispiele für die Sammlung und Analyse von Social-Media-Daten aus der Literatur aus? Was können wir für unsere Arbeit daraus lernen?"
   },
   {
-    "objectID": "session-01.html#was-machen-wir-jetz",
-    "href": "session-01.html#was-machen-wir-jetz",
+    "objectID": "session-01.html#was-machen-wir-jetzt",
+    "href": "session-01.html#was-machen-wir-jetzt",
     "title": "Refresher R Basics",
-    "section": "Was machen wir jetz?",
-    "text": "Was machen wir jetz?\nIn der heutigen Sitzungen sowie den beiden folgenden wollen wir uns damit befassen, wie wir R (und RStudio) nutzen können, um Social-Media-Daten zu sammeln und zu analysieren.\nIn der ersten Sitzung schauen wir uns als Refresher zunächst einige Grundlagen in der Nutzung von R an."
+    "section": "Was machen wir jetzt?",
+    "text": "Was machen wir jetzt?\nIn der heutigen Sitzungen sowie den beiden folgenden wollen wir uns damit befassen, wie wir R (und RStudio) nutzen können, um Social-Media-Daten zu sammeln und zu analysieren.\nIn der ersten Sitzung schauen wir uns als Refresher zunächst einige Grundlagen in der Nutzung von R an."
   },
   {
     "objectID": "session-01.html#book-release",
@@ -60,14 +60,14 @@
     "href": "session-01.html#arbeitsverzeichnis",
     "title": "Refresher R Basics",
     "section": "Arbeitsverzeichnis",
-    "text": "Arbeitsverzeichnis\nDas Arbeitsverzeichnis (Working Directory) ist der Ordner auf Ihrem Computer, in dem R nach Dateien sucht, die Sie laden möchten, und in dem es Dateien speichert, die Sie erstellen.\nas aktuelle Arbeitsverzeichnis wird in der Zeile über der Konsole in RStudio angezeigt, wo auch die aktuell genutzte Version von R zu sehen ist. Sie können es sich auch über den Befehl getwd() anzeigen lassen.\n\n# Aktuelles Arbeitsverzeichnis anzeigen\ngetwd()\n\n[1] \"C:/Users/johannes.breuer/OneDrive - Center for Advanced Internet Studies (CAIS) gGmbH/Dokumente/teaching/ude/SoSe26/seminar_social-media-data-r/social-media-data-r/slides\"\n\n\nVerändern können Sie das Arbeitsverzeichnis über das RStudio-Menü unter Session -&gt; Set Working Directory oder mit dem Befehl setwd()."
+    "text": "Arbeitsverzeichnis\nDas Arbeitsverzeichnis (Working Directory) ist der Ordner auf Ihrem Computer, in dem R nach Dateien sucht, die Sie laden möchten, und in dem es Dateien speichert, die Sie erstellen.\nDas aktuelle Arbeitsverzeichnis wird in der Zeile über der Konsole in RStudio angezeigt, wo auch die aktuell genutzte Version von R zu sehen ist. Sie können es sich auch über den Befehl getwd() anzeigen lassen.\n\ngetwd()\n\n[1] \"C:/Users/johannes.breuer/OneDrive - Center for Advanced Internet Studies (CAIS) gGmbH/Dokumente/teaching/ude/SoSe26/seminar_social-media-data-r/social-media-data-r/slides\"\n\n\nVerändern können Sie das Arbeitsverzeichnis über das RStudio-Menü unter Session -&gt; Set Working Directory oder mit dem Befehl setwd()."
   },
   {
     "objectID": "session-01.html#hilfreiche-funktionen-in-rstudio",
     "href": "session-01.html#hilfreiche-funktionen-in-rstudio",
     "title": "Refresher R Basics",
     "section": "Hilfreiche Funktionen in RStudio",
-    "text": "Hilfreiche Funktionen in RStudio\n\nTastaturkürzel: RStudio bietet eine Vielzahl von Tastenkombinationen, mit denen Sie schneller und effizienter arbeiten können. Einige davon haben wir zuvor bereits gesehen. Eine Übersicht über die verfügbaren Tastenkombinationen finden Sie unter “Help” -&gt; “Keyboard Shortcuts Help” in RStudio.\nTab Completion: In RStudio können Sie die Tab-Taste verwenden, um Code zu vervollständigen. Wenn Sie z.B. den Namen einer Funktion oder eines Objekts eingeben und dann die Tab-Taste drücken, zeigt RStudio eine Liste der möglichen Vervollständigungen an."
+    "text": "Hilfreiche Funktionen in RStudio\n\nTastaturkürzel: RStudio bietet eine Vielzahl von Tastenkombinationen, mit denen Sie schneller und effizienter arbeiten können. Eine Übersicht über die verfügbaren Tastenkombinationen finden Sie unter “Help” -&gt; “Keyboard Shortcuts Help” in RStudio.\nTab Completion: In RStudio können Sie die Tab-Taste verwenden, um Code zu vervollständigen. Wenn Sie z.B. beginnen, den Namen einer Funktion oder eines Objekts einzugeben, zeigt RStudio eine Liste der möglichen Vervollständigungen an. Diese können Sie dann auswählen und mit der Tab-Taste einfügen."
   },
   {
     "objectID": "session-01.html#objekte",
@@ -95,14 +95,14 @@
     "href": "session-01.html#datentypen-bestimmen",
     "title": "Refresher R Basics",
     "section": "Datentypen bestimmen",
-    "text": "Datentypen bestimmen\nDen Datentyp eines Objekts kann man in R mit der Funktion class() überprüfen.\n\n# Datentyp eines Objekts überprüfen\nclass(x)\n\n[1] \"numeric\"\n\nclass(y)\n\n[1] \"character\""
+    "text": "Datentypen bestimmen\nDen Datentyp eines Objekts kann man in R mit der Funktion class() überprüfen.\n\nclass(x)\n\n[1] \"numeric\"\n\nclass(y)\n\n[1] \"character\""
   },
   {
     "objectID": "session-01.html#vektoren",
     "href": "session-01.html#vektoren",
     "title": "Refresher R Basics",
     "section": "Vektoren",
-    "text": "Vektoren\nEin Vektor ist eine eindimensionale Datenstruktur, die Elemente desselben Typs enthält. Vektoren können z.B. numerisch (numeric), oder Zeichenketten (string/character) sein.\n\n# Mehrere Werte einem Objekt zuweisen\nage &lt;- c(25, 30, 35, 40)\nnames &lt;- c(\"Alice\", \"Bob\", \"Charlie\", \"David\")\n\nage\n\n[1] 25 30 35 40\n\nnames\n\n[1] \"Alice\"   \"Bob\"     \"Charlie\" \"David\""
+    "text": "Vektoren\nEin Vektor ist eine eindimensionale Datenstruktur, die Elemente desselben Typs enthält. Vektoren können z.B. numerisch (numeric), oder Zeichenketten (character) sein.\n\n# Mehrere Werte einem Objekt zuweisen\nage &lt;- c(25, 30, 35, 40)\nnames &lt;- c(\"Alice\", \"Bob\", \"Charlie\", \"David\")\n\nage\n\n[1] 25 30 35 40\n\nnames\n\n[1] \"Alice\"   \"Bob\"     \"Charlie\" \"David\""
   },
   {
     "objectID": "session-01.html#dataframes",
@@ -242,7 +242,7 @@
     "href": "session-01.html#befehle-verketten",
     "title": "Refresher R Basics",
     "section": "Befehle verketten",
-    "text": "Befehle verketten\nWie bereits erwähnt, können Sie mit dem “Pipe”-Operator %&gt;%mehrere Befehle miteinander verketten.\n\nyt_demo_new &lt;- yt_demo %&gt;%\n  filter(LikeCount &gt; 50) %&gt;%\n  select(AuthorDisplayName, Comment, LikeCount)"
+    "text": "Befehle verketten\nWie bereits erwähnt, können wir mit dem “Pipe”-Operator %&gt;%mehrere Befehle miteinander verketten.\n\nyt_demo_new &lt;- yt_demo %&gt;%\n  filter(LikeCount &gt; 50) %&gt;%\n  select(AuthorDisplayName, Comment, LikeCount)"
   },
   {
     "objectID": "session-01.html#variablen-erstellen",
@@ -284,14 +284,7 @@
     "href": "session-01.html#textdaten",
     "title": "Refresher R Basics",
     "section": "Textdaten",
-    "text": "Textdaten\nDas Paket stringr aus dem tidyverse bietet eine Vielzahl von Funktionen, mit denen Sie Textdaten in R bearbeiten und analysieren können.\nsiehe Buch bzw. Live Coding"
-  },
-  {
-    "objectID": "session-01.html#regular-expressions",
-    "href": "session-01.html#regular-expressions",
-    "title": "Refresher R Basics",
-    "section": "Regular Expressions",
-    "text": "Regular Expressions\nsiehe Buch bzw. Live Coding"
+    "text": "Textdaten\nDas Paket stringr aus dem tidyverse bietet eine Vielzahl von Funktionen, mit denen Sie Textdaten in R bearbeiten und analysieren können."
   },
   {
     "objectID": "session-01.html#die-nächsten-wochen",

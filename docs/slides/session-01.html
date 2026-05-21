@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="de"><head>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/tabby.min.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -10,7 +10,6 @@
   <meta name="generator" content="quarto-1.9.31">
 
   <meta name="author" content="Prof.&nbsp;Dr.&nbsp;Johannes Breuer">
-  <meta name="dcterms.date" content="2026-05-21">
   <title>Refresher R Basics</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -119,7 +118,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-4439c94533fa7bfe62333f2a6f5e798a.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-7190c6c2f2d88a7d6aa820326cafe41b.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -228,7 +227,7 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 </div>
 </div>
 
-  <p class="date">May 21, 2026</p>
+  <p class="date">21. Mai 2026</p>
 </section>
 <section>
 <section id="einleitung" class="title-slide slide level1 center" data-background-color="#4A90E2">
@@ -243,8 +242,8 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <li><p>Wie sehen aktuelle Beispiele für die Sammlung und Analyse von Social-Media-Daten aus der Literatur aus? Was können wir für unsere Arbeit daraus lernen?</p></li>
 </ol>
 </section>
-<section id="was-machen-wir-jetz" class="slide level2">
-<h2>Was machen wir jetz?</h2>
+<section id="was-machen-wir-jetzt" class="slide level2">
+<h2>Was machen wir jetzt?</h2>
 <p>In der heutigen Sitzungen sowie den beiden folgenden wollen wir uns damit befassen, wie wir <code>R</code> (und <em>RStudio</em>) nutzen können, um Social-Media-Daten zu sammeln und zu analysieren.</p>
 <p>In der ersten Sitzung schauen wir uns als Refresher zunächst einige Grundlagen in der Nutzung von <code>R</code> an.</p>
 </section>
@@ -290,23 +289,23 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <h2>Die <code>R</code>-Konsole</h2>
 <p>Das Einfachste, was Sie mit der R-Konsole tun können, ist, sie als Taschenrechner zu verwenden.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="dv">7</span> <span class="sc">-</span> <span class="dv">6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="dv">7</span> <span class="sc">-</span> <span class="dv">6</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="dv">3</span> <span class="sc">*</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="dv">3</span> <span class="sc">*</span> <span class="dv">4</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 12</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="dv">10</span> <span class="sc">/</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="dv">10</span> <span class="sc">/</span> <span class="dv">2</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="dv">2</span><span class="sc">^</span><span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="dv">2</span><span class="sc">^</span><span class="dv">3</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 8</code></pre>
 </div>
@@ -326,10 +325,9 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <section id="arbeitsverzeichnis" class="slide level2 smaller">
 <h2>Arbeitsverzeichnis</h2>
 <p>Das Arbeitsverzeichnis (<em>Working Directory</em>) ist der Ordner auf Ihrem Computer, in dem <code>R</code> nach Dateien sucht, die Sie laden möchten, und in dem es Dateien speichert, die Sie erstellen.</p>
-<p>as aktuelle Arbeitsverzeichnis wird in der Zeile über der Konsole in <em>RStudio</em> angezeigt, wo auch die aktuell genutzte Version von <code>R</code> zu sehen ist. Sie können es sich auch über den Befehl <code>getwd()</code> anzeigen lassen.</p>
+<p>Das aktuelle Arbeitsverzeichnis wird in der Zeile über der Konsole in <em>RStudio</em> angezeigt, wo auch die aktuell genutzte Version von <code>R</code> zu sehen ist. Sie können es sich auch über den Befehl <code>getwd()</code> anzeigen lassen.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Aktuelles Arbeitsverzeichnis anzeigen</span></span>
-<span id="cb11-2"><a></a><span class="fu">getwd</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">getwd</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "C:/Users/johannes.breuer/OneDrive - Center for Advanced Internet Studies (CAIS) gGmbH/Dokumente/teaching/ude/SoSe26/seminar_social-media-data-r/social-media-data-r/slides"</code></pre>
 </div>
@@ -339,8 +337,8 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <section id="hilfreiche-funktionen-in-rstudio" class="slide level2">
 <h2>Hilfreiche Funktionen in <em>RStudio</em></h2>
 <ul>
-<li><p>Tastaturkürzel: <em>RStudio</em> bietet eine Vielzahl von Tastenkombinationen, mit denen Sie schneller und effizienter arbeiten können. Einige davon haben wir zuvor bereits gesehen. Eine Übersicht über die verfügbaren Tastenkombinationen finden Sie unter “Help” -&gt; “Keyboard Shortcuts Help” in <em>RStudio</em>.</p></li>
-<li><p>Tab Completion: In <em>RStudio</em> können Sie die Tab-Taste verwenden, um Code zu vervollständigen. Wenn Sie z.B. den Namen einer Funktion oder eines Objekts eingeben und dann die Tab-Taste drücken, zeigt <em>RStudio</em> eine Liste der möglichen Vervollständigungen an.</p></li>
+<li><p>Tastaturkürzel: <em>RStudio</em> bietet eine Vielzahl von Tastenkombinationen, mit denen Sie schneller und effizienter arbeiten können. Eine Übersicht über die verfügbaren Tastenkombinationen finden Sie unter “Help” -&gt; “Keyboard Shortcuts Help” in <em>RStudio</em>.</p></li>
+<li><p>Tab Completion: In <em>RStudio</em> können Sie die Tab-Taste verwenden, um Code zu vervollständigen. Wenn Sie z.B. beginnen, den Namen einer Funktion oder eines Objekts einzugeben, zeigt <em>RStudio</em> eine Liste der möglichen Vervollständigungen an. Diese können Sie dann auswählen und mit der Tab-Taste einfügen.</p></li>
 </ul>
 </section>
 <section id="objekte" class="slide level2">
@@ -360,19 +358,18 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># Zuweisung eines einzelnen Werts</span></span>
 <span id="cb13-2"><a></a>x <span class="ot">&lt;-</span> <span class="dv">42</span></span>
-<span id="cb13-3"><a></a>y <span class="ot">&lt;-</span> <span class="st">"Ich liebe R!"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-3"><a></a>y <span class="ot">&lt;-</span> <span class="st">"Ich liebe R!"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="datentypen-bestimmen" class="slide level2">
 <h2>Datentypen bestimmen</h2>
 <p>Den Datentyp eines Objekts kann man in <code>R</code> mit der Funktion <code>class()</code> überprüfen.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co"># Datentyp eines Objekts überprüfen</span></span>
-<span id="cb14-2"><a></a><span class="fu">class</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">class</span>(x)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "numeric"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">class</span>(y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">class</span>(y)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "character"</code></pre>
 </div>
@@ -380,17 +377,17 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 </section>
 <section id="vektoren" class="slide level2">
 <h2>Vektoren</h2>
-<p>Ein Vektor ist eine eindimensionale Datenstruktur, die Elemente desselben Typs enthält. Vektoren können z.B. numerisch (numeric), oder Zeichenketten (string/character) sein.</p>
+<p>Ein Vektor ist eine eindimensionale Datenstruktur, die Elemente desselben Typs enthält. Vektoren können z.B. numerisch (numeric), oder Zeichenketten (character) sein.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># Mehrere Werte einem Objekt zuweisen</span></span>
 <span id="cb18-2"><a></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>)</span>
 <span id="cb18-3"><a></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>, <span class="st">"David"</span>)</span>
 <span id="cb18-4"><a></a></span>
-<span id="cb18-5"><a></a>age</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-5"><a></a>age</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 25 30 35 40</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>names</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>names</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Alice"   "Bob"     "Charlie" "David"  </code></pre>
 </div>
@@ -402,7 +399,7 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="co"># Einen Dataframe erstellen</span></span>
 <span id="cb22-2"><a></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> names, <span class="at">age =</span> age)</span>
-<span id="cb22-3"><a></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb22-3"><a></a>df</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     name age
 1   Alice  25
@@ -418,12 +415,12 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <p>Die meisten Funktionen in <code>R</code> haben Argumente, die es uns ermöglichen, die Funktion an unsere Bedürfnisse anzupassen. Argumente sind wie “Einstellungen” oder “Parameter”, die wir der Funktion übergeben können, um ihr Verhalten zu steuern.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="co"># Einfache Funktion ohne Argumente</span></span>
-<span id="cb24-2"><a></a><span class="fu">Sys.Date</span>() <span class="co"># Gibt das aktuelle Datum zurück</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb24-2"><a></a><span class="fu">Sys.Date</span>() <span class="co"># Gibt das aktuelle Datum zurück</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2026-05-21"</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="co"># Einfache Funktion mit einem bzw. mehreren Argumenten</span></span>
-<span id="cb26-2"><a></a><span class="fu">mean</span>(age) <span class="co"># Berechnet den Mittelwert eines numerischen Vektors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-2"><a></a><span class="fu">mean</span>(age) <span class="co"># Berechnet den Mittelwert eines numerischen Vektors</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 32.5</code></pre>
 </div>
@@ -434,7 +431,7 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <p>Die Hilfe zu Funktionen kann man in <em>RStudio</em> aufrufen, indem man ein <code>?</code> vor den Namen der Funktion schreibt und die <code>()</code> dahinter weglässt.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="co"># Hilfe zu einer Funktion aufrufen</span></span>
-<span id="cb28-2"><a></a>?mean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb28-2"><a></a>?mean</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="pakete" class="slide level2">
@@ -448,14 +445,14 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <p>Eine Sammlung von Paketen, mit der wir im Kurs arbeiten werden, ist das <code>tidyverse</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb29-2"><a></a><span class="co"># da es sich hierbei um eine Sammlung von Paketen handelt, kann die Installation etwas dauern.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb29-2"><a></a><span class="co"># da es sich hierbei um eine Sammlung von Paketen handelt, kann die Installation etwas dauern.</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="pakete-laden" class="slide level2">
 <h2>Pakete laden</h2>
 <p>Während man Pakete nur einmal installieren muss, muss man sie in jeder Sitzung neu laden. Dies geht mit dem Befehl <code>library()</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="daten-importieren" class="slide level2">
@@ -479,14 +476,14 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">library</span>(readr)</span>
 <span id="cb31-2"><a></a></span>
-<span id="cb31-3"><a></a>yt_demo <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"https://raw.githubusercontent.com/gesiscss/tubecleanr_tool/refs/heads/master/data/simulated_yt.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb31-3"><a></a>yt_demo <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"https://raw.githubusercontent.com/gesiscss/tubecleanr_tool/refs/heads/master/data/simulated_yt.csv"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="daten-exportieren" class="slide level2">
 <h2>Daten exportieren</h2>
 <p>Für den Export von CSV-Dateien können wir die Funktion <code>write_csv()</code> aus dem Paket <code>readr</code> nutzen.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="fu">write_csv</span>(yt_demo, <span class="st">"../data/simulated_yt_export.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="fu">write_csv</span>(yt_demo, <span class="st">"../data/simulated_yt_export.csv"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section></section>
 <section>
@@ -521,7 +518,7 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <h2>👀 Erster Eindruck von Daten</h2>
 <p>Für einen ersten Eindruck bietet das Paket <code>dplyr</code> die Funktion <code>glimpse()</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">glimpse</span>(yt_demo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">glimpse</span>(yt_demo)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 245
 Columns: 8
@@ -537,7 +534,7 @@ $ CommentID         &lt;chr&gt; "Ugw3KPnh-5QJnBpeymd4AaABAg", "Ugy9J-5h-1RKnBpey
 </div>
 <p>Wenn wir uns den gesamten Datenstz in <em>RStudio</em> anschauen wollen, können wir die Funktion <code>View()</code> verwenden. Diese öffnet die Daten in einem neuen Tab und zeigt sie in einer tabellarischen Ansicht an.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">View</span>(yt_demo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">View</span>(yt_demo)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="variablen-auswählen" class="slide level2">
@@ -545,14 +542,14 @@ $ CommentID         &lt;chr&gt; "Ugw3KPnh-5QJnBpeymd4AaABAg", "Ugy9J-5h-1RKnBpey
 <p>Um bestimmte Variablen aus einem Datensatz auszuwählen, können wir die Funktion <code>select()</code> aus dem Paket <code>dplyr</code> verwenden.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>yt_selected <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
-<span id="cb36-2"><a></a>  <span class="fu">select</span>(AuthorDisplayName, Comment, LikeCount)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb36-2"><a></a>  <span class="fu">select</span>(AuthorDisplayName, Comment, LikeCount)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="variablen-umbenennen-mit-select" class="slide level2">
 <h2>Variablen umbenennen mit <code>select()</code></h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>yt_renamed <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
-<span id="cb37-2"><a></a>  <span class="fu">select</span>(<span class="at">author =</span> AuthorDisplayName, <span class="at">comment =</span> Comment, <span class="at">likes =</span> LikeCount)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb37-2"><a></a>  <span class="fu">select</span>(<span class="at">author =</span> AuthorDisplayName, <span class="at">comment =</span> Comment, <span class="at">likes =</span> LikeCount)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="variablen-umbenennen-mit-rename" class="slide level2">
@@ -566,7 +563,7 @@ $ CommentID         &lt;chr&gt; "Ugw3KPnh-5QJnBpeymd4AaABAg", "Ugy9J-5h-1RKnBpey
 <span id="cb38-6"><a></a>         <span class="at">published_at =</span> PublishedAt,</span>
 <span id="cb38-7"><a></a>         <span class="at">updated_at =</span> UpdatedAt,</span>
 <span id="cb38-8"><a></a>         <span class="at">parent_id =</span> ParentID,</span>
-<span id="cb38-9"><a></a>         <span class="at">comment_id =</span> CommentID)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb38-9"><a></a>         <span class="at">comment_id =</span> CommentID)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="fälle-auswählen" class="slide level2">
@@ -574,7 +571,7 @@ $ CommentID         &lt;chr&gt; "Ugw3KPnh-5QJnBpeymd4AaABAg", "Ugy9J-5h-1RKnBpey
 <p>Um bestimmte Zeilen aus einem Datensatz auszuwählen, können Sie die Funktion <code>filter()</code> aus dem Paket <code>dplyr</code> verwenden. Diese Funktion ermöglicht es, Zeilen basierend auf bestimmten Bedingungen auszuwählen und einen neuen Datensatz zu erstellen, der nur diese Zeilen enthält.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>yt_popular <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
-<span id="cb39-2"><a></a>  <span class="fu">filter</span>(LikeCount <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb39-2"><a></a>  <span class="fu">filter</span>(LikeCount <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="fälle-auswählen-mit-filter" class="slide level2 smaller">
@@ -594,11 +591,11 @@ $ CommentID         &lt;chr&gt; "Ugw3KPnh-5QJnBpeymd4AaABAg", "Ugy9J-5h-1RKnBpey
 </section>
 <section id="befehle-verketten" class="slide level2">
 <h2>Befehle verketten</h2>
-<p>Wie bereits erwähnt, können Sie mit dem “Pipe”-Operator <code>%&gt;%</code>mehrere Befehle miteinander verketten.</p>
+<p>Wie bereits erwähnt, können wir mit dem “Pipe”-Operator <code>%&gt;%</code>mehrere Befehle miteinander verketten.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>yt_demo_new <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
 <span id="cb40-2"><a></a>  <span class="fu">filter</span>(LikeCount <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb40-3"><a></a>  <span class="fu">select</span>(AuthorDisplayName, Comment, LikeCount)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb40-3"><a></a>  <span class="fu">select</span>(AuthorDisplayName, Comment, LikeCount)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="variablen-erstellen" class="slide level2">
@@ -606,7 +603,7 @@ $ CommentID         &lt;chr&gt; "Ugw3KPnh-5QJnBpeymd4AaABAg", "Ugy9J-5h-1RKnBpey
 <p>Mit der Funktion <code>mutate</code> aus dem <code>dplyr</code>-Paket können Sie Variablen in einem Dataframe erstellen oder verändern. Das grundlegende Vorgehen dafür ist wie folgt: Sie geben an, a) welche Variable(n) Sie erstellen oder verändern möchten und b) wie bzw. mit welchen Funktionen die Variable(n) erstellt oder verändert werden soll.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a>yt_demo <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
-<span id="cb41-2"><a></a>  <span class="fu">mutate</span>(<span class="at">comment_length =</span> <span class="fu">nchar</span>(Comment)) <span class="co"># Erstellt eine neue Variable, die die Länge des Kommentars angibt</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb41-2"><a></a>  <span class="fu">mutate</span>(<span class="at">comment_length =</span> <span class="fu">nchar</span>(Comment)) <span class="co"># Erstellt eine neue Variable, die die Länge des Kommentars angibt</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="variablen-verändern" class="slide level2">
@@ -614,7 +611,7 @@ $ CommentID         &lt;chr&gt; "Ugw3KPnh-5QJnBpeymd4AaABAg", "Ugy9J-5h-1RKnBpey
 <p>Eine weitere häufige Art der Veränderung von Variablen ist die Veränderung ihres Typse. Hierfür gibt es Funktionen wie <code>as.numeric()</code> oder <code>as.character()</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>yt_demo <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
-<span id="cb42-2"><a></a>  <span class="fu">mutate</span>(<span class="at">ParentID =</span> <span class="fu">as.character</span>(ParentID))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb42-2"><a></a>  <span class="fu">mutate</span>(<span class="at">ParentID =</span> <span class="fu">as.character</span>(ParentID))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="fehlende-werte" class="slide level2 smaller">
@@ -631,7 +628,7 @@ $ CommentID         &lt;chr&gt; "Ugw3KPnh-5QJnBpeymd4AaABAg", "Ugy9J-5h-1RKnBpey
 <p>Um fehlende Werte in andere Werte umzuwandeln, können Sie die Funktion <code>replace_na()</code> aus dem Paket <code>tidyr</code> verwenden.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a>yt_demo <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
-<span id="cb43-2"><a></a>  <span class="fu">replace_na</span>(<span class="fu">list</span>(<span class="at">ParentID =</span> <span class="st">"none"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb43-2"><a></a>  <span class="fu">replace_na</span>(<span class="fu">list</span>(<span class="at">ParentID =</span> <span class="st">"none"</span>))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="werte-in-fehlende-werte-umkodieren" class="slide level2">
@@ -641,17 +638,12 @@ $ CommentID         &lt;chr&gt; "Ugw3KPnh-5QJnBpeymd4AaABAg", "Ugy9J-5h-1RKnBpey
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>yt_demo <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
 <span id="cb44-2"><a></a>  <span class="fu">mutate</span>(</span>
 <span id="cb44-3"><a></a>    <span class="at">ParentID =</span> <span class="fu">na_if</span>(ParentID, <span class="st">"none"</span>)</span>
-<span id="cb44-4"><a></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb44-4"><a></a>  )</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="textdaten" class="slide level2">
 <h2>Textdaten</h2>
-<p>Das Paket <code>stringr</code> aus dem <code>tidyverse</code> bietet eine Vielzahl von Funktionen, mit denen Sie Textdaten in <code>R</code> bearbeiten und analysieren können.</p>
-<p>siehe Buch bzw. Live Coding</p>
-</section>
-<section id="regular-expressions" class="slide level2">
-<h2>Regular Expressions</h2>
-<p>siehe Buch bzw. Live Coding</p>
+<p>Das Paket <a href="https://stringr.tidyverse.org/"><code>stringr</code></a> aus dem <code>tidyverse</code> bietet eine Vielzahl von Funktionen, mit denen Sie Textdaten in <code>R</code> bearbeiten und analysieren können.</p>
 </section></section>
 <section>
 <section id="ausblick" class="title-slide slide level1 center" data-background-color="#4A90E2">
@@ -1006,12 +998,12 @@ Kohne, J., Breuer, J., Deubel, A., &amp; Mohseni, M. R. (2024). <em>How to <span
           // flash "checked"
           button.classList.add('code-copy-button-checked');
           var currentTitle = button.getAttribute("title");
-          button.setAttribute("title", "Copied!");
+          button.setAttribute("title", "Kopiert");
           let tooltip;
           if (window.bootstrap) {
             button.setAttribute("data-bs-toggle", "tooltip");
             button.setAttribute("data-bs-placement", "left");
-            button.setAttribute("data-bs-title", "Copied!");
+            button.setAttribute("data-bs-title", "Kopiert");
             tooltip = new bootstrap.Tooltip(button, 
               { trigger: "manual", 
                 customClass: "code-copy-button-tooltip",

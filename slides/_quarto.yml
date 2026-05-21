@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: ../docs/slides
+  
+lang: de
 
 bibliography: ../references.bib
 csl: ../apa.csl
