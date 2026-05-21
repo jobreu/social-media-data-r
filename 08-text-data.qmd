@@ -1,5 +1,15 @@
 # Working with text data {#sec-textdata}
 
+## `stringr`
+
+Das Paket `stringr` aus dem `tidyverse` bietet eine Vielzahl von Funktionen, mit denen Sie Textdaten in `R` bearbeiten und analysieren können.
+
+Die wichtigsten Funktionen sind:
+- `str_detect()`: Überprüft, ob ein bestimmtes Muster in einem Text vorhanden ist.
+- `str_extract()`: Extrahiert das erste Vorkommen eines Musters aus einem Text.
+- `str_replace()`: Ersetzt das erste Vorkommen eines Musters durch einen anderen Text.
+- `str_replace_all()`: Ersetzt alle Vorkommen eines Musters durch einen anderen Text.
+
 ## Regular Expressions (Regex)
 
 Ein sehr mächtiges Werkzeug, um bestimmte Muster in Texten zu erkennen und herauszufiltern oder zu extrahieren sind sog. Reguläre Ausdrücke (Regular Expressions oder Regex).
@@ -8,11 +18,7 @@ Reguläre Ausdrücke sind im Grunde eine komplexe Suchsprache (die viel mehr und
 
 Es gibt viele Vorlagen (z.B. für Zahlen, Zeichen oder auch komplexere Muster wie Daten oder Telefonnummern) und Tools, die einem bei der Erstellung von Regex helfen können.
 
-::: {.incremental}
-* It is extremely powerful
-* It requires less code than base R
-* It works beautifully with `stringr`
-:::
+Regular Expressions sind sehr nützlich und mächtig in Kombination mit den Funktionen von `stringr`, um komplexe Textmuster zu erkennen, zu extrahieren oder zu ersetzen.
 
 ## Core Regex Building Blocks
 

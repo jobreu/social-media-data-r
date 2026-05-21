@@ -1,0 +1,324 @@
+[
+  {
+    "objectID": "session-01.html#was-bisher-geschah",
+    "href": "session-01.html#was-bisher-geschah",
+    "title": "Refresher R Basics",
+    "section": "Was bisher geschah",
+    "text": "Was bisher geschah\nIn den ersten drei Seminarsitzungen haben wir uns mit folgenden Fragen beschäftigt:\n\nWas sind Social-Media-Daten? Wie kann man diese sammeln?\nWie sehen aktuelle Beispiele für die Sammlung und Analyse von Social-Media-Daten aus der Literatur aus? Was können wir für unsere Arbeit daraus lernen?"
+  },
+  {
+    "objectID": "session-01.html#was-machen-wir-jetz",
+    "href": "session-01.html#was-machen-wir-jetz",
+    "title": "Refresher R Basics",
+    "section": "Was machen wir jetz?",
+    "text": "Was machen wir jetz?\nIn der heutigen Sitzungen sowie den beiden folgenden wollen wir uns damit befassen, wie wir R (und RStudio) nutzen können, um Social-Media-Daten zu sammeln und zu analysieren.\nIn der ersten Sitzung schauen wir uns als Refresher zunächst einige Grundlagen in der Nutzung von R an."
+  },
+  {
+    "objectID": "session-01.html#book-release",
+    "href": "session-01.html#book-release",
+    "title": "Refresher R Basics",
+    "section": "🎉 Book Release",
+    "text": "🎉 Book Release\nExklusiv für Sie! Veröffentlichung von Sammlung und Analyse von Social-Media-Daten mit R - Das Buch zum Kurs\n\n“Further content is needed!”…\n\n\n… und wird in den nächsten Wochen nach und nach geliefert."
+  },
+  {
+    "objectID": "session-01.html#arbeitsmodus",
+    "href": "session-01.html#arbeitsmodus",
+    "title": "Refresher R Basics",
+    "section": "Arbeitsmodus",
+    "text": "Arbeitsmodus\nDas Online-Buch zum Kurs ist so aufgebaut, dass Sie die Inhalte in Ihrem eigenen Tempo durcharbeiten können. Es dient als begleitendes Kompendium und Ergänzung und Vertiefung zu den Inhalten aus den Seminarsitzungen. Sie können das Buch v.a. auch als “Nachschlagewerk” für die Gruppenarbeitsphase nutzen.\nDie Slides zu den Seminarsitzungen enthalten nur die wichtigsten Punkte und sollen vor allem als Leitfaden für die Sitzungen dienen. Der Schwerpunkt in den Sitzungen liegt auf “Live Coding” durch mich und “Coding Along” durch Sie."
+  },
+  {
+    "objectID": "session-01.html#setup",
+    "href": "session-01.html#setup",
+    "title": "Refresher R Basics",
+    "section": "Setup",
+    "text": "Setup\nUm im Kurs mitarbeiten zu können, sollten Sie R und RStudio auf Ihrem Computer installiert haben.\nWenn Sie Windows nutzen, sollten Sie zusätzlich die RTools installieren.\n\nHat das für alle funktioniert?"
+  },
+  {
+    "objectID": "session-01.html#das-rstudio-interface",
+    "href": "session-01.html#das-rstudio-interface",
+    "title": "Refresher R Basics",
+    "section": "Das RStudio-Interface",
+    "text": "Das RStudio-Interface\nDas Interface von RStudio besteht aus drei bzw. vier Bereichen.\n\nSource: Hier können Sie R-Skripte erstellen und bearbeiten. In diesen Skripten können Sie Ihren Code schreiben, speichern und später wiederverwenden.\nConsole: Hier können Sie R-Code direkt eingeben und ausführen. Die Ergebnisse werden ebenfalls in der Konsole angezeigt.\nEin Fenster mit der sog. Environment und der History: Hier werden alle Objekte angezeigt, die Sie in Ihrer aktuellen R-Sitzung erstellt haben, sowie alle Befehle, die Sie genutzt haben.\nEin Fenster, in dem u.a. installierte und geladene Pakete (Packages ) und Hilfe zu Funktionen und Paketen (Help) angezeigt werden"
+  },
+  {
+    "objectID": "session-01.html#die-r-konsole",
+    "href": "session-01.html#die-r-konsole",
+    "title": "Refresher R Basics",
+    "section": "Die R-Konsole",
+    "text": "Die R-Konsole\nDas Einfachste, was Sie mit der R-Konsole tun können, ist, sie als Taschenrechner zu verwenden.\n\n2 + 2\n\n[1] 4\n\n7 - 6\n\n[1] 1\n\n3 * 4\n\n[1] 12\n\n10 / 2\n\n[1] 5\n\n2^3\n\n[1] 8"
+  },
+  {
+    "objectID": "session-01.html#workflow",
+    "href": "session-01.html#workflow",
+    "title": "Refresher R Basics",
+    "section": "Workflow",
+    "text": "Workflow\nSie sollten:\n\nIhren Code in R-Skripten schreiben und speichern, damit Sie diesen später wiederverwenden können\nCode in R-Skripten kommentieren\nObjekte, die Sie behalten möchten, exportieren, damit sie auch nach einem Neustart der R-Sitzung verfügbar sind\nein paar Einstellungen in RStudio anpassen, um sich einen guten Workflow anzugewöhnen\n\nGenauere Infsos hierzu finden Sie im Online-Buch im Abschnitt zum Arbeiten mit RStudio."
+  },
+  {
+    "objectID": "session-01.html#arbeitsverzeichnis",
+    "href": "session-01.html#arbeitsverzeichnis",
+    "title": "Refresher R Basics",
+    "section": "Arbeitsverzeichnis",
+    "text": "Arbeitsverzeichnis\nDas Arbeitsverzeichnis (Working Directory) ist der Ordner auf Ihrem Computer, in dem R nach Dateien sucht, die Sie laden möchten, und in dem es Dateien speichert, die Sie erstellen.\nas aktuelle Arbeitsverzeichnis wird in der Zeile über der Konsole in RStudio angezeigt, wo auch die aktuell genutzte Version von R zu sehen ist. Sie können es sich auch über den Befehl getwd() anzeigen lassen.\n\n# Aktuelles Arbeitsverzeichnis anzeigen\ngetwd()\n\n[1] \"C:/Users/johannes.breuer/OneDrive - Center for Advanced Internet Studies (CAIS) gGmbH/Dokumente/teaching/ude/SoSe26/seminar_social-media-data-r/social-media-data-r/slides\"\n\n\nVerändern können Sie das Arbeitsverzeichnis über das RStudio-Menü unter Session -&gt; Set Working Directory oder mit dem Befehl setwd()."
+  },
+  {
+    "objectID": "session-01.html#hilfreiche-funktionen-in-rstudio",
+    "href": "session-01.html#hilfreiche-funktionen-in-rstudio",
+    "title": "Refresher R Basics",
+    "section": "Hilfreiche Funktionen in RStudio",
+    "text": "Hilfreiche Funktionen in RStudio\n\nTastaturkürzel: RStudio bietet eine Vielzahl von Tastenkombinationen, mit denen Sie schneller und effizienter arbeiten können. Einige davon haben wir zuvor bereits gesehen. Eine Übersicht über die verfügbaren Tastenkombinationen finden Sie unter “Help” -&gt; “Keyboard Shortcuts Help” in RStudio.\nTab Completion: In RStudio können Sie die Tab-Taste verwenden, um Code zu vervollständigen. Wenn Sie z.B. den Namen einer Funktion oder eines Objekts eingeben und dann die Tab-Taste drücken, zeigt RStudio eine Liste der möglichen Vervollständigungen an."
+  },
+  {
+    "objectID": "session-01.html#objekte",
+    "href": "session-01.html#objekte",
+    "title": "Refresher R Basics",
+    "section": "Objekte",
+    "text": "Objekte\nR ist eine sogenannte objektorientierte Programmiersprache. Das bedeutet, dass alles in R als Objekt betrachtet wird. Allgemein formuliert ist ein Objekt eine spezifische Datenstruktur, die Informationen enthält und bestimmte Eigenschaften und Verhaltensweisen aufweist.\nDie wichtigsten Arten von Objekten für uns sind Vektoren und Dataframes."
+  },
+  {
+    "objectID": "session-01.html#datentypen",
+    "href": "session-01.html#datentypen",
+    "title": "Refresher R Basics",
+    "section": "Datentypen",
+    "text": "Datentypen\nR kann mit vielen verschiedenen Arten von Daten und Variablen umgehen.\nDie wichtigsten für uns im Seminar sind numerische Variablen (numeric) und Zeichenketten (character)."
+  },
+  {
+    "objectID": "session-01.html#assignment",
+    "href": "session-01.html#assignment",
+    "title": "Refresher R Basics",
+    "section": "Assignment",
+    "text": "Assignment\nIn R können Sie Objekte erstellen und ihnen Werte zuweisen. Dies geschieht durch den sogenannten “Assignment Operator” &lt;-.\nDas einfachste Beispiel für eine Zuweisung in R ist die Zuweisung eines einzelnen Werts an ein Objekt. Dieser Wert kann beispielsweise eine einzelne Zahl oder eine Zeichenkette sein.\n\n# Zuweisung eines einzelnen Werts\nx &lt;- 42\ny &lt;- \"Ich liebe R!\""
+  },
+  {
+    "objectID": "session-01.html#datentypen-bestimmen",
+    "href": "session-01.html#datentypen-bestimmen",
+    "title": "Refresher R Basics",
+    "section": "Datentypen bestimmen",
+    "text": "Datentypen bestimmen\nDen Datentyp eines Objekts kann man in R mit der Funktion class() überprüfen.\n\n# Datentyp eines Objekts überprüfen\nclass(x)\n\n[1] \"numeric\"\n\nclass(y)\n\n[1] \"character\""
+  },
+  {
+    "objectID": "session-01.html#vektoren",
+    "href": "session-01.html#vektoren",
+    "title": "Refresher R Basics",
+    "section": "Vektoren",
+    "text": "Vektoren\nEin Vektor ist eine eindimensionale Datenstruktur, die Elemente desselben Typs enthält. Vektoren können z.B. numerisch (numeric), oder Zeichenketten (string/character) sein.\n\n# Mehrere Werte einem Objekt zuweisen\nage &lt;- c(25, 30, 35, 40)\nnames &lt;- c(\"Alice\", \"Bob\", \"Charlie\", \"David\")\n\nage\n\n[1] 25 30 35 40\n\nnames\n\n[1] \"Alice\"   \"Bob\"     \"Charlie\" \"David\""
+  },
+  {
+    "objectID": "session-01.html#dataframes",
+    "href": "session-01.html#dataframes",
+    "title": "Refresher R Basics",
+    "section": "Dataframes",
+    "text": "Dataframes\nEin Dataframe ist eine zweidimensionale Datenstruktur, die Spalten mit unterschiedlichen Datentypen enthalten kann. Man kann sich einen Dataframe als eine Sammlung von Vektoren vorstellen, wobei jeder Vektor eine Spalte darstellt.\n\n# Einen Dataframe erstellen\ndf &lt;- data.frame(name = names, age = age)\ndf\n\n     name age\n1   Alice  25\n2     Bob  30\n3 Charlie  35\n4   David  40"
+  },
+  {
+    "objectID": "session-01.html#funktionen",
+    "href": "session-01.html#funktionen",
+    "title": "Refresher R Basics",
+    "section": "Funktionen",
+    "text": "Funktionen\nFür das allermeiste, was wir in R machen, verwenden wir Funktionen. Eine Funktion in R ist wie eine Art Mini-Programm, mit dem wir bestimmte Aufgaben ausführen können.\nDie meisten Funktionen in R haben Argumente, die es uns ermöglichen, die Funktion an unsere Bedürfnisse anzupassen. Argumente sind wie “Einstellungen” oder “Parameter”, die wir der Funktion übergeben können, um ihr Verhalten zu steuern.\n\n# Einfache Funktion ohne Argumente\nSys.Date() # Gibt das aktuelle Datum zurück\n\n[1] \"2026-05-21\"\n\n# Einfache Funktion mit einem bzw. mehreren Argumenten\nmean(age) # Berechnet den Mittelwert eines numerischen Vektors\n\n[1] 32.5"
+  },
+  {
+    "objectID": "session-01.html#hilfe-zu-funktionen",
+    "href": "session-01.html#hilfe-zu-funktionen",
+    "title": "Refresher R Basics",
+    "section": "Hilfe zu Funktionen",
+    "text": "Hilfe zu Funktionen\nDie Hilfe zu Funktionen kann man in RStudio aufrufen, indem man ein ? vor den Namen der Funktion schreibt und die () dahinter weglässt.\n\n# Hilfe zu einer Funktion aufrufen\n?mean"
+  },
+  {
+    "objectID": "session-01.html#pakete",
+    "href": "session-01.html#pakete",
+    "title": "Refresher R Basics",
+    "section": "Pakete",
+    "text": "Pakete\nPakete in R sind Sammlungen von Funktionen und teilweise auch Daten sowie Dokumentation dazu, die die Nutzungsmöglichkeiten von R umfassend erweitern.\nDie zentrale Quelle für R-Pakete ist das Comprehensive R Archive Network (CRAN)."
+  },
+  {
+    "objectID": "session-01.html#pakete-installieren",
+    "href": "session-01.html#pakete-installieren",
+    "title": "Refresher R Basics",
+    "section": "Pakete installieren",
+    "text": "Pakete installieren\nBevor Sie ein Paket in R nutzen können, müssen Sie es installieren. Dies geschieht mit der Funktion install.packages(), der Sie den Namen des Pakets als Argument übergeben.\nEine Sammlung von Paketen, mit der wir im Kurs arbeiten werden, ist das tidyverse.\n\ninstall.packages(\"tidyverse\")\n# da es sich hierbei um eine Sammlung von Paketen handelt, kann die Installation etwas dauern."
+  },
+  {
+    "objectID": "session-01.html#pakete-laden",
+    "href": "session-01.html#pakete-laden",
+    "title": "Refresher R Basics",
+    "section": "Pakete laden",
+    "text": "Pakete laden\nWährend man Pakete nur einmal installieren muss, muss man sie in jeder Sitzung neu laden. Dies geht mit dem Befehl library().\n\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "session-01.html#daten-importieren",
+    "href": "session-01.html#daten-importieren",
+    "title": "Refresher R Basics",
+    "section": "Daten importieren",
+    "text": "Daten importieren\nR kann Daten in vielen unterschiedlichen Formaten einlesen (importieren) und speichern (exportieren). Hierfür gibt es zahlreiche Funktionen und Pakete.\nFür die Arbeit mit Social-Media-Daten sind insbesondere zwei Formate relevant:\n\nCSV (Comma-Separated Values)\nJSON (JavaScript Object Notation)\n\nWir fokussieren uns hier auf CSV-Dateien."
+  },
+  {
+    "objectID": "session-01.html#csv-dateien-importieren",
+    "href": "session-01.html#csv-dateien-importieren",
+    "title": "Refresher R Basics",
+    "section": "CSV-Dateien importieren",
+    "text": "CSV-Dateien importieren\nFür den Import von CSV-Dateien bietet das Paket readr aus dem tidyverse die beiden Funktionen read_csv() und read_csv2().\nDer Grund dafür, dass es zwei Funktionen gibt, ist, dass es verschiedene Varianten von CSV-Dateien gibt. Auch wenn wir sie als CSV für (Comma-Separated Values) heißen, sind Werte in den Dateien manchmal durch ein Semikolon oder ein Tabulator getrennt."
+  },
+  {
+    "objectID": "session-01.html#csv-daten-importieren-mit-readr",
+    "href": "session-01.html#csv-daten-importieren-mit-readr",
+    "title": "Refresher R Basics",
+    "section": "CSV-Daten importieren mit readr",
+    "text": "CSV-Daten importieren mit readr\nFür die weiteren Beispiele nutzen wir simulierte YouTube-Daten aus dem KODAQS Toolbox Tutorial zum R-Paket tubecleanr. Wir können die CSV-Datei, die diese Daten enthält, direkt aus dem GitHub-Repository zu dem Tutorial herunterladen.\n\nlibrary(readr)\n\nyt_demo &lt;- read_csv2(\"https://raw.githubusercontent.com/gesiscss/tubecleanr_tool/refs/heads/master/data/simulated_yt.csv\")"
+  },
+  {
+    "objectID": "session-01.html#daten-exportieren",
+    "href": "session-01.html#daten-exportieren",
+    "title": "Refresher R Basics",
+    "section": "Daten exportieren",
+    "text": "Daten exportieren\nFür den Export von CSV-Dateien können wir die Funktion write_csv() aus dem Paket readr nutzen.\n\nwrite_csv(yt_demo, \"../data/simulated_yt_export.csv\")"
+  },
+  {
+    "objectID": "session-01.html#das-tidyverse",
+    "href": "session-01.html#das-tidyverse",
+    "title": "Refresher R Basics",
+    "section": "Das tidyverse",
+    "text": "Das tidyverse\nDas tidyverse ist eine Sammlung von R-Paketen, die das Importieren und Exportieren, die Aufbereitung und Visualisieren von Daten in R vereinfachen.\n\nThe tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.\n\nAlle Pakete aus dem tidyverse können über das gleichnamige (Meta-)Paket installiert werden."
+  },
+  {
+    "objectID": "session-01.html#tidy-data",
+    "href": "session-01.html#tidy-data",
+    "title": "Refresher R Basics",
+    "section": "Tidy Data",
+    "text": "Tidy Data\nTidy Data ist ein Kernprinzip des tidyverse.\nDie wichtigsten Grundsätze für Tidy Data data lauten:\n\nJede Variable ist in einer eigenen Spalte.\nJede Beobachtung ist in einer eigenen Zeile.\nJeder Wert ist in einer eigenen Zelle."
+  },
+  {
+    "objectID": "session-01.html#der-pipe-operator",
+    "href": "session-01.html#der-pipe-operator",
+    "title": "Refresher R Basics",
+    "section": "Der Pipe-Operator %>%",
+    "text": "Der Pipe-Operator %&gt;%\nDer Pipe Operator (%&gt;%) ist ein zentrales Element des tidyverse und ermöglicht es, mehrere Funktionen miteinander zu verketten, ohne dass man Zwischenergebnisse speichern muss.\nKurz gesagt übergibt der Pipe-Operator das Ergebnis einer Funktion als erstes Argument an die nächste Funktion."
+  },
+  {
+    "objectID": "session-01.html#erster-eindruck-von-daten",
+    "href": "session-01.html#erster-eindruck-von-daten",
+    "title": "Refresher R Basics",
+    "section": "👀 Erster Eindruck von Daten",
+    "text": "👀 Erster Eindruck von Daten\nFür einen ersten Eindruck bietet das Paket dplyr die Funktion glimpse().\n\nglimpse(yt_demo)\n\nRows: 245\nColumns: 8\n$ VideoID           &lt;chr&gt; \"dQw4w9WgXcQ\", \"xyz789AbCde\", \"fGHjKlMnOpq\", \"PqRsTu…\n$ AuthorDisplayName &lt;chr&gt; \"TechGuru88\", \"ArtLover22\", \"GamerProX\", \"MusicFanat…\n$ Comment           &lt;chr&gt; \"This video changed my perspective! Highly recommend…\n$ LikeCount         &lt;dbl&gt; 154, 87, 301, 210, 95, 180, 120, 65, 250, 110, 190, …\n$ PublishedAt       &lt;dttm&gt; 2024-06-20 14:35:01, 2024-06-19 18:02:10, 2024-06-1…\n$ UpdatedAt         &lt;dttm&gt; 2024-06-20 14:35:01, 2024-06-19 18:02:10, 2024-06-1…\n$ ParentID          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ CommentID         &lt;chr&gt; \"Ugw3KPnh-5QJnBpeymd4AaABAg\", \"Ugy9J-5h-1RKnBpeymd4A…\n\n\nWenn wir uns den gesamten Datenstz in RStudio anschauen wollen, können wir die Funktion View() verwenden. Diese öffnet die Daten in einem neuen Tab und zeigt sie in einer tabellarischen Ansicht an.\n\nView(yt_demo)"
+  },
+  {
+    "objectID": "session-01.html#variablen-auswählen",
+    "href": "session-01.html#variablen-auswählen",
+    "title": "Refresher R Basics",
+    "section": "Variablen auswählen",
+    "text": "Variablen auswählen\nUm bestimmte Variablen aus einem Datensatz auszuwählen, können wir die Funktion select() aus dem Paket dplyr verwenden.\n\nyt_selected &lt;- yt_demo %&gt;%\n  select(AuthorDisplayName, Comment, LikeCount)"
+  },
+  {
+    "objectID": "session-01.html#variablen-umbenennen-mit-select",
+    "href": "session-01.html#variablen-umbenennen-mit-select",
+    "title": "Refresher R Basics",
+    "section": "Variablen umbenennen mit select()",
+    "text": "Variablen umbenennen mit select()\n\nyt_renamed &lt;- yt_demo %&gt;%\n  select(author = AuthorDisplayName, comment = Comment, likes = LikeCount)"
+  },
+  {
+    "objectID": "session-01.html#variablen-umbenennen-mit-rename",
+    "href": "session-01.html#variablen-umbenennen-mit-rename",
+    "title": "Refresher R Basics",
+    "section": "Variablen umbenennen mit rename()",
+    "text": "Variablen umbenennen mit rename()\n\nyt_renamed &lt;- yt_demo %&gt;%\n  rename(video_id = VideoID,\n         author = AuthorDisplayName,\n         comment = Comment,\n         likes = LikeCount,\n         published_at = PublishedAt,\n         updated_at = UpdatedAt,\n         parent_id = ParentID,\n         comment_id = CommentID)"
+  },
+  {
+    "objectID": "session-01.html#fälle-auswählen",
+    "href": "session-01.html#fälle-auswählen",
+    "title": "Refresher R Basics",
+    "section": "Fälle auswählen",
+    "text": "Fälle auswählen\nUm bestimmte Zeilen aus einem Datensatz auszuwählen, können Sie die Funktion filter() aus dem Paket dplyr verwenden. Diese Funktion ermöglicht es, Zeilen basierend auf bestimmten Bedingungen auszuwählen und einen neuen Datensatz zu erstellen, der nur diese Zeilen enthält.\n\nyt_popular &lt;- yt_demo %&gt;%\n  filter(LikeCount &gt; 100)"
+  },
+  {
+    "objectID": "session-01.html#fälle-auswählen-mit-filter",
+    "href": "session-01.html#fälle-auswählen-mit-filter",
+    "title": "Refresher R Basics",
+    "section": "Fälle auswählen mit filter()",
+    "text": "Fälle auswählen mit filter()\nUm die Funktion filter() sinnvoll einsetzen zu können, ist es wichtig, die wichtigsten logischen Operatoren zu kennen, die in den Bedingungen verwendet werden können. Dazu gehören:\n\n== (gleich)\n!= (ungleich)\n&lt; (kleiner als)\n&gt; (größer als)\n&lt;= (kleiner oder gleich)\n&gt;= (größer oder gleich)\n\n\nEine besondere zusätzliche Option bietet die Funktion between(), mit der Sie Zeilen auswählen können, deren Werte in einem bestimmten Bereich liegen."
+  },
+  {
+    "objectID": "session-01.html#befehle-verketten",
+    "href": "session-01.html#befehle-verketten",
+    "title": "Refresher R Basics",
+    "section": "Befehle verketten",
+    "text": "Befehle verketten\nWie bereits erwähnt, können Sie mit dem “Pipe”-Operator %&gt;%mehrere Befehle miteinander verketten.\n\nyt_demo_new &lt;- yt_demo %&gt;%\n  filter(LikeCount &gt; 50) %&gt;%\n  select(AuthorDisplayName, Comment, LikeCount)"
+  },
+  {
+    "objectID": "session-01.html#variablen-erstellen",
+    "href": "session-01.html#variablen-erstellen",
+    "title": "Refresher R Basics",
+    "section": "Variablen erstellen",
+    "text": "Variablen erstellen\nMit der Funktion mutate aus dem dplyr-Paket können Sie Variablen in einem Dataframe erstellen oder verändern. Das grundlegende Vorgehen dafür ist wie folgt: Sie geben an, a) welche Variable(n) Sie erstellen oder verändern möchten und b) wie bzw. mit welchen Funktionen die Variable(n) erstellt oder verändert werden soll.\n\nyt_demo &lt;- yt_demo %&gt;%\n  mutate(comment_length = nchar(Comment)) # Erstellt eine neue Variable, die die Länge des Kommentars angibt"
+  },
+  {
+    "objectID": "session-01.html#variablen-verändern",
+    "href": "session-01.html#variablen-verändern",
+    "title": "Refresher R Basics",
+    "section": "Variablen verändern",
+    "text": "Variablen verändern\nEine weitere häufige Art der Veränderung von Variablen ist die Veränderung ihres Typse. Hierfür gibt es Funktionen wie as.numeric() oder as.character().\n\nyt_demo &lt;- yt_demo %&gt;%\n  mutate(ParentID = as.character(ParentID))"
+  },
+  {
+    "objectID": "session-01.html#fehlende-werte",
+    "href": "session-01.html#fehlende-werte",
+    "title": "Refresher R Basics",
+    "section": "Fehlende Werte",
+    "text": "Fehlende Werte\nDas Symbol für fehlende Werte in R ist NA.\nWenn es um fehlende Werte und die Veränderung von Variablen geht, gibt es zwei Optionen:\n\nSie können fehlende Werte in einer Variable durch einen bestimmten Wert ersetzen, z.B. “unknown” oder “other”. Dies kann z.B. sinnvoll sein, wenn Sie diese Fälle in Analysen berücksichtigen möchten.\nSie können fbestimmte Werte in fehlende Werte umkodieren. Dies kann z.B. sinnvoll sein, wenn Sie bestimmte Werte in der Variable haben, die eigentlich fehlende Werte darstellen (z.B. “unknown” oder leere Textstrings ““)."
+  },
+  {
+    "objectID": "session-01.html#fehlende-werte-ersetzen",
+    "href": "session-01.html#fehlende-werte-ersetzen",
+    "title": "Refresher R Basics",
+    "section": "Fehlende Werte ersetzen",
+    "text": "Fehlende Werte ersetzen\nUm fehlende Werte in andere Werte umzuwandeln, können Sie die Funktion replace_na() aus dem Paket tidyr verwenden.\n\nyt_demo &lt;- yt_demo %&gt;%\n  replace_na(list(ParentID = \"none\"))"
+  },
+  {
+    "objectID": "session-01.html#werte-in-fehlende-werte-umkodieren",
+    "href": "session-01.html#werte-in-fehlende-werte-umkodieren",
+    "title": "Refresher R Basics",
+    "section": "Werte in fehlende Werte umkodieren",
+    "text": "Werte in fehlende Werte umkodieren\nUm bestimmte Werte in fehlende Werte NA umzuwandeln, können Sie die Funktion na_if() aus dplyr verwenden.\n\nyt_demo &lt;- yt_demo %&gt;%\n  mutate(\n    ParentID = na_if(ParentID, \"none\")\n  )"
+  },
+  {
+    "objectID": "session-01.html#textdaten",
+    "href": "session-01.html#textdaten",
+    "title": "Refresher R Basics",
+    "section": "Textdaten",
+    "text": "Textdaten\nDas Paket stringr aus dem tidyverse bietet eine Vielzahl von Funktionen, mit denen Sie Textdaten in R bearbeiten und analysieren können.\nsiehe Buch bzw. Live Coding"
+  },
+  {
+    "objectID": "session-01.html#regular-expressions",
+    "href": "session-01.html#regular-expressions",
+    "title": "Refresher R Basics",
+    "section": "Regular Expressions",
+    "text": "Regular Expressions\nsiehe Buch bzw. Live Coding"
+  },
+  {
+    "objectID": "session-01.html#die-nächsten-wochen",
+    "href": "session-01.html#die-nächsten-wochen",
+    "title": "Refresher R Basics",
+    "section": "Die nächsten Wochen",
+    "text": "Die nächsten Wochen\nIn den nächsten beiden Sitzungen (am 28.05. sowie am 11.06.) beschäftigen wir uns mit der Sammlung und Analyse von Social-Media-Daten. Dabei konzentrieren wir uns auf drei Plattformen: TikTok, Bluesky und YouTube.\nDanach setzen Sie das erworbene Wissen und Ihre eigenen Ideen in kleinen empirischen Forschungsprojekten in Form von Gruppenarbeit um."
+  },
+  {
+    "objectID": "session-01.html#hausaufgabe-1",
+    "href": "session-01.html#hausaufgabe-1",
+    "title": "Refresher R Basics",
+    "section": "📑 Hausaufgabe 1",
+    "text": "📑 Hausaufgabe 1\nSchauen Sie sich Kapitel 1 bis 9 im Online-Buch zum Kurs an.\nÜberlegen Sie dabei:\n\nWas weiß/kann ich bereits?\nWas weiß/kann ich noch nicht bzw. nicht mehr?\n\nSchauen Sie gerne auch in die Kapitel unter “Tipps & Tricks”; insbesondere dann, wenn Sie mit den Inhalten aus den Kapiteln 1 bis 9 schon vertraut sind."
+  },
+  {
+    "objectID": "session-01.html#hausaufgabe-2",
+    "href": "session-01.html#hausaufgabe-2",
+    "title": "Refresher R Basics",
+    "section": "📑 Hausaufgabe 2",
+    "text": "📑 Hausaufgabe 2\nFür die Sammlung von Social-Media-Daten benötigen Sie mindestens eins der folgenden Dinge (am besten aber alle):\n\nEinen TikTok-Account\nEinen Bluesky-Account\nEinen Google-Account und einen YouTube API Key Wie Sie einen YouTube API Key erhalten, wird ausführlich in einem Tutorial von Communalytic beschrieben sowie im GESIS Guide How to Collect Data with the YouTube Data API (Kohne et al., 2024)."
+  },
+  {
+    "objectID": "session-01.html#references",
+    "href": "session-01.html#references",
+    "title": "Refresher R Basics",
+    "section": "References",
+    "text": "References\n\n\n\n\nKohne, J., Breuer, J., Deubel, A., & Mohseni, M. R. (2024). How to Collect Data with the YouTube Data API (GESIS Guides to Digital Behavioral Data, 13). GESIS - Leibniz-Institute for the Social Sciences. https://doi.org/10.60762/GGDBD24013.1.0"
+  }
+]

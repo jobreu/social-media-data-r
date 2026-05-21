@@ -1,5 +1,155 @@
 # Variablen verändern {#sec-wrangvar}
 
+In diesem Abschnitt beschäftigen wir uns mit der Erstellung und Veränderung von Variablen in `R`. Dies ist ein wichtiger und häufiger Schritt in der Datenaufbereitung (Data Wrangling). Konkret schauen wir uns an, wie man neue Variablen erstellen und bestehende verändern kann. Dazu gehört auch die Veränderung von Werten einer Variable sowie der Umgang mit fehlenden Werten (missing values).
+
+Wie im vorherigen Abschnitt gilt, dass wir wir zunächst wieder die `tidyverse`-Pakete laden und die Daten in `R` importieren müssen, sofern dies in der aktuellen Sitzung noch nicht geschehen ist (siehe dazu auch @sec-tidyverse und @sec-import).
+
+Nochmal zur Erinnerung: Je nachdem, ob bzw. wo Sie die Daten aus @sec-import gespeichert haben, müssen Sie den Dateipfad im folgenden Code ggf. anpassen.
+
+```{r}
+library(tidyverse)
+
+yt_demo <- read_csv("./data/simulated_yt_export.csv")
+
+glimpse(yt_demo)
+```
+
 ## Variablen erstellen und verändern
 
+Mit der Funktion `mutate` aus dem `dplyr`-Paket können Sie Variablen in einem Dataframe erstellen oder verändern. Das grundlegende Vorgehen dafür ist wie folgt: Sie geben an, a) welche Variable(n) Sie erstellen oder verändern möchten und b) wie bzw. mit welchen Funktionen die Variable(n) erstellt oder verändert werden soll.
+
+*Hinweis*: Wir werden in den folgenden Beispielen den Pipe-Operator `%>%` verwenden, den Sie ja bereits aus dem @sec-tidyverse und dem @sec-wrangdf kennen.
+
+Im nachfolgenden Beispiel erstellen wir eine neue Variable `comment_length`, die die Länge der Kommentare in der Variable `Comment` angibt. Dazu verwenden wir die Funktion `nchar()`, die die Anzahl der Zeichen in einem Textstring zählt.
+
+```{r}
+yt_demo <- yt_demo %>%
+  mutate(comment_length = nchar(Comment))
+
+glimpse(yt_demo)
+```
+
+*Hinweis*: Wir haben hier die neue Variable `comment_length` direkt in den ursprünglichen Datensatz `yt_demo` geschrieben, indem wir den Namen des Datensatzes auf der linken Seite des Zuweisungsoperators `<-` angegeben haben. Alternativ hätten wir auch einen neuen Datensatz erstellen können, z.B. `yt_demo_with_length`, um die neue Variable zu speichern, ohne den ursprünglichen Datensatz zu verändern.
+
+**Wichtig**: Wenn Sie eine Variable verändern, die bereits existiert, wird diese überschrieben. Wenn Sie eine neue Variable erstellen, die denselben Namen wie eine bereits existierende Variable hat, wird die bestehende Variable ebenfalls überschrieben. Es ist daher in aller Regel ratsam, bei der Erstellung bzw. Veränderung von Variablen neue Namen zu vergeben.
+
+Weitere Informationen zum Umgang mit Namen in `R` (für Objekte, Variablen und Funktionen) finden Sie in @sec-names.
+
+Es ist auch möglich, dieselbe Funktion auf mehrere Variablen anzuwenden,um diese zu verändern oder neue Variablen zu erstellen. Dazu können Sie die Funktion `across()` verwenden. Mit dieser ist es zusätzlich auch möglich, mehr als eine Funktion für die Erstellung bzw. Veränderung von Variablen zu nutzen. Die Verwendung von `across()` ist etwas komplexer, weshalb wir hier nicht näher darauf eingehen. Eine gute Erklärung bietet die [Dokumentation zur Funktion](https://dplyr.tidyverse.org/reference/across.html).
+
+Eine weitere nützliche sogenannte Hilfsfunktion ()helper function in diesem Kontext ist `where()`. Mit dieser können Sie z.B. alle Variablen eines bestimmten Typs auswählen, um diese zu verändern oder neue Variablen auf Basis dieser zu erstellen. `where()` ist Teil des Pakets `tidyselect` und genauere Information zu dieser Funktion finden Sie in der [zugehörigen Dokumentation](https://tidyselect.r-lib.org/reference/where.html).
+
+Eine weitere häufige Art der Veränderung von Variablen ist die Veränderung ihres Typse. Hierfür gibt es Funktionen wie `as.numeric()` oder `as.character()`.
+
+Nachfolgend ändern wir den Typ der Variable `ParentId` aus unserem Beispieldatensatz zu `character`.
+
+```{r}
+yt_demo <- yt_demo %>%
+  mutate(ParentID = as.character(ParentID))
+  
+glimpse(yt_demo)
+```
+
 ## Werte in einer Variable verändern
+
+Auch für die Veränderung von Werten in einer Variable gibt es verschiedene Möglichkeiten. Eine einfache Möglichkeit ist die Verwendung von `if_else()` aus `dplyr` (oder auch `ifelse()` aus base `R`), mit der Sie binäre Bedingungen festlegen können, unter denen Werte in einer bestimmten Weiseverändert werden sollen. 
+
+```{r}
+yt_demo <- yt_demo %>%
+  mutate(
+    comment_length_category = if_else(comment_length <= 40, "short", "long")
+  )
+
+glimpse(yt_demo)
+```
+
+Was wir hier machen, ist die Erstellung einer neuen Variable `comment_length_category`, die auf der Variable `comment_length` basiert. Wenn die Länge eines Kommentars 40 oder weniger Zeichen beträgt, wird der Wert "short" zugewiesen, andernfalls wird "long" zugewiesen.
+
+*Hinweis*: Die neue Variable `comment_length_category` hat den Type "character". Streng genommen wäre es hier vielleicht besser gewesen, die Variable als Faktor zu erstellen. Da der Umgang mit Faktoren in `R` z.T. etwas komplizierter werden kann, ignorieren wir das hier aber. Ein Paket aus dem `tidyverse`, dass sehr umfangreiche Funktionen für den Umgang mit Faktoren bietet, ist [`forcats`](https://forcats.tidyverse.org/).
+
+Neben dem einfachen `if_else()` bietet `dplyr` auch noch weitere Funktionen für komplexere Bedingungen bei der Veränderung von Werten in einer Variable.
+
+```{r}
+yt_demo <- yt_demo %>%
+  mutate(
+    comment_length_category_new = case_match(
+      comment_length_category,
+      "short" ~ "s",
+      "long" ~ "l",
+      .default = "u")
+  )
+
+glimpse(yt_demo)
+```
+
+Für die Umkodierung der Werte gibt es hier zwei Bedingungen: 
+
+1. Wenn der der Wert "short" lautet, wird er in "s" umkodiert.
+
+2. Wenn der Wert "long" lautet, wird er in "l" umkodiert.
+
+Für Fälle, in denen keine der beiden Bedingungen zutrifft, sollte noch ein Standardwert (`.default`) definiert werden (hier "u" für unknown). In diesem konkreten Beispiel gibt es empirisch nur zwei Werte in der Variable, aber häufig kommen ja auch mehr als zwei Werte oder fehlender Werte in Daten vor.
+
+::: {.callout-note title="Merkwürdige Zeichen im Code" collapse="true"}
+Im Code oben wird die sogenannte Tilde `~` verwendet, um die Bedingungen und die entsprechenden Werte zu trennen. Das ist eine spezielle Syntax, die in einigen Funktionen von `dplyr` verwendet wird, um Bedingungen und Werte zu definieren. Auch der Punkt vor dem Argument `.default` ist eine spezielle Syntax, die in einigen Funktionen von `dplyr` verwendet wird.
+:::
+
+*Hinweis*: `case_match()` ist ein Beispiel für eine Funktion, die den Status "superseded" hat (siehe @sec-lifecycle). Die Alternativen in neuen Versionen von `dplyr` sind [die Funktionen `recode_values()` und `replace_values()`](https://dplyr.tidyverse.org/reference/recode-and-replace-values.html).
+
+Noch flexiblere Optionen für die Veränderung von Werten in einer Variable bieten die Funktionen `case_when()` und `case_match()`, mit denen Sie mehrere Bedingungen festlegen können, unter denen Werte in einer bestimmten Weise verändert werden sollen. 
+
+```{r}
+yt_demo <- yt_demo %>%
+  mutate(
+    popularity = case_when(
+      LikeCount <= 50 ~ "low",
+      LikeCount > 50 & LikeCount <= 100 ~ "medium",
+      LikeCount > 100 ~ "high",
+      TRUE ~ "unknown"
+    )
+  )
+```
+
+Hier erstellen wir eine neue Variable `popularity`, die auf der Variable `LikeCount` basiert. Wenn die Anzahl der Likes 50 oder weniger beträgt, wird der Wert "low" zugewiesen, wenn sie zwischen 51 und 100 liegt, wird "medium" zugewiesen, und wenn sie mehr als 100 beträgt, wird "high" zugewiesen. Für alle Fälle, in denen keine der vorherigen Bedingungen erfüllt ist (z.B. wenn `LikeCount` fehlende Werte enthält), wird "unknown" zugewiesen.
+
+*Hinweis*: Die Bedingungen in `case_when()` werden von oben nach unten geprüft. Sobald eine Bedingung erfüllt ist, wird der entsprechende Wert zugewiesen und die weiteren Bedingungen werden nicht mehr geprüft. Es ist daher wichtig, die Bedingungen in der richtigen Reihenfolge anzugeben, um sicherzustellen, dass die gewünschten Werte zugewiesen werden. Die letze Bedingung `TRUE ~ "unknown"` dient als Standardwert für alle Fälle, in denen keine der vorherigen Bedingungen erfüllt ist.
+
+Ausführlichere Informationen zur Nutzung von `case_when()` finden Sie in der [Dokumentation zu dieser Funktionen](https://dplyr.tidyverse.org/reference/case_when.html).
+
+## Fehlende Werte
+
+Zur Erinnerung: Das Symbol für fehlende Werte in `R` ist `NA`. Es gibt verschiedene Möglichkeiten, mit fehlenden Werten umzugehen, z.B. sie zu entfernen oder durch einen bestimmten Wert zu ersetzen. Welcher Umgang mit fehlenden Werden der beste ist, hängt von der Art der Daten sowie den durchgeführten Analysen ab.
+
+Fehlende Werte richtig zu definieren ist wichtig, damit sie in der Datenanalyse korrekt behandelt werden können.
+
+Wenn es um fehlende Werte und die Veränderung von Variablen geht, gibt es zwei Optionen:
+
+1. Sie können fehlende Werte in einer Variable durch einen bestimmten Wert ersetzen, z.B. "unknown" oder "other". Dies kann z.B. sinnvoll sein, wenn Sie diese Fälle in Analysen berücksichtigen möchten.
+
+2. Sie können fbestimmte Werte in fehlende Werte umkodieren. Dies kann z.B. sinnvoll sein, wenn Sie bestimmte Werte in der Variable haben, die eigentlich fehlende Werte darstellen (z.B. "unknown" oder leere Textstrings "").
+
+Um fehlende Werte in andere Werte umzuwandeln, können Sie die Funktion `replace_na()` aus dem Paket `tidyr` verwenden. Diese Funktion nimmt als Argumente die Variable, in der die fehlenden Werte ersetzt werden sollen, und den Wert, durch den die fehlenden Werte ersetzt werden sollen.
+
+```{r}
+yt_demo <- yt_demo %>%
+  replace_na(list(ParentID = "none"))
+
+glimpse(yt_demo)
+```
+
+Da die Funktion `replace_na()` als Eingabe bzw. erstes Argument einen Dataframe erwartet, ist hier die Syntax etwas anders. Diese ermöglicht es uns aber auch, über die `list()`-Funktion fehlende Werte in verschiedenen Variablen durch unterschiedliche Werte zu ersetzen. 
+
+Um bestimmte Werte in fehlende Werte `NA` umzuwandeln, können Sie die Funktion `na_if()` aus `dplyr` verwenden. Diese Funktion nimmt zwei Argumente: die Variable, in der die Werte umkodiert werden sollen, und den Wert, der in `NA` umgewandelt werden soll.
+
+Z.B. können wir wie folgt die vorherige Operation wieder rückgängig machen und die Werte "none" in der Variable `ParentID` in fehlende Werte `NA` umwandeln:
+
+```{r}
+yt_demo <- yt_demo %>%
+  mutate(
+    ParentID = na_if(ParentID, "none")
+  )
+
+glimpse(yt_demo)
+```
+
+Auch für die Umkodierung von Werten in `NA` gkann man wie bei `mutate()` die Helper Functions `across()` und `where()` nutzen, um z.B. alle Werte in allen Variablen eines bestimmten Typs in `NA` umzuwandeln.

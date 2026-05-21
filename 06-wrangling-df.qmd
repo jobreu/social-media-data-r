@@ -120,8 +120,6 @@ Um die Funktion `filter()` sinnvoll einsetzen zu können, ist es wichtig, die wi
 
 - `!` (nicht)
 
-Eine besondere zusätzliche Option bietet die Funktion `between()`, mit der Sie Zeilen auswählen können, deren Werte in einem bestimmten Bereich liegen.
-
 ```{r}
 yt_popular <- yt_demo %>%
   filter(LikeCount > 100)
@@ -134,6 +132,27 @@ nrow(yt_demo)
 nrow(yt_popular)
 ```
 
+Eine besondere zusätzliche Option bietet die Funktion `between()`, mit der Sie Zeilen auswählen können, deren Werte in einem bestimmten Bereich liegen.
+
+```{r}
+yt_moderately_popular <- yt_demo %>%
+  filter(between(LikeCount, 50, 100))
+```
+
+Die Funktion `filter()` kann auch genutzt werden, um fehlende Werte (missing values) zu entfernen. Das Symbol für fehlende Werte in `R` ist `NA`.
+Hierzu müssen Sie `filter()` mit der Funktion `is.na()` kombinieren, um Zeilen auszuwählen, in denen eine bestimmte Variable fehlende Werte enthält, oder die Funktion `!is.na()`, um Zeilen auszuwählen, in denen eine bestimmte Variable keine fehlenden Werte enthält.
+
+Im nachfolgenden Beispiel werden alle Zeilen ausgewählt, in denen die Variable `ParentID` keinen fehlenden Wert enthält, d.h. alle Antworten auf Kommentare (also keine Top-Level-Kommentare).
+
+```{r}
+yt_responses <- yt_demo %>%
+  filter(!is.na(ParentID))
+
+nrow(yt_responses)
+```
+
+Wir sehen hier, dass in den simulierten Daten keine Antworten auf Kommentare enthalten sind, da die Anzahl der Zeilen im neuen Datensatz `yt_responses` gleich 0 ist (d.h. alle Zeilen im ursprünglichen Datensatz `yt_demo` haben ein `NA` in der Variable `ParentID`).
+
 ## Veränderung der Reihenfolge der Zeilen
 
 Mit der Funktion `arrange()` aus dem Paket `dplyr` kann man die Reihenfolge der Zeilen in einem Datensatz zu ändern. Sie können die Zeilen basierend auf den Werten einer oder mehrerer Variablen sortieren. Standardmäßig werden die Zeilen in aufsteigender Reihenfolge sortiert. Sie können jedoch auch die Option `desc()` verwenden, um die Zeilen in absteigender Reihenfolge zu sortieren.
@@ -144,3 +163,26 @@ yt_sorted <- yt_demo %>%
 
 glimpse(yt_sorted)
 ```
+
+## Befehle verketten
+
+Wie im @sec-tidyverse bereits erwähnt, können Sie mehrere Befehle miteinander verketten, um komplexere Datenmanipulationen durchzuführen. Dazu verwenden Sie den sogenannten "Pipe"-Operator `%>%`, der es ermöglicht, die Ausgabe eines Befehls als Eingabe für den nächsten Befehl zu verwenden.
+
+```{r}
+yt_demo_new <- yt_demo %>%
+  filter(LikeCount > 50) %>%
+  select(AuthorDisplayName, Comment, LikeCount) %>%
+  arrange(desc(LikeCount))
+
+glimpse(yt_demo_new)
+```
+
+## Datensätze zusammenführen
+
+Manchmal ist es notwendig, mehrere Datensätze zusammenzuführen, z.B. wenn die Daten in mehreren Dateien gespeichert sind oder wenn man Daten aus verschiedenen Quellen kombinieren möchte. 
+
+Das Paket `dplyr` bietet zahlreiche Möglichkeiten, um Datensätze auf unterschiedliche Weise zusammenzuführen. Die einfachsten Varianten sind die Funktionen `bind_rows()` und `bind_cols()`. Diese fügen einem Datensatz Zeilen (Rows) bzw. Fälle oder Spalten (columns) bzw. Variablen hinzu.
+
+**Wichtig**: Damit die Funktionen `bind_rows()` und `bind_cols()` funktionieren, müssen die Datensätze, die zusammengeführt werden sollen, die gleiche Anzahl von Spalten bzw. Zeilen haben. Zudem müssen die Spaltennamen in den Datensätzen, die mit `bind_rows()` zusammengeführt werden sollen, übereinstimmen und für `bind_cols()` muss die Reihenfolge der Zeilen in den beiden Datensätzen dieselbe sein.
+
+Wenn die obigen Bedingungen nicht erfüllt sind, gibt es viele andere Funktionen, mit denen Datensätze kombiniert werden können. Die wichtigsten sind die sogenannten ["mutating joins"](https://dplyr.tidyverse.org/reference/mutate-joins.html), die einen neuen nach unterschiedlichen Regeln kombinierten Datensatz erstellen. Eine ausführliche Beschreibung aller sogenannten "Joins" finden Sie im [entsprechenden Kapitel des Online-Buchs *R for Data Science*](https://r4ds.hadley.nz/joins.html).

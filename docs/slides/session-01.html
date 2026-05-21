@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7c69b197886ae2a34062761d21e44731.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.31">
+
+  <meta name="author" content="Prof.&nbsp;Dr.&nbsp;Johannes Breuer">
+  <meta name="dcterms.date" content="2026-05-21">
+  <title>Refresher R Basics</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-4439c94533fa7bfe62333f2a6f5e798a.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-color="#0F2E3D" data-background-image="../images/logo.png" data-background-position="top right" data-background-size="15%" class="quarto-title-block center">
+  <h1 class="title">Refresher R Basics</h1>
+  <p class="subtitle">Seminarsitzung 4</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Prof.&nbsp;Dr.&nbsp;Johannes Breuer 
+</div>
+</div>
+</div>
+
+  <p class="date">May 21, 2026</p>
+</section>
+<section>
+<section id="einleitung" class="title-slide slide level1 center" data-background-color="#4A90E2">
+<h1>Einleitung</h1>
+
+</section>
+<section id="was-bisher-geschah" class="slide level2">
+<h2>Was bisher geschah</h2>
+<p>In den ersten drei Seminarsitzungen haben wir uns mit folgenden Fragen beschäftigt:</p>
+<ol type="1">
+<li><p>Was sind Social-Media-Daten? Wie kann man diese sammeln?</p></li>
+<li><p>Wie sehen aktuelle Beispiele für die Sammlung und Analyse von Social-Media-Daten aus der Literatur aus? Was können wir für unsere Arbeit daraus lernen?</p></li>
+</ol>
+</section>
+<section id="was-machen-wir-jetz" class="slide level2">
+<h2>Was machen wir jetz?</h2>
+<p>In der heutigen Sitzungen sowie den beiden folgenden wollen wir uns damit befassen, wie wir <code>R</code> (und <em>RStudio</em>) nutzen können, um Social-Media-Daten zu sammeln und zu analysieren.</p>
+<p>In der ersten Sitzung schauen wir uns als Refresher zunächst einige Grundlagen in der Nutzung von <code>R</code> an.</p>
+</section>
+<section id="book-release" class="slide level2">
+<h2>🎉 Book Release</h2>
+<p>Exklusiv für Sie! Veröffentlichung von <a href="https://jobreu.github.io/social-media-data-r/"><em>Sammlung und Analyse von Social-Media-Daten mit R</em></a> - Das Buch zum Kurs</p>
+<div class="fragment">
+<p>“Further content is needed!”…</p>
+</div>
+<div class="fragment">
+<p>… und wird in den nächsten Wochen nach und nach geliefert.</p>
+</div>
+</section>
+<section id="arbeitsmodus" class="slide level2">
+<h2>Arbeitsmodus</h2>
+<p>Das <a href="https://jobreu.github.io/social-media-data-r/">Online-Buch zum Kurs</a> ist so aufgebaut, dass Sie die Inhalte in Ihrem eigenen Tempo durcharbeiten können. Es dient als begleitendes Kompendium und Ergänzung und Vertiefung zu den Inhalten aus den Seminarsitzungen. Sie können das Buch v.a. auch als “Nachschlagewerk” für die Gruppenarbeitsphase nutzen.</p>
+<p>Die Slides zu den Seminarsitzungen enthalten nur die wichtigsten Punkte und sollen vor allem als Leitfaden für die Sitzungen dienen. Der Schwerpunkt in den Sitzungen liegt auf “Live Coding” durch mich und “Coding Along” durch Sie.</p>
+</section></section>
+<section>
+<section id="grundlagen" class="title-slide slide level1 center" data-background-color="#4A90E2">
+<h1>Grundlagen</h1>
+
+</section>
+<section id="setup" class="slide level2">
+<h2>Setup</h2>
+<p>Um im Kurs mitarbeiten zu können, sollten Sie <a href="https://cran.r-project.org/"><code>R</code></a> und <a href="(https://posit.co/download/rstudio-desktop)"><em>RStudio</em></a> auf Ihrem Computer installiert haben.</p>
+<p>Wenn Sie Windows nutzen, sollten Sie zusätzlich die <a href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a> installieren.</p>
+<div class="fragment">
+<p>Hat das für alle funktioniert?</p>
+</div>
+</section>
+<section id="das-rstudio-interface" class="slide level2 smaller">
+<h2>Das <em>RStudio</em>-Interface</h2>
+<p>Das Interface von <em>RStudio</em> besteht aus drei bzw. vier Bereichen.</p>
+<ol type="1">
+<li class="fragment"><p><strong>Source</strong>: Hier können Sie <code>R</code>-Skripte erstellen und bearbeiten. In diesen Skripten können Sie Ihren Code schreiben, speichern und später wiederverwenden.</p></li>
+<li class="fragment"><p><strong>Console</strong>: Hier können Sie <code>R</code>-Code direkt eingeben und ausführen. Die Ergebnisse werden ebenfalls in der Konsole angezeigt.</p></li>
+<li class="fragment"><p>Ein Fenster mit der sog. <strong>Environment</strong> und der <strong>History</strong>: Hier werden alle Objekte angezeigt, die Sie in Ihrer aktuellen <code>R</code>-Sitzung erstellt haben, sowie alle Befehle, die Sie genutzt haben.</p></li>
+<li class="fragment"><p>Ein Fenster, in dem u.a. installierte und geladene Pakete (<strong>Packages</strong> ) und Hilfe zu Funktionen und Paketen (<strong>Help</strong>) angezeigt werden</p></li>
+</ol>
+</section>
+<section id="die-r-konsole" class="slide level2">
+<h2>Die <code>R</code>-Konsole</h2>
+<p>Das Einfachste, was Sie mit der R-Konsole tun können, ist, sie als Taschenrechner zu verwenden.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="dv">7</span> <span class="sc">-</span> <span class="dv">6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="dv">3</span> <span class="sc">*</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="dv">10</span> <span class="sc">/</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="dv">2</span><span class="sc">^</span><span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+</section>
+<section id="workflow" class="slide level2">
+<h2>Workflow</h2>
+<p>Sie sollten:</p>
+<ul>
+<li class="fragment"><p>Ihren Code in <code>R</code>-Skripten schreiben und speichern, damit Sie diesen später wiederverwenden können</p></li>
+<li class="fragment"><p>Code in <code>R</code>-Skripten kommentieren</p></li>
+<li class="fragment"><p>Objekte, die Sie behalten möchten, exportieren, damit sie auch nach einem Neustart der <code>R</code>-Sitzung verfügbar sind</p></li>
+<li class="fragment"><p>ein paar Einstellungen in <em>RStudio</em> anpassen, um sich einen guten Workflow anzugewöhnen</p></li>
+</ul>
+<p>Genauere Infsos hierzu finden Sie im Online-Buch im Abschnitt zum <a href="https://jobreu.github.io/social-media-data-r/02-rstudio.html"><em>Arbeiten mit RStudio</em></a>.</p>
+</section>
+<section id="arbeitsverzeichnis" class="slide level2 smaller">
+<h2>Arbeitsverzeichnis</h2>
+<p>Das Arbeitsverzeichnis (<em>Working Directory</em>) ist der Ordner auf Ihrem Computer, in dem <code>R</code> nach Dateien sucht, die Sie laden möchten, und in dem es Dateien speichert, die Sie erstellen.</p>
+<p>as aktuelle Arbeitsverzeichnis wird in der Zeile über der Konsole in <em>RStudio</em> angezeigt, wo auch die aktuell genutzte Version von <code>R</code> zu sehen ist. Sie können es sich auch über den Befehl <code>getwd()</code> anzeigen lassen.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Aktuelles Arbeitsverzeichnis anzeigen</span></span>
+<span id="cb11-2"><a></a><span class="fu">getwd</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:/Users/johannes.breuer/OneDrive - Center for Advanced Internet Studies (CAIS) gGmbH/Dokumente/teaching/ude/SoSe26/seminar_social-media-data-r/social-media-data-r/slides"</code></pre>
+</div>
+</div>
+<p>Verändern können Sie das Arbeitsverzeichnis über das <em>RStudio</em>-Menü unter Session -&gt; Set Working Directory oder mit dem Befehl <code>setwd()</code>.</p>
+</section>
+<section id="hilfreiche-funktionen-in-rstudio" class="slide level2">
+<h2>Hilfreiche Funktionen in <em>RStudio</em></h2>
+<ul>
+<li><p>Tastaturkürzel: <em>RStudio</em> bietet eine Vielzahl von Tastenkombinationen, mit denen Sie schneller und effizienter arbeiten können. Einige davon haben wir zuvor bereits gesehen. Eine Übersicht über die verfügbaren Tastenkombinationen finden Sie unter “Help” -&gt; “Keyboard Shortcuts Help” in <em>RStudio</em>.</p></li>
+<li><p>Tab Completion: In <em>RStudio</em> können Sie die Tab-Taste verwenden, um Code zu vervollständigen. Wenn Sie z.B. den Namen einer Funktion oder eines Objekts eingeben und dann die Tab-Taste drücken, zeigt <em>RStudio</em> eine Liste der möglichen Vervollständigungen an.</p></li>
+</ul>
+</section>
+<section id="objekte" class="slide level2">
+<h2>Objekte</h2>
+<p><code>R</code> ist eine sogenannte objektorientierte Programmiersprache. Das bedeutet, dass alles in <code>R</code> als Objekt betrachtet wird. Allgemein formuliert ist ein Objekt eine spezifische Datenstruktur, die Informationen enthält und bestimmte Eigenschaften und Verhaltensweisen aufweist.</p>
+<p>Die wichtigsten Arten von Objekten für uns sind Vektoren und Dataframes.</p>
+</section>
+<section id="datentypen" class="slide level2">
+<h2>Datentypen</h2>
+<p><code>R</code> kann mit vielen verschiedenen Arten von Daten und Variablen umgehen.</p>
+<p>Die wichtigsten für uns im Seminar sind numerische Variablen (<code>numeric</code>) und Zeichenketten (<code>character</code>).</p>
+</section>
+<section id="assignment" class="slide level2">
+<h2>Assignment</h2>
+<p>In <code>R</code> können Sie Objekte erstellen und ihnen Werte zuweisen. Dies geschieht durch den sogenannten “Assignment Operator” <code>&lt;-</code>.</p>
+<p>Das einfachste Beispiel für eine Zuweisung in <code>R</code> ist die Zuweisung eines einzelnen Werts an ein Objekt. Dieser Wert kann beispielsweise eine einzelne Zahl oder eine Zeichenkette sein.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># Zuweisung eines einzelnen Werts</span></span>
+<span id="cb13-2"><a></a>x <span class="ot">&lt;-</span> <span class="dv">42</span></span>
+<span id="cb13-3"><a></a>y <span class="ot">&lt;-</span> <span class="st">"Ich liebe R!"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="datentypen-bestimmen" class="slide level2">
+<h2>Datentypen bestimmen</h2>
+<p>Den Datentyp eines Objekts kann man in <code>R</code> mit der Funktion <code>class()</code> überprüfen.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co"># Datentyp eines Objekts überprüfen</span></span>
+<span id="cb14-2"><a></a><span class="fu">class</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">class</span>(y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+</div>
+</section>
+<section id="vektoren" class="slide level2">
+<h2>Vektoren</h2>
+<p>Ein Vektor ist eine eindimensionale Datenstruktur, die Elemente desselben Typs enthält. Vektoren können z.B. numerisch (numeric), oder Zeichenketten (string/character) sein.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># Mehrere Werte einem Objekt zuweisen</span></span>
+<span id="cb18-2"><a></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>)</span>
+<span id="cb18-3"><a></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>, <span class="st">"David"</span>)</span>
+<span id="cb18-4"><a></a></span>
+<span id="cb18-5"><a></a>age</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 25 30 35 40</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>names</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Alice"   "Bob"     "Charlie" "David"  </code></pre>
+</div>
+</div>
+</section>
+<section id="dataframes" class="slide level2">
+<h2>Dataframes</h2>
+<p>Ein Dataframe ist eine zweidimensionale Datenstruktur, die Spalten mit unterschiedlichen Datentypen enthalten kann. Man kann sich einen Dataframe als eine Sammlung von Vektoren vorstellen, wobei jeder Vektor eine Spalte darstellt.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="co"># Einen Dataframe erstellen</span></span>
+<span id="cb22-2"><a></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> names, <span class="at">age =</span> age)</span>
+<span id="cb22-3"><a></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     name age
+1   Alice  25
+2     Bob  30
+3 Charlie  35
+4   David  40</code></pre>
+</div>
+</div>
+</section>
+<section id="funktionen" class="slide level2 smaller">
+<h2>Funktionen</h2>
+<p>Für das allermeiste, was wir in <code>R</code> machen, verwenden wir Funktionen. Eine Funktion in <code>R</code> ist wie eine Art Mini-Programm, mit dem wir bestimmte Aufgaben ausführen können.</p>
+<p>Die meisten Funktionen in <code>R</code> haben Argumente, die es uns ermöglichen, die Funktion an unsere Bedürfnisse anzupassen. Argumente sind wie “Einstellungen” oder “Parameter”, die wir der Funktion übergeben können, um ihr Verhalten zu steuern.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="co"># Einfache Funktion ohne Argumente</span></span>
+<span id="cb24-2"><a></a><span class="fu">Sys.Date</span>() <span class="co"># Gibt das aktuelle Datum zurück</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2026-05-21"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="co"># Einfache Funktion mit einem bzw. mehreren Argumenten</span></span>
+<span id="cb26-2"><a></a><span class="fu">mean</span>(age) <span class="co"># Berechnet den Mittelwert eines numerischen Vektors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 32.5</code></pre>
+</div>
+</div>
+</section>
+<section id="hilfe-zu-funktionen" class="slide level2">
+<h2>Hilfe zu Funktionen</h2>
+<p>Die Hilfe zu Funktionen kann man in <em>RStudio</em> aufrufen, indem man ein <code>?</code> vor den Namen der Funktion schreibt und die <code>()</code> dahinter weglässt.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="co"># Hilfe zu einer Funktion aufrufen</span></span>
+<span id="cb28-2"><a></a>?mean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="pakete" class="slide level2">
+<h2>Pakete</h2>
+<p>Pakete in <code>R</code> sind Sammlungen von Funktionen und teilweise auch Daten sowie Dokumentation dazu, die die Nutzungsmöglichkeiten von <code>R</code> umfassend erweitern.</p>
+<p>Die zentrale Quelle für <code>R</code>-Pakete ist das <a href="https://cran.r-project.org/"><em>Comprehensive R Archive Network</em> (CRAN)</a>.</p>
+</section>
+<section id="pakete-installieren" class="slide level2">
+<h2>Pakete installieren</h2>
+<p>Bevor Sie ein Paket in <code>R</code> nutzen können, müssen Sie es installieren. Dies geschieht mit der Funktion <code>install.packages()</code>, der Sie den Namen des Pakets als Argument übergeben.</p>
+<p>Eine Sammlung von Paketen, mit der wir im Kurs arbeiten werden, ist das <code>tidyverse</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb29-2"><a></a><span class="co"># da es sich hierbei um eine Sammlung von Paketen handelt, kann die Installation etwas dauern.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="pakete-laden" class="slide level2">
+<h2>Pakete laden</h2>
+<p>Während man Pakete nur einmal installieren muss, muss man sie in jeder Sitzung neu laden. Dies geht mit dem Befehl <code>library()</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="daten-importieren" class="slide level2">
+<h2>Daten importieren</h2>
+<p><code>R</code> kann Daten in vielen unterschiedlichen Formaten einlesen (importieren) und speichern (exportieren). Hierfür gibt es zahlreiche Funktionen und Pakete.</p>
+<p>Für die Arbeit mit Social-Media-Daten sind insbesondere zwei Formate relevant:</p>
+<ol type="1">
+<li><p>CSV (Comma-Separated Values)</p></li>
+<li><p>JSON (JavaScript Object Notation)</p></li>
+</ol>
+<p>Wir fokussieren uns hier auf CSV-Dateien.</p>
+</section>
+<section id="csv-dateien-importieren" class="slide level2">
+<h2>CSV-Dateien importieren</h2>
+<p>Für den Import von CSV-Dateien bietet das Paket <code>readr</code> aus dem <code>tidyverse</code> die beiden Funktionen <code>read_csv()</code> und <code>read_csv2()</code>.</p>
+<p>Der Grund dafür, dass es zwei Funktionen gibt, ist, dass es verschiedene Varianten von CSV-Dateien gibt. Auch wenn wir sie als CSV für (Comma-Separated Values) heißen, sind Werte in den Dateien manchmal durch ein Semikolon oder ein Tabulator getrennt.</p>
+</section>
+<section id="csv-daten-importieren-mit-readr" class="slide level2">
+<h2>CSV-Daten importieren mit <code>readr</code></h2>
+<p>Für die weiteren Beispiele nutzen wir simulierte <em>YouTube</em>-Daten aus dem <a href="https://kodaqs-toolbox.gesis.org/github.com/gesiscss/tubecleanr_tool/index/"><em>KODAQS Toolbox Tutorial</em> zum <code>R</code>-Paket <code>tubecleanr</code></a>. Wir können die CSV-Datei, die diese Daten enthält, direkt aus dem <em>GitHub</em>-Repository zu dem Tutorial herunterladen.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">library</span>(readr)</span>
+<span id="cb31-2"><a></a></span>
+<span id="cb31-3"><a></a>yt_demo <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"https://raw.githubusercontent.com/gesiscss/tubecleanr_tool/refs/heads/master/data/simulated_yt.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="daten-exportieren" class="slide level2">
+<h2>Daten exportieren</h2>
+<p>Für den Export von CSV-Dateien können wir die Funktion <code>write_csv()</code> aus dem Paket <code>readr</code> nutzen.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="fu">write_csv</span>(yt_demo, <span class="st">"../data/simulated_yt_export.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section></section>
+<section>
+<section id="data-wrangling" class="title-slide slide level1 center">
+<h1>Data Wrangling</h1>
+
+</section>
+<section id="das-tidyverse" class="slide level2">
+<h2>Das <code>tidyverse</code></h2>
+<p>Das <a href="https://tidyverse.org/"><code>tidyverse</code></a> ist eine Sammlung von R-Paketen, die das Importieren und Exportieren, die Aufbereitung und Visualisieren von Daten in <code>R</code> vereinfachen.</p>
+<blockquote>
+<p>The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.</p>
+</blockquote>
+<p>Alle Pakete aus dem <code>tidyverse</code> können über das gleichnamige (Meta-)Paket installiert werden.</p>
+</section>
+<section id="tidy-data" class="slide level2">
+<h2>Tidy Data</h2>
+<p>Tidy Data ist ein Kernprinzip des <code>tidyverse</code>.</p>
+<p>Die wichtigsten Grundsätze für <strong>Tidy Data</strong> data lauten:</p>
+<ol type="1">
+<li><p>Jede Variable ist in einer eigenen Spalte.</p></li>
+<li><p>Jede Beobachtung ist in einer eigenen Zeile.</p></li>
+<li><p>Jeder Wert ist in einer eigenen Zelle.</p></li>
+</ol>
+</section>
+<section id="der-pipe-operator" class="slide level2">
+<h2>Der Pipe-Operator <code>%&gt;%</code></h2>
+<p>Der Pipe Operator (<code>%&gt;%</code>) ist ein zentrales Element des <code>tidyverse</code> und ermöglicht es, mehrere Funktionen miteinander zu verketten, ohne dass man Zwischenergebnisse speichern muss.</p>
+<p>Kurz gesagt übergibt der Pipe-Operator das Ergebnis einer Funktion als erstes Argument an die nächste Funktion.</p>
+</section>
+<section id="erster-eindruck-von-daten" class="slide level2 smaller">
+<h2>👀 Erster Eindruck von Daten</h2>
+<p>Für einen ersten Eindruck bietet das Paket <code>dplyr</code> die Funktion <code>glimpse()</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">glimpse</span>(yt_demo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 245
+Columns: 8
+$ VideoID           &lt;chr&gt; "dQw4w9WgXcQ", "xyz789AbCde", "fGHjKlMnOpq", "PqRsTu…
+$ AuthorDisplayName &lt;chr&gt; "TechGuru88", "ArtLover22", "GamerProX", "MusicFanat…
+$ Comment           &lt;chr&gt; "This video changed my perspective! Highly recommend…
+$ LikeCount         &lt;dbl&gt; 154, 87, 301, 210, 95, 180, 120, 65, 250, 110, 190, …
+$ PublishedAt       &lt;dttm&gt; 2024-06-20 14:35:01, 2024-06-19 18:02:10, 2024-06-1…
+$ UpdatedAt         &lt;dttm&gt; 2024-06-20 14:35:01, 2024-06-19 18:02:10, 2024-06-1…
+$ ParentID          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ CommentID         &lt;chr&gt; "Ugw3KPnh-5QJnBpeymd4AaABAg", "Ugy9J-5h-1RKnBpeymd4A…</code></pre>
+</div>
+</div>
+<p>Wenn wir uns den gesamten Datenstz in <em>RStudio</em> anschauen wollen, können wir die Funktion <code>View()</code> verwenden. Diese öffnet die Daten in einem neuen Tab und zeigt sie in einer tabellarischen Ansicht an.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">View</span>(yt_demo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="variablen-auswählen" class="slide level2">
+<h2>Variablen auswählen</h2>
+<p>Um bestimmte Variablen aus einem Datensatz auszuwählen, können wir die Funktion <code>select()</code> aus dem Paket <code>dplyr</code> verwenden.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>yt_selected <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb36-2"><a></a>  <span class="fu">select</span>(AuthorDisplayName, Comment, LikeCount)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="variablen-umbenennen-mit-select" class="slide level2">
+<h2>Variablen umbenennen mit <code>select()</code></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>yt_renamed <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a></a>  <span class="fu">select</span>(<span class="at">author =</span> AuthorDisplayName, <span class="at">comment =</span> Comment, <span class="at">likes =</span> LikeCount)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="variablen-umbenennen-mit-rename" class="slide level2">
+<h2>Variablen umbenennen mit <code>rename()</code></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>yt_renamed <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a></a>  <span class="fu">rename</span>(<span class="at">video_id =</span> VideoID,</span>
+<span id="cb38-3"><a></a>         <span class="at">author =</span> AuthorDisplayName,</span>
+<span id="cb38-4"><a></a>         <span class="at">comment =</span> Comment,</span>
+<span id="cb38-5"><a></a>         <span class="at">likes =</span> LikeCount,</span>
+<span id="cb38-6"><a></a>         <span class="at">published_at =</span> PublishedAt,</span>
+<span id="cb38-7"><a></a>         <span class="at">updated_at =</span> UpdatedAt,</span>
+<span id="cb38-8"><a></a>         <span class="at">parent_id =</span> ParentID,</span>
+<span id="cb38-9"><a></a>         <span class="at">comment_id =</span> CommentID)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="fälle-auswählen" class="slide level2">
+<h2>Fälle auswählen</h2>
+<p>Um bestimmte Zeilen aus einem Datensatz auszuwählen, können Sie die Funktion <code>filter()</code> aus dem Paket <code>dplyr</code> verwenden. Diese Funktion ermöglicht es, Zeilen basierend auf bestimmten Bedingungen auszuwählen und einen neuen Datensatz zu erstellen, der nur diese Zeilen enthält.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>yt_popular <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a></a>  <span class="fu">filter</span>(LikeCount <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="fälle-auswählen-mit-filter" class="slide level2 smaller">
+<h2>Fälle auswählen mit <code>filter()</code></h2>
+<p>Um die Funktion <code>filter()</code> sinnvoll einsetzen zu können, ist es wichtig, die wichtigsten logischen Operatoren zu kennen, die in den Bedingungen verwendet werden können. Dazu gehören:</p>
+<ul>
+<li><p><code>==</code> (gleich)</p></li>
+<li><p><code>!=</code> (ungleich)</p></li>
+<li><p><code>&lt;</code> (kleiner als)</p></li>
+<li><p><code>&gt;</code> (größer als)</p></li>
+<li><p><code>&lt;=</code> (kleiner oder gleich)</p></li>
+<li><p><code>&gt;=</code> (größer oder gleich)</p></li>
+</ul>
+<div class="fragment">
+<p>Eine besondere zusätzliche Option bietet die Funktion <code>between()</code>, mit der Sie Zeilen auswählen können, deren Werte in einem bestimmten Bereich liegen.</p>
+</div>
+</section>
+<section id="befehle-verketten" class="slide level2">
+<h2>Befehle verketten</h2>
+<p>Wie bereits erwähnt, können Sie mit dem “Pipe”-Operator <code>%&gt;%</code>mehrere Befehle miteinander verketten.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>yt_demo_new <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a></a>  <span class="fu">filter</span>(LikeCount <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb40-3"><a></a>  <span class="fu">select</span>(AuthorDisplayName, Comment, LikeCount)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="variablen-erstellen" class="slide level2">
+<h2>Variablen erstellen</h2>
+<p>Mit der Funktion <code>mutate</code> aus dem <code>dplyr</code>-Paket können Sie Variablen in einem Dataframe erstellen oder verändern. Das grundlegende Vorgehen dafür ist wie folgt: Sie geben an, a) welche Variable(n) Sie erstellen oder verändern möchten und b) wie bzw. mit welchen Funktionen die Variable(n) erstellt oder verändert werden soll.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a>yt_demo <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a></a>  <span class="fu">mutate</span>(<span class="at">comment_length =</span> <span class="fu">nchar</span>(Comment)) <span class="co"># Erstellt eine neue Variable, die die Länge des Kommentars angibt</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="variablen-verändern" class="slide level2">
+<h2>Variablen verändern</h2>
+<p>Eine weitere häufige Art der Veränderung von Variablen ist die Veränderung ihres Typse. Hierfür gibt es Funktionen wie <code>as.numeric()</code> oder <code>as.character()</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>yt_demo <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a></a>  <span class="fu">mutate</span>(<span class="at">ParentID =</span> <span class="fu">as.character</span>(ParentID))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="fehlende-werte" class="slide level2 smaller">
+<h2>Fehlende Werte</h2>
+<p>Das Symbol für fehlende Werte in <code>R</code> ist <code>NA</code>.</p>
+<p>Wenn es um fehlende Werte und die Veränderung von Variablen geht, gibt es zwei Optionen:</p>
+<ol type="1">
+<li><p>Sie können fehlende Werte in einer Variable durch einen bestimmten Wert ersetzen, z.B. “unknown” oder “other”. Dies kann z.B. sinnvoll sein, wenn Sie diese Fälle in Analysen berücksichtigen möchten.</p></li>
+<li><p>Sie können fbestimmte Werte in fehlende Werte umkodieren. Dies kann z.B. sinnvoll sein, wenn Sie bestimmte Werte in der Variable haben, die eigentlich fehlende Werte darstellen (z.B. “unknown” oder leere Textstrings ““).</p></li>
+</ol>
+</section>
+<section id="fehlende-werte-ersetzen" class="slide level2">
+<h2>Fehlende Werte ersetzen</h2>
+<p>Um fehlende Werte in andere Werte umzuwandeln, können Sie die Funktion <code>replace_na()</code> aus dem Paket <code>tidyr</code> verwenden.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a>yt_demo <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a></a>  <span class="fu">replace_na</span>(<span class="fu">list</span>(<span class="at">ParentID =</span> <span class="st">"none"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="werte-in-fehlende-werte-umkodieren" class="slide level2">
+<h2>Werte in fehlende Werte umkodieren</h2>
+<p>Um bestimmte Werte in fehlende Werte <code>NA</code> umzuwandeln, können Sie die Funktion <code>na_if()</code> aus <code>dplyr</code> verwenden.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>yt_demo <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb44-3"><a></a>    <span class="at">ParentID =</span> <span class="fu">na_if</span>(ParentID, <span class="st">"none"</span>)</span>
+<span id="cb44-4"><a></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="textdaten" class="slide level2">
+<h2>Textdaten</h2>
+<p>Das Paket <code>stringr</code> aus dem <code>tidyverse</code> bietet eine Vielzahl von Funktionen, mit denen Sie Textdaten in <code>R</code> bearbeiten und analysieren können.</p>
+<p>siehe Buch bzw. Live Coding</p>
+</section>
+<section id="regular-expressions" class="slide level2">
+<h2>Regular Expressions</h2>
+<p>siehe Buch bzw. Live Coding</p>
+</section></section>
+<section>
+<section id="ausblick" class="title-slide slide level1 center" data-background-color="#4A90E2">
+<h1>🔭 Ausblick</h1>
+
+</section>
+<section id="die-nächsten-wochen" class="slide level2">
+<h2>Die nächsten Wochen</h2>
+<p>In den nächsten beiden Sitzungen (am 28.05. sowie am 11.06.) beschäftigen wir uns mit der Sammlung und Analyse von Social-Media-Daten. Dabei konzentrieren wir uns auf drei Plattformen: <em>TikTok</em>, <em>Bluesky</em> und <em>YouTube</em>.</p>
+<p>Danach setzen Sie das erworbene Wissen und Ihre eigenen Ideen in kleinen empirischen Forschungsprojekten in Form von Gruppenarbeit um.</p>
+</section>
+<section id="hausaufgabe-1" class="slide level2">
+<h2>📑 Hausaufgabe 1</h2>
+<p>Schauen Sie sich Kapitel 1 bis 9 im <a href="https://jobreu.github.io/social-media-data-r/">Online-Buch zum Kurs</a> an.</p>
+<p>Überlegen Sie dabei:</p>
+<ul>
+<li><p>Was weiß/kann ich bereits?</p></li>
+<li><p>Was weiß/kann ich noch nicht bzw. nicht mehr?</p></li>
+</ul>
+<p>Schauen Sie gerne auch in die Kapitel unter “Tipps &amp; Tricks”; insbesondere dann, wenn Sie mit den Inhalten aus den Kapiteln 1 bis 9 schon vertraut sind.</p>
+</section>
+<section id="hausaufgabe-2" class="slide level2">
+<h2>📑 Hausaufgabe 2</h2>
+<p>Für die Sammlung von Social-Media-Daten benötigen Sie mindestens eins der folgenden Dinge (am besten aber alle):</p>
+<ol type="1">
+<li><p>Einen <a href="https://www.tiktok.com/"><em>TikTok</em></a>-Account</p></li>
+<li><p>Einen <a href="https://bsky.app/"><em>Bluesky</em></a>-Account</p></li>
+<li><p>Einen <em>Google</em>-Account und einen <em>YouTube</em> API Key Wie Sie einen <em>YouTube</em> API Key erhalten, wird ausführlich in einem <a href="https://communalytic.org/docs/obtaining-youtube-api-key/">Tutorial von Communalytic beschrieben</a> sowie im GESIS Guide <a href="https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf"><em>How to Collect Data with the YouTube Data API</em></a> <span class="citation" data-cites="KohneEtAl2024">(<a href="#/references" role="doc-biblioref" onclick="">Kohne et al., 2024</a>)</span>.</p></li>
+</ol>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-KohneEtAl2024" class="csl-entry" role="listitem">
+Kohne, J., Breuer, J., Deubel, A., &amp; Mohseni, M. R. (2024). <em>How to <span>Collect Data</span> with the <span>YouTube Data API</span> (<span>GESIS Guides</span> to <span>Digital Behavioral Data</span>, 13)</em>. GESIS - Leibniz-Institute for the Social Sciences. <a href="https://doi.org/10.60762/GGDBD24013.1.0">https://doi.org/10.60762/GGDBD24013.1.0</a>
+</div>
+</div>
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="../images/logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

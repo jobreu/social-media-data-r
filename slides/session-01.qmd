@@ -15,6 +15,20 @@ title-slide-attributes:
 
 # Einleitung {background-color="#4A90E2"}
 
+## Was bisher geschah
+
+In den ersten drei Seminarsitzungen haben wir uns mit folgenden Fragen beschäftigt:
+
+1. Was sind Social-Media-Daten? Wie kann man diese sammeln?
+
+2. Wie sehen aktuelle Beispiele für die Sammlung und Analyse von Social-Media-Daten aus der Literatur aus? Was können wir für unsere Arbeit daraus lernen?
+
+## Was machen wir jetz?
+
+In der heutigen Sitzungen sowie den beiden folgenden wollen wir uns damit befassen, wie wir `R` (und *RStudio*) nutzen können, um Social-Media-Daten zu sammeln und zu analysieren.
+
+In der ersten Sitzung schauen wir uns als Refresher zunächst einige Grundlagen in der Nutzung von `R` an.
+
 ## 🎉 Book Release
 
 Exklusiv für Sie! Veröffentlichung von [*Sammlung und Analyse von Social-Media-Daten mit R*](https://jobreu.github.io/social-media-data-r/) - Das Buch zum Kurs
@@ -27,26 +41,433 @@ Exklusiv für Sie! Veröffentlichung von [*Sammlung und Analyse von Social-Media
 ... und wird in den nächsten Wochen nach und nach geliefert.
 :::
 
-## 📑 Hausaufgaben
+## Arbeitsmodus
+
+Das [Online-Buch zum Kurs](https://jobreu.github.io/social-media-data-r/) ist so aufgebaut, dass Sie die Inhalte in Ihrem eigenen Tempo durcharbeiten können. Es dient als begleitendes Kompendium und Ergänzung und Vertiefung zu den Inhalten aus den Seminarsitzungen. Sie können das Buch v.a. auch als "Nachschlagewerk" für die Gruppenarbeitsphase nutzen.
+
+Die Slides zu den Seminarsitzungen enthalten nur die wichtigsten Punkte und sollen vor allem als Leitfaden für die Sitzungen dienen. Der Schwerpunkt in den Sitzungen liegt auf "Live Coding" durch mich und "Coding Along" durch Sie.
+
+# Grundlagen {background-color="#4A90E2"}
+
+## Setup
+
+Um im Kurs mitarbeiten zu können, sollten Sie [`R`](https://cran.r-project.org/) und [*RStudio*]((https://posit.co/download/rstudio-desktop)) auf Ihrem Computer installiert haben.
+
+Wenn Sie Windows nutzen, sollten Sie zusätzlich die [RTools](https://cran.r-project.org/bin/windows/Rtools/) installieren.
+
+::: fragment
+Hat das für alle funktioniert?
+:::
+
+## Das *RStudio*-Interface {.smaller}
+
+Das Interface von *RStudio* besteht aus drei bzw. vier Bereichen.
+
+::: {.incremental}
+1.  **Source**: Hier können Sie `R`-Skripte erstellen und bearbeiten. In diesen Skripten können Sie Ihren Code schreiben, speichern und später wiederverwenden.
+
+2.  **Console**: Hier können Sie `R`-Code direkt eingeben und ausführen. Die Ergebnisse werden ebenfalls in der Konsole angezeigt.
+
+3. Ein Fenster mit der sog. **Environment** und der **History**: Hier werden alle Objekte angezeigt, die Sie in Ihrer aktuellen `R`-Sitzung erstellt haben, sowie alle Befehle, die Sie genutzt haben.
+
+4.  Ein Fenster, in dem u.a. installierte und geladene Pakete (**Packages** ) und Hilfe zu Funktionen und Paketen (**Help**) angezeigt werden
+:::
+
+## Die `R`-Konsole
+
+Das Einfachste, was Sie mit der R-Konsole tun können, ist, sie als Taschenrechner zu verwenden.
+
+```{r}
+2 + 2
+
+7 - 6
+
+3 * 4
+
+10 / 2
+
+2^3
+```
+
+## Workflow
+
+Sie sollten:
+
+::: {.incremental}
+- Ihren Code in `R`-Skripten schreiben und speichern, damit Sie diesen später wiederverwenden können
+
+- Code in `R`-Skripten kommentieren
+
+- Objekte, die Sie behalten möchten, exportieren, damit sie auch nach einem Neustart der `R`-Sitzung verfügbar sind
+
+- ein paar Einstellungen in *RStudio* anpassen, um sich einen guten Workflow anzugewöhnen
+
+Genauere Infsos hierzu finden Sie im Online-Buch im Abschnitt zum [*Arbeiten mit RStudio*](https://jobreu.github.io/social-media-data-r/02-rstudio.html).
+:::
+
+## Arbeitsverzeichnis {.smaller}
+
+Das Arbeitsverzeichnis (*Working Directory*) ist der Ordner auf Ihrem Computer, in dem `R` nach Dateien sucht, die Sie laden möchten, und in dem es Dateien speichert, die Sie erstellen.
+
+as aktuelle Arbeitsverzeichnis wird in der Zeile über der Konsole in *RStudio* angezeigt, wo auch die aktuell genutzte Version von `R` zu sehen ist. Sie können es sich auch über den Befehl `getwd()` anzeigen lassen.
+
+```{r}
+# Aktuelles Arbeitsverzeichnis anzeigen
+getwd()
+```
+
+Verändern können Sie das Arbeitsverzeichnis über das *RStudio*-Menü unter Session -> Set Working Directory oder mit dem Befehl `setwd()`.
+
+## Hilfreiche Funktionen in *RStudio*
+
+- Tastaturkürzel: *RStudio* bietet eine Vielzahl von Tastenkombinationen, mit denen Sie schneller und effizienter arbeiten können. Einige davon haben wir zuvor bereits gesehen. Eine Übersicht über die verfügbaren Tastenkombinationen finden Sie unter "Help" -> "Keyboard Shortcuts Help" in *RStudio*.
+
+- Tab Completion: In *RStudio* können Sie die Tab-Taste verwenden, um Code zu vervollständigen. Wenn Sie z.B. den Namen einer Funktion oder eines Objekts eingeben und dann die Tab-Taste drücken, zeigt *RStudio* eine Liste der möglichen Vervollständigungen an.
+
+## Objekte
+
+`R` ist eine sogenannte objektorientierte Programmiersprache. Das bedeutet, dass alles in `R` als Objekt betrachtet wird. Allgemein formuliert ist ein Objekt eine spezifische Datenstruktur, die Informationen enthält und bestimmte Eigenschaften und Verhaltensweisen aufweist. 
+
+Die wichtigsten Arten von Objekten für uns sind Vektoren und Dataframes.
+
+## Datentypen
+
+`R` kann mit vielen verschiedenen Arten von Daten und Variablen umgehen.
+
+Die wichtigsten für uns im Seminar sind numerische Variablen (`numeric`) und Zeichenketten (`character`).
+
+## Assignment
+
+In `R` können Sie Objekte erstellen und ihnen Werte zuweisen. Dies geschieht durch den sogenannten "Assignment Operator" `<-`. 
+
+Das einfachste Beispiel für eine Zuweisung in `R` ist die Zuweisung eines einzelnen Werts an ein Objekt. Dieser Wert kann beispielsweise eine einzelne Zahl oder eine Zeichenkette sein.
+
+```{r}
+# Zuweisung eines einzelnen Werts
+x <- 42
+y <- "Ich liebe R!"
+```
+
+## Datentypen bestimmen
+
+Den Datentyp eines Objekts kann man in `R` mit der Funktion `class()` überprüfen.
+
+```{r}
+# Datentyp eines Objekts überprüfen
+class(x)
+class(y)
+```
+
+## Vektoren
+
+Ein Vektor ist eine eindimensionale Datenstruktur, die Elemente desselben Typs enthält. Vektoren können z.B. numerisch (numeric), oder Zeichenketten (string/character) sein.
+
+```{r}
+# Mehrere Werte einem Objekt zuweisen
+age <- c(25, 30, 35, 40)
+names <- c("Alice", "Bob", "Charlie", "David")
+
+age
+names
+```
+
+## Dataframes
+
+Ein Dataframe ist eine zweidimensionale Datenstruktur, die Spalten mit unterschiedlichen Datentypen enthalten kann. Man kann sich einen Dataframe als eine Sammlung von Vektoren vorstellen, wobei jeder Vektor eine Spalte darstellt.
+
+```{r}
+# Einen Dataframe erstellen
+df <- data.frame(name = names, age = age)
+df
+```
+
+## Funktionen {.smaller}
+
+Für das allermeiste, was wir in `R` machen, verwenden wir Funktionen. Eine Funktion in `R` ist wie eine Art Mini-Programm, mit dem wir bestimmte Aufgaben ausführen können.
+
+Die meisten Funktionen in `R` haben Argumente, die es uns ermöglichen, die Funktion an unsere Bedürfnisse anzupassen. Argumente sind wie "Einstellungen" oder "Parameter", die wir der Funktion übergeben können, um ihr Verhalten zu steuern.
+
+```{r}
+# Einfache Funktion ohne Argumente
+Sys.Date() # Gibt das aktuelle Datum zurück
+
+# Einfache Funktion mit einem bzw. mehreren Argumenten
+mean(age) # Berechnet den Mittelwert eines numerischen Vektors
+```
+
+## Hilfe zu Funktionen
+
+Die Hilfe zu Funktionen kann man in *RStudio* aufrufen, indem man ein `?` vor den Namen der Funktion schreibt und die `()` dahinter weglässt. 
+
+```{r}
+#| eval: FALSE
+# Hilfe zu einer Funktion aufrufen
+?mean
+```
+
+## Pakete
+
+Pakete in `R` sind Sammlungen von Funktionen und teilweise auch Daten sowie Dokumentation dazu, die die Nutzungsmöglichkeiten von `R` umfassend erweitern. 
+
+Die zentrale Quelle für `R`-Pakete ist das [*Comprehensive R Archive Network* (CRAN)](https://cran.r-project.org/).
+
+## Pakete installieren
+
+Bevor Sie ein Paket in `R` nutzen können, müssen Sie es installieren. Dies geschieht mit der Funktion `install.packages()`, der Sie den Namen des Pakets als Argument übergeben.
+
+Eine Sammlung von Paketen, mit der wir im Kurs arbeiten werden, ist das `tidyverse`.
+
+```{r}
+#| eval: false
+
+install.packages("tidyverse")
+# da es sich hierbei um eine Sammlung von Paketen handelt, kann die Installation etwas dauern.
+```
+
+## Pakete laden
+
+Während man Pakete nur einmal installieren muss, muss man sie in jeder Sitzung neu laden. Dies geht mit dem Befehl `library()`.
+
+```{r}
+library(tidyverse)
+```
+
+## Daten importieren
+
+`R` kann Daten in vielen unterschiedlichen Formaten einlesen (importieren) und speichern (exportieren). Hierfür gibt es zahlreiche Funktionen und Pakete.
+
+Für die Arbeit mit Social-Media-Daten sind insbesondere zwei Formate relevant:
+
+1. CSV (Comma-Separated Values)
+
+2. JSON (JavaScript Object Notation)
+
+Wir fokussieren uns hier auf CSV-Dateien.
+
+## CSV-Dateien importieren
+
+Für den Import von CSV-Dateien bietet das Paket `readr` aus dem `tidyverse` die beiden Funktionen `read_csv()` und `read_csv2()`.
+
+Der Grund dafür, dass es zwei Funktionen gibt, ist, dass es verschiedene Varianten von CSV-Dateien gibt. Auch wenn wir sie als CSV für (Comma-Separated Values) heißen, sind Werte in den Dateien manchmal durch ein Semikolon oder ein Tabulator getrennt.
+
+## CSV-Daten importieren mit `readr`
+
+Für die weiteren Beispiele nutzen wir simulierte *YouTube*-Daten aus dem [*KODAQS Toolbox Tutorial* zum `R`-Paket `tubecleanr`](https://kodaqs-toolbox.gesis.org/github.com/gesiscss/tubecleanr_tool/index/). Wir können die CSV-Datei, die diese Daten enthält, direkt aus dem *GitHub*-Repository zu dem Tutorial herunterladen.
+
+```{r}
+library(readr)
+
+yt_demo <- read_csv2("https://raw.githubusercontent.com/gesiscss/tubecleanr_tool/refs/heads/master/data/simulated_yt.csv")
+```
+
+## Daten exportieren
+
+Für den Export von CSV-Dateien können wir die Funktion `write_csv()` aus dem Paket `readr` nutzen.
+
+```{r}
+#| eval: false
+write_csv(yt_demo, "../data/simulated_yt_export.csv")
+```
+
+# Data Wrangling
+
+## Das `tidyverse`
+
+Das [`tidyverse`](https://tidyverse.org/) ist eine Sammlung von R-Paketen, die das Importieren und Exportieren, die Aufbereitung und Visualisieren von Daten in `R` vereinfachen.
+
+> The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.
+
+Alle Pakete aus dem `tidyverse` können über das gleichnamige (Meta-)Paket installiert werden.
+
+## Tidy Data
+
+Tidy Data ist ein Kernprinzip des `tidyverse`.
+
+Die wichtigsten Grundsätze für **Tidy Data** data lauten:
+
+1. Jede Variable ist in einer eigenen Spalte.
+
+2. Jede Beobachtung ist in einer eigenen Zeile.
+
+3. Jeder Wert ist in einer eigenen Zelle.
+
+## Der Pipe-Operator `%>%`
+
+Der Pipe Operator (`%>%`) ist ein zentrales Element des `tidyverse` und ermöglicht es, mehrere Funktionen miteinander zu verketten, ohne dass man Zwischenergebnisse speichern muss.
+
+Kurz gesagt übergibt der Pipe-Operator das Ergebnis einer Funktion als erstes Argument an die nächste Funktion.
+
+## 👀 Erster Eindruck von Daten {.smaller}
+
+Für einen ersten Eindruck bietet das Paket `dplyr` die Funktion `glimpse()`.
+
+```{r}
+glimpse(yt_demo)
+```
+
+Wenn wir uns den gesamten Datenstz in *RStudio* anschauen wollen, können wir die Funktion `View()` verwenden. Diese öffnet die Daten in einem neuen Tab und zeigt sie in einer tabellarischen Ansicht an.
+
+```{r}
+#| eval: false
+View(yt_demo)
+```
+
+## Variablen auswählen
+
+Um bestimmte Variablen aus einem Datensatz auszuwählen, können wir die Funktion `select()` aus dem Paket `dplyr` verwenden.
+
+```{r}
+yt_selected <- yt_demo %>%
+  select(AuthorDisplayName, Comment, LikeCount)
+```
+
+## Variablen umbenennen mit `select()`
+
+```{r}
+yt_renamed <- yt_demo %>%
+  select(author = AuthorDisplayName, comment = Comment, likes = LikeCount)
+
+```
+
+## Variablen umbenennen mit `rename()`
+
+```{r}
+yt_renamed <- yt_demo %>%
+  rename(video_id = VideoID,
+         author = AuthorDisplayName,
+         comment = Comment,
+         likes = LikeCount,
+         published_at = PublishedAt,
+         updated_at = UpdatedAt,
+         parent_id = ParentID,
+         comment_id = CommentID)
+```
+
+## Fälle auswählen
+
+Um bestimmte Zeilen aus einem Datensatz auszuwählen, können Sie die Funktion `filter()` aus dem Paket `dplyr` verwenden. Diese Funktion ermöglicht es, Zeilen basierend auf bestimmten Bedingungen auszuwählen und einen neuen Datensatz zu erstellen, der nur diese Zeilen enthält.
+
+```{r}
+yt_popular <- yt_demo %>%
+  filter(LikeCount > 100)
+```
+
+## Fälle auswählen mit `filter()` {.smaller}
+
+Um die Funktion `filter()` sinnvoll einsetzen zu können, ist es wichtig, die wichtigsten logischen Operatoren zu kennen, die in den Bedingungen verwendet werden können. Dazu gehören:
+
+- `==` (gleich)
+
+- `!=` (ungleich)
+
+- `<` (kleiner als)
+
+- `>` (größer als)
+
+- `<=` (kleiner oder gleich)
+
+- `>=` (größer oder gleich)
+
+:::  {.fragment}
+Eine besondere zusätzliche Option bietet die Funktion `between()`, mit der Sie Zeilen auswählen können, deren Werte in einem bestimmten Bereich liegen.
+:::
+
+## Befehle verketten
+
+Wie bereits erwähnt, können Sie mit dem  "Pipe"-Operator `%>%`mehrere Befehle miteinander verketten.
+
+```{r}
+yt_demo_new <- yt_demo %>%
+  filter(LikeCount > 50) %>%
+  select(AuthorDisplayName, Comment, LikeCount)
+```
+
+## Variablen erstellen
+
+Mit der Funktion `mutate` aus dem `dplyr`-Paket können Sie Variablen in einem Dataframe erstellen oder verändern. Das grundlegende Vorgehen dafür ist wie folgt: Sie geben an, a) welche Variable(n) Sie erstellen oder verändern möchten und b) wie bzw. mit welchen Funktionen die Variable(n) erstellt oder verändert werden soll.
+
+```{r}
+yt_demo <- yt_demo %>%
+  mutate(comment_length = nchar(Comment)) # Erstellt eine neue Variable, die die Länge des Kommentars angibt
+```
+
+## Variablen verändern
+
+Eine weitere häufige Art der Veränderung von Variablen ist die Veränderung ihres Typse. Hierfür gibt es Funktionen wie `as.numeric()` oder `as.character()`.
+
+```{r}
+yt_demo <- yt_demo %>%
+  mutate(ParentID = as.character(ParentID))
+```
+
+## Fehlende Werte {.smaller}
+
+Das Symbol für fehlende Werte in `R` ist `NA`.
+
+Wenn es um fehlende Werte und die Veränderung von Variablen geht, gibt es zwei Optionen:
+
+1. Sie können fehlende Werte in einer Variable durch einen bestimmten Wert ersetzen, z.B. "unknown" oder "other". Dies kann z.B. sinnvoll sein, wenn Sie diese Fälle in Analysen berücksichtigen möchten.
+
+2. Sie können fbestimmte Werte in fehlende Werte umkodieren. Dies kann z.B. sinnvoll sein, wenn Sie bestimmte Werte in der Variable haben, die eigentlich fehlende Werte darstellen (z.B. "unknown" oder leere Textstrings "").
+
+## Fehlende Werte ersetzen
+
+Um fehlende Werte in andere Werte umzuwandeln, können Sie die Funktion `replace_na()` aus dem Paket `tidyr` verwenden.
+
+```{r}
+yt_demo <- yt_demo %>%
+  replace_na(list(ParentID = "none"))
+```
+
+## Werte in fehlende Werte umkodieren
+
+Um bestimmte Werte in fehlende Werte `NA` umzuwandeln, können Sie die Funktion `na_if()` aus `dplyr` verwenden.
+
+```{r}
+yt_demo <- yt_demo %>%
+  mutate(
+    ParentID = na_if(ParentID, "none")
+  )
+```
+
+## Textdaten
+
+Das Paket `stringr` aus dem `tidyverse` bietet eine Vielzahl von Funktionen, mit denen Sie Textdaten in `R` bearbeiten und analysieren können.
+
+siehe Buch bzw. Live Coding
+
+## Regular Expressions
+
+siehe Buch bzw. Live Coding
+
+# 🔭 Ausblick {background-color="#4A90E2"}
+
+## Die nächsten Wochen
+
+In den nächsten beiden Sitzungen (am 28.05. sowie am 11.06.) beschäftigen wir uns mit der Sammlung und Analyse von Social-Media-Daten. Dabei konzentrieren wir uns auf drei Plattformen: *TikTok*, *Bluesky* und *YouTube*.
+
+Danach setzen Sie das erworbene Wissen und Ihre eigenen Ideen in kleinen empirischen Forschungsprojekten in Form von Gruppenarbeit um.
+
+## 📑 Hausaufgabe 1
 
 Schauen Sie sich Kapitel 1 bis 9 im [Online-Buch zum Kurs](https://jobreu.github.io/social-media-data-r/) an.
 
 Überlegen Sie dabei:
 
-- Was weiß/kann ich bereits?
+-   Was weiß/kann ich bereits?
 
-- Was weiß/kann ich noch nicht bzw. nicht mehr?
+-   Was weiß/kann ich noch nicht bzw. nicht mehr?
 
 Schauen Sie gerne auch in die Kapitel unter "Tipps & Tricks"; insbesondere dann, wenn Sie mit den Inhalten aus den Kapiteln 1 bis 9 schon vertraut sind.
 
-## The Source Pane
+## 📑 Hausaufgabe 2
 
-{/\* This creates a standard slide \*/} This is where you write scripts to save for later.
+Für die Sammlung von Social-Media-Daten benötigen Sie mindestens eins der folgenden Dinge (am besten aber alle):
 
-# Topic 2: Working with Data {background-color="#4A90E2"}
+1.  Einen [*TikTok*](https://www.tiktok.com/)-Account
 
-{/\* This creates the next centered transition slide \*/}
+2.  Einen [*Bluesky*](https://bsky.app/)-Account
 
-## Loading Datasets
+3.  Einen *Google*-Account und einen *YouTube* API Key Wie Sie einen *YouTube* API Key erhalten, wird ausführlich in einem [Tutorial von Communalytic beschrieben](https://communalytic.org/docs/obtaining-youtube-api-key/) sowie im GESIS Guide [*How to Collect Data with the YouTube Data API*](https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf) [@KohneEtAl2024].
 
-{/\* Standard slide \*/} Let's look at the `read_csv()` function...
+## References

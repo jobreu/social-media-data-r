@@ -1,3 +1,12 @@
 # Aus dem Leben einer Funktion {#sec-lifecycle}
 
-tbd
+Funktionen im `tidyverse` haben einen sogenannten Lifecycle, der beschreibt, wie Funktionen entwickelt, veröffentlicht und gewartet werden. Um dies umzusetzen, gibt es ein eigenes Paket namens [`lifecycle`](https://lifecycle.r-lib.org/index.html). In der Dokumentation zu diesem Paket werden die einzelnen [Phasen der Entwicklung einer Funktion und ihre Bedeutung](https://lifecycle.r-lib.org/articles/stages.html) sehr ausführlich beschrieben.
+
+Die nachfolgende Tabelle bietet einen kurzen Überblick über die wichtigsten Phasen und was diese für die Nutzung der Funktionen bedeuten:
+
+| Status | Bedeutung | Nutzung |
+| :--- | :--- | :--- |
+| **Experimental** | Eine völlig neue Idee; Argumente oder Verhaltensweisen könnten sich ändern. | Mit Vorsicht verwenden! |
+| **Stable** | Die Funktion ist ausgereift; die Entwickler_innen versprechen, dass sie stabil funktioniert. | Nutzen Sie es nach Belieben! |
+| **Superseded** | Es gibt zwar eine bessere Alternative, doch diese Funktion bleibt bestehen. | Ziehen Sie die neue Alternative in Betracht; es ist jedoch nicht notwendig, alten Code neu zu schreiben. |
+| **Deprecated** | Diese Funktion wird ausgemustert und löst eine Warnung aus. | Verwenden Sie die Funktion nicht mehr. Aktualisieren Sie Ihren Code. |

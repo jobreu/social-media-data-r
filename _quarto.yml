@@ -6,6 +6,8 @@ project:
     - "!slides/"
 
 engine: knitr
+
+lang: de
     
 book:
   title: "Sammlung und Analyse von Social-Media-Daten mit R"

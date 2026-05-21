@@ -6,7 +6,7 @@ Auch wenn wir Daten in `R` selbst generieren bzw. eingeben können, kommen Daten
 
 `R` kann Daten in vielen unterschiedlichen Formaten einlesen (importieren) und speichern (exportieren). Hierfür gibt es zahlreiche Funktionen und Pakete.
 
-Für die Arbeit mit Social-eMedia-Daten sind insbesondere folgende Formate relevant:
+Für die Arbeit mit Social-Media-Daten sind insbesondere folgende Formate relevant:
 
 - JSON (JavaScript Object Notation): Ein weit verbreitetes Format für den Austausch von Daten, insbesondere in Webanwendungen.
 

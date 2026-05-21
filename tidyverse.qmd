@@ -25,9 +25,7 @@ Wenn die Pakete aus dem `tidyverse` geladen werden, bekommt man in der Konsole e
 ::: {.callout-note title="tidyverse vs. base R" collapse="true"}
 Die meisten der Dinge, die man mit den Paketen aus dem `tidyverse` machen kann, sind auch mit Base `R` möglich. Die Syntax hierfür ist jedoch in der Regel umständlicher und nicht so intuitiv. Die Nutzung von base `R` für die Aufbereitung von Daten ist daher insbesondere für Einsteiger_innen schwieriger.
 
-Ein eigentlich positiver Aspekt, der allerdings auch ein Nachteil sein kann, ist, dass die Funktionen aus den Paketen im `tidyverse` sehr intensiv und z.T. auch sehr grundledend weiterentwickelt werden. Dies kann dazu führen, dass alter Code irgendwann nicht mehr (richtig) funktioniert. Base `R` ist im Vergleich dazu beständiger.
-
-Eine kurze Erklärung zum sogenannten Lifecycle von Funktionen im `tidyverse` findet sich im @sec-lifecycle.
+Ein eigentlich positiver Aspekt, der allerdings auch ein Nachteil sein kann, ist, dass die Funktionen aus den Paketen im `tidyverse` sehr intensiv und z.T. auch sehr grundledend weiterentwickelt werden. Dies kann dazu führen, dass alter Code irgendwann nicht mehr (richtig) funktioniert. Base `R` ist im Vergleich dazu beständiger. Eine kurze Erklärung zum sogenannten Lifecycle von Funktionen im `tidyverse` findet sich im @sec-lifecycle.
 :::
 
 ## Kernkonzepte des `tidyverse`

@@ -30,6 +30,8 @@ Auf der Website des R-Projekts gibt es ein hilfreiches [kurzes Tutorial zum Them
 
 Hierdurch öffnet sich im "Help"-Tab in *RStudio* die entsprechende Hilfeseite. Auf dieser Seite finden Sie eine kurze Beschreibung der Funktion oder des Pakets, Informationen zu den Argumenten, die die Funktion erwartet, sowie Beispiele für die Verwendung der Funktion.
 
+*Hinweis*: Für die Funktionen aus den Paketen des `tidyverse` gibt es auf der Hilfeseite auch angeben zum Status der Funktion entlang des sogenannten "Lifecycle". Erklärungen dazu finden Sie im @sec-lifecycle.
+
 Man kann auch alle Hilfedateien für ein bestimmtes Paket mit dem Befehl `help(package = „packagename“)`durchsuchen.
 
 ```{r}

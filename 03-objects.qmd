@@ -28,7 +28,7 @@ Für diesen Kurs werden wir uns hauptsächlich mit **Vektoren** und **Dataframes
 
 - **Logisch (logical)**: Dieser Datentyp kann nur die Werte `TRUE` oder `FALSE` annehmen. Logische Werte werden beim Programmieren in `R` z.B. in Bedingungen und Schleifen verwendet.
 
-Im Kurs werden wir v.a. mit den Typen `character` (Textdaten) und `numeric` (Zahlen) arbeiten.
+Im Kurs werden wir v.a. mit den Typen `character` (Textdaten) und `numeric` (Zahlen) arbeiten. Ein weiterer Datentyp, der insb. auch bei Social-Media-Daten häufig vorkommt, sind Angaben zu Datum und Zeit. Das häufigste Beispiel dazu sind sogenannte Timestamps (Zeitstempel), die z.B. angeben, wann ein Post oder Kommentar veröffentlicht wurde. Ein hilfreiches Paket für die Arbeit mit solchen Daten ist [`lubridate`](https://lubridate.tidyverse.org/).
 
 Der Typ eines Objekts bestimmt, was damit in `R` gemacht werden kann. Z.B. können mathematische Operationen mit numerischen Objekten durchgeführt werden, aber nicht mit Zeichenobjekten.
 
