@@ -1,13 +1,17 @@
-# Working with text data {#sec-textdata}
+# Arbeiten mit Textdaten {#sec-textdata}
 
 ## `stringr`
 
-Das Paket `stringr` aus dem `tidyverse` bietet eine Vielzahl von Funktionen, mit denen Sie Textdaten in `R` bearbeiten und analysieren können.
+Das [Paket `stringr`](https://stringr.tidyverse.org/) aus dem `tidyverse` bietet eine Vielzahl von Funktionen, mit denen Sie Textdaten in `R` bearbeiten und analysieren können.
 
 Die wichtigsten Funktionen sind:
+
 - `str_detect()`: Überprüft, ob ein bestimmtes Muster in einem Text vorhanden ist.
+
 - `str_extract()`: Extrahiert das erste Vorkommen eines Musters aus einem Text.
+
 - `str_replace()`: Ersetzt das erste Vorkommen eines Musters durch einen anderen Text.
+
 - `str_replace_all()`: Ersetzt alle Vorkommen eines Musters durch einen anderen Text.
 
 ## Regular Expressions (Regex)
@@ -32,8 +36,6 @@ Regular Expressions sind sehr nützlich und mächtig in Kombination mit den Funk
 ## Building a Regex Pattern
 
 Let's extract the username from the text: **`@rstats_guru`**
-
-<br>
 
 ::: {.fragment}
 **1.** `@` *(Matches the literal @ symbol)*

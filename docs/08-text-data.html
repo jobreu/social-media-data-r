@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Working with text data – Sammlung und Analyse von Social-Media-Daten mit R</title>
+<title>10&nbsp; Arbeiten mit Textdaten – Sammlung und Analyse von Social-Media-Daten mit R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,7 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./names.html" rel="next">
+<link href="./16-errors.html" rel="next">
 <link href="./07-wrangling-variables.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./08-text-data.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Working with text data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./08-text-data.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Arbeiten mit Textdaten</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -232,7 +232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08-text-data.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Working with text data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Arbeiten mit Textdaten</span></span></a>
   </div>
 </li>
       </ul>
@@ -248,56 +248,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./names.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Namen in <code>R</code></span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./codebooks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Codebücher</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./13-comments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kommentare in R-Skripten</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./14-help.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">🆘 Hilfe!</span></span></a>
+  <a href="./16-errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15-message-warning-error.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Meldungen, Warnungen, Fehler</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Meldungen, Warnungen, Fehler</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-errors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./17-paths.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Dateipfade</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Projekte in <em>RStudio</em></span></span></a>
+  <a href="./14-help.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">🆘 Hilfe!</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18-function-lifecycle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Aus dem Leben einer Funktion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Aus dem Leben einer Funktion</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-comments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Kommentare in R-Skripten</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./names.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Namen in <code>R</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./codebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Codebücher</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-paths.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Dateipfade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Projekte in <em>RStudio</em></span></span></a>
   </div>
 </li>
       </ul>
@@ -328,9 +328,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./08-text-data.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Working with text data</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./08-text-data.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Arbeiten mit Textdaten</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-textdata" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Working with text data</span></span></h1>
+<h1 class="title"><span id="sec-textdata" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Arbeiten mit Textdaten</span></span></h1>
 </div>
 
 
@@ -349,8 +349,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="stringr" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="stringr"><span class="header-section-number">10.1</span> <code>stringr</code></h2>
-<p>Das Paket <code>stringr</code> aus dem <code>tidyverse</code> bietet eine Vielzahl von Funktionen, mit denen Sie Textdaten in <code>R</code> bearbeiten und analysieren können.</p>
-<p>Die wichtigsten Funktionen sind: - <code>str_detect()</code>: Überprüft, ob ein bestimmtes Muster in einem Text vorhanden ist. - <code>str_extract()</code>: Extrahiert das erste Vorkommen eines Musters aus einem Text. - <code>str_replace()</code>: Ersetzt das erste Vorkommen eines Musters durch einen anderen Text. - <code>str_replace_all()</code>: Ersetzt alle Vorkommen eines Musters durch einen anderen Text.</p>
+<p>Das <a href="https://stringr.tidyverse.org/">Paket <code>stringr</code></a> aus dem <code>tidyverse</code> bietet eine Vielzahl von Funktionen, mit denen Sie Textdaten in <code>R</code> bearbeiten und analysieren können.</p>
+<p>Die wichtigsten Funktionen sind:</p>
+<ul>
+<li><p><code>str_detect()</code>: Überprüft, ob ein bestimmtes Muster in einem Text vorhanden ist.</p></li>
+<li><p><code>str_extract()</code>: Extrahiert das erste Vorkommen eines Musters aus einem Text.</p></li>
+<li><p><code>str_replace()</code>: Ersetzt das erste Vorkommen eines Musters durch einen anderen Text.</p></li>
+<li><p><code>str_replace_all()</code>: Ersetzt alle Vorkommen eines Musters durch einen anderen Text.</p></li>
+</ul>
 </section>
 <section id="regular-expressions-regex" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="regular-expressions-regex"><span class="header-section-number">10.2</span> Regular Expressions (Regex)</h2>
@@ -407,7 +413,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="building-a-regex-pattern" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="building-a-regex-pattern"><span class="header-section-number">10.4</span> Building a Regex Pattern</h2>
 <p>Let’s extract the username from the text: <strong><code>@rstats_guru</code></strong></p>
-<p><br></p>
 <div class="fragment">
 <p><strong>1.</strong> <code>@</code> <em>(Matches the literal @ symbol)</em></p>
 </div>
@@ -848,8 +853,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./names.html" class="pagination-link" aria-label="Namen in `R`">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Namen in <code>R</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./16-errors.html" class="pagination-link" aria-label="🛠️Troubleshooting 101">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

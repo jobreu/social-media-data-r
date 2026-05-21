@@ -33,15 +33,15 @@ book:
       - 08-text-data.qmd
     - part: "Tipps & Tricks"
       chapters:
+      - 16-errors.qmd
+      - 15-message-warning-error.qmd
+      - 14-help.qmd
+      - 18-function-lifecycle.qmd
+      - 13-comments.qmd
       - names.qmd
       - codebooks.qmd
-      - 13-comments.qmd
-      - 14-help.qmd
-      - 15-message-warning-error.qmd
-      - 16-errors.qmd
       - 17-paths.qmd
       - projects.qmd
-      - 18-function-lifecycle.qmd
     - references.qmd
 
 crossref:
