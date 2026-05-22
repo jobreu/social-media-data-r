@@ -1,0 +1,51 @@
+---
+title: "Sammlung von Social-Media-Daten mit R"
+subtitle: "Seminarsitzung 5"
+author: "Prof. Dr. Johannes Breuer"
+date: "2026-05-28"
+date-format: long
+
+# Optional: Add branding just to the title slide
+title-slide-attributes:
+  data-background-color: "#0F2E3D" # A dark blue background
+  data-background-image: "../images/logo.png"
+  data-background-size: "15%"
+  data-background-position: "top right"
+---
+
+# Social-Media-Daten {background-color="#4A90E2"}
+
+## Methoden zur Sammlung von Social-Media-Daten
+
+::: {.incremental}
+- APIs (Application Programming Interfaces)
+
+- Web Scraping
+
+- Datenspende
+
+[@BreuerEtAl2020]
+
+:::
+
+# Bluesky {background-color="#4A90E2"}
+
+## Setup
+
+Für die Sammlung von *Bluesky*-Daten nutzen wir das [Paket `atrrr`](https://jbgruber.github.io/atrrr/) von Johannes Gruber. Um es zu benutzen benötigen wir einen *Bluesky*-Account.
+
+Wie immer müssen wir das Paket zunächst installieren.
+
+```{r}
+#| eval: false
+
+install.packages("atrrr")
+```
+
+Und dann müssen wir es in jeder Sitzung neu laden.
+
+```{r}
+library(atrrr)
+```
+
+## References

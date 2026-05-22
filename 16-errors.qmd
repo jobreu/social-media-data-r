@@ -2,7 +2,7 @@
 
 ## Fehler
 
-Erschrecken Sie sich nicht, wenn Sie in `R` eine Fehlermeldung erhalten. Das kommt häufig vor, insbesondere wenn Sie gerade erst anfangen, mit `R` zu arbeiten. Die meisten Fehler lassen sich relativ einfach lösen.
+Erschrecken Sie sich nicht, wenn Sie in `R` eine Fehlermeldung erhalten. Das kommt häufig vor, insbesondere wenn Sie gerade erst anfangen, mit `R` zu arbeiten. Die meisten Fehler lassen sich relativ einfach lösen. Zudem sind manche Meldungen in `R` auch einfach nur Meldungen (messages) oder Warnungen (warnings) und keine Fehler (errors). Die Unterschiede zwischen diesen werden in @sec-messages erklärt.
 
 Klassiche Fehlerquellen sind z.B. folgende:
 

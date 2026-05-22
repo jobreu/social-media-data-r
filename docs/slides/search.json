@@ -1,5 +1,26 @@
 [
   {
+    "objectID": "session-02.html#methoden-zur-sammlung-von-social-media-daten",
+    "href": "session-02.html#methoden-zur-sammlung-von-social-media-daten",
+    "title": "Sammlung von Social-Media-Daten mit R",
+    "section": "Methoden zur Sammlung von Social-Media-Daten",
+    "text": "Methoden zur Sammlung von Social-Media-Daten\n\nAPIs (Application Programming Interfaces)\nWeb Scraping\nDatenspende\n\n(Breuer et al., 2020)"
+  },
+  {
+    "objectID": "session-02.html#setup",
+    "href": "session-02.html#setup",
+    "title": "Sammlung von Social-Media-Daten mit R",
+    "section": "Setup",
+    "text": "Setup\nFür die Sammlung von Bluesky-Daten nutzen wir das Paket atrrr von Johannes Gruber. Um es zu benutzen benötigen wir einen Bluesky-Account.\nWie immer müssen wir das Paket zunächst installieren.\n\ninstall.packages(\"atrrr\")\n\nUnd dann müssen wir es in jeder Sitzung neu laden.\n\nlibrary(atrrr)"
+  },
+  {
+    "objectID": "session-02.html#references",
+    "href": "session-02.html#references",
+    "title": "Sammlung von Social-Media-Daten mit R",
+    "section": "References",
+    "text": "References\n\n\n\n\nBreuer, J., Bishop, L., & Kinder-Kurlanda, K. (2020). The Practical and Ethical Challenges in Acquiring and Sharing Digital Trace Data: Negotiating Public-Private Partnerships. New Media & Society, 22(11), 2058–2080. https://doi.org/10.1177/1461444820924622"
+  },
+  {
     "objectID": "session-01.html#was-bisher-geschah",
     "href": "session-01.html#was-bisher-geschah",
     "title": "Refresher R Basics",
@@ -116,7 +137,7 @@
     "href": "session-01.html#funktionen",
     "title": "Refresher R Basics",
     "section": "Funktionen",
-    "text": "Funktionen\nFür das allermeiste, was wir in R machen, verwenden wir Funktionen. Eine Funktion in R ist wie eine Art Mini-Programm, mit dem wir bestimmte Aufgaben ausführen können.\nDie meisten Funktionen in R haben Argumente, die es uns ermöglichen, die Funktion an unsere Bedürfnisse anzupassen. Argumente sind wie “Einstellungen” oder “Parameter”, die wir der Funktion übergeben können, um ihr Verhalten zu steuern.\n\n# Einfache Funktion ohne Argumente\nSys.Date() # Gibt das aktuelle Datum zurück\n\n[1] \"2026-05-21\"\n\n# Einfache Funktion mit einem bzw. mehreren Argumenten\nmean(age) # Berechnet den Mittelwert eines numerischen Vektors\n\n[1] 32.5"
+    "text": "Funktionen\nFür das allermeiste, was wir in R machen, verwenden wir Funktionen. Eine Funktion in R ist wie eine Art Mini-Programm, mit dem wir bestimmte Aufgaben ausführen können.\nDie meisten Funktionen in R haben Argumente, die es uns ermöglichen, die Funktion an unsere Bedürfnisse anzupassen. Argumente sind wie “Einstellungen” oder “Parameter”, die wir der Funktion übergeben können, um ihr Verhalten zu steuern.\n\n# Einfache Funktion ohne Argumente\nSys.Date() # Gibt das aktuelle Datum zurück\n\n[1] \"2026-05-22\"\n\n# Einfache Funktion mit einem bzw. mehreren Argumenten\nmean(age) # Berechnet den Mittelwert eines numerischen Vektors\n\n[1] 32.5"
   },
   {
     "objectID": "session-01.html#hilfe-zu-funktionen",

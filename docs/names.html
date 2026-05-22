@@ -323,7 +323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#namen-für-dateien" id="toc-namen-für-dateien" class="nav-link" data-scroll-target="#namen-für-dateien"><span class="header-section-number">16.3</span> Namen für Dateien</a></li>
   <li><a href="#sec-funcnames" id="toc-sec-funcnames" class="nav-link" data-scroll-target="#sec-funcnames"><span class="header-section-number">16.4</span> Namen für Funktionen</a>
   <ul class="collapse">
-  <li><a href="#masking" id="toc-masking" class="nav-link" data-scroll-target="#masking"><span class="header-section-number">16.4.1</span> 😷 Masking</a></li>
+  <li><a href="#sec-masking" id="toc-sec-masking" class="nav-link" data-scroll-target="#sec-masking"><span class="header-section-number">16.4.1</span> 😷 Masking</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -377,8 +377,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="16.4" class="anchored" data-anchor-id="sec-funcnames"><span class="header-section-number">16.4</span> Namen für Funktionen</h2>
 <p>Es gibt eine sehr große Zahl von Paketen für <code>R</code>. Laut der Seite <a href="https://www.r-pkg.org/">METACRAN</a> gab es am 19. Mai 2025 fast 23.700 Pakete auf <em>CRAN</em> (hinzu kommen noch Pakete aus anderen Quellen wie <em>GitHub</em>). Diese werden von vielen unterschiedlichen Personen entwickelt (laut METACRAN waren es am 19.05.2025 insgesamt knapp 10.600 sogenannte “Package Maintainer”).</p>
 <p>Angesichts dieser Vielzahl ist es nicht verwunderlich, dass es in <code>R</code> viele Funktionen gibt, die denselben Namen haben (zumal es auch Grenzen für die Kreativität bei der Benennung von Funktionen gibt).Lädt man in einer <code>R</code>-Session verschiedene Pakete, die Funktionen mit demselben Namen verwenden, führt dies zu sogenannten “namespace conflicts”.</p>
-<section id="masking" class="level3" data-number="16.4.1">
-<h3 data-number="16.4.1" class="anchored" data-anchor-id="masking"><span class="header-section-number">16.4.1</span> 😷 Masking</h3>
+<section id="sec-masking" class="level3" data-number="16.4.1">
+<h3 data-number="16.4.1" class="anchored" data-anchor-id="sec-masking"><span class="header-section-number">16.4.1</span> 😷 Masking</h3>
 <p>Wenn Sie ein Paket laden und einige seiner Funktionen dieselben Namen haben wie Funktionen aus Paketen, die Sie zuvor in Ihrer aktuellen <code>R</code>-Sitzung geladen haben, werden diese Funktionen „ausgeblendet“ (engl. “masked”).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

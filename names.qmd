@@ -36,7 +36,7 @@ Es gibt eine sehr große Zahl von Paketen für `R`. Laut der Seite [METACRAN](ht
 
 Angesichts dieser Vielzahl ist es nicht verwunderlich, dass es in `R` viele Funktionen gibt, die denselben Namen haben (zumal es auch Grenzen für die Kreativität bei der Benennung von Funktionen gibt).Lädt man in einer `R`-Session verschiedene Pakete, die Funktionen mit demselben Namen verwenden, führt dies zu sogenannten "namespace conflicts".
 
-### 😷 Masking
+### 😷 Masking {#sec-masking}
 
 Wenn Sie ein Paket laden und einige seiner Funktionen dieselben Namen haben wie Funktionen aus Paketen, die Sie zuvor in Ihrer aktuellen `R`-Sitzung geladen haben, werden diese Funktionen „ausgeblendet“ (engl. "masked").
 

@@ -1,3 +1,27 @@
 # Meldungen, Warnungen, Fehler {#sec-messages}
 
-tbd
+Wenn man in `R` Befehle ausführt, kann es sein, dass zusätzlich zum erwarteten Output oder stattdessen Meldungen (i.d.R. in der Konsole) angezeigt werden. Es gibt dabei grundlegend drei Arten von Rückmeldungen: Meldungen (messages), Warnungen (warnings) und Fehler (errors). Es ist wichtig, die Unterschiede zwischen diesen zu verstehen, um angemessen darauf reagieren zu können.
+
+- **Meldungen (messages)**: Diese geben zusätzliche Informationen über den ausgeführten Befehl oder den Zustand des Programms. Sie sind in der Regel informativ und erfordern keine Aktion. Zum Beispiel könnte eine Meldung anzeigen, dass ein Paket erfolgreich geladen wurde. Die Meldung zum "Masking" (siehe @sec-masking) beim Laden des Pakets `tidyverse` gehört z.B. in diese Kategorie. 
+
+- **Warnungen (warnings)**: Diese weisen auf potenzielle Probleme oder unerwartetes Verhalten hin, aber sie verhindern nicht die Ausführung des Codes. Es ist ratsam, Warnungen zu beachten und zu verstehen, da sie auf mögliche Fehlerquellen hinweisen können. Zum Beispiel könnte eine Warnung darauf hinweisen, dass eine Funktion veraltet ist (siehe dazu @sec-lifecycle).
+
+- **Fehler (errors)**: Diese treten auf, wenn ein Befehl nicht erfolgreich ausgeführt werden kann. Fehler verhindern die weitere Ausführung des Codes und müssen behoben werden, bevor der Code weiterlaufen kann. Zum Beispiel könnte ein Fehler auftreten, wenn eine Funktion mit ungültigen Argumenten aufgerufen wird (etwa weil ein erwähntes Objekt nicht existiert).
+
+Beispiel für eine Meldung
+
+```{r}
+library(tidyverse)
+```
+
+Beispiel für eine Warnung
+
+```{r}
+as.numeric(c("1", "2", "Vogel"))
+```
+
+Beispiel für einen Fehler
+```{r}
+#| error: true
+mean(variable) # das Objekt variable existiert nicht
+```
