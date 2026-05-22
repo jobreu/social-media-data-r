@@ -11,6 +11,8 @@ Wenn man in `R` Befehle ausführt, kann es sein, dass zusätzlich zum erwarteten
 Beispiel für eine Meldung
 
 ```{r}
+#| warning: false
+#| message: true
 library(tidyverse)
 ```
 

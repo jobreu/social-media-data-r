@@ -26,3 +26,7 @@ Das Buch wurde mit [Quarto](https://quarto.org/docs/books) erstellt und orientie
 -   [Communication Science R Book](https://dataliteracy.cc/getting-started/) von Kasper Welbers
 -   dem [Kurs *Introduction to R for Data Analysis*](https://github.com/StefanJuenger/r-intro-gesis-2022) für die *GESIS Summer School in Survey Methodology* 2022 von Stefan Jünger, Veronika Batzdorfer und mir
 -   dem [GESIS-Workshop *Automatic Sampling and Analysis of YouTube Comments*](https://github.com/jobreu/youtube-workshop-gesis-2024) von Julian Kohne, M. Rohangis Mohseni, Annika Deubel und mir
+
+## Lizenz
+
+Das Buch steht unter der [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/). Das bedeutet, dass Sie das Buch für nicht-kommerzielle Zwecke frei nutzen, teilen und anpassen können, solange Sie den ursprünglichen Autoren nennen und Ihre Änderungen unter derselben Lizenz veröffentlichen.

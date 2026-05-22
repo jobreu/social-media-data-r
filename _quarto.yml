@@ -5,7 +5,12 @@ project:
     - "*.qmd"
     - "!slides/"
 
-engine: knitr
+repo-url: "https://github.com/jobreu/social-media-data-r"
+repo-actions: [edit, issue]
+
+page-footer:
+    left: "Materials created by Johannes Breuer"
+    right: "This work is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)."
 
 lang: de
     

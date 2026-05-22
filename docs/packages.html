@@ -313,14 +313,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Inhaltsverzeichnis</h2>
-   
-  <ul>
-  <li><a href="#informationen-über-die-aktuelle-r-sitzung-einschließlich-der-geladenen-pakete" id="toc-informationen-über-die-aktuelle-r-sitzung-einschließlich-der-geladenen-pakete" class="nav-link active" data-scroll-target="#informationen-über-die-aktuelle-r-sitzung-einschließlich-der-geladenen-pakete"><span class="header-section-number">6</span> Informationen über die aktuelle R-Sitzung, einschließlich der geladenen Pakete</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -375,13 +369,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Eine Übersicht darüber, welche Pakete man installiert und in der aktuellen Sitzung geladen hat, liefert der “Packages”-Tab in <em>RStudio</em>.</p>
 <p>Alternativ kann man aber auch die Funktionen <code>installed.packages()</code> und <code>sessionInfo()</code> verwenden.</p>
-<p>#| eval: false # Alle installierten Pakete auflisten installed.packages()</p>
-<section id="informationen-über-die-aktuelle-r-sitzung-einschließlich-der-geladenen-pakete" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Informationen über die aktuelle R-Sitzung, einschließlich der geladenen Pakete</h1>
-<p>sessionInfo()</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Alle installierten Pakete auflisten</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">installed.packages</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Informationen über die aktuelle R-Sitzung, einschließlich der geladenen Pakete</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

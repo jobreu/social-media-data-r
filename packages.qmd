@@ -61,3 +61,4 @@ installed.packages()
 
 # Informationen über die aktuelle R-Sitzung, einschließlich der geladenen Pakete
 sessionInfo()
+```
