@@ -5,19 +5,17 @@ project:
     - "*.qmd"
     - "!slides/"
 
-repo-url: "https://github.com/jobreu/social-media-data-r"
-repo-actions: [edit, issue]
-
-page-footer:
-    left: "Materials created by Johannes Breuer"
-    right: "This work is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)."
-
 lang: de
     
 book:
   title: "Sammlung und Analyse von Social-Media-Daten mit R"
   author: "Johannes Breuer"
   date: "05-21-2026"
+  repo-url: "https://github.com/jobreu/social-media-data-r"
+  repo-actions: [edit, issue]
+  page-footer:
+    left: "Materials created by Johannes Breuer"
+    right: "This work is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)."
   sidebar:                       
     logo: images/logo.png
   chapters:
