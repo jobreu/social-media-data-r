@@ -1,0 +1,115 @@
+# Datensammlung: *TikTok* {#sec-tiktok-collection}
+
+## Setup
+
+### Pakete laden
+
+Zur Sammlung von *TikTok*-Daten nutzen wir das Paket [`traktok`](https://jbgruber.github.io/traktok/). Dieses bietet Funktionen für den Zugriff auf Daten über die [*TikTok* Research API](https://developers.tiktok.com/products/research-api/), für die man sich bewerben muss, sowie eine sogenannte "Hidden API" bzw. "Unofficial API" (über Web Scraping).
+
+Wie immer müssen wir das Paket zunächst (einmalig) installieren und dann (in jeder Sitzung) laden.
+
+```{r}
+#| eval: false
+install.packages("traktok")
+```
+
+```{r}
+library(traktok)
+```
+
+Zusätzlich nutzen wir auch in diesem Abschnitt Funktionen aus den `tidyverse`-Paketen. Sofern dies in der aktuellen `R`-Session noch nicht geschehen ist, müssen wir auch diese Pakete erst laden
+
+```{r}
+#| warning: false
+#| message: false
+library(tidyverse)
+```
+
+### Authentifizierung
+
+Wir nutzen hier die ["Unofficial API"](https://jbgruber.github.io/traktok/articles/unofficial-api.html). Um diese nutzen zu können, müssen wir uns mit einem *TikTok*-Account im Browser einloggen und die Cookies für die Webseite speichern. Dies geht am einfachsten mit den Browser-Plugins [*Get cookies.txt*](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc?pli=1) für *Chrome* bzw. [*cookies.txt*](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) für *Firefox*.
+
+Sobald wir die Cookies für *TikTok* gespeichert haben, können wir sie mithilfe des [`R`-Pakets `cookiemonster`](https://github.com/JBGruber/cookiemonster) speichern.
+
+Auch dieses müssen wir natürlich erst einmal installieren und laden.
+
+```{r}
+#| eval: false
+install.packages("cookiemonster")
+```
+
+```{r}
+library(cookiemonster)
+```
+
+Die Cookies können wir dann mit der Funktion `get_cookies()` speichern. Das Argument `path` muss dabei der Pfad (siehe @sec-paths) sein, unter dem die `.txt`-Datei mit den Cookies gespeichert ist.
+
+```{r}
+#| eval: false
+cookies <- get_cookies(path = "./data/tiktok_cookies.txt") # Dateipfad anpassen
+```
+
+Ob alles funktioniert hat, können wir dann mit der Funktion `auth_check()` aus dem Paket `traktok` überprüfen.
+
+```{r}
+auth_check()
+```
+
+**Wichtiger Hinweis**: Der Zugang über die "Hidden" bzw. "Unofficial API" ist nicht so stabil wie derjenige über die offizielle Research API. Es kann daher sein, dass Funktionen für die Hidden API nicht funktionieren, weil Anfragen geblockt werden. Es ist auch möglich, dass man bei der Verwendung dieser Funktionen im Browser Captchas lösen muss. Mehr dazu findet sich im [Abschnitt zur Unofficial API in der Dokumentation von `traktok`](https://jbgruber.github.io/traktok/articles/unofficial-api.html).
+
+### Accounts
+
+Die Informationen zu den Accounts, von denen wir Daten sammeln wollen, stammen aus dem Datensatz [*Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025*](https://doi.org/10.4232/1.14773) [@BreuerEtAl2026]. Beispiele dafür, wie Sie Accounts aus diesem Datensatz auswählen können, finden Sie im Skript [*get_accounts.R*](./scripts/get_accounts.R).
+
+*Hinweis*: Eine weitere Informationsquelle für *TikTok*-Accounts ist auch der Datensatz [*Social Media Accounts (TikTok, YouTube, X/Twitter) of the Candidates in the 2025 German Federal Election*](https://doi.org/10.7802/2862) [@SteupEtAl2025].
+
+Wir wählen hier beispielhaft aus dem Datensatz von Breuer et al. [-@BreuerEtAl2026] Accounts von einigen prominenten Politiker_innen von der CDU, der SPD, den Grünen, der Linken und der FDP.
+
+```{r}
+tt_accounts <- c("serapguelermdb", "lars.klingbeil",
+              "katharina.droege", "heidireichinnek",
+              "christianduerr")
+```
+
+## Profilinformationen
+
+Profilinformationen zu einem Account können mit der Funktion `tt_user_info_hidden()` abgerufen werden
+
+```{r}
+tt_user <- tt_user_info_hidden("serapguelermdb")
+
+glimpse(tt_user)
+```
+
+Um Profilinformationen zu mehreren Accounts gleichzeitig abzurufen, können wir die Funktion `map_df()` aus dem [`purrr`-Paket](https://purrr.tidyverse.org/) nutzen. Diese führt eine Funktion für mehrere verschiedene Argumente (in unserem Fall Accounts) aus und verbindet die Ergebnisse zu einem Dataframe.
+
+```{r}
+tt_users <- map_df(tt_accounts,
+                 ~tt_user_info_hidden(username = .x)) # die Funktion wird für jeden Account aus dem Vektor "tt_accounts" ausgeführt, wobei ".x" den aktuellen Account aus der Liste repräsentiert 
+
+glimpse(tt_users)
+```
+
+Für eine Textanalyse können wir die Profilbeschreibungstexte der Accounts nutzen, die in der Variable `signature` zu finden sind.
+
+## Videos
+
+Die Videos eines Accounts können mit der Funktion `tt_user_videos_hidden()` abgerufen werden. Leider funktioniert diese aktuell (Stand 26.05.2026) nicht verlässlich. Sie können ausprobieren, diese lokal auf Ihrem Rechner auszuführen. Es empfiehlt sich dabei, das Argument `solve_captchas` auf `TRUE` zu setzen, damit Sie ggf. erscheinende Captchas in Ihrem Browser lösen können.
+
+Wenn Sie Freude am Lösen von CAPTCHAs haben/entwickeln (wollen), ist das Browser Game [*I'm Not a Robot*](https://neal.fun/not-a-robot/) zu empfehlen 🤖
+
+```{r}
+#| eval: false
+tt_videos <- tt_uservideos_hidden("serapguelermdb",
+                                  solve_captchas = TRUE)
+
+glimpse(tt_videos)
+```
+
+## Weitere Daten
+
+Das Paket `traktok` bietet auch Funktionen, um Daten zu den Following und Followed Accounts zu sammeln. Dies geht mit den Funktionen `tt_get_follower_hidden()` bzw. `tt_get_following_hidden()`
+
+Da wir uns im Kurs auf die Analyse von Textdaten konzentrieren und die Netzwerkanalyse ausklammern, werden wir diese Daten hier nicht weiter betrachten. Weitere Informationen zu diesen Funktionen finden Sie in der [Dokumentation zum Paket `atrrr`](https://jbgruber.github.io/atrrr/).
+
+Eine Einführung in die Netzwerkanalyse bietet u.a. [Kapitel 13 im Online-Buch *Computational Analysis of Communication*](https://cssbook.net/content/chapter13.html).

@@ -28,6 +28,20 @@ title-slide-attributes:
 
 :::
 
+## Beobachtungseinheiten & Sampling
+
+Die Beobachtungseinheiten für *Bluesky* und *TikTok* sind die Accounts von Kandidierenden zur deutschen Bundestagswahl 2025. Die Informationen zu diesen stammen aus dem Datensatz [*Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025*](https://doi.org/10.4232/1.14773) [@BreuerEtAl2026]. Wir nutzen für diese beiden Plattformen in den Beispielen entsprechend ein accountbasiertes Sampling.
+
+## Accounts
+
+Zur Erinnerung: Wir benötigen:
+
+1.  Einen [*TikTok*](https://www.tiktok.com/)-Account
+
+2.  Einen [*Bluesky*](https://bsky.app/)-Account
+
+3.  Einen *Google*-Account und einen *YouTube* API Key. Wie Sie einen *YouTube* API Key erhalten, wird ausführlich in einem [Tutorial von Communalytic beschrieben](https://communalytic.org/docs/obtaining-youtube-api-key/) sowie im GESIS Guide [*How to Collect Data with the YouTube Data API*](https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf) [@KohneEtAl2024] beschrieben.
+
 # Bluesky {background-color="#4A90E2"}
 
 ## Setup

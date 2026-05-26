@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; tidyverse – Sammlung und Analyse von Social-Media-Daten mit R</title>
+<title>14&nbsp; Datensammlung: YouTube – Sammlung und Analyse von Social-Media-Daten mit R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -88,8 +88,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./06-wrangling-df.html" rel="next">
-<link href="./05-import-export.html" rel="prev">
+<link href="./16-errors.html" rel="next">
+<link href="./11-tiktok-collection.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -140,7 +140,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-collection-methods.html">Daten sammeln</a></li><li class="breadcrumb-item"><a href="./12-youtube-collection.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Datensammlung: <em>YouTube</em></span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -236,7 +236,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link active">
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></span></a>
   </div>
 </li>
@@ -289,7 +289,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-youtube-collection.html" class="sidebar-item-text sidebar-link">
+  <a href="./12-youtube-collection.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Datensammlung: <em>YouTube</em></span></span></a>
   </div>
 </li>
@@ -376,17 +376,22 @@ div.csl-indent {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#was-ist-das-tidyverse" id="toc-was-ist-das-tidyverse" class="nav-link active" data-scroll-target="#was-ist-das-tidyverse"><span class="header-section-number">7.1</span> Was ist das <code>tidyverse</code>?</a></li>
-  <li><a href="#kernkonzepte-des-tidyverse" id="toc-kernkonzepte-des-tidyverse" class="nav-link" data-scroll-target="#kernkonzepte-des-tidyverse"><span class="header-section-number">7.2</span> Kernkonzepte des <code>tidyverse</code></a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup"><span class="header-section-number">14.1</span> Setup</a>
+  <ul class="collapse">
+  <li><a href="#pakete-laden" id="toc-pakete-laden" class="nav-link" data-scroll-target="#pakete-laden"><span class="header-section-number">14.1.1</span> Pakete laden</a></li>
+  <li><a href="#authentifizierung" id="toc-authentifizierung" class="nav-link" data-scroll-target="#authentifizierung"><span class="header-section-number">14.1.2</span> Authentifizierung</a></li>
+  <li><a href="#kommentare-zu-videos" id="toc-kommentare-zu-videos" class="nav-link" data-scroll-target="#kommentare-zu-videos"><span class="header-section-number">14.1.3</span> Kommentare zu Videos</a></li>
+  </ul></li>
+  <li><a href="#weitere-daten" id="toc-weitere-daten" class="nav-link" data-scroll-target="#weitere-daten"><span class="header-section-number">14.2</span> Weitere Daten</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/tidyverse.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/12-youtube-collection.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-collection-methods.html">Daten sammeln</a></li><li class="breadcrumb-item"><a href="./12-youtube-collection.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Datensammlung: <em>YouTube</em></span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-tidyverse" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></span></h1>
+<h1 class="title"><span id="sec-youtube-collection" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Datensammlung: <em>YouTube</em></span></span></h1>
 </div>
 
 
@@ -403,98 +408,117 @@ div.csl-indent {
 </header>
 
 
-<section id="was-ist-das-tidyverse" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="was-ist-das-tidyverse"><span class="header-section-number">7.1</span> Was ist das <code>tidyverse</code>?</h2>
-<p>Das <a href="https://tidyverse.org/"><code>tidyverse</code></a> ist eine Sammlung von R-Paketen, die das Importieren und Exportieren, die Aufbereitung und Visualisieren von Daten in <code>R</code> vereinfachen.</p>
-<blockquote class="blockquote">
-<p>The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.</p>
-</blockquote>
-<p>Alle Pakete aus dem <code>tidyverse</code> können über das gleichnamige (Meta-)Paket installiert werden.</p>
+<section id="setup" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="setup"><span class="header-section-number">14.1</span> Setup</h2>
+<section id="pakete-laden" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="pakete-laden"><span class="header-section-number">14.1.1</span> Pakete laden</h3>
+<p>Um Daten von <em>YouTube</em> zu sammeln, nutzen wir das <a href="https://vosonlab.github.io/vosonSML/"><code>R</code>-Paket <code>vosonSML</code></a>. Eine Alternative zu <code>vosonSML</code> ist das Paket <a href="github.com/gojiplus/tuber"><code>tuber</code></a>. Mit diesem kann man neben Kommentaren zu Videos u.a. auch (Meta-)Daten zu Kanälen und Playlists sammeln. Allerdings ist die Authentifizierung bei <code>tuber</code> komplizierter, da es ein andere Authentifizierungsverfahren (<a href="https://oauth.net/2/">OAuth2</a>) nutzt.</p>
+<p>Wie immer müssen wir das Paket zunächst (einmalig) installieren und dann (in jeder Sitzung) laden.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"vosonSML"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Nach der Installation können die <a href="https://tidyverse.org/packages/#core-tidyverse">Kernpakete (Core Packages) aus dem <code>tidyverse</code></a> über das Paket <code>tidyverse</code> gleichzeitig geladen werden.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vosonSML)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'tidyverse' wurde unter R Version 4.5.3 erstellt</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'ggplot2' wurde unter R Version 4.5.3 erstellt</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'purrr' wurde unter R Version 4.5.2 erstellt</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'stringr' wurde unter R Version 4.5.2 erstellt</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.6.0
-✔ ggplot2   4.0.3     ✔ tibble    3.3.0
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.2.0     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre><code>Warning: Paket 'vosonSML' wurde unter R Version 4.5.2 erstellt</code></pre>
 </div>
 </div>
-<p>Wenn die Pakete aus dem <code>tidyverse</code> geladen werden, bekommt man in der Konsole eine Übersicht über die geladenen Pakete und deren Versionen sowie Informationen zu möglichen Konflikten mit anderen Paketen angezeigt. Diese Konflikte sind in der Regel unproblematisch, auch wenn das rote X in der Meldung dazu möglicherweise beängstigend aussieht. Detailliertere Informationen zu diesen Konflikten und dem Umgang damit gibt es im <a href="names.html#sec-funcnames" class="quarto-xref"><span>Kapitel 20.4</span></a>.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="tidyverse vs. base R">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Hinweis</span>tidyverse vs.&nbsp;base R
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Die meisten der Dinge, die man mit den Paketen aus dem <code>tidyverse</code> machen kann, sind auch mit Base <code>R</code> möglich. Die Syntax hierfür ist jedoch in der Regel umständlicher und nicht so intuitiv. Die Nutzung von base <code>R</code> für die Aufbereitung von Daten ist daher insbesondere für Einsteiger_innen schwieriger.</p>
-<p>Ein eigentlich positiver Aspekt, der allerdings auch ein Nachteil sein kann, ist, dass die Funktionen aus den Paketen im <code>tidyverse</code> sehr intensiv und z.T. auch sehr grundledend weiterentwickelt werden. Dies kann dazu führen, dass alter Code irgendwann nicht mehr (richtig) funktioniert. Base <code>R</code> ist im Vergleich dazu beständiger. Eine kurze Erklärung zum sogenannten Lifecycle von Funktionen im <code>tidyverse</code> findet sich im <a href="18-function-lifecycle.html" class="quarto-xref"><span>Kapitel 18</span></a>.</p>
-</div>
-</div>
+<p>Zusätzlich nutzen wir auch in diesem Abschnitt Funktionen aus den <code>tidyverse</code>-Paketen. Sofern dies in der aktuellen <code>R</code>-Session noch nicht geschehen ist, müssen wir auch diese Pakete erst laden</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="kernkonzepte-des-tidyverse" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="kernkonzepte-des-tidyverse"><span class="header-section-number">7.2</span> Kernkonzepte des <code>tidyverse</code></h2>
-<p>Im Wesentlichen gibt es drei Kernkonzepte, die das <code>tidyverse</code> ausmachen:</p>
-<ol type="1">
-<li><p><strong>Tidy Data</strong></p></li>
-<li><p><strong>Tibbles</strong></p></li>
-<li><p>Der sogenannte <strong>Pipe Operator</strong></p></li>
-</ol>
-<p>Das Konzept von Tidy Data wurde von Hadley Wickham, einem der Hauptentwickler des <code>tidyverse</code>, entwickelt <span class="citation" data-cites="Wickham2014">(<a href="references.html#ref-Wickham2014" role="doc-biblioref">Wickham, 2014</a>)</span></p>
-<p>Die wichtigsten Grundsätze für <strong>Tidy Data</strong> data lauten:</p>
-<ol type="1">
-<li><p>Jede Variable ist in einer eigenen Spalte.</p></li>
-<li><p>Jede Beobachtung ist in einer eigenen Zeile.</p></li>
-<li><p>Jeder Wert ist in einer eigenen Zelle.</p></li>
-</ol>
-<p><img src="./images/tidy_data.png" class="img-fluid quarto-figure quarto-figure-center" alt="Tidy Data"> Quelle: https://r4ds.had.co.nz/tidy-data.html</p>
-<p>Tibbles sind eine besondere Art von Data Frames, die im <code>tidyverse</code> verwendet werden. Sie bieten einige Vorteile gegenüber traditionellen Data Frames, wie z.B. eine bessere Darstellung in der Konsole und eine einfachere Handhabung von fehlenden Werten. Eine umfangreichere Beschreibung von Tibbles findet sich in der <a href="https://cran.r-project.org/web/packages/tibble/vignettes/tibble.html">entsprechenden Vignette zum Paket <code>tibbles</code></a>.</p>
-<p>Der Pipe Operator (<code>%&gt;%</code>) ist ein zentrales Element des <code>tidyverse</code> und ermöglicht es, mehrere Funktionen miteinander zu verketten, ohne dass man Zwischenergebnisse speichern muss.</p>
-<p>Wie im <a href="04-functions.html" class="quarto-xref"><span>Kapitel 4</span></a> erklärt, operieren Funktionen in <code>R</code> allgemein nach dem Muster <code>f(x)</code>, wobei <code>f</code> die Funktion ist und <code>x</code> die Eingabe (Input) für die Funktion. Mit dem Pipe Operator wird daraus <code>x %&gt;% f()</code>. Hier wird das Objekt <code>x</code> an die Funktion <code>f</code> übergeben und wird (standardmäßig) zu deren erstem Argument (es kann jedoch auch an andere Argumente übergeben werden).</p>
-<p>Wie zuvor beschrieben, ist es mit dem Pipe Operator möglich, mehrere Funktionen miteinander zu verketten. Ein abstraktes Beispiel ist:</p>
+<section id="authentifizierung" class="level3" data-number="14.1.2">
+<h3 data-number="14.1.2" class="anchored" data-anchor-id="authentifizierung"><span class="header-section-number">14.1.2</span> Authentifizierung</h3>
+<p>Um mit dem Paket <code>vosonSML</code> Daten von <em>YouTube</em> zu sammeln, benötigen wir einen API Key. Wie Sie diesen erhalten, wird ausführlich in einem <a href="https://communalytic.org/docs/obtaining-youtube-api-key/">Tutorial von Communalytic beschrieben</a> sowie im GESIS Guide <a href="https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf"><em>How to Collect Data with the YouTube Data API</em></a> <span class="citation" data-cites="KohneEtAl2024">(<a href="references.html#ref-KohneEtAl2024" role="doc-biblioref">Kohne et al., 2024</a>)</span> beschrieben.</p>
+<p><strong>Wichtig</strong>: Behandeln Sie den API Key wie ein Passwort. D.h. speichern Sie ihn in einem Passwort-Manager oder notieren Sie ihn an einem sicheren Ort, aber teilen Sie ihn nicht mit anderen Personen.</p>
+<p>Sobald Sie einen API Key für die <em>YouTube</em> (Data) API haben, können Sie sich mit der Funktion <code>Authenticate()</code> aus <code>vosonSML</code> authentifizieren.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mach_dies</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dann_das</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">zuletzt_das</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>auth_yt <span class="ot">&lt;-</span> <span class="fu">Authenticate</span>(<span class="st">"youtube"</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">apiKey =</span> <span class="st">"your_api_key_here"</span>) <span class="co"># ersetzen Sie "your_api_key_here" durch Ihren tatsächlichen API Key</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Man kann den Pipe Operator also im Prinzip lesen als Nimm <code>data</code>, mache dies damit, dann das und zuletzt das. Das macht den Code oft lesbarer und übersichtlicher.</p>
-<p>Das mag aktuell noch sehr abstrakt klingen, aber die Nutzung sollte mit den konkreten Beispielen in den folgenden Kapiteln deutlicher werden.</p>
-<p>Seit Version 4.1.0 gibt es in <code>R</code> auch einen nativen Pipe Operator (<code>|&gt;</code>), der ähnliche Funktionalitäten bietet. Es gibt jedoch einige Unterschiede zwischen den beiden Pipe-Operatoren. Diese werden im <a href="https://tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/">Blog-Post [<em>Differences between the base R and magrittr pipes</em>] auf der <code>tidyverse</code>-Webseite</a> ausführlich erklärt.</p>
-<p><em>RStudio</em> bietet eine Tastenkombination zum Einfügen des Pipe Operators aus dem <code>tidyverse</code> (<code>%&gt;%</code>): <code>Strg + Alt + M</code> (Windows &amp; Linux) bzw. <code>Cmd + Option + M</code> (Mac). Aus diesem Grund nutzen wir in diesem Kurs den Pipe Operator aus dem <code>tidyverse</code> und nicht den nativen Pipe Operator aus Base <code>R</code>.</p>
+</section>
+<section id="kommentare-zu-videos" class="level3" data-number="14.1.3">
+<h3 data-number="14.1.3" class="anchored" data-anchor-id="kommentare-zu-videos"><span class="header-section-number">14.1.3</span> Kommentare zu Videos</h3>
+<p>Die Funktion <code>Collect()</code> aus dem Paket <code>vosonSML</code> bietet die Möglichkeit, Kommentare zu bestimmten Videos zu sammeln. Dazu muss man die URLs der Videos angeben, von denen man die Kommentare sammeln möchte. Um Videos zu einem bestimmten Thema zu finden, können wir die Suchfunktion von <em>YouTube</em> nutzen.</p>
+<p><em>Hinweis</em>: Wenn Sie auch für <em>YouTube</em>-Daten beim Sampling accountbasiert vorgehen wollen, können Sie die Informationen aus dem Datensatz <a href="https://doi.org/10.7802/2862"><em>Social Media Accounts (TikTok, YouTube, X/Twitter) of the Candidates in the 2025 German Federal Election</em></a> <span class="citation" data-cites="SteupEtAl2025">(<a href="references.html#ref-SteupEtAl2025" role="doc-biblioref">Steup et al., 2025</a>)</span> nutzen.</p>
+<p>Im nachfolgenden Beispiele sammeln wir die Kommentare zu zwei exemplarischen Videos aus den Ergebnissen der Suche “Bundestagswahl 2025” auf <em>YouTube</em>. Dafür erstellen wir zunächst einen Vektor mit den URLs der Videos, von denen wir die Kommentare sammeln wollen.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>video_urls <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"https://www.youtube.com/watch?v=5A-ggbcnwcg"</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>               <span class="st">"https://www.youtube.com/watch?v=a6ZaJ38cy7U"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Anschließend können wir die Kommentare zu diesen Videos mit der Funktion <code>Collect()</code> aus <code>vosonSML</code> sammeln. Damit wir dies machen können, müssen wir der Funktion das zuvor erstellte Objekt mit den Authentifizierungsdaten übergeben.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>comments_yt <span class="ot">&lt;-</span> auth_yt <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Collect</span>(<span class="at">videoIDs =</span> video_urls,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">maxComments =</span> <span class="dv">2000</span>) <span class="co"># maximale Anzahl an Kommentaren pro Video</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Collecting comment threads for YouTube videos...</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Video 1 of 2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>---------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>** Creating dataframe from threads of 5A-ggbcnwcg.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>** Collecting replies for 164 threads with replies. Please be patient.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Comment replies 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 3 1 11 1 3 1 1 2 2 1 1 1 2 2 3 1 2 1 2 3 1 2 2 1 1 1 2 1 1 4 1 1 11 3 1 10 2 1 8 2 6 5 1 3 1 5 20 2 6 10 2 2 1 3 2 1 1 1 4 3 2 3 1 1 1 1 1 4 1 1 3 1 1 2 5 1 3 1 1 8 6 3 1 8 3 1 3 1 2 1 13 2 6 1 7 1 16 20 2 1 1 1 9 3 1 2 4 2 1 15 14 10 2 1 2 1 1 1 1 1 4 1 6 1 1 8 6 3 1 4 15 1 4 4 10 7 1 3 1 20 1 2 18 5 10 4 17 2 14 
+** Collected replies: 582
+** Total video comments: 1361
+(Video API unit cost: 352)
+---------------------------------------------------------------
+Video 2 of 2
+---------------------------------------------------------------
+** Creating dataframe from threads of a6ZaJ38cy7U.
+** Collecting replies for 93 threads with replies. Please be patient.
+Comment replies 2 1 1 2 2 2 1 1 2 2 3 5 5 1 2 1 2 1 1 3 1 3 13 5 1 4 3 1 1 5 1 2 11 5 5 7 2 1 1 1 2 4 3 3 3 2 2 5 1 1 5 1 7 3 1 1 10 1 3 20 2 5 1 2 4 1 1 1 1 1 1 1 1 8 3 10 6 2 1 2 5 7 1 16 13 5 1 4 1 8 16 2 20 
+** Collected replies: 344
+** Total video comments: 721
+(Video API unit cost: 198)
+---------------------------------------------------------------
+** Total comments collected for all videos 2082.
+(Estimated API unit cost: 550)
+Done.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(comments_yt)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 2,082
+Columns: 12
+$ Comment               &lt;chr&gt; "Die deutsche Präzision kennt keine Grenzen; sie…
+$ AuthorDisplayName     &lt;chr&gt; "@abdikamilnarbekov9828", "@carlesmarch", "@vale…
+$ AuthorProfileImageUrl &lt;chr&gt; "https://yt3.ggpht.com/ytc/AIdro_lO1bg78qyz0HR_Z…
+$ AuthorChannelUrl      &lt;chr&gt; "http://www.youtube.com/@abdikamilnarbekov9828",…
+$ AuthorChannelID       &lt;chr&gt; "UCwt56j6_yUnxErCnzgNSJ6w", "UCAoUM5AyxnA1qSoQVE…
+$ ReplyCount            &lt;chr&gt; "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"…
+$ LikeCount             &lt;chr&gt; "0", "0", "4", "0", "0", "0", "0", "0", "4", "0"…
+$ PublishedAt           &lt;chr&gt; "2025-10-10T01:54:46Z", "2025-03-04T19:17:08Z", …
+$ UpdatedAt             &lt;chr&gt; "2025-10-10T01:54:46Z", "2025-03-04T19:17:08Z", …
+$ CommentID             &lt;chr&gt; "UgwiakmTsk6z-aXOB394AaABAg", "UgzciKZHDm2Rn7S77…
+$ ParentID              &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ VideoID               &lt;chr&gt; "5A-ggbcnwcg", "5A-ggbcnwcg", "5A-ggbcnwcg", "5A…</code></pre>
+</div>
+</div>
+<p><strong>Wichtig</strong>: Für die kostenfreie Nutzung der <em>YouTube</em> Data API gibt es bestimmte Kontingente, d.h. es gibt eine maximale Anzahl an Anfragen, die man pro Tag stellen kann. Aktuell liegt das Tageslimit bei 10.000 Anfragen pro Tag. Je nachdem, wie viele Kommentare man sammeln möchte, kann es daher sein, dass man das Tageslimit überschreitet. In diesem Fall muss ggf. warten, bis das Tageslimit zurückgesetzt wird. Dies geschieht immer um Mitternacht Pacific Time. Die Funktion <code>Collect()</code> von <code>vosonSML</code> zeigt einem die geschätzten API-Kosten an.</p>
+</section>
+</section>
+<section id="weitere-daten" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="weitere-daten"><span class="header-section-number">14.2</span> Weitere Daten</h2>
+<p>Das Paket <code>vosonSML</code> bietet einige Funktionen für Netzwerkanalysen (auch von <em>YouTube</em>-Kommentaren). Eine Einführung in die Netzwerkanalyse bietet u.a. <a href="https://cssbook.net/content/chapter13.html">Kapitel 13 im Online-Buch <em>Computational Analysis of Communication</em></a>.</p>
+<p>Für (Meta-) Daten zu Kanälen oder Playlists bietet das Paket <a href="github.com/gojiplus/tuber"><code>tuber</code></a> spezifische Funktionen an.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-Wickham2014" class="csl-entry" role="listitem">
-Wickham, H. (2014). Tidy <span>Data</span>. <em>Journal of Statistical Software</em>, <em>59</em>(10). <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>
+<div id="ref-KohneEtAl2024" class="csl-entry" role="listitem">
+Kohne, J., Breuer, J., Deubel, A., &amp; Mohseni, M. R. (2024). <em>How to <span>Collect Data</span> with the <span>YouTube Data API</span> (<span>GESIS Guides</span> to <span>Digital Behavioral Data</span>, 13)</em>. GESIS - Leibniz-Institute for the Social Sciences. <a href="https://doi.org/10.60762/GGDBD24013.1.0">https://doi.org/10.60762/GGDBD24013.1.0</a>
+</div>
+<div id="ref-SteupEtAl2025" class="csl-entry" role="listitem">
+Steup, J. M., Kielbassa, P., Neumeier, A., &amp; Riedl, J. (2025). <em>Social <span>Media Accounts</span> (<span>TikTok</span>, <span>YouTube</span>, <span>X</span>/<span>Twitter</span>) of the <span>Candidates</span> in the 2025 <span>German Federal Election</span></em>. GESIS Data Archive. <a href="https://doi.org/10.7802/2862">https://doi.org/10.7802/2862</a>
 </div>
 </div>
 </section>
@@ -909,13 +933,13 @@ Wickham, H. (2014). Tidy <span>Data</span>. <em>Journal of Statistical Software<
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./05-import-export.html" class="pagination-link" aria-label="Importieren &amp; exportieren von Daten in `R`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Importieren &amp; exportieren von Daten in <code>R</code></span></span>
+      <a href="./11-tiktok-collection.html" class="pagination-link" aria-label="Datensammlung: *TikTok*">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Datensammlung: <em>TikTok</em></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./06-wrangling-df.html" class="pagination-link" aria-label="Datensätze verändern">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Datensätze verändern</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./16-errors.html" class="pagination-link" aria-label="🛠️Troubleshooting 101">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -927,7 +951,7 @@ Wickham, H. (2014). Tidy <span>Data</span>. <em>Journal of Statistical Software<
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/tidyverse.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/12-youtube-collection.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</p>
 </div>

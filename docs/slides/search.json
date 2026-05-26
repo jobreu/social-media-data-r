@@ -7,6 +7,20 @@
     "text": "Methoden zur Sammlung von Social-Media-Daten\n\nAPIs (Application Programming Interfaces)\nWeb Scraping\nDatenspende\n\n(Breuer et al., 2020)"
   },
   {
+    "objectID": "session-02.html#beobachtungseinheiten-sampling",
+    "href": "session-02.html#beobachtungseinheiten-sampling",
+    "title": "Sammlung von Social-Media-Daten mit R",
+    "section": "Beobachtungseinheiten & Sampling",
+    "text": "Beobachtungseinheiten & Sampling\nDie Beobachtungseinheiten für Bluesky und TikTok sind die Accounts von Kandidierenden zur deutschen Bundestagswahl 2025. Die Informationen zu diesen stammen aus dem Datensatz Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025 (Breuer et al., 2026). Wir nutzen für diese beiden Plattformen in den Beispielen entsprechend ein accountbasiertes Sampling."
+  },
+  {
+    "objectID": "session-02.html#accounts",
+    "href": "session-02.html#accounts",
+    "title": "Sammlung von Social-Media-Daten mit R",
+    "section": "Accounts",
+    "text": "Accounts\nZur Erinnerung: Wir benötigen:\n\nEinen TikTok-Account\nEinen Bluesky-Account\nEinen Google-Account und einen YouTube API Key. Wie Sie einen YouTube API Key erhalten, wird ausführlich in einem Tutorial von Communalytic beschrieben sowie im GESIS Guide How to Collect Data with the YouTube Data API (Kohne et al., 2024) beschrieben."
+  },
+  {
     "objectID": "session-02.html#setup",
     "href": "session-02.html#setup",
     "title": "Sammlung von Social-Media-Daten mit R",
@@ -18,7 +32,7 @@
     "href": "session-02.html#references",
     "title": "Sammlung von Social-Media-Daten mit R",
     "section": "References",
-    "text": "References\n\n\n\n\nBreuer, J., Bishop, L., & Kinder-Kurlanda, K. (2020). The Practical and Ethical Challenges in Acquiring and Sharing Digital Trace Data: Negotiating Public-Private Partnerships. New Media & Society, 22(11), 2058–2080. https://doi.org/10.1177/1461444820924622"
+    "text": "References\n\n\n\n\nBreuer, J., Bishop, L., & Kinder-Kurlanda, K. (2020). The Practical and Ethical Challenges in Acquiring and Sharing Digital Trace Data: Negotiating Public-Private Partnerships. New Media & Society, 22(11), 2058–2080. https://doi.org/10.1177/1461444820924622\n\n\nBreuer, J., Soldner, F., Shankaran, V., Fröhling, L., Bauer, P., Sältzer, M., Weiß, J., & Chen, S. (2026). Social Media Accounts of German Candidates from the German Federal Election 2025 [Social-Media-Konten der deutschen Kandidierenden bei der Bundestagswahl 2025]. GESIS. https://doi.org/10.4232/1.14694\n\n\nKohne, J., Breuer, J., Deubel, A., & Mohseni, M. R. (2024). How to Collect Data with the YouTube Data API (GESIS Guides to Digital Behavioral Data, 13). GESIS - Leibniz-Institute for the Social Sciences. https://doi.org/10.60762/GGDBD24013.1.0"
   },
   {
     "objectID": "session-01.html#was-bisher-geschah",
@@ -137,7 +151,7 @@
     "href": "session-01.html#funktionen",
     "title": "Refresher R Basics",
     "section": "Funktionen",
-    "text": "Funktionen\nFür das allermeiste, was wir in R machen, verwenden wir Funktionen. Eine Funktion in R ist wie eine Art Mini-Programm, mit dem wir bestimmte Aufgaben ausführen können.\nDie meisten Funktionen in R haben Argumente, die es uns ermöglichen, die Funktion an unsere Bedürfnisse anzupassen. Argumente sind wie “Einstellungen” oder “Parameter”, die wir der Funktion übergeben können, um ihr Verhalten zu steuern.\n\n# Einfache Funktion ohne Argumente\nSys.Date() # Gibt das aktuelle Datum zurück\n\n[1] \"2026-05-22\"\n\n# Einfache Funktion mit einem bzw. mehreren Argumenten\nmean(age) # Berechnet den Mittelwert eines numerischen Vektors\n\n[1] 32.5"
+    "text": "Funktionen\nFür das allermeiste, was wir in R machen, verwenden wir Funktionen. Eine Funktion in R ist wie eine Art Mini-Programm, mit dem wir bestimmte Aufgaben ausführen können.\nDie meisten Funktionen in R haben Argumente, die es uns ermöglichen, die Funktion an unsere Bedürfnisse anzupassen. Argumente sind wie “Einstellungen” oder “Parameter”, die wir der Funktion übergeben können, um ihr Verhalten zu steuern.\n\n# Einfache Funktion ohne Argumente\nSys.Date() # Gibt das aktuelle Datum zurück\n\n[1] \"2026-05-26\"\n\n# Einfache Funktion mit einem bzw. mehreren Argumenten\nmean(age) # Berechnet den Mittelwert eines numerischen Vektors\n\n[1] 32.5"
   },
   {
     "objectID": "session-01.html#hilfe-zu-funktionen",
@@ -326,7 +340,7 @@
     "href": "session-01.html#hausaufgabe-2",
     "title": "Refresher R Basics",
     "section": "📑 Hausaufgabe 2",
-    "text": "📑 Hausaufgabe 2\nFür die Sammlung von Social-Media-Daten benötigen Sie mindestens eins der folgenden Dinge (am besten aber alle):\n\nEinen TikTok-Account\nEinen Bluesky-Account\nEinen Google-Account und einen YouTube API Key Wie Sie einen YouTube API Key erhalten, wird ausführlich in einem Tutorial von Communalytic beschrieben sowie im GESIS Guide How to Collect Data with the YouTube Data API (Kohne et al., 2024)."
+    "text": "📑 Hausaufgabe 2\nFür die Sammlung von Social-Media-Daten benötigen Sie mindestens eins der folgenden Dinge (am besten aber alle):\n\nEinen TikTok-Account\nEinen Bluesky-Account\nEinen Google-Account und einen YouTube API Key. Wie Sie einen YouTube API Key erhalten, wird ausführlich in einem Tutorial von Communalytic beschrieben sowie im GESIS Guide How to Collect Data with the YouTube Data API (Kohne et al., 2024) beschrieben."
   },
   {
     "objectID": "session-01.html#references",

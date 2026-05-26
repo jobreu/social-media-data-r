@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; tidyverse – Sammlung und Analyse von Social-Media-Daten mit R</title>
+<title>12&nbsp; Datensammlung: Bluesky – Sammlung und Analyse von Social-Media-Daten mit R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -88,8 +88,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./06-wrangling-df.html" rel="next">
-<link href="./05-import-export.html" rel="prev">
+<link href="./11-tiktok-collection.html" rel="next">
+<link href="./09-collection-methods.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -140,7 +140,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-collection-methods.html">Daten sammeln</a></li><li class="breadcrumb-item"><a href="./10-bluesky-collection.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Datensammlung: <em>Bluesky</em></span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -236,7 +236,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link active">
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></span></a>
   </div>
 </li>
@@ -277,7 +277,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-bluesky-collection.html" class="sidebar-item-text sidebar-link">
+  <a href="./10-bluesky-collection.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Datensammlung: <em>Bluesky</em></span></span></a>
   </div>
 </li>
@@ -376,17 +376,24 @@ div.csl-indent {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#was-ist-das-tidyverse" id="toc-was-ist-das-tidyverse" class="nav-link active" data-scroll-target="#was-ist-das-tidyverse"><span class="header-section-number">7.1</span> Was ist das <code>tidyverse</code>?</a></li>
-  <li><a href="#kernkonzepte-des-tidyverse" id="toc-kernkonzepte-des-tidyverse" class="nav-link" data-scroll-target="#kernkonzepte-des-tidyverse"><span class="header-section-number">7.2</span> Kernkonzepte des <code>tidyverse</code></a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup"><span class="header-section-number">12.1</span> Setup</a>
+  <ul class="collapse">
+  <li><a href="#pakete-laden" id="toc-pakete-laden" class="nav-link" data-scroll-target="#pakete-laden"><span class="header-section-number">12.1.1</span> Pakete laden</a></li>
+  <li><a href="#authentifizierung" id="toc-authentifizierung" class="nav-link" data-scroll-target="#authentifizierung"><span class="header-section-number">12.1.2</span> Authentifizierung</a></li>
+  <li><a href="#accounts" id="toc-accounts" class="nav-link" data-scroll-target="#accounts"><span class="header-section-number">12.1.3</span> Accounts</a></li>
+  </ul></li>
+  <li><a href="#profilinformationen" id="toc-profilinformationen" class="nav-link" data-scroll-target="#profilinformationen"><span class="header-section-number">12.2</span> Profilinformationen</a></li>
+  <li><a href="#posts" id="toc-posts" class="nav-link" data-scroll-target="#posts"><span class="header-section-number">12.3</span> Posts</a></li>
+  <li><a href="#weitere-daten" id="toc-weitere-daten" class="nav-link" data-scroll-target="#weitere-daten"><span class="header-section-number">12.4</span> Weitere Daten</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/tidyverse.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/10-bluesky-collection.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-collection-methods.html">Daten sammeln</a></li><li class="breadcrumb-item"><a href="./10-bluesky-collection.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Datensammlung: <em>Bluesky</em></span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-tidyverse" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></span></h1>
+<h1 class="title"><span id="sec-bluesky-collection" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Datensammlung: <em>Bluesky</em></span></span></h1>
 </div>
 
 
@@ -403,98 +410,182 @@ div.csl-indent {
 </header>
 
 
-<section id="was-ist-das-tidyverse" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="was-ist-das-tidyverse"><span class="header-section-number">7.1</span> Was ist das <code>tidyverse</code>?</h2>
-<p>Das <a href="https://tidyverse.org/"><code>tidyverse</code></a> ist eine Sammlung von R-Paketen, die das Importieren und Exportieren, die Aufbereitung und Visualisieren von Daten in <code>R</code> vereinfachen.</p>
-<blockquote class="blockquote">
-<p>The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.</p>
-</blockquote>
-<p>Alle Pakete aus dem <code>tidyverse</code> können über das gleichnamige (Meta-)Paket installiert werden.</p>
+<section id="setup" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="setup"><span class="header-section-number">12.1</span> Setup</h2>
+<section id="pakete-laden" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="pakete-laden"><span class="header-section-number">12.1.1</span> Pakete laden</h3>
+<p>Zur Sammlung von <em>Bluesky</em>-Daten nutzen wir das Paket <a href="https://jbgruber.github.io/atrrr/"><code>atrrr</code></a>.</p>
+<p>Wie immer müssen wir das Paket zunächst (einmalig) installieren und dann (in jeder Sitzung) laden.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"atrrr"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Nach der Installation können die <a href="https://tidyverse.org/packages/#core-tidyverse">Kernpakete (Core Packages) aus dem <code>tidyverse</code></a> über das Paket <code>tidyverse</code> gleichzeitig geladen werden.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(atrrr)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'tidyverse' wurde unter R Version 4.5.3 erstellt</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'ggplot2' wurde unter R Version 4.5.3 erstellt</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'purrr' wurde unter R Version 4.5.2 erstellt</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'stringr' wurde unter R Version 4.5.2 erstellt</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.6.0
-✔ ggplot2   4.0.3     ✔ tibble    3.3.0
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.2.0     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre><code>Warning: Paket 'atrrr' wurde unter R Version 4.5.2 erstellt</code></pre>
 </div>
 </div>
-<p>Wenn die Pakete aus dem <code>tidyverse</code> geladen werden, bekommt man in der Konsole eine Übersicht über die geladenen Pakete und deren Versionen sowie Informationen zu möglichen Konflikten mit anderen Paketen angezeigt. Diese Konflikte sind in der Regel unproblematisch, auch wenn das rote X in der Meldung dazu möglicherweise beängstigend aussieht. Detailliertere Informationen zu diesen Konflikten und dem Umgang damit gibt es im <a href="names.html#sec-funcnames" class="quarto-xref"><span>Kapitel 20.4</span></a>.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="tidyverse vs. base R">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Zusätzlich nutzen wir auch in diesem Abschnitt Funktionen aus den <code>tidyverse</code>-Paketen. Sofern dies in der aktuellen <code>R</code>-Session noch nicht geschehen ist, müssen wir auch diese Pakete erst laden</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Hinweis</span>tidyverse vs.&nbsp;base R
+</section>
+<section id="authentifizierung" class="level3" data-number="12.1.2">
+<h3 data-number="12.1.2" class="anchored" data-anchor-id="authentifizierung"><span class="header-section-number">12.1.2</span> Authentifizierung</h3>
+<p>Bevor wir Daten sammeln können, müssen wir uns mit unserem <em>Bluesky</em>-Account authentifizieren.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">auth</span>(<span class="st">"your_user_name"</span>) <span class="co"># insert your user name here (e.g., tmueller.bsky.social)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+<p>Sie müssen sich bei Ihrem Bluesky-Konto anmelden und ein „App-Passwort“ erstellen. Dieses Passwort müssen Sie dann in das Popup-Fenster eingeben, das nach dem Ausführen der <code>auth()</code>-Funktion erscheint.</p>
+</section>
+<section id="accounts" class="level3" data-number="12.1.3">
+<h3 data-number="12.1.3" class="anchored" data-anchor-id="accounts"><span class="header-section-number">12.1.3</span> Accounts</h3>
+<p>Die Informationen zu den Accounts, von denen wir Daten sammeln wollen, stammen aus dem Datensatz <a href="https://doi.org/10.4232/1.14773"><em>Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025</em></a> <span class="citation" data-cites="BreuerEtAl2026">(<a href="references.html#ref-BreuerEtAl2026" role="doc-biblioref">Breuer et al., 2026</a>)</span>. Beispiele dafür, wie Sie Accounts aus diesem Datensatz auswählen können, finden Sie im Skript <a href="./scripts/get_accounts.R"><em>get_accounts.R</em></a>.</p>
+<p>Wir wählen hier beispielhaft aus diesem Datensatz Accounts von einigen prominenten Politiker_innen von der CDU, der SPD, den Grünen, der Linken und der FDP.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bs_accounts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"serapgueler.bsky.social"</span>, <span class="st">"larsklingbeil.bsky.social"</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">"katharinadroege.bsky.social"</span>, <span class="st">"heidireichinnek.dielinkebt.de"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"christianduerr.bsky.social"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Die meisten der Dinge, die man mit den Paketen aus dem <code>tidyverse</code> machen kann, sind auch mit Base <code>R</code> möglich. Die Syntax hierfür ist jedoch in der Regel umständlicher und nicht so intuitiv. Die Nutzung von base <code>R</code> für die Aufbereitung von Daten ist daher insbesondere für Einsteiger_innen schwieriger.</p>
-<p>Ein eigentlich positiver Aspekt, der allerdings auch ein Nachteil sein kann, ist, dass die Funktionen aus den Paketen im <code>tidyverse</code> sehr intensiv und z.T. auch sehr grundledend weiterentwickelt werden. Dies kann dazu führen, dass alter Code irgendwann nicht mehr (richtig) funktioniert. Base <code>R</code> ist im Vergleich dazu beständiger. Eine kurze Erklärung zum sogenannten Lifecycle von Funktionen im <code>tidyverse</code> findet sich im <a href="18-function-lifecycle.html" class="quarto-xref"><span>Kapitel 18</span></a>.</p>
+<p><strong>NB</strong>: Accountnamen bzw User Handles können sich ändern. Dies ist hier z.B. der Fall für Heidi Reichinnek, deren Accountname/User Handle sich seit der Erstellung des o.g. Datensatzes geändert hat. In solchen Fällen muss man ggf. über die Suchfunktion auf <em>Bluesky</em> den korrekten Accountnamen recherchieren.</p>
+</section>
+</section>
+<section id="profilinformationen" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="profilinformationen"><span class="header-section-number">12.2</span> Profilinformationen</h2>
+<p>Profilinformationen zu einem Account können mit der Funktion <code>get_user_info()</code> abgerufen werden</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bs_user <span class="ot">&lt;-</span> <span class="fu">get_user_info</span>(<span class="st">"serapgueler.bsky.social"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bs_user)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1
+Columns: 15
+$ did               &lt;chr&gt; "did:plc:hngkefcientj2tq2gnspgfol"
+$ actor_handle      &lt;chr&gt; "serapgueler.bsky.social"
+$ actor_name        &lt;chr&gt; "Serap Güler"
+$ actor_avatar      &lt;chr&gt; "https://cdn.bsky.app/img/avatar/plain/did:plc:hngke…
+$ associated        &lt;list&gt; [0, 0, 0, FALSE, ["followers"]]
+$ viewer            &lt;list&gt; [FALSE, FALSE, [32, [["did:plc:6gq5giuz35vjuss33oott…
+$ labels            &lt;list&gt; []
+$ created_at        &lt;chr&gt; "2023-09-21T14:22:06.936Z"
+$ verification      &lt;list&gt; [[["did:plc:z72i7hdynmk6r22z27h6tvur", "at://did:plc…
+$ actor_description &lt;chr&gt; "Staatsministerin @AuswaertigesAmt, Mitglied im Deut…
+$ indexed_at        &lt;chr&gt; "2025-05-09T15:37:49.907Z"
+$ banner            &lt;chr&gt; "https://cdn.bsky.app/img/banner/plain/did:plc:hngk…
+$ followers_count   &lt;int&gt; 3924
+$ follows_count     &lt;int&gt; 119
+$ posts_count       &lt;int&gt; 149</code></pre>
 </div>
+</div>
+<p>Um Profilinformationen zu mehreren Accounts gleichzeitig abzurufen, können wir die Funktion <code>map_df()</code> aus dem <a href="https://purrr.tidyverse.org/"><code>purrr</code>-Paket</a> nutzen. Diese führt eine Funktion für mehrere verschiedene Argumente (in unserem Fall Accounts) aus und verbindet die Ergebnisse zu einem Dataframe.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bs_users <span class="ot">&lt;-</span> <span class="fu">map_df</span>(bs_accounts,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">~</span><span class="fu">get_user_info</span>(<span class="at">actor =</span> .x)) <span class="co"># die Funktion wird für jeden Account aus dem Vektor "bs_accounts" ausgeführt, wobei ".x" den aktuellen Account aus der Liste repräsentiert </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bs_users)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 5
+Columns: 15
+$ did               &lt;chr&gt; "did:plc:hngkefcientj2tq2gnspgfol", "did:plc:n2fhuib…
+$ actor_handle      &lt;chr&gt; "serapgueler.bsky.social", "larsklingbeil.bsky.socia…
+$ actor_name        &lt;chr&gt; "Serap Güler", "Lars Klingbeil", "Katharina Dröge, M…
+$ actor_avatar      &lt;chr&gt; "https://cdn.bsky.app/img/avatar/plain/did:plc:hngke…
+$ associated        &lt;list&gt; [0, 0, 0, FALSE, ["followers"]], [0, 0, 0, FALSE, […
+$ viewer            &lt;list&gt; [FALSE, FALSE, [32, [["did:plc:6gq5giuz35vjuss33oot…
+$ labels            &lt;list&gt; [], [], [], [], []
+$ created_at        &lt;chr&gt; "2023-09-21T14:22:06.936Z", "2023-09-30T20:17:49.93…
+$ verification      &lt;list&gt; [[["did:plc:z72i7hdynmk6r22z27h6tvur", "at://did:plc…
+$ actor_description &lt;chr&gt; "Staatsministerin @AuswaertigesAmt, Mitglied im Deu…
+$ indexed_at        &lt;chr&gt; "2025-05-09T15:37:49.907Z", "2024-01-26T01:59:36.925…
+$ banner            &lt;chr&gt; "https://cdn.bsky.app/img/banner/plain/did:plc:hngke…
+$ followers_count   &lt;int&gt; 3924, 18378, 21973, 46731, 1050
+$ follows_count     &lt;int&gt; 119, 68, 215, 127, 116
+$ posts_count       &lt;int&gt; 149, 21, 916, 82, 56</code></pre>
 </div>
 </div>
 </section>
-<section id="kernkonzepte-des-tidyverse" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="kernkonzepte-des-tidyverse"><span class="header-section-number">7.2</span> Kernkonzepte des <code>tidyverse</code></h2>
-<p>Im Wesentlichen gibt es drei Kernkonzepte, die das <code>tidyverse</code> ausmachen:</p>
-<ol type="1">
-<li><p><strong>Tidy Data</strong></p></li>
-<li><p><strong>Tibbles</strong></p></li>
-<li><p>Der sogenannte <strong>Pipe Operator</strong></p></li>
-</ol>
-<p>Das Konzept von Tidy Data wurde von Hadley Wickham, einem der Hauptentwickler des <code>tidyverse</code>, entwickelt <span class="citation" data-cites="Wickham2014">(<a href="references.html#ref-Wickham2014" role="doc-biblioref">Wickham, 2014</a>)</span></p>
-<p>Die wichtigsten Grundsätze für <strong>Tidy Data</strong> data lauten:</p>
-<ol type="1">
-<li><p>Jede Variable ist in einer eigenen Spalte.</p></li>
-<li><p>Jede Beobachtung ist in einer eigenen Zeile.</p></li>
-<li><p>Jeder Wert ist in einer eigenen Zelle.</p></li>
-</ol>
-<p><img src="./images/tidy_data.png" class="img-fluid quarto-figure quarto-figure-center" alt="Tidy Data"> Quelle: https://r4ds.had.co.nz/tidy-data.html</p>
-<p>Tibbles sind eine besondere Art von Data Frames, die im <code>tidyverse</code> verwendet werden. Sie bieten einige Vorteile gegenüber traditionellen Data Frames, wie z.B. eine bessere Darstellung in der Konsole und eine einfachere Handhabung von fehlenden Werten. Eine umfangreichere Beschreibung von Tibbles findet sich in der <a href="https://cran.r-project.org/web/packages/tibble/vignettes/tibble.html">entsprechenden Vignette zum Paket <code>tibbles</code></a>.</p>
-<p>Der Pipe Operator (<code>%&gt;%</code>) ist ein zentrales Element des <code>tidyverse</code> und ermöglicht es, mehrere Funktionen miteinander zu verketten, ohne dass man Zwischenergebnisse speichern muss.</p>
-<p>Wie im <a href="04-functions.html" class="quarto-xref"><span>Kapitel 4</span></a> erklärt, operieren Funktionen in <code>R</code> allgemein nach dem Muster <code>f(x)</code>, wobei <code>f</code> die Funktion ist und <code>x</code> die Eingabe (Input) für die Funktion. Mit dem Pipe Operator wird daraus <code>x %&gt;% f()</code>. Hier wird das Objekt <code>x</code> an die Funktion <code>f</code> übergeben und wird (standardmäßig) zu deren erstem Argument (es kann jedoch auch an andere Argumente übergeben werden).</p>
-<p>Wie zuvor beschrieben, ist es mit dem Pipe Operator möglich, mehrere Funktionen miteinander zu verketten. Ein abstraktes Beispiel ist:</p>
+<section id="posts" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="posts"><span class="header-section-number">12.3</span> Posts</h2>
+<p>Die Posts eines Accounts können mit der Funktion <code>get_skeets_authored_by()</code> abgerufen werden. Diese Funktion bietet verschiedene Argumente, mit denen man u.a. die Anzahl der abzurufenden Posts begrenzen und die Daten in einem Dataframe-Format zurückgeben kann.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mach_dies</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dann_das</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">zuletzt_das</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>bs_posts1 <span class="ot">&lt;-</span> <span class="fu">get_skeets_authored_by</span>(<span class="at">actor =</span> <span class="st">"larsklingbeil.bsky.social"</span>,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">limit =</span> <span class="dv">100</span>, <span class="co"># maximale Anzahl der abzurufenden Posts</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">parse =</span> <span class="cn">TRUE</span>) <span class="co"># Posts in einem Dataframe zurückgeben</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bs_posts1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 28
+Columns: 22
+$ uri           &lt;chr&gt; "at://did:plc:n2fhuibwlwhyetcnyxe3vno7/app.bsky.feed.pos…
+$ cid           &lt;chr&gt; "bafyreicouhg6hs5d527se3tmxdvk3jmcd6hwhnjovh7puz3rkbiubb…
+$ author_handle &lt;chr&gt; "larsklingbeil.bsky.social", "larsklingbeil.bsky.social"…
+$ author_name   &lt;chr&gt; "Lars Klingbeil", "Lars Klingbeil", "Lars Klingbeil", "L…
+$ text          &lt;chr&gt; "Das Verhalten der US-Regierung zeigt einmal mehr, dass …
+$ author_data   &lt;list&gt; ["did:plc:n2fhuibwlwhyetcnyxe3vno7", "larsklingbeil.bsk…
+$ post_data     &lt;list&gt; ["app.bsky.feed.post", "2025-02-28T19:18:28.467Z", ["de…
+$ embed_data    &lt;list&gt; &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;,…
+$ reply_count   &lt;int&gt; 250, 11, 10, 0, 18, 1, 1, 27, 7, 19, 2, 4, 2, 3, 8, 4, 2…
+$ repost_count  &lt;int&gt; 125, 6, 2, 0, 29, 0, 0, 4, 17, 26, 4, 13, 10, 11, 58, 22…
+$ like_count    &lt;int&gt; 898, 66, 29, 1, 184, 2, 4, 102, 134, 165, 25, 95, 77, 80…
+$ quote_count   &lt;int&gt; 29, 1, 1, 0, 4, 0, 0, 12, 0, 8, 0, 0, 0, 1, 9, 0, 0, 0, …
+$ indexed_at    &lt;dttm&gt; 2025-02-28 19:18:28, 2023-11-16 12:48:05, 2023-11-04 19…
+$ in_reply_to   &lt;chr&gt; NA, NA, NA, "at://did:plc:lv5evbckbwxarpmrasspgvqc/app.b…
+$ in_reply_root &lt;chr&gt; NA, NA, NA, "at://did:plc:kohpe2g74jghs5lthhz5ra6c/app.b…
+$ quotes        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ tags          &lt;list&gt; &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;,…
+$ mentions      &lt;list&gt; &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;,…
+$ links         &lt;list&gt; &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;,…
+$ langs         &lt;list&gt; ["de"], ["de"], ["de"], ["de"], ["de"], ["de"], ["de"],…
+$ labels        &lt;list&gt; [], [], [], [], [], [], [], [], [], [], [], [], [], [],…
+$ is_reskeet    &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, …</code></pre>
 </div>
-<p>Man kann den Pipe Operator also im Prinzip lesen als Nimm <code>data</code>, mache dies damit, dann das und zuletzt das. Das macht den Code oft lesbarer und übersichtlicher.</p>
-<p>Das mag aktuell noch sehr abstrakt klingen, aber die Nutzung sollte mit den konkreten Beispielen in den folgenden Kapiteln deutlicher werden.</p>
-<p>Seit Version 4.1.0 gibt es in <code>R</code> auch einen nativen Pipe Operator (<code>|&gt;</code>), der ähnliche Funktionalitäten bietet. Es gibt jedoch einige Unterschiede zwischen den beiden Pipe-Operatoren. Diese werden im <a href="https://tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/">Blog-Post [<em>Differences between the base R and magrittr pipes</em>] auf der <code>tidyverse</code>-Webseite</a> ausführlich erklärt.</p>
-<p><em>RStudio</em> bietet eine Tastenkombination zum Einfügen des Pipe Operators aus dem <code>tidyverse</code> (<code>%&gt;%</code>): <code>Strg + Alt + M</code> (Windows &amp; Linux) bzw. <code>Cmd + Option + M</code> (Mac). Aus diesem Grund nutzen wir in diesem Kurs den Pipe Operator aus dem <code>tidyverse</code> und nicht den nativen Pipe Operator aus Base <code>R</code>.</p>
+</div>
+<p>Auch hier können wir die Funktion <code>map_df()</code> nutzen, um die Posts mehrerer Accounts zu sammeln.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>bs_posts <span class="ot">&lt;-</span> <span class="fu">map_df</span>(bs_accounts,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                    <span class="sc">~</span><span class="fu">get_skeets_authored_by</span>(<span class="at">actor =</span> .x,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">limit =</span> <span class="dv">100</span>, <span class="co"># maximale Anzahl der abzurufenden Posts</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">parse =</span> <span class="cn">TRUE</span>)) <span class="co"># Posts in einem Dataframe zurückgeben</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bs_posts)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 564
+Columns: 22
+$ uri           &lt;chr&gt; "at://did:plc:tjj5mybc6kgmkhhjlg43aedg/app.bsky.feed.pos…
+$ cid           &lt;chr&gt; "bafyreiahisubwexm4b7t5ck3d5nyudhnfxj557upfvilwqptnronya…
+$ author_handle &lt;chr&gt; "golod.bsky.social", "serapgueler.bsky.social", "serapgu…
+$ author_name   &lt;chr&gt; "Vassili Golod", "Serap Güler", "Serap Güler", "Serap Gü…
+$ text          &lt;chr&gt; "Ist der deutsche Bundeskanzler ein Feminist? Das und me…
+$ author_data   &lt;list&gt; ["did:plc:tjj5mybc6kgmkhhjlg43aedg", "golod.bsky.social…
+$ post_data     &lt;list&gt; ["app.bsky.feed.post", "2026-03-11T17:38:21.482Z", ["ap…
+$ embed_data    &lt;list&gt; [[["https://cdn.bsky.app/img/feed_thumbnail/plain/did:p…
+$ reply_count   &lt;int&gt; 1, 0, 2, 1, 0, 3, 0, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 0, 3,…
+$ repost_count  &lt;int&gt; 7, 1, 1, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 0, 1,…
+$ like_count    &lt;int&gt; 40, 5, 7, 1, 2, 4, 2, 2, 1, 1, 1, 1, 1, 1, 1, 5, 5, 0, 3…
+$ quote_count   &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ indexed_at    &lt;dttm&gt; 2026-03-11 17:38:26, 2025-12-02 13:27:55, 2025-12-02 13…
+$ in_reply_to   &lt;chr&gt; NA, "at://did:plc:hngkefcientj2tq2gnspgfol/app.bsky.feed…
+$ in_reply_root &lt;chr&gt; NA, "at://did:plc:hngkefcientj2tq2gnspgfol/app.bsky.feed…
+$ quotes        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ tags          &lt;list&gt; &lt;NULL&gt;, &lt;NULL&gt;, "Simbabwe", &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NU…
+$ mentions      &lt;list&gt; "did:plc:hngkefcientj2tq2gnspgfol", &lt;NULL&gt;, "did:plc:ou…
+$ links         &lt;list&gt; "https://wdr.de/k/machiavellipod", &lt;NULL&gt;, &lt;NULL&gt;, &lt;NUL…
+$ langs         &lt;list&gt; ["de"], ["de"], ["de"], ["de"], ["de"], ["de"], ["de"],…
+$ labels        &lt;list&gt; [], [], [], [], [], [], [], [], [], [], [], [], [], [],…
+$ is_reskeet    &lt;lgl&gt; TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…</code></pre>
+</div>
+</div>
+</section>
+<section id="weitere-daten" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="weitere-daten"><span class="header-section-number">12.4</span> Weitere Daten</h2>
+<p>Neben Profilinformationen und Posts können mit <code>atrrr</code> auch weitere Daten wie z.B. die Follower oder die Accounts, denen ein Account folgt, gesammelt werden. Die entsprechenden Funktionen sind <code>get_followers()</code> und <code>get_follows()</code>. Auch hier können wir die Funktionen für mehrere Accounts gleichzeitig mit <code>map_df()</code> nutzen.</p>
+<p>Da wir uns im Kurs auf die Analyse von Textdaten konzentrieren und die Netzwerkanalyse ausklammern, werden wir diese Daten hier nicht weiter betrachten. Weitere Informationen zu diesen Funktionen finden Sie in der <a href="https://jbgruber.github.io/atrrr/">Dokumentation zum Paket <code>atrrr</code></a>.</p>
+<p>Eine Einführung in die Netzwerkanalyse bietet u.a. <a href="https://cssbook.net/content/chapter13.html">Kapitel 13 im Online-Buch <em>Computational Analysis of Communication</em></a>.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-Wickham2014" class="csl-entry" role="listitem">
-Wickham, H. (2014). Tidy <span>Data</span>. <em>Journal of Statistical Software</em>, <em>59</em>(10). <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>
+<div id="ref-BreuerEtAl2026" class="csl-entry" role="listitem">
+Breuer, J., Soldner, F., Shankaran, V., Fröhling, L., Bauer, P., Sältzer, M., Weiß, J., &amp; Chen, S. (2026). <em><span>Social Media Accounts of German Candidates from the German Federal Election 2025 [Social-Media-Konten der deutschen Kandidierenden bei der Bundestagswahl 2025]</span></em>. GESIS. <a href="https://doi.org/10.4232/1.14694">https://doi.org/10.4232/1.14694</a>
 </div>
 </div>
 </section>
@@ -909,13 +1000,13 @@ Wickham, H. (2014). Tidy <span>Data</span>. <em>Journal of Statistical Software<
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./05-import-export.html" class="pagination-link" aria-label="Importieren &amp; exportieren von Daten in `R`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Importieren &amp; exportieren von Daten in <code>R</code></span></span>
+      <a href="./09-collection-methods.html" class="pagination-link" aria-label="Erhebungsmethoden">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./06-wrangling-df.html" class="pagination-link" aria-label="Datensätze verändern">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Datensätze verändern</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./11-tiktok-collection.html" class="pagination-link" aria-label="Datensammlung: *TikTok*">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Datensammlung: <em>TikTok</em></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -927,7 +1018,7 @@ Wickham, H. (2014). Tidy <span>Data</span>. <em>Journal of Statistical Software<
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/tidyverse.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/10-bluesky-collection.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</p>
 </div>

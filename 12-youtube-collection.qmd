@@ -1,0 +1,77 @@
+# Datensammlung: *YouTube* {#sec-youtube-collection}
+
+## Setup
+
+### Pakete laden
+
+Um Daten von *YouTube* zu sammeln, nutzen wir das [`R`-Paket `vosonSML`](https://vosonlab.github.io/vosonSML/). Eine Alternative zu `vosonSML` ist das Paket [`tuber`](github.com/gojiplus/tuber). Mit diesem kann man neben Kommentaren zu Videos u.a. auch (Meta-)Daten zu Kanälen und Playlists sammeln. Allerdings ist die Authentifizierung bei `tuber` komplizierter, da es ein andere Authentifizierungsverfahren ([OAuth2](https://oauth.net/2/)) nutzt.
+
+Wie immer müssen wir das Paket zunächst (einmalig) installieren und dann (in jeder Sitzung) laden.
+
+```{r}
+#| eval: false
+install.packages("vosonSML")
+```
+
+```{r}
+library(vosonSML)
+```
+
+Zusätzlich nutzen wir auch in diesem Abschnitt Funktionen aus den `tidyverse`-Paketen. Sofern dies in der aktuellen `R`-Session noch nicht geschehen ist, müssen wir auch diese Pakete erst laden
+
+```{r}
+#| warning: false
+#| message: false
+library(tidyverse)
+```
+
+### Authentifizierung
+
+Um mit dem Paket `vosonSML` Daten von *YouTube* zu sammeln, benötigen wir einen API Key. Wie Sie diesen erhalten, wird ausführlich in einem [Tutorial von Communalytic beschrieben](https://communalytic.org/docs/obtaining-youtube-api-key/) sowie im GESIS Guide [*How to Collect Data with the YouTube Data API*](https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf) [@KohneEtAl2024] beschrieben.
+
+**Wichtig**: Behandeln Sie den API Key wie ein Passwort. D.h. speichern Sie ihn in einem Passwort-Manager oder notieren Sie ihn an einem sicheren Ort, aber teilen Sie ihn nicht mit anderen Personen.
+
+Sobald Sie einen API Key für die *YouTube* (Data) API haben, können Sie sich mit der Funktion `Authenticate()` aus `vosonSML` authentifizieren.
+
+```{r}
+#| eval: false
+auth_yt <- Authenticate("youtube",
+             apiKey = "your_api_key_here") # ersetzen Sie "your_api_key_here" durch Ihren tatsächlichen API Key
+```
+
+```{r}
+#| echo: false
+auth_yt <- Authenticate("youtube",
+             apiKey = Sys.getenv("YOUTUBE_API_KEY"))
+```
+
+### Kommentare zu Videos
+
+Die Funktion `Collect()` aus dem Paket `vosonSML` bietet die Möglichkeit, Kommentare zu bestimmten Videos zu sammeln. Dazu muss man die URLs der Videos angeben, von denen man die Kommentare sammeln möchte. Um Videos zu einem bestimmten Thema zu finden, können wir die Suchfunktion von *YouTube* nutzen.
+
+*Hinweis*: Wenn Sie auch für *YouTube*-Daten beim Sampling accountbasiert vorgehen wollen, können Sie die Informationen aus dem Datensatz [*Social Media Accounts (TikTok, YouTube, X/Twitter) of the Candidates in the 2025 German Federal Election*](https://doi.org/10.7802/2862) [@SteupEtAl2025] nutzen.
+
+Im nachfolgenden Beispiele sammeln wir die Kommentare zu zwei exemplarischen Videos aus den Ergebnissen der Suche "Bundestagswahl 2025" auf *YouTube*. Dafür erstellen wir zunächst einen Vektor mit den URLs der Videos, von denen wir die Kommentare sammeln wollen.
+
+```{r}
+video_urls <- c("https://www.youtube.com/watch?v=5A-ggbcnwcg",
+               "https://www.youtube.com/watch?v=a6ZaJ38cy7U")
+```
+
+Anschließend können wir die Kommentare zu diesen Videos mit der Funktion `Collect()` aus `vosonSML` sammeln. Damit wir dies machen können, müssen wir der Funktion das zuvor erstellte Objekt mit den Authentifizierungsdaten übergeben.
+
+```{r}
+comments_yt <- auth_yt |> 
+  Collect(videoIDs = video_urls,
+          maxComments = 2000) # maximale Anzahl an Kommentaren pro Video
+
+glimpse(comments_yt)
+```
+
+**Wichtig**: Für die kostenfreie Nutzung der *YouTube* Data API gibt es bestimmte Kontingente, d.h. es gibt eine maximale Anzahl an Anfragen, die man pro Tag stellen kann. Aktuell liegt das Tageslimit bei 10.000 Anfragen pro Tag. Je nachdem, wie viele Kommentare man sammeln möchte, kann es daher sein, dass man das Tageslimit überschreitet. In diesem Fall muss ggf. warten, bis das Tageslimit zurückgesetzt wird. Dies geschieht immer um Mitternacht Pacific Time. Die Funktion `Collect()` von `vosonSML` zeigt einem die geschätzten API-Kosten an.
+
+## Weitere Daten
+
+Das Paket `vosonSML` bietet einige Funktionen für Netzwerkanalysen (auch von *YouTube*-Kommentaren). Eine Einführung in die Netzwerkanalyse bietet u.a. [Kapitel 13 im Online-Buch *Computational Analysis of Communication*](https://cssbook.net/content/chapter13.html).
+
+Für (Meta-) Daten zu Kanälen oder Playlists bietet das Paket [`tuber`](github.com/gojiplus/tuber) spezifische Funktionen an.

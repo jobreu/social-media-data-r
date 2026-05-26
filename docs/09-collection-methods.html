@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; tidyverse – Sammlung und Analyse von Social-Media-Daten mit R</title>
+<title>11&nbsp; Erhebungsmethoden – Sammlung und Analyse von Social-Media-Daten mit R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -88,8 +53,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./06-wrangling-df.html" rel="next">
-<link href="./05-import-export.html" rel="prev">
+<link href="./10-bluesky-collection.html" rel="next">
+<link href="./08-text-data.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -140,7 +105,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-collection-methods.html">Daten sammeln</a></li><li class="breadcrumb-item"><a href="./09-collection-methods.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -236,7 +201,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link active">
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></span></a>
   </div>
 </li>
@@ -271,7 +236,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-collection-methods.html" class="sidebar-item-text sidebar-link">
+  <a href="./09-collection-methods.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></span></a>
   </div>
 </li>
@@ -376,17 +341,17 @@ div.csl-indent {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#was-ist-das-tidyverse" id="toc-was-ist-das-tidyverse" class="nav-link active" data-scroll-target="#was-ist-das-tidyverse"><span class="header-section-number">7.1</span> Was ist das <code>tidyverse</code>?</a></li>
-  <li><a href="#kernkonzepte-des-tidyverse" id="toc-kernkonzepte-des-tidyverse" class="nav-link" data-scroll-target="#kernkonzepte-des-tidyverse"><span class="header-section-number">7.2</span> Kernkonzepte des <code>tidyverse</code></a></li>
+  <li><a href="#ausgewählte-plattformen" id="toc-ausgewählte-plattformen" class="nav-link active" data-scroll-target="#ausgewählte-plattformen"><span class="header-section-number">11.1</span> Ausgewählte Plattformen</a></li>
+  <li><a href="#beobachtungseinheiten-sampling" id="toc-beobachtungseinheiten-sampling" class="nav-link" data-scroll-target="#beobachtungseinheiten-sampling"><span class="header-section-number">11.2</span> Beobachtungseinheiten &amp; Sampling</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/tidyverse.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/09-collection-methods.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-collection-methods.html">Daten sammeln</a></li><li class="breadcrumb-item"><a href="./09-collection-methods.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-tidyverse" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></span></h1>
+<h1 class="title"><span id="sec-collection-methods" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></span></h1>
 </div>
 
 
@@ -403,98 +368,43 @@ div.csl-indent {
 </header>
 
 
-<section id="was-ist-das-tidyverse" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="was-ist-das-tidyverse"><span class="header-section-number">7.1</span> Was ist das <code>tidyverse</code>?</h2>
-<p>Das <a href="https://tidyverse.org/"><code>tidyverse</code></a> ist eine Sammlung von R-Paketen, die das Importieren und Exportieren, die Aufbereitung und Visualisieren von Daten in <code>R</code> vereinfachen.</p>
-<blockquote class="blockquote">
-<p>The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.</p>
-</blockquote>
-<p>Alle Pakete aus dem <code>tidyverse</code> können über das gleichnamige (Meta-)Paket installiert werden.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Nach der Installation können die <a href="https://tidyverse.org/packages/#core-tidyverse">Kernpakete (Core Packages) aus dem <code>tidyverse</code></a> über das Paket <code>tidyverse</code> gleichzeitig geladen werden.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'tidyverse' wurde unter R Version 4.5.3 erstellt</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'ggplot2' wurde unter R Version 4.5.3 erstellt</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'purrr' wurde unter R Version 4.5.2 erstellt</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'stringr' wurde unter R Version 4.5.2 erstellt</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.6.0
-✔ ggplot2   4.0.3     ✔ tibble    3.3.0
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.2.0     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-</div>
-<p>Wenn die Pakete aus dem <code>tidyverse</code> geladen werden, bekommt man in der Konsole eine Übersicht über die geladenen Pakete und deren Versionen sowie Informationen zu möglichen Konflikten mit anderen Paketen angezeigt. Diese Konflikte sind in der Regel unproblematisch, auch wenn das rote X in der Meldung dazu möglicherweise beängstigend aussieht. Detailliertere Informationen zu diesen Konflikten und dem Umgang damit gibt es im <a href="names.html#sec-funcnames" class="quarto-xref"><span>Kapitel 20.4</span></a>.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="tidyverse vs. base R">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Hinweis</span>tidyverse vs.&nbsp;base R
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Die meisten der Dinge, die man mit den Paketen aus dem <code>tidyverse</code> machen kann, sind auch mit Base <code>R</code> möglich. Die Syntax hierfür ist jedoch in der Regel umständlicher und nicht so intuitiv. Die Nutzung von base <code>R</code> für die Aufbereitung von Daten ist daher insbesondere für Einsteiger_innen schwieriger.</p>
-<p>Ein eigentlich positiver Aspekt, der allerdings auch ein Nachteil sein kann, ist, dass die Funktionen aus den Paketen im <code>tidyverse</code> sehr intensiv und z.T. auch sehr grundledend weiterentwickelt werden. Dies kann dazu führen, dass alter Code irgendwann nicht mehr (richtig) funktioniert. Base <code>R</code> ist im Vergleich dazu beständiger. Eine kurze Erklärung zum sogenannten Lifecycle von Funktionen im <code>tidyverse</code> findet sich im <a href="18-function-lifecycle.html" class="quarto-xref"><span>Kapitel 18</span></a>.</p>
-</div>
-</div>
-</div>
+<p>Es gibt verschiedene Zugangswege zu Social-Media-Daten, die jeweils eigene Vorteile und Herausforderungen mit sich bringen <span class="citation" data-cites="BreuerEtAl2020">(<a href="references.html#ref-BreuerEtAl2020" role="doc-biblioref">Breuer et al., 2020</a>)</span>. Die in der Forschung bislang am häufigsten genutzten Optionen sind Application Programming Interfaces (APIs) und Web Scraping.</p>
+<p>Eine ausführliche Einführung in Web Scraping und die Nutzung von APIs geht über den Rahmen dieses Buches hinaus, aber die nachfolgende Abbildung aus Deubel et al.&nbsp;[-DeubelEtAl2024] bietet einen vereinfachten visuellen Vergleich der beiden Methoden.</p>
+<p><img src="./images/api-scraping.png" class="img-fluid quarto-figure quarto-figure-center" alt="API vs.&nbsp;Web Scraping"> Umnfangreichere Einführungen zu Web Scraping und APIs für den Datenzugang finden sich in den entsprechenden <em>GESIS Guides to Digital Behavioral Data</em> von Soldnet et al. <span class="citation" data-cites="SoldnerEtAl2024a SoldnerEtAl2024b">(<a href="references.html#ref-SoldnerEtAl2024a" role="doc-biblioref">2024</a>; <a href="references.html#ref-SoldnerEtAl2024b" role="doc-biblioref">2024</a>)</span>.</p>
+<p>Viele Social-Media-Plattformen bieten APIs an, über die Forschende auf Daten zugreifen können. Einen guten – wenn auch stellenweise bereits etwas veralteten – Überblick bietet die Webseite <a href="https://paulcbauer.github.io/apis_for_social_scientists_a_review/"><em>APIs for social scientists: A collaborative review</em></a>.</p>
+<section id="ausgewählte-plattformen" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="ausgewählte-plattformen"><span class="header-section-number">11.1</span> Ausgewählte Plattformen</h2>
+<p>Für diesen Kurs konzentrieren wir uns auf die folgenden Plattformen:</p>
+<ul>
+<li><p><em>Bluesky</em> (<a href="10-bluesky-collection.html" class="quarto-xref"><span>Kapitel 12</span></a>)</p></li>
+<li><p><em>TikTok</em> (<a href="11-tiktok-collection.html" class="quarto-xref"><span>Kapitel 13</span></a>)</p></li>
+<li><p><em>YouTube</em> (<a href="12-youtube-collection.html" class="quarto-xref"><span>Kapitel 14</span></a>)</p></li>
+</ul>
+<p>Die Auswahl dieser Plattformen hat dabei v.a. zwei Gründe:</p>
+<ol type="1">
+<li><p>Sie sind relevant für Forschung zu politischer Kommunikation.</p></li>
+<li><p>Der Zugang zu Daten von diesen Plattformen ist vergleichsweise einfach, da sie entweder eine vergleichsweise offene API anbieten oder die Daten über Web Scraping relativ leicht zugänglich sind.</p></li>
+</ol>
+<p>Wir gehen dabei in aufsteigender Reihenfolge der Schwierigkeit des Datenzugangs vor, d.h. wir beginnen mit <em>Bluesky</em>, für das es eine offene API gibt, gefolgt von <em>TikTok</em>, für das wir eine sogenannte “Hidden API” nutzen, und <em>YouTube</em>, für das wir einen API Key benötigen.</p>
 </section>
-<section id="kernkonzepte-des-tidyverse" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="kernkonzepte-des-tidyverse"><span class="header-section-number">7.2</span> Kernkonzepte des <code>tidyverse</code></h2>
-<p>Im Wesentlichen gibt es drei Kernkonzepte, die das <code>tidyverse</code> ausmachen:</p>
-<ol type="1">
-<li><p><strong>Tidy Data</strong></p></li>
-<li><p><strong>Tibbles</strong></p></li>
-<li><p>Der sogenannte <strong>Pipe Operator</strong></p></li>
-</ol>
-<p>Das Konzept von Tidy Data wurde von Hadley Wickham, einem der Hauptentwickler des <code>tidyverse</code>, entwickelt <span class="citation" data-cites="Wickham2014">(<a href="references.html#ref-Wickham2014" role="doc-biblioref">Wickham, 2014</a>)</span></p>
-<p>Die wichtigsten Grundsätze für <strong>Tidy Data</strong> data lauten:</p>
-<ol type="1">
-<li><p>Jede Variable ist in einer eigenen Spalte.</p></li>
-<li><p>Jede Beobachtung ist in einer eigenen Zeile.</p></li>
-<li><p>Jeder Wert ist in einer eigenen Zelle.</p></li>
-</ol>
-<p><img src="./images/tidy_data.png" class="img-fluid quarto-figure quarto-figure-center" alt="Tidy Data"> Quelle: https://r4ds.had.co.nz/tidy-data.html</p>
-<p>Tibbles sind eine besondere Art von Data Frames, die im <code>tidyverse</code> verwendet werden. Sie bieten einige Vorteile gegenüber traditionellen Data Frames, wie z.B. eine bessere Darstellung in der Konsole und eine einfachere Handhabung von fehlenden Werten. Eine umfangreichere Beschreibung von Tibbles findet sich in der <a href="https://cran.r-project.org/web/packages/tibble/vignettes/tibble.html">entsprechenden Vignette zum Paket <code>tibbles</code></a>.</p>
-<p>Der Pipe Operator (<code>%&gt;%</code>) ist ein zentrales Element des <code>tidyverse</code> und ermöglicht es, mehrere Funktionen miteinander zu verketten, ohne dass man Zwischenergebnisse speichern muss.</p>
-<p>Wie im <a href="04-functions.html" class="quarto-xref"><span>Kapitel 4</span></a> erklärt, operieren Funktionen in <code>R</code> allgemein nach dem Muster <code>f(x)</code>, wobei <code>f</code> die Funktion ist und <code>x</code> die Eingabe (Input) für die Funktion. Mit dem Pipe Operator wird daraus <code>x %&gt;% f()</code>. Hier wird das Objekt <code>x</code> an die Funktion <code>f</code> übergeben und wird (standardmäßig) zu deren erstem Argument (es kann jedoch auch an andere Argumente übergeben werden).</p>
-<p>Wie zuvor beschrieben, ist es mit dem Pipe Operator möglich, mehrere Funktionen miteinander zu verketten. Ein abstraktes Beispiel ist:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mach_dies</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dann_das</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">zuletzt_das</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Man kann den Pipe Operator also im Prinzip lesen als Nimm <code>data</code>, mache dies damit, dann das und zuletzt das. Das macht den Code oft lesbarer und übersichtlicher.</p>
-<p>Das mag aktuell noch sehr abstrakt klingen, aber die Nutzung sollte mit den konkreten Beispielen in den folgenden Kapiteln deutlicher werden.</p>
-<p>Seit Version 4.1.0 gibt es in <code>R</code> auch einen nativen Pipe Operator (<code>|&gt;</code>), der ähnliche Funktionalitäten bietet. Es gibt jedoch einige Unterschiede zwischen den beiden Pipe-Operatoren. Diese werden im <a href="https://tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/">Blog-Post [<em>Differences between the base R and magrittr pipes</em>] auf der <code>tidyverse</code>-Webseite</a> ausführlich erklärt.</p>
-<p><em>RStudio</em> bietet eine Tastenkombination zum Einfügen des Pipe Operators aus dem <code>tidyverse</code> (<code>%&gt;%</code>): <code>Strg + Alt + M</code> (Windows &amp; Linux) bzw. <code>Cmd + Option + M</code> (Mac). Aus diesem Grund nutzen wir in diesem Kurs den Pipe Operator aus dem <code>tidyverse</code> und nicht den nativen Pipe Operator aus Base <code>R</code>.</p>
+<section id="beobachtungseinheiten-sampling" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="beobachtungseinheiten-sampling"><span class="header-section-number">11.2</span> Beobachtungseinheiten &amp; Sampling</h2>
+<p>Die Beobachtungseinheiten für <em>Bluesky</em> und <em>TikTok</em> sind die Accounts von Kandidierenden zur deutschen Bundestagswahl 2025. Die Informationen zu diesen stammen aus dem Datensatz <a href="https://doi.org/10.4232/1.14773"><em>Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025</em></a> <span class="citation" data-cites="BreuerEtAl2026">(<a href="references.html#ref-BreuerEtAl2026" role="doc-biblioref">Breuer et al., 2026</a>)</span>. Wir nutzen für diese beiden Plattformen in den Beispielen entsprechend ein accountbasiertes Sampling.</p>
+<p>Unsere Beobachtungseinheiten für <em>YouTube</em> sind die Videos zu bestimmten Themen oder auch aus bestimmten Kanälen, die wir z.B. über die Websuche der Plattform identifizieren können.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-Wickham2014" class="csl-entry" role="listitem">
-Wickham, H. (2014). Tidy <span>Data</span>. <em>Journal of Statistical Software</em>, <em>59</em>(10). <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>
+<div id="ref-BreuerEtAl2020" class="csl-entry" role="listitem">
+Breuer, J., Bishop, L., &amp; Kinder-Kurlanda, K. (2020). The Practical and Ethical Challenges in Acquiring and Sharing Digital Trace Data: Negotiating Public-Private Partnerships. <em>New Media &amp; Society</em>, <em>22</em>(11), 2058–2080. <a href="https://doi.org/10.1177/1461444820924622">https://doi.org/10.1177/1461444820924622</a>
+</div>
+<div id="ref-BreuerEtAl2026" class="csl-entry" role="listitem">
+Breuer, J., Soldner, F., Shankaran, V., Fröhling, L., Bauer, P., Sältzer, M., Weiß, J., &amp; Chen, S. (2026). <em><span>Social Media Accounts of German Candidates from the German Federal Election 2025 [Social-Media-Konten der deutschen Kandidierenden bei der Bundestagswahl 2025]</span></em>. GESIS. <a href="https://doi.org/10.4232/1.14694">https://doi.org/10.4232/1.14694</a>
+</div>
+<div id="ref-SoldnerEtAl2024b" class="csl-entry" role="listitem">
+Soldner, F., Bacaksizlar Turbic, N. G., &amp; Mirelmi, P. (2024). <em>How to Collect Online Data through Web Scraping (<span>GESIS Guides</span> to <span>Digital Behavioral Data</span>, 10)</em>. GESIS - Leibniz-Institute for the Social Sciences. <a href="https://doi.org/10.60762/GGDBD24010.1.0">https://doi.org/10.60762/GGDBD24010.1.0</a>
+</div>
+<div id="ref-SoldnerEtAl2024a" class="csl-entry" role="listitem">
+Soldner, F., Bacaksızlar Turbic, N. G., Mirelmi, P., &amp; Kohne, J. (2024). <em>How to <span>Collect Web Data</span> via <span>APIs</span> (<span>GESIS Guides</span> to <span>Digital Behavioral Data</span>, 9)</em>. GESIS - Leibniz-Institute for the Social Sciences. <a href="https://doi.org/10.60762/GGDBD24009.1.0">https://doi.org/10.60762/GGDBD24009.1.0</a>
 </div>
 </div>
 </section>
@@ -909,13 +819,13 @@ Wickham, H. (2014). Tidy <span>Data</span>. <em>Journal of Statistical Software<
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./05-import-export.html" class="pagination-link" aria-label="Importieren &amp; exportieren von Daten in `R`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Importieren &amp; exportieren von Daten in <code>R</code></span></span>
+      <a href="./08-text-data.html" class="pagination-link" aria-label="Arbeiten mit Textdaten">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Arbeiten mit Textdaten</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./06-wrangling-df.html" class="pagination-link" aria-label="Datensätze verändern">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Datensätze verändern</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./10-bluesky-collection.html" class="pagination-link" aria-label="Datensammlung: *Bluesky*">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Datensammlung: <em>Bluesky</em></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -927,7 +837,7 @@ Wickham, H. (2014). Tidy <span>Data</span>. <em>Journal of Statistical Software<
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/tidyverse.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/09-collection-methods.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</p>
 </div>

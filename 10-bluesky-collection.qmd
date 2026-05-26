@@ -1,0 +1,103 @@
+# Datensammlung: *Bluesky* {#sec-bluesky-collection}
+
+## Setup
+
+### Pakete laden
+
+Zur Sammlung von *Bluesky*-Daten nutzen wir das Paket [`atrrr`](https://jbgruber.github.io/atrrr/).
+
+Wie immer müssen wir das Paket zunächst (einmalig) installieren und dann (in jeder Sitzung) laden.
+
+```{r}
+#| eval: false
+install.packages("atrrr")
+```
+
+```{r}
+library(atrrr)
+```
+
+Zusätzlich nutzen wir auch in diesem Abschnitt Funktionen aus den `tidyverse`-Paketen. Sofern dies in der aktuellen `R`-Session noch nicht geschehen ist, müssen wir auch diese Pakete erst laden
+
+```{r}
+#| warning: false
+#| message: false
+library(tidyverse)
+```
+
+### Authentifizierung
+
+Bevor wir Daten sammeln können, müssen wir uns mit unserem *Bluesky*-Account authentifizieren.
+
+```{r}
+#| eval: false
+auth("your_user_name") # insert your user name here (e.g., tmueller.bsky.social)
+```
+
+Sie müssen sich bei Ihrem Bluesky-Konto anmelden und ein „App-Passwort“ erstellen. Dieses Passwort müssen Sie dann in das Popup-Fenster eingeben, das nach dem Ausführen der `auth()`-Funktion erscheint.
+
+### Accounts
+
+Die Informationen zu den Accounts, von denen wir Daten sammeln wollen, stammen aus dem Datensatz [*Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025*](https://doi.org/10.4232/1.14773) [@BreuerEtAl2026]. Beispiele dafür, wie Sie Accounts aus diesem Datensatz auswählen können, finden Sie im Skript [*get_accounts.R*](./scripts/get_accounts.R).
+
+Wir wählen hier beispielhaft aus diesem Datensatz Accounts von einigen prominenten Politiker_innen von der CDU, der SPD, den Grünen, der Linken und der FDP.
+
+```{r}
+bs_accounts <- c("serapgueler.bsky.social", "larsklingbeil.bsky.social",
+              "katharinadroege.bsky.social", "heidireichinnek.dielinkebt.de",
+              "christianduerr.bsky.social")
+```
+
+**NB**: Accountnamen bzw User Handles können sich ändern. Dies ist hier z.B. der Fall für Heidi Reichinnek, deren Accountname/User Handle sich seit der Erstellung des o.g. Datensatzes geändert hat. In solchen Fällen muss man ggf. über die Suchfunktion auf *Bluesky* den korrekten Accountnamen recherchieren.
+
+## Profilinformationen
+
+Profilinformationen zu einem Account können mit der Funktion `get_user_info()` abgerufen werden
+
+```{r}
+bs_user <- get_user_info("serapgueler.bsky.social")
+
+glimpse(bs_user)
+```
+
+Um Profilinformationen zu mehreren Accounts gleichzeitig abzurufen, können wir die Funktion `map_df()` aus dem [`purrr`-Paket](https://purrr.tidyverse.org/) nutzen. Diese führt eine Funktion für mehrere verschiedene Argumente (in unserem Fall Accounts) aus und verbindet die Ergebnisse zu einem Dataframe.
+
+```{r}
+bs_users <- map_df(bs_accounts,
+                 ~get_user_info(actor = .x)) # die Funktion wird für jeden Account aus dem Vektor "bs_accounts" ausgeführt, wobei ".x" den aktuellen Account aus der Liste repräsentiert 
+
+glimpse(bs_users)
+```
+
+## Posts
+
+Die Posts eines Accounts können mit der Funktion `get_skeets_authored_by()` abgerufen werden. Diese Funktion bietet verschiedene Argumente, mit denen man u.a. die Anzahl der abzurufenden Posts begrenzen und die Daten in einem Dataframe-Format zurückgeben kann.
+
+```{r}
+#| message: false
+bs_posts1 <- get_skeets_authored_by(actor = "larsklingbeil.bsky.social",
+                                limit = 100, # maximale Anzahl der abzurufenden Posts
+                                parse = TRUE) # Posts in einem Dataframe zurückgeben
+
+glimpse(bs_posts1)
+```
+
+Auch hier können wir die Funktion `map_df()` nutzen, um die Posts mehrerer Accounts zu sammeln.
+
+```{r}
+#| message: false
+bs_posts <- map_df(bs_accounts,
+                    ~get_skeets_authored_by(actor = .x,
+                                            limit = 100, # maximale Anzahl der abzurufenden Posts
+                                            parse = TRUE)) # Posts in einem Dataframe zurückgeben
+
+glimpse(bs_posts)
+```
+
+## Weitere Daten
+
+Neben Profilinformationen und Posts können mit `atrrr` auch weitere Daten wie z.B. die Follower oder die Accounts, denen ein Account folgt, gesammelt werden. Die entsprechenden Funktionen sind `get_followers()` und `get_follows()`. Auch hier können wir die Funktionen für mehrere Accounts gleichzeitig mit `map_df()` nutzen.
+
+Da wir uns im Kurs auf die Analyse von Textdaten konzentrieren und die Netzwerkanalyse ausklammern, werden wir diese Daten hier nicht weiter betrachten. Weitere Informationen zu diesen Funktionen finden Sie in der [Dokumentation zum Paket `atrrr`](https://jbgruber.github.io/atrrr/).
+
+Eine Einführung in die Netzwerkanalyse bietet u.a. [Kapitel 13 im Online-Buch *Computational Analysis of Communication*](https://cssbook.net/content/chapter13.html).
