@@ -84,13 +84,6 @@
     "text": "Weitere Daten\nNeben Profilinformationen und Posts können mit atrrr auch weitere Daten wie z.B. die Follower oder die Accounts, denen ein Account folgt, gesammelt werden. Die entsprechenden Funktionen sind get_followers() und get_follows().\nDa wir uns im Kurs auf die Analyse von Textdaten konzentrieren und die Netzwerkanalyse ausklammern, werden wir diese Daten hier nicht weiter betrachten."
   },
   {
-    "objectID": "session-02.html#references",
-    "href": "session-02.html#references",
-    "title": "Sammlung von Social-Media-Daten mit R",
-    "section": "References",
-    "text": "References"
-  },
-  {
     "objectID": "session-02.html#setup-1",
     "href": "session-02.html#setup-1",
     "title": "Sammlung von Social-Media-Daten mit R",
@@ -186,7 +179,14 @@
     "href": "session-02.html#weitere-daten-2",
     "title": "Sammlung von Social-Media-Daten mit R",
     "section": "Weitere Daten",
-    "text": "Weitere Daten\nDas Paket vosonSML bietet einige Funktionen für Netzwerkanalysen (auch von YouTube-Kommentaren).\nFür (Meta-) Daten zu Kanälen oder Playlists bietet das Paket tuber spezifische Funktionen an.\n\n\n\n\nBreuer, J., Soldner, F., Shankaran, V., Fröhling, L., Bauer, P., Sältzer, M., Weiß, J., & Chen, S. (2026). Social Media Accounts of German Candidates from the German Federal Election 2025 [Social-Media-Konten der deutschen Kandidierenden bei der Bundestagswahl 2025]. GESIS. https://doi.org/10.4232/1.14694\n\n\nKohne, J., Breuer, J., Deubel, A., & Mohseni, M. R. (2024). How to Collect Data with the YouTube Data API (GESIS Guides to Digital Behavioral Data, 13). GESIS - Leibniz-Institute for the Social Sciences. https://doi.org/10.60762/GGDBD24013.1.0\n\n\nSteup, J. M., Kielbassa, P., Neumeier, A., & Riedl, J. (2025). Social Media Accounts (TikTok, YouTube, X/Twitter) of the Candidates in the 2025 German Federal Election. GESIS Data Archive. https://doi.org/10.7802/2862"
+    "text": "Weitere Daten\nDas Paket vosonSML bietet einige Funktionen für Netzwerkanalysen (auch von YouTube-Kommentaren).\nFür (Meta-) Daten zu Kanälen oder Playlists bietet das Paket tuber spezifische Funktionen an."
+  },
+  {
+    "objectID": "session-02.html#references",
+    "href": "session-02.html#references",
+    "title": "Sammlung von Social-Media-Daten mit R",
+    "section": "References",
+    "text": "References\n\n\n\n\nBreuer, J., Soldner, F., Shankaran, V., Fröhling, L., Bauer, P., Sältzer, M., Weiß, J., & Chen, S. (2026). Social Media Accounts of German Candidates from the German Federal Election 2025 [Social-Media-Konten der deutschen Kandidierenden bei der Bundestagswahl 2025]. GESIS. https://doi.org/10.4232/1.14694\n\n\nKohne, J., Breuer, J., Deubel, A., & Mohseni, M. R. (2024). How to Collect Data with the YouTube Data API (GESIS Guides to Digital Behavioral Data, 13). GESIS - Leibniz-Institute for the Social Sciences. https://doi.org/10.60762/GGDBD24013.1.0\n\n\nSteup, J. M., Kielbassa, P., Neumeier, A., & Riedl, J. (2025). Social Media Accounts (TikTok, YouTube, X/Twitter) of the Candidates in the 2025 German Federal Election. GESIS Data Archive. https://doi.org/10.7802/2862"
   },
   {
     "objectID": "session-01.html#was-bisher-geschah",

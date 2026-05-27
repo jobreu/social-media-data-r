@@ -17,7 +17,7 @@ title-slide-attributes:
 
 ## Reminder: Buch zum Kurs 📖
 
-Im Buch zum Kurs finden Sie ausführlichere Informationen zu den Themen, die wir in dieser Sitzung behandeln. Sie finden dieses online über den folgenden Link: https://jobreu.github.io/social-media-data-r/
+Im Buch zum Kurs finden Sie ausführlichere Informationen zu den Themen, die wir in dieser Sitzung behandeln. Sie finden dieses online über den folgenden Link: [https://jobreu.github.io/social-media-data-r/](https://jobreu.github.io/social-media-data-r/)
 
 ## Beobachtungseinheiten & Sampling
 
@@ -126,8 +126,6 @@ Neben Profilinformationen und Posts können mit `atrrr` auch weitere Daten wie z
 
 Da wir uns im Kurs auf die Analyse von Textdaten konzentrieren und die Netzwerkanalyse ausklammern, werden wir diese Daten hier nicht weiter betrachten.
 
-## References
-
 # TikTok {background-color="#4A90E2"}
 
 ## Setup
@@ -233,7 +231,7 @@ comments_yt <- auth_yt %>%
 glimpse(comments_yt)
 ```
 
-## Rate Limits {.smaller}
+## Rate Limits
 
 Für die kostenfreie Nutzung der *YouTube* Data API gibt es bestimmte Kontingente, d.h. es gibt eine maximale Anzahl an Anfragen, die man pro Tag stellen kann. Aktuell liegt das Tageslimit bei 10.000 Anfragen pro Tag.
 
@@ -247,3 +245,4 @@ Das Paket `vosonSML` bietet einige Funktionen für Netzwerkanalysen (auch von *Y
 
 Für (Meta-) Daten zu Kanälen oder Playlists bietet das Paket [`tuber`](github.com/gojiplus/tuber) spezifische Funktionen an.
 
+## References
