@@ -13,53 +13,237 @@ title-slide-attributes:
   data-background-position: "top right"
 ---
 
-# Social-Media-Daten {background-color="#4A90E2"}
+# Setup {background-color="#4A90E2"}
 
-## Methoden zur Sammlung von Social-Media-Daten
+## Reminder: Buch zum Kurs 📖
 
-::: {.incremental}
-- APIs (Application Programming Interfaces)
-
-- Web Scraping
-
-- Datenspende
-
-[@BreuerEtAl2020]
-
-:::
+Im Buch zum Kurs finden Sie ausführlichere Informationen zu den Themen, die wir in dieser Sitzung behandeln. Sie finden dieses online über den folgenden Link: https://jobreu.github.io/social-media-data-r/
 
 ## Beobachtungseinheiten & Sampling
 
-Die Beobachtungseinheiten für *Bluesky* und *TikTok* sind die Accounts von Kandidierenden zur deutschen Bundestagswahl 2025. Die Informationen zu diesen stammen aus dem Datensatz [*Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025*](https://doi.org/10.4232/1.14773) [@BreuerEtAl2026]. Wir nutzen für diese beiden Plattformen in den Beispielen entsprechend ein accountbasiertes Sampling.
+::: {.incremental}
+Die Beobachtungseinheiten für *Bluesky* und *TikTok* sind die Accounts von Kandidierenden zur deutschen Bundestagswahl 2025. Die Informationen zu diesen stammen aus dem Datensatz [*Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025*](https://doi.org/10.4232/1.14773) [@BreuerEtAl2026].Beispiele dafür, wie Sie Accounts aus diesem Datensatz auswählen können, finden Sie im Skript [*get_accounts.R*](../scripts/get_accounts.R).
+
+Eine weitere Quelle für Accounts ist der Datensatz [*Social Media Accounts (TikTok, YouTube, X/Twitter) of the Candidates in the 2025 German Federal Election*](https://doi.org/10.7802/2862) [@SteupEtAl2025].
+:::
 
 ## Accounts
 
 Zur Erinnerung: Wir benötigen:
 
+::: {.incremental}
 1.  Einen [*TikTok*](https://www.tiktok.com/)-Account
 
 2.  Einen [*Bluesky*](https://bsky.app/)-Account
 
 3.  Einen *Google*-Account und einen *YouTube* API Key. Wie Sie einen *YouTube* API Key erhalten, wird ausführlich in einem [Tutorial von Communalytic beschrieben](https://communalytic.org/docs/obtaining-youtube-api-key/) sowie im GESIS Guide [*How to Collect Data with the YouTube Data API*](https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf) [@KohneEtAl2024] beschrieben.
+:::
 
-# Bluesky {background-color="#4A90E2"}
+## Pakete
 
-## Setup
-
-Für die Sammlung von *Bluesky*-Daten nutzen wir das [Paket `atrrr`](https://jbgruber.github.io/atrrr/) von Johannes Gruber. Um es zu benutzen benötigen wir einen *Bluesky*-Account.
-
-Wie immer müssen wir das Paket zunächst installieren.
+Zur Sammlung von *Bluesky*-, *TikTok*- und *YouTube*-Daten nutzen wir die folgenden `R`-Pakete: [`atrrr`](https://jbgruber.github.io/atrrr/), [`traktok`](https://jbgruber.github.io/traktok/) und [`vosonSML`](https://vosonlab.github.io/vosonSML/). Zur Nutzung von `traktok` brauchen wir zusätzlich noch das Paket [`cookiemonster`](https://github.com/JBGruber/cookiemonster).
 
 ```{r}
 #| eval: false
-
-install.packages("atrrr")
+install.packages(c("atrrr", "traktok", "vosonSML", "cookiemonster"))
 ```
 
-Und dann müssen wir es in jeder Sitzung neu laden.
+# Bluesky {background-color="#4A90E2"}
+
+## Pakete laden
 
 ```{r}
+#| warning: false
+#| message: false
 library(atrrr)
+library(tidyverse)
 ```
 
+## Authentifizierung
+
+Bevor wir Daten sammeln können, müssen wir uns mit unserem *Bluesky*-Account authentifizieren.
+
+```{r}
+#| eval: false
+auth("your_user_name") # hier Ihren User Name einfügen (z.B., tmueller.bsky.social)
+```
+
+Sie müssen sich bei Ihrem Bluesky-Konto anmelden und ein „App-Passwort“ erstellen. Dieses Passwort müssen Sie dann in das Popup-Fenster eingeben, das nach dem Ausführen der `auth()`-Funktion erscheint.
+
+## Accounts auswählen
+
+Wir wählen hier beispielhaft aus dem Datensatz [*Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025*](https://doi.org/10.4232/1.14773) [@BreuerEtAl2026] Accounts von prominenten Politiker_innen von der CDU, der SPD, den Grünen, der Linken und der FDP.
+
+```{r}
+bs_accounts <- c("serapgueler.bsky.social", "larsklingbeil.bsky.social",
+              "katharinadroege.bsky.social", "heidireichinnek.dielinkebt.de",
+              "christianduerr.bsky.social")
+```
+
+## Profilinformationen: Ein Account
+
+```{r}
+bs_user <- get_user_info("serapgueler.bsky.social")
+
+glimpse(bs_user)
+```
+
+## Profilinformationen: Mehrere Accounts
+
+```{r}
+bs_users <- map_df(bs_accounts,
+                 ~get_user_info(actor = .x)) # die Funktion wird für jeden Account aus dem Vektor "bs_accounts" ausgeführt, wobei ".x" den aktuellen Account aus der Liste repräsentiert 
+
+glimpse(bs_users)
+```
+
+## Posts: Ein Account
+
+```{r}
+#| message: false
+bs_posts1 <- get_skeets_authored_by(actor = "larsklingbeil.bsky.social",
+                                limit = 100, # maximale Anzahl der abzurufenden Posts
+                                parse = TRUE) # Posts in einem Dataframe zurückgeben
+
+glimpse(bs_posts1)
+```
+
+## Posts: Mehrere Accounts
+
+```{r}
+#| message: false
+bs_posts <- map_df(bs_accounts,
+                    ~get_skeets_authored_by(actor = .x,
+                                            limit = 100, # maximale Anzahl der abzurufenden Posts
+                                            parse = TRUE)) # Posts in einem Dataframe zurückgeben
+
+glimpse(bs_posts)
+```
+
+## Weitere Daten
+
+Neben Profilinformationen und Posts können mit `atrrr` auch weitere Daten wie z.B. die Follower oder die Accounts, denen ein Account folgt, gesammelt werden. Die entsprechenden Funktionen sind `get_followers()` und `get_follows()`. 
+
+Da wir uns im Kurs auf die Analyse von Textdaten konzentrieren und die Netzwerkanalyse ausklammern, werden wir diese Daten hier nicht weiter betrachten.
+
 ## References
+
+# TikTok {background-color="#4A90E2"}
+
+## Setup
+
+```{r}
+library(traktok)
+```
+
+```{r}
+tt_accounts <- c("serapguelermdb", "lars.klingbeil",
+              "katharina.droege", "heidireichinnek",
+              "christianduerr")
+```
+
+## Authentifizierung: Schritt 1
+
+Wir nutzen die ["Unofficial API"](https://jbgruber.github.io/traktok/articles/unofficial-api.html). Um diese nutzen zu können, müssen wir uns mit einem *TikTok*-Account im Browser einloggen und die Cookies für die Webseite speichern. Das geht am einfachsten mit den Browser-Plugins [*Get cookies.txt*](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc?pli=1) für *Chrome* bzw. [*cookies.txt*](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) für *Firefox*.
+
+## Authentifizierung: Schritt 2
+
+Die Cookies können wir dann mit der Funktion `get_cookies()` aus dem Paket `cookiemonster` sspeichern. Das Argument `path` muss dabei der Pfad sein, unter dem die `.txt`-Datei mit den Cookies gespeichert ist.
+
+```{r}
+#| eval: false
+cookies <- get_cookies(path = "./data/tiktok_cookies.txt") # Dateipfad anpassen
+```
+
+## Authentifizierung: Check
+
+Ob alles funktioniert hat, können wir dann mit der Funktion `auth_check()` aus dem Paket `traktok` überprüfen.
+
+```{r}
+auth_check()
+```
+
+## Profilinformationen: Ein Account
+
+```{r}
+tt_user <- tt_user_info_hidden("serapguelermdb")
+
+glimpse(tt_user)
+```
+
+## Profilinformationen: Mehrere Accounts
+
+```{r}
+tt_users <- map_df(tt_accounts,
+                 ~tt_user_info_hidden(username = .x)) # die Funktion wird für jeden Account aus dem Vektor "tt_accounts" ausgeführt, wobei ".x" den aktuellen Account aus der Liste repräsentiert 
+
+glimpse(tt_users)
+```
+
+## Videos
+
+Die Videos eines Accounts können mit der Funktion `tt_user_videos_hidden()` abgerufen werden. Leider funktioniert diese aktuell (Stand 26.05.2026) nicht verlässlich. Sie können ausprobieren, diese lokal auf Ihrem Rechner auszuführen. Es empfiehlt sich dabei, das Argument `solve_captchas` auf `TRUE` zu setzen, damit Sie ggf. erscheinende Captchas in Ihrem Browser lösen können.
+
+## Weitere Daten
+
+Das Paket `traktok` bietet auch Funktionen, um Daten zu den Following und Followed Accounts zu sammeln. Dies geht mit den Funktionen `tt_get_follower_hidden()` bzw. `tt_get_following_hidden()`
+
+# YouTube {background-color="#4A90E2"}
+
+## Setup
+
+```{r}
+library(vosonSML)
+```
+
+Zur Erinnerung: Für die Sammlung von *YouTube*-Daten benötigen wir einen API Key für die *YouTube* Data API.
+
+## Authentifizierung
+
+```{r}
+#| eval: false
+auth_yt <- Authenticate("youtube",
+             apiKey = "your_api_key_here") # ersetzen Sie "your_api_key_here" durch Ihren tatsächlichen API Key
+```
+
+```{r}
+#| echo: false
+auth_yt <- Authenticate("youtube",
+             apiKey = Sys.getenv("YOUTUBE_API_KEY"))
+```
+
+## Videos
+
+Die Funktion `Collect()` aus dem Paket `vosonSML` bietet die Möglichkeit, Kommentare zu bestimmten Videos zu sammeln. Dazu muss man die URLs der Videos angeben, von denen man die Kommentare sammeln möchte.
+
+Im nachfolgenden Beispiele sammeln wir die Kommentare zu zwei exemplarischen Videos aus den Ergebnissen der Suche "Bundestagswahl 2025" auf *YouTube*.
+
+```{r}
+video_urls <- c("https://www.youtube.com/watch?v=5A-ggbcnwcg",
+               "https://www.youtube.com/watch?v=a6ZaJ38cy7U")
+```
+
+## Kommentare
+
+```{r}
+comments_yt <- auth_yt %>%
+  Collect(videoIDs = video_urls,
+          maxComments = 2000) # maximale Anzahl an Kommentaren pro Video
+
+glimpse(comments_yt)
+```
+
+## Rate Limits {.smaller}
+
+Für die kostenfreie Nutzung der *YouTube* Data API gibt es bestimmte Kontingente, d.h. es gibt eine maximale Anzahl an Anfragen, die man pro Tag stellen kann. Aktuell liegt das Tageslimit bei 10.000 Anfragen pro Tag.
+
+Je nachdem, wie viele Kommentare man sammeln möchte, kann es daher sein, dass man das Tageslimit überschreitet. In diesem Fall muss ggf. warten, bis das Tageslimit zurückgesetzt wird. Dies geschieht immer um Mitternacht Pacific Time. 
+
+Die Funktion `Collect()` von `vosonSML` zeigt einem die geschätzten API-Kosten an.
+
+## Weitere Daten
+
+Das Paket `vosonSML` bietet einige Funktionen für Netzwerkanalysen (auch von *YouTube*-Kommentaren).
+
+Für (Meta-) Daten zu Kanälen oder Playlists bietet das Paket [`tuber`](github.com/gojiplus/tuber) spezifische Funktionen an.
+

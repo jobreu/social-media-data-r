@@ -45,6 +45,8 @@ auth_yt <- Authenticate("youtube",
              apiKey = Sys.getenv("YOUTUBE_API_KEY"))
 ```
 
+## Daten sammeln
+
 ### Kommentare zu Videos
 
 Die Funktion `Collect()` aus dem Paket `vosonSML` bietet die Möglichkeit, Kommentare zu bestimmten Videos zu sammeln. Dazu muss man die URLs der Videos angeben, von denen man die Kommentare sammeln möchte. Um Videos zu einem bestimmten Thema zu finden, können wir die Suchfunktion von *YouTube* nutzen.
@@ -61,7 +63,7 @@ video_urls <- c("https://www.youtube.com/watch?v=5A-ggbcnwcg",
 Anschließend können wir die Kommentare zu diesen Videos mit der Funktion `Collect()` aus `vosonSML` sammeln. Damit wir dies machen können, müssen wir der Funktion das zuvor erstellte Objekt mit den Authentifizierungsdaten übergeben.
 
 ```{r}
-comments_yt <- auth_yt |> 
+comments_yt <- auth_yt %>%
   Collect(videoIDs = video_urls,
           maxComments = 2000) # maximale Anzahl an Kommentaren pro Video
 
@@ -70,7 +72,7 @@ glimpse(comments_yt)
 
 **Wichtig**: Für die kostenfreie Nutzung der *YouTube* Data API gibt es bestimmte Kontingente, d.h. es gibt eine maximale Anzahl an Anfragen, die man pro Tag stellen kann. Aktuell liegt das Tageslimit bei 10.000 Anfragen pro Tag. Je nachdem, wie viele Kommentare man sammeln möchte, kann es daher sein, dass man das Tageslimit überschreitet. In diesem Fall muss ggf. warten, bis das Tageslimit zurückgesetzt wird. Dies geschieht immer um Mitternacht Pacific Time. Die Funktion `Collect()` von `vosonSML` zeigt einem die geschätzten API-Kosten an.
 
-## Weitere Daten
+### Weitere Daten
 
 Das Paket `vosonSML` bietet einige Funktionen für Netzwerkanalysen (auch von *YouTube*-Kommentaren). Eine Einführung in die Netzwerkanalyse bietet u.a. [Kapitel 13 im Online-Buch *Computational Analysis of Communication*](https://cssbook.net/content/chapter13.html).
 

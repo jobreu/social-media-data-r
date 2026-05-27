@@ -27,7 +27,7 @@ library(tidyverse)
 
 ### Authentifizierung
 
-Wir nutzen hier die ["Unofficial API"](https://jbgruber.github.io/traktok/articles/unofficial-api.html). Um diese nutzen zu können, müssen wir uns mit einem *TikTok*-Account im Browser einloggen und die Cookies für die Webseite speichern. Dies geht am einfachsten mit den Browser-Plugins [*Get cookies.txt*](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc?pli=1) für *Chrome* bzw. [*cookies.txt*](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) für *Firefox*.
+Wir nutzen hier die ["Unofficial API"](https://jbgruber.github.io/traktok/articles/unofficial-api.html). Um diese nutzen zu können, müssen wir uns mit einem *TikTok*-Account im Browser einloggen und die Cookies für die Webseite speichern. Das geht am einfachsten mit den Browser-Plugins [*Get cookies.txt*](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc?pli=1) für *Chrome* bzw. [*cookies.txt*](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) für *Firefox*.
 
 Sobald wir die Cookies für *TikTok* gespeichert haben, können wir sie mithilfe des [`R`-Pakets `cookiemonster`](https://github.com/JBGruber/cookiemonster) speichern.
 
@@ -57,13 +57,13 @@ auth_check()
 
 **Wichtiger Hinweis**: Der Zugang über die "Hidden" bzw. "Unofficial API" ist nicht so stabil wie derjenige über die offizielle Research API. Es kann daher sein, dass Funktionen für die Hidden API nicht funktionieren, weil Anfragen geblockt werden. Es ist auch möglich, dass man bei der Verwendung dieser Funktionen im Browser Captchas lösen muss. Mehr dazu findet sich im [Abschnitt zur Unofficial API in der Dokumentation von `traktok`](https://jbgruber.github.io/traktok/articles/unofficial-api.html).
 
-### Accounts
+## Daten sammeln
 
 Die Informationen zu den Accounts, von denen wir Daten sammeln wollen, stammen aus dem Datensatz [*Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025*](https://doi.org/10.4232/1.14773) [@BreuerEtAl2026]. Beispiele dafür, wie Sie Accounts aus diesem Datensatz auswählen können, finden Sie im Skript [*get_accounts.R*](./scripts/get_accounts.R).
 
 *Hinweis*: Eine weitere Informationsquelle für *TikTok*-Accounts ist auch der Datensatz [*Social Media Accounts (TikTok, YouTube, X/Twitter) of the Candidates in the 2025 German Federal Election*](https://doi.org/10.7802/2862) [@SteupEtAl2025].
 
-Wir wählen hier beispielhaft aus dem Datensatz von Breuer et al. [-@BreuerEtAl2026] Accounts von einigen prominenten Politiker_innen von der CDU, der SPD, den Grünen, der Linken und der FDP.
+Wir wählen hier beispielhaft aus dem Datensatz von Breuer et al. [-@BreuerEtAl2026] Accounts von prominenten Politiker_innen von der CDU, der SPD, den Grünen, der Linken und der FDP.
 
 ```{r}
 tt_accounts <- c("serapguelermdb", "lars.klingbeil",
@@ -71,7 +71,7 @@ tt_accounts <- c("serapguelermdb", "lars.klingbeil",
               "christianduerr")
 ```
 
-## Profilinformationen
+### Profilinformationen
 
 Profilinformationen zu einem Account können mit der Funktion `tt_user_info_hidden()` abgerufen werden
 
@@ -92,7 +92,7 @@ glimpse(tt_users)
 
 Für eine Textanalyse können wir die Profilbeschreibungstexte der Accounts nutzen, die in der Variable `signature` zu finden sind.
 
-## Videos
+### Videos
 
 Die Videos eines Accounts können mit der Funktion `tt_user_videos_hidden()` abgerufen werden. Leider funktioniert diese aktuell (Stand 26.05.2026) nicht verlässlich. Sie können ausprobieren, diese lokal auf Ihrem Rechner auszuführen. Es empfiehlt sich dabei, das Argument `solve_captchas` auf `TRUE` zu setzen, damit Sie ggf. erscheinende Captchas in Ihrem Browser lösen können.
 
@@ -106,7 +106,7 @@ tt_videos <- tt_uservideos_hidden("serapguelermdb",
 glimpse(tt_videos)
 ```
 
-## Weitere Daten
+### Weitere Daten
 
 Das Paket `traktok` bietet auch Funktionen, um Daten zu den Following und Followed Accounts zu sammeln. Dies geht mit den Funktionen `tt_get_follower_hidden()` bzw. `tt_get_following_hidden()`
 

@@ -2,7 +2,7 @@
 
 Es gibt verschiedene Zugangswege zu Social-Media-Daten, die jeweils eigene Vorteile und Herausforderungen mit sich bringen [@BreuerEtAl2020]. Die in der Forschung bislang am häufigsten genutzten Optionen sind Application Programming Interfaces (APIs) und Web Scraping.
 
-Eine ausführliche Einführung in Web Scraping und die Nutzung von APIs geht über den Rahmen dieses Buches hinaus, aber die nachfolgende Abbildung aus Deubel et al. [-DeubelEtAl2024] bietet einen vereinfachten visuellen Vergleich der beiden Methoden.
+Eine ausführliche Einführung in Web Scraping und die Nutzung von APIs geht über den Rahmen dieses Buches hinaus, aber die nachfolgende Abbildung aus Deubel et al. [-@DeubelEtAl2024, S. 7] bietet einen vereinfachten visuellen Vergleich der beiden Methoden.
 
 ![API vs. Web Scraping](./images/api-scraping.png){fig-align="center"}
 Umnfangreichere Einführungen zu Web Scraping und APIs für den Datenzugang finden sich in den entsprechenden *GESIS Guides to Digital Behavioral Data* von Soldnet et al. [-@SoldnerEtAl2024a; -@SoldnerEtAl2024b].

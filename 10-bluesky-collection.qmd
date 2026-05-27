@@ -14,6 +14,7 @@ install.packages("atrrr")
 ```
 
 ```{r}
+#| warning: false
 library(atrrr)
 ```
 
@@ -31,16 +32,16 @@ Bevor wir Daten sammeln können, müssen wir uns mit unserem *Bluesky*-Account a
 
 ```{r}
 #| eval: false
-auth("your_user_name") # insert your user name here (e.g., tmueller.bsky.social)
+auth("your_user_name") # hier Ihren User Name einfügen (z.B., tmueller.bsky.social)
 ```
 
 Sie müssen sich bei Ihrem Bluesky-Konto anmelden und ein „App-Passwort“ erstellen. Dieses Passwort müssen Sie dann in das Popup-Fenster eingeben, das nach dem Ausführen der `auth()`-Funktion erscheint.
 
-### Accounts
+## Daten sammeln
 
 Die Informationen zu den Accounts, von denen wir Daten sammeln wollen, stammen aus dem Datensatz [*Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025*](https://doi.org/10.4232/1.14773) [@BreuerEtAl2026]. Beispiele dafür, wie Sie Accounts aus diesem Datensatz auswählen können, finden Sie im Skript [*get_accounts.R*](./scripts/get_accounts.R).
 
-Wir wählen hier beispielhaft aus diesem Datensatz Accounts von einigen prominenten Politiker_innen von der CDU, der SPD, den Grünen, der Linken und der FDP.
+Wir wählen hier beispielhaft aus diesem Datensatz Accounts von prominenten Politiker_innen von der CDU, der SPD, den Grünen, der Linken und der FDP.
 
 ```{r}
 bs_accounts <- c("serapgueler.bsky.social", "larsklingbeil.bsky.social",
@@ -50,7 +51,7 @@ bs_accounts <- c("serapgueler.bsky.social", "larsklingbeil.bsky.social",
 
 **NB**: Accountnamen bzw User Handles können sich ändern. Dies ist hier z.B. der Fall für Heidi Reichinnek, deren Accountname/User Handle sich seit der Erstellung des o.g. Datensatzes geändert hat. In solchen Fällen muss man ggf. über die Suchfunktion auf *Bluesky* den korrekten Accountnamen recherchieren.
 
-## Profilinformationen
+### Profilinformationen
 
 Profilinformationen zu einem Account können mit der Funktion `get_user_info()` abgerufen werden
 
@@ -69,7 +70,7 @@ bs_users <- map_df(bs_accounts,
 glimpse(bs_users)
 ```
 
-## Posts
+### Posts
 
 Die Posts eines Accounts können mit der Funktion `get_skeets_authored_by()` abgerufen werden. Diese Funktion bietet verschiedene Argumente, mit denen man u.a. die Anzahl der abzurufenden Posts begrenzen und die Daten in einem Dataframe-Format zurückgeben kann.
 
@@ -94,7 +95,7 @@ bs_posts <- map_df(bs_accounts,
 glimpse(bs_posts)
 ```
 
-## Weitere Daten
+### Weitere Daten
 
 Neben Profilinformationen und Posts können mit `atrrr` auch weitere Daten wie z.B. die Follower oder die Accounts, denen ein Account folgt, gesammelt werden. Die entsprechenden Funktionen sind `get_followers()` und `get_follows()`. Auch hier können wir die Funktionen für mehrere Accounts gleichzeitig mit `map_df()` nutzen.
 

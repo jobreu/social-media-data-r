@@ -380,11 +380,13 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#pakete-laden" id="toc-pakete-laden" class="nav-link" data-scroll-target="#pakete-laden"><span class="header-section-number">12.1.1</span> Pakete laden</a></li>
   <li><a href="#authentifizierung" id="toc-authentifizierung" class="nav-link" data-scroll-target="#authentifizierung"><span class="header-section-number">12.1.2</span> Authentifizierung</a></li>
-  <li><a href="#accounts" id="toc-accounts" class="nav-link" data-scroll-target="#accounts"><span class="header-section-number">12.1.3</span> Accounts</a></li>
   </ul></li>
-  <li><a href="#profilinformationen" id="toc-profilinformationen" class="nav-link" data-scroll-target="#profilinformationen"><span class="header-section-number">12.2</span> Profilinformationen</a></li>
-  <li><a href="#posts" id="toc-posts" class="nav-link" data-scroll-target="#posts"><span class="header-section-number">12.3</span> Posts</a></li>
-  <li><a href="#weitere-daten" id="toc-weitere-daten" class="nav-link" data-scroll-target="#weitere-daten"><span class="header-section-number">12.4</span> Weitere Daten</a></li>
+  <li><a href="#daten-sammeln" id="toc-daten-sammeln" class="nav-link" data-scroll-target="#daten-sammeln"><span class="header-section-number">12.2</span> Daten sammeln</a>
+  <ul class="collapse">
+  <li><a href="#profilinformationen" id="toc-profilinformationen" class="nav-link" data-scroll-target="#profilinformationen"><span class="header-section-number">12.2.1</span> Profilinformationen</a></li>
+  <li><a href="#posts" id="toc-posts" class="nav-link" data-scroll-target="#posts"><span class="header-section-number">12.2.2</span> Posts</a></li>
+  <li><a href="#weitere-daten" id="toc-weitere-daten" class="nav-link" data-scroll-target="#weitere-daten"><span class="header-section-number">12.2.3</span> Weitere Daten</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/10-bluesky-collection.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
@@ -421,42 +423,38 @@ div.csl-indent {
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(atrrr)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'atrrr' wurde unter R Version 4.5.2 erstellt</code></pre>
-</div>
 </div>
 <p>Zusätzlich nutzen wir auch in diesem Abschnitt Funktionen aus den <code>tidyverse</code>-Paketen. Sofern dies in der aktuellen <code>R</code>-Session noch nicht geschehen ist, müssen wir auch diese Pakete erst laden</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="authentifizierung" class="level3" data-number="12.1.2">
 <h3 data-number="12.1.2" class="anchored" data-anchor-id="authentifizierung"><span class="header-section-number">12.1.2</span> Authentifizierung</h3>
 <p>Bevor wir Daten sammeln können, müssen wir uns mit unserem <em>Bluesky</em>-Account authentifizieren.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">auth</span>(<span class="st">"your_user_name"</span>) <span class="co"># insert your user name here (e.g., tmueller.bsky.social)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">auth</span>(<span class="st">"your_user_name"</span>) <span class="co"># hier Ihren User Name einfügen (z.B., tmueller.bsky.social)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Sie müssen sich bei Ihrem Bluesky-Konto anmelden und ein „App-Passwort“ erstellen. Dieses Passwort müssen Sie dann in das Popup-Fenster eingeben, das nach dem Ausführen der <code>auth()</code>-Funktion erscheint.</p>
 </section>
-<section id="accounts" class="level3" data-number="12.1.3">
-<h3 data-number="12.1.3" class="anchored" data-anchor-id="accounts"><span class="header-section-number">12.1.3</span> Accounts</h3>
+</section>
+<section id="daten-sammeln" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="daten-sammeln"><span class="header-section-number">12.2</span> Daten sammeln</h2>
 <p>Die Informationen zu den Accounts, von denen wir Daten sammeln wollen, stammen aus dem Datensatz <a href="https://doi.org/10.4232/1.14773"><em>Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025</em></a> <span class="citation" data-cites="BreuerEtAl2026">(<a href="references.html#ref-BreuerEtAl2026" role="doc-biblioref">Breuer et al., 2026</a>)</span>. Beispiele dafür, wie Sie Accounts aus diesem Datensatz auswählen können, finden Sie im Skript <a href="./scripts/get_accounts.R"><em>get_accounts.R</em></a>.</p>
-<p>Wir wählen hier beispielhaft aus diesem Datensatz Accounts von einigen prominenten Politiker_innen von der CDU, der SPD, den Grünen, der Linken und der FDP.</p>
+<p>Wir wählen hier beispielhaft aus diesem Datensatz Accounts von prominenten Politiker_innen von der CDU, der SPD, den Grünen, der Linken und der FDP.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bs_accounts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"serapgueler.bsky.social"</span>, <span class="st">"larsklingbeil.bsky.social"</span>,</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">"katharinadroege.bsky.social"</span>, <span class="st">"heidireichinnek.dielinkebt.de"</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"christianduerr.bsky.social"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bs_accounts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"serapgueler.bsky.social"</span>, <span class="st">"larsklingbeil.bsky.social"</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">"katharinadroege.bsky.social"</span>, <span class="st">"heidireichinnek.dielinkebt.de"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"christianduerr.bsky.social"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>NB</strong>: Accountnamen bzw User Handles können sich ändern. Dies ist hier z.B. der Fall für Heidi Reichinnek, deren Accountname/User Handle sich seit der Erstellung des o.g. Datensatzes geändert hat. In solchen Fällen muss man ggf. über die Suchfunktion auf <em>Bluesky</em> den korrekten Accountnamen recherchieren.</p>
-</section>
-</section>
-<section id="profilinformationen" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="profilinformationen"><span class="header-section-number">12.2</span> Profilinformationen</h2>
+<section id="profilinformationen" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="profilinformationen"><span class="header-section-number">12.2.1</span> Profilinformationen</h3>
 <p>Profilinformationen zu einem Account können mit der Funktion <code>get_user_info()</code> abgerufen werden</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bs_user <span class="ot">&lt;-</span> <span class="fu">get_user_info</span>(<span class="st">"serapgueler.bsky.social"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bs_user)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bs_user <span class="ot">&lt;-</span> <span class="fu">get_user_info</span>(<span class="st">"serapgueler.bsky.social"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bs_user)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1
 Columns: 15
@@ -479,10 +477,10 @@ $ posts_count       &lt;int&gt; 149</code></pre>
 </div>
 <p>Um Profilinformationen zu mehreren Accounts gleichzeitig abzurufen, können wir die Funktion <code>map_df()</code> aus dem <a href="https://purrr.tidyverse.org/"><code>purrr</code>-Paket</a> nutzen. Diese führt eine Funktion für mehrere verschiedene Argumente (in unserem Fall Accounts) aus und verbindet die Ergebnisse zu einem Dataframe.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bs_users <span class="ot">&lt;-</span> <span class="fu">map_df</span>(bs_accounts,</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">~</span><span class="fu">get_user_info</span>(<span class="at">actor =</span> .x)) <span class="co"># die Funktion wird für jeden Account aus dem Vektor "bs_accounts" ausgeführt, wobei ".x" den aktuellen Account aus der Liste repräsentiert </span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bs_users)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bs_users <span class="ot">&lt;-</span> <span class="fu">map_df</span>(bs_accounts,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">~</span><span class="fu">get_user_info</span>(<span class="at">actor =</span> .x)) <span class="co"># die Funktion wird für jeden Account aus dem Vektor "bs_accounts" ausgeführt, wobei ".x" den aktuellen Account aus der Liste repräsentiert </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bs_users)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 5
 Columns: 15
@@ -498,21 +496,21 @@ $ verification      &lt;list&gt; [[["did:plc:z72i7hdynmk6r22z27h6tvur", "at://di
 $ actor_description &lt;chr&gt; "Staatsministerin @AuswaertigesAmt, Mitglied im Deu…
 $ indexed_at        &lt;chr&gt; "2025-05-09T15:37:49.907Z", "2024-01-26T01:59:36.925…
 $ banner            &lt;chr&gt; "https://cdn.bsky.app/img/banner/plain/did:plc:hngke…
-$ followers_count   &lt;int&gt; 3924, 18378, 21973, 46731, 1050
+$ followers_count   &lt;int&gt; 3924, 18379, 21971, 46735, 1050
 $ follows_count     &lt;int&gt; 119, 68, 215, 127, 116
 $ posts_count       &lt;int&gt; 149, 21, 916, 82, 56</code></pre>
 </div>
 </div>
 </section>
-<section id="posts" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="posts"><span class="header-section-number">12.3</span> Posts</h2>
+<section id="posts" class="level3" data-number="12.2.2">
+<h3 data-number="12.2.2" class="anchored" data-anchor-id="posts"><span class="header-section-number">12.2.2</span> Posts</h3>
 <p>Die Posts eines Accounts können mit der Funktion <code>get_skeets_authored_by()</code> abgerufen werden. Diese Funktion bietet verschiedene Argumente, mit denen man u.a. die Anzahl der abzurufenden Posts begrenzen und die Daten in einem Dataframe-Format zurückgeben kann.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>bs_posts1 <span class="ot">&lt;-</span> <span class="fu">get_skeets_authored_by</span>(<span class="at">actor =</span> <span class="st">"larsklingbeil.bsky.social"</span>,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">limit =</span> <span class="dv">100</span>, <span class="co"># maximale Anzahl der abzurufenden Posts</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">parse =</span> <span class="cn">TRUE</span>) <span class="co"># Posts in einem Dataframe zurückgeben</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bs_posts1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bs_posts1 <span class="ot">&lt;-</span> <span class="fu">get_skeets_authored_by</span>(<span class="at">actor =</span> <span class="st">"larsklingbeil.bsky.social"</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">limit =</span> <span class="dv">100</span>, <span class="co"># maximale Anzahl der abzurufenden Posts</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">parse =</span> <span class="cn">TRUE</span>) <span class="co"># Posts in einem Dataframe zurückgeben</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bs_posts1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 28
 Columns: 22
@@ -542,12 +540,12 @@ $ is_reskeet    &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FAL
 </div>
 <p>Auch hier können wir die Funktion <code>map_df()</code> nutzen, um die Posts mehrerer Accounts zu sammeln.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>bs_posts <span class="ot">&lt;-</span> <span class="fu">map_df</span>(bs_accounts,</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                    <span class="sc">~</span><span class="fu">get_skeets_authored_by</span>(<span class="at">actor =</span> .x,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">limit =</span> <span class="dv">100</span>, <span class="co"># maximale Anzahl der abzurufenden Posts</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">parse =</span> <span class="cn">TRUE</span>)) <span class="co"># Posts in einem Dataframe zurückgeben</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bs_posts)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>bs_posts <span class="ot">&lt;-</span> <span class="fu">map_df</span>(bs_accounts,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                    <span class="sc">~</span><span class="fu">get_skeets_authored_by</span>(<span class="at">actor =</span> .x,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">limit =</span> <span class="dv">100</span>, <span class="co"># maximale Anzahl der abzurufenden Posts</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">parse =</span> <span class="cn">TRUE</span>)) <span class="co"># Posts in einem Dataframe zurückgeben</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bs_posts)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 564
 Columns: 22
@@ -576,8 +574,8 @@ $ is_reskeet    &lt;lgl&gt; TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS
 </div>
 </div>
 </section>
-<section id="weitere-daten" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="weitere-daten"><span class="header-section-number">12.4</span> Weitere Daten</h2>
+<section id="weitere-daten" class="level3" data-number="12.2.3">
+<h3 data-number="12.2.3" class="anchored" data-anchor-id="weitere-daten"><span class="header-section-number">12.2.3</span> Weitere Daten</h3>
 <p>Neben Profilinformationen und Posts können mit <code>atrrr</code> auch weitere Daten wie z.B. die Follower oder die Accounts, denen ein Account folgt, gesammelt werden. Die entsprechenden Funktionen sind <code>get_followers()</code> und <code>get_follows()</code>. Auch hier können wir die Funktionen für mehrere Accounts gleichzeitig mit <code>map_df()</code> nutzen.</p>
 <p>Da wir uns im Kurs auf die Analyse von Textdaten konzentrieren und die Netzwerkanalyse ausklammern, werden wir diese Daten hier nicht weiter betrachten. Weitere Informationen zu diesen Funktionen finden Sie in der <a href="https://jbgruber.github.io/atrrr/">Dokumentation zum Paket <code>atrrr</code></a>.</p>
 <p>Eine Einführung in die Netzwerkanalyse bietet u.a. <a href="https://cssbook.net/content/chapter13.html">Kapitel 13 im Online-Buch <em>Computational Analysis of Communication</em></a>.</p>
@@ -588,6 +586,7 @@ $ is_reskeet    &lt;lgl&gt; TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS
 Breuer, J., Soldner, F., Shankaran, V., Fröhling, L., Bauer, P., Sältzer, M., Weiß, J., &amp; Chen, S. (2026). <em><span>Social Media Accounts of German Candidates from the German Federal Election 2025 [Social-Media-Konten der deutschen Kandidierenden bei der Bundestagswahl 2025]</span></em>. GESIS. <a href="https://doi.org/10.4232/1.14694">https://doi.org/10.4232/1.14694</a>
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->

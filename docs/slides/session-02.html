@@ -230,62 +230,438 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
   <p class="date">28. Mai 2026</p>
 </section>
 <section>
-<section id="social-media-daten" class="title-slide slide level1 center" data-background-color="#4A90E2">
-<h1>Social-Media-Daten</h1>
+<section id="setup" class="title-slide slide level1 center" data-background-color="#4A90E2">
+<h1>Setup</h1>
 
 </section>
-<section id="methoden-zur-sammlung-von-social-media-daten" class="slide level2">
-<h2>Methoden zur Sammlung von Social-Media-Daten</h2>
-<ul>
-<li class="fragment"><p>APIs (Application Programming Interfaces)</p></li>
-<li class="fragment"><p>Web Scraping</p></li>
-<li class="fragment"><p>Datenspende</p></li>
-</ul>
-<p><span class="citation" data-cites="BreuerEtAl2020">(<a href="#/references" role="doc-biblioref" onclick="">Breuer et al., 2020</a>)</span></p>
+<section id="reminder-buch-zum-kurs" class="slide level2">
+<h2>Reminder: Buch zum Kurs 📖</h2>
+<p>Im Buch zum Kurs finden Sie ausführlichere Informationen zu den Themen, die wir in dieser Sitzung behandeln. Sie finden dieses online über den folgenden Link: https://jobreu.github.io/social-media-data-r/</p>
 </section>
 <section id="beobachtungseinheiten-sampling" class="slide level2">
 <h2>Beobachtungseinheiten &amp; Sampling</h2>
-<p>Die Beobachtungseinheiten für <em>Bluesky</em> und <em>TikTok</em> sind die Accounts von Kandidierenden zur deutschen Bundestagswahl 2025. Die Informationen zu diesen stammen aus dem Datensatz <a href="https://doi.org/10.4232/1.14773"><em>Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025</em></a> <span class="citation" data-cites="BreuerEtAl2026">(<a href="#/references" role="doc-biblioref" onclick="">Breuer et al., 2026</a>)</span>. Wir nutzen für diese beiden Plattformen in den Beispielen entsprechend ein accountbasiertes Sampling.</p>
+<p>Die Beobachtungseinheiten für <em>Bluesky</em> und <em>TikTok</em> sind die Accounts von Kandidierenden zur deutschen Bundestagswahl 2025. Die Informationen zu diesen stammen aus dem Datensatz <a href="https://doi.org/10.4232/1.14773"><em>Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025</em></a> <span class="citation" data-cites="BreuerEtAl2026">(<a href="#/weitere-daten-2" role="doc-biblioref" onclick="">Breuer et al., 2026</a>)</span>.Beispiele dafür, wie Sie Accounts aus diesem Datensatz auswählen können, finden Sie im Skript <a href="../scripts/get_accounts.R"><em>get_accounts.R</em></a>.</p>
+<p>Eine weitere Quelle für Accounts ist der Datensatz <a href="https://doi.org/10.7802/2862"><em>Social Media Accounts (TikTok, YouTube, X/Twitter) of the Candidates in the 2025 German Federal Election</em></a> <span class="citation" data-cites="SteupEtAl2025">(<a href="#/weitere-daten-2" role="doc-biblioref" onclick="">Steup et al., 2025</a>)</span>.</p>
 </section>
 <section id="accounts" class="slide level2">
 <h2>Accounts</h2>
 <p>Zur Erinnerung: Wir benötigen:</p>
 <ol type="1">
-<li><p>Einen <a href="https://www.tiktok.com/"><em>TikTok</em></a>-Account</p></li>
-<li><p>Einen <a href="https://bsky.app/"><em>Bluesky</em></a>-Account</p></li>
-<li><p>Einen <em>Google</em>-Account und einen <em>YouTube</em> API Key. Wie Sie einen <em>YouTube</em> API Key erhalten, wird ausführlich in einem <a href="https://communalytic.org/docs/obtaining-youtube-api-key/">Tutorial von Communalytic beschrieben</a> sowie im GESIS Guide <a href="https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf"><em>How to Collect Data with the YouTube Data API</em></a> <span class="citation" data-cites="KohneEtAl2024">(<a href="#/references" role="doc-biblioref" onclick="">Kohne et al., 2024</a>)</span> beschrieben.</p></li>
+<li class="fragment"><p>Einen <a href="https://www.tiktok.com/"><em>TikTok</em></a>-Account</p></li>
+<li class="fragment"><p>Einen <a href="https://bsky.app/"><em>Bluesky</em></a>-Account</p></li>
+<li class="fragment"><p>Einen <em>Google</em>-Account und einen <em>YouTube</em> API Key. Wie Sie einen <em>YouTube</em> API Key erhalten, wird ausführlich in einem <a href="https://communalytic.org/docs/obtaining-youtube-api-key/">Tutorial von Communalytic beschrieben</a> sowie im GESIS Guide <a href="https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf"><em>How to Collect Data with the YouTube Data API</em></a> <span class="citation" data-cites="KohneEtAl2024">(<a href="#/weitere-daten-2" role="doc-biblioref" onclick="">Kohne et al., 2024</a>)</span> beschrieben.</p></li>
 </ol>
+</section>
+<section id="pakete" class="slide level2">
+<h2>Pakete</h2>
+<p>Zur Sammlung von <em>Bluesky</em>-, <em>TikTok</em>- und <em>YouTube</em>-Daten nutzen wir die folgenden <code>R</code>-Pakete: <a href="https://jbgruber.github.io/atrrr/"><code>atrrr</code></a>, <a href="https://jbgruber.github.io/traktok/"><code>traktok</code></a> und <a href="https://vosonlab.github.io/vosonSML/"><code>vosonSML</code></a>. Zur Nutzung von <code>traktok</code> brauchen wir zusätzlich noch das Paket <a href="https://github.com/JBGruber/cookiemonster"><code>cookiemonster</code></a>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"atrrr"</span>, <span class="st">"traktok"</span>, <span class="st">"vosonSML"</span>, <span class="st">"cookiemonster"</span>))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section></section>
 <section>
 <section id="bluesky" class="title-slide slide level1 center" data-background-color="#4A90E2">
 <h1>Bluesky</h1>
 
 </section>
-<section id="setup" class="slide level2">
-<h2>Setup</h2>
-<p>Für die Sammlung von <em>Bluesky</em>-Daten nutzen wir das <a href="https://jbgruber.github.io/atrrr/">Paket <code>atrrr</code></a> von Johannes Gruber. Um es zu benutzen benötigen wir einen <em>Bluesky</em>-Account.</p>
-<p>Wie immer müssen wir das Paket zunächst installieren.</p>
+<section id="pakete-laden" class="slide level2">
+<h2>Pakete laden</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="st">"atrrr"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Und dann müssen wir es in jeder Sitzung neu laden.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(atrrr)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(atrrr)</span>
+<span id="cb2-2"><a></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="references" class="slide level2 smaller scrollable">
+<section id="authentifizierung" class="slide level2">
+<h2>Authentifizierung</h2>
+<p>Bevor wir Daten sammeln können, müssen wir uns mit unserem <em>Bluesky</em>-Account authentifizieren.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">auth</span>(<span class="st">"your_user_name"</span>) <span class="co"># hier Ihren User Name einfügen (z.B., tmueller.bsky.social)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Sie müssen sich bei Ihrem Bluesky-Konto anmelden und ein „App-Passwort“ erstellen. Dieses Passwort müssen Sie dann in das Popup-Fenster eingeben, das nach dem Ausführen der <code>auth()</code>-Funktion erscheint.</p>
+</section>
+<section id="accounts-auswählen" class="slide level2">
+<h2>Accounts auswählen</h2>
+<p>Wir wählen hier beispielhaft aus dem Datensatz <a href="https://doi.org/10.4232/1.14773"><em>Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025</em></a> <span class="citation" data-cites="BreuerEtAl2026">(<a href="#/weitere-daten-2" role="doc-biblioref" onclick="">Breuer et al., 2026</a>)</span> Accounts von prominenten Politiker_innen von der CDU, der SPD, den Grünen, der Linken und der FDP.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>bs_accounts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"serapgueler.bsky.social"</span>, <span class="st">"larsklingbeil.bsky.social"</span>,</span>
+<span id="cb4-2"><a></a>              <span class="st">"katharinadroege.bsky.social"</span>, <span class="st">"heidireichinnek.dielinkebt.de"</span>,</span>
+<span id="cb4-3"><a></a>              <span class="st">"christianduerr.bsky.social"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="profilinformationen-ein-account" class="slide level2">
+<h2>Profilinformationen: Ein Account</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>bs_user <span class="ot">&lt;-</span> <span class="fu">get_user_info</span>(<span class="st">"serapgueler.bsky.social"</span>)</span>
+<span id="cb5-2"><a></a></span>
+<span id="cb5-3"><a></a><span class="fu">glimpse</span>(bs_user)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1
+Columns: 15
+$ did               &lt;chr&gt; "did:plc:hngkefcientj2tq2gnspgfol"
+$ actor_handle      &lt;chr&gt; "serapgueler.bsky.social"
+$ actor_name        &lt;chr&gt; "Serap Güler"
+$ actor_avatar      &lt;chr&gt; "https://cdn.bsky.app/img/avatar/plain/did:plc:hngke…
+$ associated        &lt;list&gt; [0, 0, 0, FALSE, ["followers"]]
+$ viewer            &lt;list&gt; [FALSE, FALSE, [32, [["did:plc:6gq5giuz35vjuss33oott…
+$ labels            &lt;list&gt; []
+$ created_at        &lt;chr&gt; "2023-09-21T14:22:06.936Z"
+$ verification      &lt;list&gt; [[["did:plc:z72i7hdynmk6r22z27h6tvur", "at://did:plc…
+$ actor_description &lt;chr&gt; "Staatsministerin @AuswaertigesAmt, Mitglied im Deut…
+$ indexed_at        &lt;chr&gt; "2025-05-09T15:37:49.907Z"
+$ banner            &lt;chr&gt; "https://cdn.bsky.app/img/banner/plain/did:plc:hngk…
+$ followers_count   &lt;int&gt; 3924
+$ follows_count     &lt;int&gt; 119
+$ posts_count       &lt;int&gt; 149</code></pre>
+</div>
+</div>
+</section>
+<section id="profilinformationen-mehrere-accounts" class="slide level2">
+<h2>Profilinformationen: Mehrere Accounts</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>bs_users <span class="ot">&lt;-</span> <span class="fu">map_df</span>(bs_accounts,</span>
+<span id="cb7-2"><a></a>                 <span class="sc">~</span><span class="fu">get_user_info</span>(<span class="at">actor =</span> .x)) <span class="co"># die Funktion wird für jeden Account aus dem Vektor "bs_accounts" ausgeführt, wobei ".x" den aktuellen Account aus der Liste repräsentiert </span></span>
+<span id="cb7-3"><a></a></span>
+<span id="cb7-4"><a></a><span class="fu">glimpse</span>(bs_users)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 5
+Columns: 15
+$ did               &lt;chr&gt; "did:plc:hngkefcientj2tq2gnspgfol", "did:plc:n2fhuib…
+$ actor_handle      &lt;chr&gt; "serapgueler.bsky.social", "larsklingbeil.bsky.socia…
+$ actor_name        &lt;chr&gt; "Serap Güler", "Lars Klingbeil", "Katharina Dröge, M…
+$ actor_avatar      &lt;chr&gt; "https://cdn.bsky.app/img/avatar/plain/did:plc:hngke…
+$ associated        &lt;list&gt; [0, 0, 0, FALSE, ["followers"]], [0, 0, 0, FALSE, […
+$ viewer            &lt;list&gt; [FALSE, FALSE, [32, [["did:plc:6gq5giuz35vjuss33oot…
+$ labels            &lt;list&gt; [], [], [], [], []
+$ created_at        &lt;chr&gt; "2023-09-21T14:22:06.936Z", "2023-09-30T20:17:49.93…
+$ verification      &lt;list&gt; [[["did:plc:z72i7hdynmk6r22z27h6tvur", "at://did:plc…
+$ actor_description &lt;chr&gt; "Staatsministerin @AuswaertigesAmt, Mitglied im Deu…
+$ indexed_at        &lt;chr&gt; "2025-05-09T15:37:49.907Z", "2024-01-26T01:59:36.925…
+$ banner            &lt;chr&gt; "https://cdn.bsky.app/img/banner/plain/did:plc:hngke…
+$ followers_count   &lt;int&gt; 3924, 18379, 21971, 46735, 1050
+$ follows_count     &lt;int&gt; 119, 68, 215, 127, 116
+$ posts_count       &lt;int&gt; 149, 21, 916, 82, 56</code></pre>
+</div>
+</div>
+</section>
+<section id="posts-ein-account" class="slide level2">
+<h2>Posts: Ein Account</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>bs_posts1 <span class="ot">&lt;-</span> <span class="fu">get_skeets_authored_by</span>(<span class="at">actor =</span> <span class="st">"larsklingbeil.bsky.social"</span>,</span>
+<span id="cb9-2"><a></a>                                <span class="at">limit =</span> <span class="dv">100</span>, <span class="co"># maximale Anzahl der abzurufenden Posts</span></span>
+<span id="cb9-3"><a></a>                                <span class="at">parse =</span> <span class="cn">TRUE</span>) <span class="co"># Posts in einem Dataframe zurückgeben</span></span>
+<span id="cb9-4"><a></a></span>
+<span id="cb9-5"><a></a><span class="fu">glimpse</span>(bs_posts1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 28
+Columns: 22
+$ uri           &lt;chr&gt; "at://did:plc:n2fhuibwlwhyetcnyxe3vno7/app.bsky.feed.pos…
+$ cid           &lt;chr&gt; "bafyreicouhg6hs5d527se3tmxdvk3jmcd6hwhnjovh7puz3rkbiubb…
+$ author_handle &lt;chr&gt; "larsklingbeil.bsky.social", "larsklingbeil.bsky.social"…
+$ author_name   &lt;chr&gt; "Lars Klingbeil", "Lars Klingbeil", "Lars Klingbeil", "L…
+$ text          &lt;chr&gt; "Das Verhalten der US-Regierung zeigt einmal mehr, dass …
+$ author_data   &lt;list&gt; ["did:plc:n2fhuibwlwhyetcnyxe3vno7", "larsklingbeil.bsk…
+$ post_data     &lt;list&gt; ["app.bsky.feed.post", "2025-02-28T19:18:28.467Z", ["de…
+$ embed_data    &lt;list&gt; &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;,…
+$ reply_count   &lt;int&gt; 250, 11, 10, 0, 18, 1, 1, 27, 7, 19, 2, 4, 2, 3, 8, 4, 2…
+$ repost_count  &lt;int&gt; 125, 6, 2, 0, 29, 0, 0, 4, 17, 26, 4, 13, 10, 11, 58, 22…
+$ like_count    &lt;int&gt; 898, 66, 29, 1, 184, 2, 4, 102, 134, 165, 25, 95, 77, 80…
+$ quote_count   &lt;int&gt; 29, 1, 1, 0, 4, 0, 0, 12, 0, 8, 0, 0, 0, 1, 9, 0, 0, 0, …
+$ indexed_at    &lt;dttm&gt; 2025-02-28 19:18:28, 2023-11-16 12:48:05, 2023-11-04 19…
+$ in_reply_to   &lt;chr&gt; NA, NA, NA, "at://did:plc:lv5evbckbwxarpmrasspgvqc/app.b…
+$ in_reply_root &lt;chr&gt; NA, NA, NA, "at://did:plc:kohpe2g74jghs5lthhz5ra6c/app.b…
+$ quotes        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ tags          &lt;list&gt; &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;,…
+$ mentions      &lt;list&gt; &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;,…
+$ links         &lt;list&gt; &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;,…
+$ langs         &lt;list&gt; ["de"], ["de"], ["de"], ["de"], ["de"], ["de"], ["de"],…
+$ labels        &lt;list&gt; [], [], [], [], [], [], [], [], [], [], [], [], [], [],…
+$ is_reskeet    &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, …</code></pre>
+</div>
+</div>
+</section>
+<section id="posts-mehrere-accounts" class="slide level2">
+<h2>Posts: Mehrere Accounts</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>bs_posts <span class="ot">&lt;-</span> <span class="fu">map_df</span>(bs_accounts,</span>
+<span id="cb11-2"><a></a>                    <span class="sc">~</span><span class="fu">get_skeets_authored_by</span>(<span class="at">actor =</span> .x,</span>
+<span id="cb11-3"><a></a>                                            <span class="at">limit =</span> <span class="dv">100</span>, <span class="co"># maximale Anzahl der abzurufenden Posts</span></span>
+<span id="cb11-4"><a></a>                                            <span class="at">parse =</span> <span class="cn">TRUE</span>)) <span class="co"># Posts in einem Dataframe zurückgeben</span></span>
+<span id="cb11-5"><a></a></span>
+<span id="cb11-6"><a></a><span class="fu">glimpse</span>(bs_posts)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 564
+Columns: 22
+$ uri           &lt;chr&gt; "at://did:plc:tjj5mybc6kgmkhhjlg43aedg/app.bsky.feed.pos…
+$ cid           &lt;chr&gt; "bafyreiahisubwexm4b7t5ck3d5nyudhnfxj557upfvilwqptnronya…
+$ author_handle &lt;chr&gt; "golod.bsky.social", "serapgueler.bsky.social", "serapgu…
+$ author_name   &lt;chr&gt; "Vassili Golod", "Serap Güler", "Serap Güler", "Serap Gü…
+$ text          &lt;chr&gt; "Ist der deutsche Bundeskanzler ein Feminist? Das und me…
+$ author_data   &lt;list&gt; ["did:plc:tjj5mybc6kgmkhhjlg43aedg", "golod.bsky.social…
+$ post_data     &lt;list&gt; ["app.bsky.feed.post", "2026-03-11T17:38:21.482Z", ["ap…
+$ embed_data    &lt;list&gt; [[["https://cdn.bsky.app/img/feed_thumbnail/plain/did:p…
+$ reply_count   &lt;int&gt; 1, 0, 2, 1, 0, 3, 0, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 0, 3,…
+$ repost_count  &lt;int&gt; 7, 1, 1, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 0, 1,…
+$ like_count    &lt;int&gt; 40, 5, 7, 1, 2, 4, 2, 2, 1, 1, 1, 1, 1, 1, 1, 5, 5, 0, 3…
+$ quote_count   &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ indexed_at    &lt;dttm&gt; 2026-03-11 17:38:26, 2025-12-02 13:27:55, 2025-12-02 13…
+$ in_reply_to   &lt;chr&gt; NA, "at://did:plc:hngkefcientj2tq2gnspgfol/app.bsky.feed…
+$ in_reply_root &lt;chr&gt; NA, "at://did:plc:hngkefcientj2tq2gnspgfol/app.bsky.feed…
+$ quotes        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ tags          &lt;list&gt; &lt;NULL&gt;, &lt;NULL&gt;, "Simbabwe", &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NU…
+$ mentions      &lt;list&gt; "did:plc:hngkefcientj2tq2gnspgfol", &lt;NULL&gt;, "did:plc:ou…
+$ links         &lt;list&gt; "https://wdr.de/k/machiavellipod", &lt;NULL&gt;, &lt;NULL&gt;, &lt;NUL…
+$ langs         &lt;list&gt; ["de"], ["de"], ["de"], ["de"], ["de"], ["de"], ["de"],…
+$ labels        &lt;list&gt; [], [], [], [], [], [], [], [], [], [], [], [], [], [],…
+$ is_reskeet    &lt;lgl&gt; TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…</code></pre>
+</div>
+</div>
+</section>
+<section id="weitere-daten" class="slide level2">
+<h2>Weitere Daten</h2>
+<p>Neben Profilinformationen und Posts können mit <code>atrrr</code> auch weitere Daten wie z.B. die Follower oder die Accounts, denen ein Account folgt, gesammelt werden. Die entsprechenden Funktionen sind <code>get_followers()</code> und <code>get_follows()</code>.</p>
+<p>Da wir uns im Kurs auf die Analyse von Textdaten konzentrieren und die Netzwerkanalyse ausklammern, werden wir diese Daten hier nicht weiter betrachten.</p>
+</section>
+<section id="references" class="slide level2">
 <h2>References</h2>
+</section></section>
+<section>
+<section id="tiktok" class="title-slide slide level1 center" data-background-color="#4A90E2">
+<h1>TikTok</h1>
+
+</section>
+<section id="setup-1" class="slide level2">
+<h2>Setup</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">library</span>(traktok)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>tt_accounts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"serapguelermdb"</span>, <span class="st">"lars.klingbeil"</span>,</span>
+<span id="cb14-2"><a></a>              <span class="st">"katharina.droege"</span>, <span class="st">"heidireichinnek"</span>,</span>
+<span id="cb14-3"><a></a>              <span class="st">"christianduerr"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="authentifizierung-schritt-1" class="slide level2">
+<h2>Authentifizierung: Schritt 1</h2>
+<p>Wir nutzen die <a href="https://jbgruber.github.io/traktok/articles/unofficial-api.html">“Unofficial API”</a>. Um diese nutzen zu können, müssen wir uns mit einem <em>TikTok</em>-Account im Browser einloggen und die Cookies für die Webseite speichern. Das geht am einfachsten mit den Browser-Plugins <a href="https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc?pli=1"><em>Get cookies.txt</em></a> für <em>Chrome</em> bzw. <a href="https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/"><em>cookies.txt</em></a> für <em>Firefox</em>.</p>
+</section>
+<section id="authentifizierung-schritt-2" class="slide level2">
+<h2>Authentifizierung: Schritt 2</h2>
+<p>Die Cookies können wir dann mit der Funktion <code>get_cookies()</code> aus dem Paket <code>cookiemonster</code> sspeichern. Das Argument <code>path</code> muss dabei der Pfad sein, unter dem die <code>.txt</code>-Datei mit den Cookies gespeichert ist.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>cookies <span class="ot">&lt;-</span> <span class="fu">get_cookies</span>(<span class="at">path =</span> <span class="st">"./data/tiktok_cookies.txt"</span>) <span class="co"># Dateipfad anpassen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="authentifizierung-check" class="slide level2">
+<h2>Authentifizierung: Check</h2>
+<p>Ob alles funktioniert hat, können wir dann mit der Funktion <code>auth_check()</code> aus dem Paket <code>traktok</code> überprüfen.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">auth_check</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="profilinformationen-ein-account-1" class="slide level2">
+<h2>Profilinformationen: Ein Account</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>tt_user <span class="ot">&lt;-</span> <span class="fu">tt_user_info_hidden</span>(<span class="st">"serapguelermdb"</span>)</span>
+<span id="cb17-2"><a></a></span>
+<span id="cb17-3"><a></a><span class="fu">glimpse</span>(tt_user)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1
+Columns: 46
+$ id                               &lt;chr&gt; "6805862662515704837"
+$ short_id                         &lt;chr&gt; ""
+$ user_name                        &lt;chr&gt; "serapguelermdb"
+$ nickname                         &lt;chr&gt; "Serap Güler"
+$ avatar_larger                    &lt;chr&gt; "https://p16-common-sign.tiktokcdn-eu…
+$ avatar_medium                    &lt;chr&gt; "https://p16-common-sign.tiktokcdn-eu…
+$ avatar_thumb                     &lt;chr&gt; "https://p16-common-sign.tiktokcdn-eu…
+$ signature                        &lt;chr&gt; "Staatsministerin im Auswärtigen Amt …
+$ create_time                      &lt;dttm&gt; 2020-03-19 11:27:21
+$ verified                         &lt;lgl&gt; FALSE
+$ secUid                           &lt;chr&gt; "MS4wLjABAAAAVPaQKMby3pyhpm44VYipCEmV…
+$ ftc                              &lt;lgl&gt; FALSE
+$ relation                         &lt;int&gt; 0
+$ open_favorite                    &lt;lgl&gt; FALSE
+$ comment_setting                  &lt;int&gt; 0
+$ commerce_user_info_commerce_user &lt;lgl&gt; FALSE
+$ duet_setting                     &lt;int&gt; 0
+$ stitch_setting                   &lt;int&gt; 0
+$ private_account                  &lt;lgl&gt; FALSE
+$ secret                           &lt;lgl&gt; FALSE
+$ is_a_d_virtual                   &lt;lgl&gt; FALSE
+$ room_id                          &lt;chr&gt; ""
+$ unique_id_modify_time            &lt;int&gt; 0
+$ tt_seller                        &lt;lgl&gt; FALSE
+$ download_setting                 &lt;int&gt; 0
+$ profile_tab_show_music_tab       &lt;lgl&gt; FALSE
+$ profile_tab_show_question_tab    &lt;lgl&gt; FALSE
+$ profile_tab_show_play_list_tab   &lt;lgl&gt; FALSE
+$ following_visibility             &lt;int&gt; 1
+$ recommend_reason                 &lt;chr&gt; ""
+$ now_invitation_card_url          &lt;chr&gt; ""
+$ nick_name_modify_time            &lt;dttm&gt; 2024-07-09 13:00:34
+$ is_embed_banned                  &lt;lgl&gt; FALSE
+$ can_exp_playlist                 &lt;lgl&gt; TRUE
+$ profile_embed_permission         &lt;int&gt; 1
+$ language                         &lt;chr&gt; "de"
+$ suggest_account_bind             &lt;lgl&gt; FALSE
+$ is_organization                  &lt;int&gt; 0
+$ `_user_story_status`             &lt;int&gt; 0
+$ follower_count                   &lt;int&gt; 1482
+$ following_count                  &lt;int&gt; 48
+$ heart                            &lt;int&gt; 5661
+$ heart_count                      &lt;int&gt; 5661
+$ video_count                      &lt;int&gt; 38
+$ digg_count                       &lt;int&gt; 0
+$ friend_count                     &lt;int&gt; 23</code></pre>
+</div>
+</div>
+</section>
+<section id="profilinformationen-mehrere-accounts-1" class="slide level2">
+<h2>Profilinformationen: Mehrere Accounts</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>tt_users <span class="ot">&lt;-</span> <span class="fu">map_df</span>(tt_accounts,</span>
+<span id="cb19-2"><a></a>                 <span class="sc">~</span><span class="fu">tt_user_info_hidden</span>(<span class="at">username =</span> .x)) <span class="co"># die Funktion wird für jeden Account aus dem Vektor "tt_accounts" ausgeführt, wobei ".x" den aktuellen Account aus der Liste repräsentiert </span></span>
+<span id="cb19-3"><a></a></span>
+<span id="cb19-4"><a></a><span class="fu">glimpse</span>(tt_users)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 5
+Columns: 50
+$ id                                 &lt;chr&gt; "6805862662515704837", "67573458688…
+$ short_id                           &lt;chr&gt; "", "", "", "", ""
+$ user_name                          &lt;chr&gt; "serapguelermdb", "lars.klingbeil",…
+$ nickname                           &lt;chr&gt; "Serap Güler", "larsklingbeil", "Ka…
+$ avatar_larger                      &lt;chr&gt; "https://p16-common-sign.tiktokcdn-…
+$ avatar_medium                      &lt;chr&gt; "https://p16-common-sign.tiktokcdn-…
+$ avatar_thumb                       &lt;chr&gt; "https://p16-common-sign.tiktokcdn-…
+$ signature                          &lt;chr&gt; "Staatsministerin im Auswärtigen Am…
+$ create_time                        &lt;dttm&gt; 2020-03-19 11:27:21, 2019-11-09 17:…
+$ verified                           &lt;lgl&gt; FALSE, TRUE, FALSE, TRUE, FALSE
+$ secUid                             &lt;chr&gt; "MS4wLjABAAAAVPaQKMby3pyhpm44VYipC…
+$ ftc                                &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ relation                           &lt;int&gt; 0, 0, 0, 0, 0
+$ open_favorite                      &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ comment_setting                    &lt;int&gt; 0, 0, 0, 0, 0
+$ commerce_user_info_commerce_user   &lt;lgl&gt; FALSE, TRUE, FALSE, TRUE, FALSE
+$ duet_setting                       &lt;int&gt; 0, 0, 0, 0, 0
+$ stitch_setting                     &lt;int&gt; 0, 0, 0, 0, 0
+$ private_account                    &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ secret                             &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ is_a_d_virtual                     &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ room_id                            &lt;chr&gt; "", "", "", "", ""
+$ unique_id_modify_time              &lt;int&gt; 0, 0, 0, 0, 0
+$ tt_seller                          &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ download_setting                   &lt;int&gt; 0, 0, 0, 0, 0
+$ profile_tab_show_music_tab         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ profile_tab_show_question_tab      &lt;lgl&gt; FALSE, TRUE, FALSE, FALSE, FALSE
+$ profile_tab_show_play_list_tab     &lt;lgl&gt; FALSE, FALSE, FALSE, TRUE, FALSE
+$ following_visibility               &lt;int&gt; 1, 1, 1, 1, 1
+$ recommend_reason                   &lt;chr&gt; "", "", "", "", ""
+$ now_invitation_card_url            &lt;chr&gt; "", "", "", "", ""
+$ nick_name_modify_time              &lt;dttm&gt; 2024-07-09 13:00:34, NA, 2024-11-17…
+$ is_embed_banned                    &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ can_exp_playlist                   &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE
+$ profile_embed_permission           &lt;int&gt; 1, 1, 1, 1, 1
+$ language                           &lt;chr&gt; "de", "de", "de", "de", "en"
+$ suggest_account_bind               &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ is_organization                    &lt;int&gt; 0, 0, 0, 1, 0
+$ `_user_story_status`               &lt;int&gt; 0, 0, 0, 0, 0
+$ follower_count                     &lt;int&gt; 1482, 35500, 9988, 667700, 7842
+$ following_count                    &lt;int&gt; 48, 176, 156, 283, 97
+$ heart                              &lt;int&gt; 5661, 360000, 126100, 21700000, 893…
+$ heart_count                        &lt;int&gt; 5661, 360000, 126100, 21700000, 893…
+$ video_count                        &lt;int&gt; 38, 166, 196, 426, 153
+$ digg_count                         &lt;int&gt; 0, 0, 0, 0, 0
+$ friend_count                       &lt;int&gt; 23, 84, 86, 182, 66
+$ bio_link_link                      &lt;chr&gt; NA, "linktr.ee/larsklingbeil", "htt…
+$ bio_link_risk                      &lt;int&gt; NA, 0, 0, 0, NA
+$ commerce_user_info_category        &lt;chr&gt; NA, "Persönliches Konto", NA, "Öffe…
+$ commerce_user_info_category_button &lt;lgl&gt; NA, FALSE, NA, FALSE, NA</code></pre>
+</div>
+</div>
+</section>
+<section id="videos" class="slide level2">
+<h2>Videos</h2>
+<p>Die Videos eines Accounts können mit der Funktion <code>tt_user_videos_hidden()</code> abgerufen werden. Leider funktioniert diese aktuell (Stand 26.05.2026) nicht verlässlich. Sie können ausprobieren, diese lokal auf Ihrem Rechner auszuführen. Es empfiehlt sich dabei, das Argument <code>solve_captchas</code> auf <code>TRUE</code> zu setzen, damit Sie ggf. erscheinende Captchas in Ihrem Browser lösen können.</p>
+</section>
+<section id="weitere-daten-1" class="slide level2">
+<h2>Weitere Daten</h2>
+<p>Das Paket <code>traktok</code> bietet auch Funktionen, um Daten zu den Following und Followed Accounts zu sammeln. Dies geht mit den Funktionen <code>tt_get_follower_hidden()</code> bzw. <code>tt_get_following_hidden()</code></p>
+</section></section>
+<section>
+<section id="youtube" class="title-slide slide level1 center" data-background-color="#4A90E2">
+<h1>YouTube</h1>
+
+</section>
+<section id="setup-2" class="slide level2">
+<h2>Setup</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">library</span>(vosonSML)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Zur Erinnerung: Für die Sammlung von <em>YouTube</em>-Daten benötigen wir einen API Key für die <em>YouTube</em> Data API.</p>
+</section>
+<section id="authentifizierung-1" class="slide level2">
+<h2>Authentifizierung</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>auth_yt <span class="ot">&lt;-</span> <span class="fu">Authenticate</span>(<span class="st">"youtube"</span>,</span>
+<span id="cb22-2"><a></a>             <span class="at">apiKey =</span> <span class="st">"your_api_key_here"</span>) <span class="co"># ersetzen Sie "your_api_key_here" durch Ihren tatsächlichen API Key</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="videos-1" class="slide level2">
+<h2>Videos</h2>
+<p>Die Funktion <code>Collect()</code> aus dem Paket <code>vosonSML</code> bietet die Möglichkeit, Kommentare zu bestimmten Videos zu sammeln. Dazu muss man die URLs der Videos angeben, von denen man die Kommentare sammeln möchte.</p>
+<p>Im nachfolgenden Beispiele sammeln wir die Kommentare zu zwei exemplarischen Videos aus den Ergebnissen der Suche “Bundestagswahl 2025” auf <em>YouTube</em>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>video_urls <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"https://www.youtube.com/watch?v=5A-ggbcnwcg"</span>,</span>
+<span id="cb23-2"><a></a>               <span class="st">"https://www.youtube.com/watch?v=a6ZaJ38cy7U"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="kommentare" class="slide level2">
+<h2>Kommentare</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>comments_yt <span class="ot">&lt;-</span> auth_yt <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a></a>  <span class="fu">Collect</span>(<span class="at">videoIDs =</span> video_urls,</span>
+<span id="cb24-3"><a></a>          <span class="at">maxComments =</span> <span class="dv">2000</span>) <span class="co"># maximale Anzahl an Kommentaren pro Video</span></span>
+<span id="cb24-4"><a></a></span>
+<span id="cb24-5"><a></a><span class="fu">glimpse</span>(comments_yt)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 2,082
+Columns: 12
+$ Comment               &lt;chr&gt; "Die deutsche Präzision kennt keine Grenzen; sie…
+$ AuthorDisplayName     &lt;chr&gt; "@abdikamilnarbekov9828", "@carlesmarch", "@vale…
+$ AuthorProfileImageUrl &lt;chr&gt; "https://yt3.ggpht.com/ytc/AIdro_lO1bg78qyz0HR_Z…
+$ AuthorChannelUrl      &lt;chr&gt; "http://www.youtube.com/@abdikamilnarbekov9828",…
+$ AuthorChannelID       &lt;chr&gt; "UCwt56j6_yUnxErCnzgNSJ6w", "UCAoUM5AyxnA1qSoQVE…
+$ ReplyCount            &lt;chr&gt; "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"…
+$ LikeCount             &lt;chr&gt; "0", "0", "4", "0", "0", "0", "0", "0", "4", "0"…
+$ PublishedAt           &lt;chr&gt; "2025-10-10T01:54:46Z", "2025-03-04T19:17:08Z", …
+$ UpdatedAt             &lt;chr&gt; "2025-10-10T01:54:46Z", "2025-03-04T19:17:08Z", …
+$ CommentID             &lt;chr&gt; "UgwiakmTsk6z-aXOB394AaABAg", "UgzciKZHDm2Rn7S77…
+$ ParentID              &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ VideoID               &lt;chr&gt; "5A-ggbcnwcg", "5A-ggbcnwcg", "5A-ggbcnwcg", "5A…</code></pre>
+</div>
+</div>
+</section>
+<section id="rate-limits" class="slide level2 smaller">
+<h2>Rate Limits</h2>
+<p>Für die kostenfreie Nutzung der <em>YouTube</em> Data API gibt es bestimmte Kontingente, d.h. es gibt eine maximale Anzahl an Anfragen, die man pro Tag stellen kann. Aktuell liegt das Tageslimit bei 10.000 Anfragen pro Tag.</p>
+<p>Je nachdem, wie viele Kommentare man sammeln möchte, kann es daher sein, dass man das Tageslimit überschreitet. In diesem Fall muss ggf. warten, bis das Tageslimit zurückgesetzt wird. Dies geschieht immer um Mitternacht Pacific Time.</p>
+<p>Die Funktion <code>Collect()</code> von <code>vosonSML</code> zeigt einem die geschätzten API-Kosten an.</p>
+</section>
+<section id="weitere-daten-2" class="slide level2 smaller scrollable">
+<h2>Weitere Daten</h2>
+<p>Das Paket <code>vosonSML</code> bietet einige Funktionen für Netzwerkanalysen (auch von <em>YouTube</em>-Kommentaren).</p>
+<p>Für (Meta-) Daten zu Kanälen oder Playlists bietet das Paket <a href="github.com/gojiplus/tuber"><code>tuber</code></a> spezifische Funktionen an.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
-<div id="ref-BreuerEtAl2020" class="csl-entry" role="listitem">
-Breuer, J., Bishop, L., &amp; Kinder-Kurlanda, K. (2020). The Practical and Ethical Challenges in Acquiring and Sharing Digital Trace Data: Negotiating Public-Private Partnerships. <em>New Media &amp; Society</em>, <em>22</em>(11), 2058–2080. <a href="https://doi.org/10.1177/1461444820924622">https://doi.org/10.1177/1461444820924622</a>
-</div>
 <div id="ref-BreuerEtAl2026" class="csl-entry" role="listitem">
 Breuer, J., Soldner, F., Shankaran, V., Fröhling, L., Bauer, P., Sältzer, M., Weiß, J., &amp; Chen, S. (2026). <em><span>Social Media Accounts of German Candidates from the German Federal Election 2025 [Social-Media-Konten der deutschen Kandidierenden bei der Bundestagswahl 2025]</span></em>. GESIS. <a href="https://doi.org/10.4232/1.14694">https://doi.org/10.4232/1.14694</a>
 </div>
 <div id="ref-KohneEtAl2024" class="csl-entry" role="listitem">
 Kohne, J., Breuer, J., Deubel, A., &amp; Mohseni, M. R. (2024). <em>How to <span>Collect Data</span> with the <span>YouTube Data API</span> (<span>GESIS Guides</span> to <span>Digital Behavioral Data</span>, 13)</em>. GESIS - Leibniz-Institute for the Social Sciences. <a href="https://doi.org/10.60762/GGDBD24013.1.0">https://doi.org/10.60762/GGDBD24013.1.0</a>
+</div>
+<div id="ref-SteupEtAl2025" class="csl-entry" role="listitem">
+Steup, J. M., Kielbassa, P., Neumeier, A., &amp; Riedl, J. (2025). <em>Social <span>Media Accounts</span> (<span>TikTok</span>, <span>YouTube</span>, <span>X</span>/<span>Twitter</span>) of the <span>Candidates</span> in the 2025 <span>German Federal Election</span></em>. GESIS Data Archive. <a href="https://doi.org/10.7802/2862">https://doi.org/10.7802/2862</a>
 </div>
 </div>
 </section></section>
