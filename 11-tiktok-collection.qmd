@@ -42,11 +42,11 @@ install.packages("cookiemonster")
 library(cookiemonster)
 ```
 
-Die Cookies können wir dann mit der Funktion `get_cookies()` speichern. Das Argument `path` muss dabei der Pfad (siehe @sec-paths) sein, unter dem die `.txt`-Datei mit den Cookies gespeichert ist.
+Die Cookies können wir dann mit der Funktion `add_cookies()` speichern. Das Argument muss dabei der Pfad (siehe @sec-paths) sein, unter dem die `.txt`-Datei mit den Cookies gespeichert ist.
 
 ```{r}
 #| eval: false
-cookies <- get_cookies(path = "./data/tiktok_cookies.txt") # Dateipfad anpassen
+add_cookies(path = "./data/tiktok_cookies.txt") # Dateipfad anpassen
 ```
 
 Ob alles funktioniert hat, können wir dann mit der Funktion `auth_check()` aus dem Paket `traktok` überprüfen.

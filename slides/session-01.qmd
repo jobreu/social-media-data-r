@@ -460,6 +460,6 @@ Für die Sammlung von Social-Media-Daten benötigen Sie mindestens eins der folg
 
 2.  Einen [*Bluesky*](https://bsky.app/)-Account
 
-3.  Einen *Google*-Account und einen *YouTube* API Key. Wie Sie einen *YouTube* API Key erhalten, wird ausführlich in einem [Tutorial von Communalytic beschrieben](https://communalytic.org/docs/obtaining-youtube-api-key/) sowie im GESIS Guide [*How to Collect Data with the YouTube Data API*](https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf) [@KohneEtAl2024] beschrieben.
+3.  Einen *Google*-Account und einen *YouTube* API Key. Wie Sie einen *YouTube* API Key erhalten, wird ausführlich in einem [Tutorial von Communalytic](https://communalytic.org/docs/obtaining-youtube-api-key/) sowie im GESIS Guide [*How to Collect Data with the YouTube Data API*](https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf) [@KohneEtAl2024] beschrieben.
 
 ## References

@@ -433,7 +433,7 @@ div.csl-indent {
 </section>
 <section id="authentifizierung" class="level3" data-number="14.1.2">
 <h3 data-number="14.1.2" class="anchored" data-anchor-id="authentifizierung"><span class="header-section-number">14.1.2</span> Authentifizierung</h3>
-<p>Um mit dem Paket <code>vosonSML</code> Daten von <em>YouTube</em> zu sammeln, benötigen wir einen API Key. Wie Sie diesen erhalten, wird ausführlich in einem <a href="https://communalytic.org/docs/obtaining-youtube-api-key/">Tutorial von Communalytic beschrieben</a> sowie im GESIS Guide <a href="https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf"><em>How to Collect Data with the YouTube Data API</em></a> <span class="citation" data-cites="KohneEtAl2024">(<a href="references.html#ref-KohneEtAl2024" role="doc-biblioref">Kohne et al., 2024</a>)</span> beschrieben.</p>
+<p>Um mit dem Paket <code>vosonSML</code> Daten von <em>YouTube</em> zu sammeln, benötigen wir einen API Key. Wie Sie diesen erhalten, wird ausführlich in einem <a href="https://communalytic.org/docs/obtaining-youtube-api-key/">Tutorial von Communalytic</a> sowie im GESIS Guide <a href="https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf"><em>How to Collect Data with the YouTube Data API</em></a> <span class="citation" data-cites="KohneEtAl2024">(<a href="references.html#ref-KohneEtAl2024" role="doc-biblioref">Kohne et al., 2024</a>)</span> beschrieben.</p>
 <p><strong>Wichtig</strong>: Behandeln Sie den API Key wie ein Passwort. D.h. speichern Sie ihn in einem Passwort-Manager oder notieren Sie ihn an einem sicheren Ort, aber teilen Sie ihn nicht mit anderen Personen.</p>
 <p>Sobald Sie einen API Key für die <em>YouTube</em> (Data) API haben, können Sie sich mit der Funktion <code>Authenticate()</code> aus <code>vosonSML</code> authentifizieren.</p>
 <div class="cell">
@@ -485,16 +485,16 @@ Video 2 of 2
 ** Collecting replies for 93 threads with replies. Please be patient.
 Comment replies 2 1 1 2 2 2 1 1 2 2 3 5 5 1 2 1 2 1 1 3 1 3 13 5 1 4 3 1 1 5 1 2 11 5 5 7 2 1 1 1 2 4 3 3 3 2 2 5 1 1 5 1 7 3 1 1 10 1 3 20 2 5 1 2 4 1 1 1 1 1 1 1 1 8 3 10 6 2 1 2 5 7 1 16 13 5 1 4 1 8 16 2 20 
 ** Collected replies: 344
-** Total video comments: 721
+** Total video comments: 720
 (Video API unit cost: 198)
 ---------------------------------------------------------------
-** Total comments collected for all videos 2082.
+** Total comments collected for all videos 2081.
 (Estimated API unit cost: 550)
 Done.</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(comments_yt)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 2,082
+<pre><code>Rows: 2,081
 Columns: 12
 $ Comment               &lt;chr&gt; "Die deutsche Präzision kennt keine Grenzen; sie…
 $ AuthorDisplayName     &lt;chr&gt; "@abdikamilnarbekov9828", "@carlesmarch", "@vale…

@@ -27,7 +27,7 @@ library(tidyverse)
 
 ### Authentifizierung
 
-Um mit dem Paket `vosonSML` Daten von *YouTube* zu sammeln, benötigen wir einen API Key. Wie Sie diesen erhalten, wird ausführlich in einem [Tutorial von Communalytic beschrieben](https://communalytic.org/docs/obtaining-youtube-api-key/) sowie im GESIS Guide [*How to Collect Data with the YouTube Data API*](https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf) [@KohneEtAl2024] beschrieben.
+Um mit dem Paket `vosonSML` Daten von *YouTube* zu sammeln, benötigen wir einen API Key. Wie Sie diesen erhalten, wird ausführlich in einem [Tutorial von Communalytic](https://communalytic.org/docs/obtaining-youtube-api-key/) sowie im GESIS Guide [*How to Collect Data with the YouTube Data API*](https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf) [@KohneEtAl2024] beschrieben.
 
 **Wichtig**: Behandeln Sie den API Key wie ein Passwort. D.h. speichern Sie ihn in einem Passwort-Manager oder notieren Sie ihn an einem sicheren Ort, aber teilen Sie ihn nicht mit anderen Personen.
 

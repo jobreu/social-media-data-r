@@ -238,18 +238,13 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <h2>Reminder: Buch zum Kurs 📖</h2>
 <p>Im Buch zum Kurs finden Sie ausführlichere Informationen zu den Themen, die wir in dieser Sitzung behandeln. Sie finden dieses online über den folgenden Link: <a href="https://jobreu.github.io/social-media-data-r/">https://jobreu.github.io/social-media-data-r/</a></p>
 </section>
-<section id="beobachtungseinheiten-sampling" class="slide level2">
-<h2>Beobachtungseinheiten &amp; Sampling</h2>
-<p>Die Beobachtungseinheiten für <em>Bluesky</em> und <em>TikTok</em> sind die Accounts von Kandidierenden zur deutschen Bundestagswahl 2025. Die Informationen zu diesen stammen aus dem Datensatz <a href="https://doi.org/10.4232/1.14773"><em>Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025</em></a> <span class="citation" data-cites="BreuerEtAl2026">(<a href="#/references" role="doc-biblioref" onclick="">Breuer et al., 2026</a>)</span>.Beispiele dafür, wie Sie Accounts aus diesem Datensatz auswählen können, finden Sie im Skript <a href="../scripts/get_accounts.R"><em>get_accounts.R</em></a>.</p>
-<p>Eine weitere Quelle für Accounts ist der Datensatz <a href="https://doi.org/10.7802/2862"><em>Social Media Accounts (TikTok, YouTube, X/Twitter) of the Candidates in the 2025 German Federal Election</em></a> <span class="citation" data-cites="SteupEtAl2025">(<a href="#/references" role="doc-biblioref" onclick="">Steup et al., 2025</a>)</span>.</p>
-</section>
 <section id="accounts" class="slide level2">
 <h2>Accounts</h2>
 <p>Zur Erinnerung: Wir benötigen:</p>
 <ol type="1">
 <li class="fragment"><p>Einen <a href="https://www.tiktok.com/"><em>TikTok</em></a>-Account</p></li>
 <li class="fragment"><p>Einen <a href="https://bsky.app/"><em>Bluesky</em></a>-Account</p></li>
-<li class="fragment"><p>Einen <em>Google</em>-Account und einen <em>YouTube</em> API Key. Wie Sie einen <em>YouTube</em> API Key erhalten, wird ausführlich in einem <a href="https://communalytic.org/docs/obtaining-youtube-api-key/">Tutorial von Communalytic beschrieben</a> sowie im GESIS Guide <a href="https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf"><em>How to Collect Data with the YouTube Data API</em></a> <span class="citation" data-cites="KohneEtAl2024">(<a href="#/references" role="doc-biblioref" onclick="">Kohne et al., 2024</a>)</span> beschrieben.</p></li>
+<li class="fragment"><p>Einen <em>Google</em>-Account und einen <em>YouTube</em> API Key. Wie Sie einen <em>YouTube</em> API Key erhalten, wird ausführlich in einem <a href="https://communalytic.org/docs/obtaining-youtube-api-key/">Tutorial von Communalytic</a> sowie im GESIS Guide <a href="https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf"><em>How to Collect Data with the YouTube Data API</em></a> <span class="citation" data-cites="KohneEtAl2024">(<a href="#/references" role="doc-biblioref" onclick="">Kohne et al., 2024</a>)</span> beschrieben.</p></li>
 </ol>
 </section>
 <section id="pakete" class="slide level2">
@@ -258,6 +253,11 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"atrrr"</span>, <span class="st">"traktok"</span>, <span class="st">"vosonSML"</span>, <span class="st">"cookiemonster"</span>))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</section>
+<section id="beobachtungseinheiten-sampling" class="slide level2">
+<h2>Beobachtungseinheiten &amp; Sampling</h2>
+<p>Die Beobachtungseinheiten für <em>Bluesky</em> und <em>TikTok</em> sind die Accounts von Kandidierenden zur deutschen Bundestagswahl 2025. Die Informationen zu diesen stammen aus dem Datensatz <a href="https://doi.org/10.4232/1.14773"><em>Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025</em></a> <span class="citation" data-cites="BreuerEtAl2026">(<a href="#/references" role="doc-biblioref" onclick="">Breuer et al., 2026</a>)</span>.Beispiele dafür, wie Sie Accounts aus diesem Datensatz auswählen können, finden Sie im Skript <a href="../scripts/get_accounts.R"><em>get_accounts.R</em></a>.</p>
+<p>Eine weitere Quelle für Accounts ist der Datensatz <a href="https://doi.org/10.7802/2862"><em>Social Media Accounts (TikTok, YouTube, X/Twitter) of the Candidates in the 2025 German Federal Election</em></a> <span class="citation" data-cites="SteupEtAl2025">(<a href="#/references" role="doc-biblioref" onclick="">Steup et al., 2025</a>)</span>.</p>
 </section></section>
 <section>
 <section id="bluesky" class="title-slide slide level1 center" data-background-color="#4A90E2">
@@ -305,7 +305,7 @@ $ associated        &lt;list&gt; [0, 0, 0, FALSE, ["followers"]]
 $ viewer            &lt;list&gt; [FALSE, FALSE, [32, [["did:plc:6gq5giuz35vjuss33oott…
 $ labels            &lt;list&gt; []
 $ created_at        &lt;chr&gt; "2023-09-21T14:22:06.936Z"
-$ verification      &lt;list&gt; [[["did:plc:z72i7hdynmk6r22z27h6tvur", "at://did:plc…
+$ verification      &lt;list&gt; [[["did:plc:z72i7hdynmk6r22z27h6tvur", "Serap Güler"…
 $ actor_description &lt;chr&gt; "Staatsministerin @AuswaertigesAmt, Mitglied im Deut…
 $ indexed_at        &lt;chr&gt; "2025-05-09T15:37:49.907Z"
 $ banner            &lt;chr&gt; "https://cdn.bsky.app/img/banner/plain/did:plc:hngk…
@@ -333,13 +333,13 @@ $ associated        &lt;list&gt; [0, 0, 0, FALSE, ["followers"]], [0, 0, 0, FALS
 $ viewer            &lt;list&gt; [FALSE, FALSE, [32, [["did:plc:6gq5giuz35vjuss33oot…
 $ labels            &lt;list&gt; [], [], [], [], []
 $ created_at        &lt;chr&gt; "2023-09-21T14:22:06.936Z", "2023-09-30T20:17:49.93…
-$ verification      &lt;list&gt; [[["did:plc:z72i7hdynmk6r22z27h6tvur", "at://did:plc…
+$ verification      &lt;list&gt; [[["did:plc:z72i7hdynmk6r22z27h6tvur", "Serap Güler"…
 $ actor_description &lt;chr&gt; "Staatsministerin @AuswaertigesAmt, Mitglied im Deu…
 $ indexed_at        &lt;chr&gt; "2025-05-09T15:37:49.907Z", "2024-01-26T01:59:36.925…
 $ banner            &lt;chr&gt; "https://cdn.bsky.app/img/banner/plain/did:plc:hngke…
-$ followers_count   &lt;int&gt; 3924, 18379, 21971, 46735, 1050
+$ followers_count   &lt;int&gt; 3924, 18376, 21984, 46743, 1048
 $ follows_count     &lt;int&gt; 119, 68, 215, 127, 116
-$ posts_count       &lt;int&gt; 149, 21, 916, 82, 56</code></pre>
+$ posts_count       &lt;int&gt; 149, 21, 922, 82, 56</code></pre>
 </div>
 </div>
 </section>
@@ -443,9 +443,9 @@ $ is_reskeet    &lt;lgl&gt; TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS
 </section>
 <section id="authentifizierung-schritt-2" class="slide level2">
 <h2>Authentifizierung: Schritt 2</h2>
-<p>Die Cookies können wir dann mit der Funktion <code>get_cookies()</code> aus dem Paket <code>cookiemonster</code> sspeichern. Das Argument <code>path</code> muss dabei der Pfad sein, unter dem die <code>.txt</code>-Datei mit den Cookies gespeichert ist.</p>
+<p>Die Cookies können wir dann mit der Funktion <code>add_cookies()</code> aus dem Paket <code>cookiemonster</code> speichern. Das Argument muss dabei der Pfad sein, unter dem die <code>.txt</code>-Datei mit den Cookies gespeichert ist.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>cookies <span class="ot">&lt;-</span> <span class="fu">get_cookies</span>(<span class="at">path =</span> <span class="st">"./data/tiktok_cookies.txt"</span>) <span class="co"># Dateipfad anpassen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">add_cookies</span>(<span class="at">path =</span> <span class="st">"./data/tiktok_cookies.txt"</span>) <span class="co"># Dateipfad anpassen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="authentifizierung-check" class="slide level2">
@@ -469,8 +469,8 @@ $ short_id                         &lt;chr&gt; ""
 $ user_name                        &lt;chr&gt; "serapguelermdb"
 $ nickname                         &lt;chr&gt; "Serap Güler"
 $ avatar_larger                    &lt;chr&gt; "https://p16-common-sign.tiktokcdn-eu…
-$ avatar_medium                    &lt;chr&gt; "https://p16-common-sign.tiktokcdn-eu…
-$ avatar_thumb                     &lt;chr&gt; "https://p16-common-sign.tiktokcdn-eu…
+$ avatar_medium                    &lt;chr&gt; "https://p19-common-sign.tiktokcdn-eu…
+$ avatar_thumb                     &lt;chr&gt; "https://p19-common-sign.tiktokcdn-eu…
 $ signature                        &lt;chr&gt; "Staatsministerin im Auswärtigen Amt …
 $ create_time                      &lt;dttm&gt; 2020-03-19 11:27:21
 $ verified                         &lt;lgl&gt; FALSE
@@ -503,7 +503,7 @@ $ language                         &lt;chr&gt; "de"
 $ suggest_account_bind             &lt;lgl&gt; FALSE
 $ is_organization                  &lt;int&gt; 0
 $ `_user_story_status`             &lt;int&gt; 0
-$ follower_count                   &lt;int&gt; 1482
+$ follower_count                   &lt;int&gt; 1481
 $ following_count                  &lt;int&gt; 48
 $ heart                            &lt;int&gt; 5661
 $ heart_count                      &lt;int&gt; 5661
@@ -562,11 +562,11 @@ $ language                           &lt;chr&gt; "de", "de", "de", "de", "en"
 $ suggest_account_bind               &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
 $ is_organization                    &lt;int&gt; 0, 0, 0, 1, 0
 $ `_user_story_status`               &lt;int&gt; 0, 0, 0, 0, 0
-$ follower_count                     &lt;int&gt; 1482, 35500, 9988, 667700, 7842
+$ follower_count                     &lt;int&gt; 1481, 35500, 9993, 668100, 7843
 $ following_count                    &lt;int&gt; 48, 176, 156, 283, 97
-$ heart                              &lt;int&gt; 5661, 360000, 126100, 21700000, 893…
-$ heart_count                        &lt;int&gt; 5661, 360000, 126100, 21700000, 893…
-$ video_count                        &lt;int&gt; 38, 166, 196, 426, 153
+$ heart                              &lt;int&gt; 5661, 360000, 126200, 21700000, 893…
+$ heart_count                        &lt;int&gt; 5661, 360000, 126200, 21700000, 893…
+$ video_count                        &lt;int&gt; 38, 166, 197, 426, 153
 $ digg_count                         &lt;int&gt; 0, 0, 0, 0, 0
 $ friend_count                       &lt;int&gt; 23, 84, 86, 182, 66
 $ bio_link_link                      &lt;chr&gt; NA, "linktr.ee/larsklingbeil", "htt…
@@ -621,7 +621,7 @@ $ commerce_user_info_category_button &lt;lgl&gt; NA, FALSE, NA, FALSE, NA</code>
 <span id="cb24-4"><a></a></span>
 <span id="cb24-5"><a></a><span class="fu">glimpse</span>(comments_yt)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 2,082
+<pre><code>Rows: 2,081
 Columns: 12
 $ Comment               &lt;chr&gt; "Die deutsche Präzision kennt keine Grenzen; sie…
 $ AuthorDisplayName     &lt;chr&gt; "@abdikamilnarbekov9828", "@carlesmarch", "@vale…

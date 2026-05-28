@@ -19,14 +19,6 @@ title-slide-attributes:
 
 Im Buch zum Kurs finden Sie ausführlichere Informationen zu den Themen, die wir in dieser Sitzung behandeln. Sie finden dieses online über den folgenden Link: [https://jobreu.github.io/social-media-data-r/](https://jobreu.github.io/social-media-data-r/)
 
-## Beobachtungseinheiten & Sampling
-
-::: {.incremental}
-Die Beobachtungseinheiten für *Bluesky* und *TikTok* sind die Accounts von Kandidierenden zur deutschen Bundestagswahl 2025. Die Informationen zu diesen stammen aus dem Datensatz [*Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025*](https://doi.org/10.4232/1.14773) [@BreuerEtAl2026].Beispiele dafür, wie Sie Accounts aus diesem Datensatz auswählen können, finden Sie im Skript [*get_accounts.R*](../scripts/get_accounts.R).
-
-Eine weitere Quelle für Accounts ist der Datensatz [*Social Media Accounts (TikTok, YouTube, X/Twitter) of the Candidates in the 2025 German Federal Election*](https://doi.org/10.7802/2862) [@SteupEtAl2025].
-:::
-
 ## Accounts
 
 Zur Erinnerung: Wir benötigen:
@@ -36,7 +28,7 @@ Zur Erinnerung: Wir benötigen:
 
 2.  Einen [*Bluesky*](https://bsky.app/)-Account
 
-3.  Einen *Google*-Account und einen *YouTube* API Key. Wie Sie einen *YouTube* API Key erhalten, wird ausführlich in einem [Tutorial von Communalytic beschrieben](https://communalytic.org/docs/obtaining-youtube-api-key/) sowie im GESIS Guide [*How to Collect Data with the YouTube Data API*](https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf) [@KohneEtAl2024] beschrieben.
+3.  Einen *Google*-Account und einen *YouTube* API Key. Wie Sie einen *YouTube* API Key erhalten, wird ausführlich in einem [Tutorial von Communalytic](https://communalytic.org/docs/obtaining-youtube-api-key/) sowie im GESIS Guide [*How to Collect Data with the YouTube Data API*](https://www.gesis.org/fileadmin/admin/Dateikatalog/pdf/guides/13_Kohne_et_al_How_to_YouTube.pdf) [@KohneEtAl2024] beschrieben.
 :::
 
 ## Pakete
@@ -47,6 +39,14 @@ Zur Sammlung von *Bluesky*-, *TikTok*- und *YouTube*-Daten nutzen wir die folgen
 #| eval: false
 install.packages(c("atrrr", "traktok", "vosonSML", "cookiemonster"))
 ```
+
+## Beobachtungseinheiten & Sampling
+
+::: {.incremental}
+Die Beobachtungseinheiten für *Bluesky* und *TikTok* sind die Accounts von Kandidierenden zur deutschen Bundestagswahl 2025. Die Informationen zu diesen stammen aus dem Datensatz [*Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025*](https://doi.org/10.4232/1.14773) [@BreuerEtAl2026].Beispiele dafür, wie Sie Accounts aus diesem Datensatz auswählen können, finden Sie im Skript [*get_accounts.R*](../scripts/get_accounts.R).
+
+Eine weitere Quelle für Accounts ist der Datensatz [*Social Media Accounts (TikTok, YouTube, X/Twitter) of the Candidates in the 2025 German Federal Election*](https://doi.org/10.7802/2862) [@SteupEtAl2025].
+:::
 
 # Bluesky {background-color="#4A90E2"}
 
@@ -146,11 +146,11 @@ Wir nutzen die ["Unofficial API"](https://jbgruber.github.io/traktok/articles/un
 
 ## Authentifizierung: Schritt 2
 
-Die Cookies können wir dann mit der Funktion `get_cookies()` aus dem Paket `cookiemonster` sspeichern. Das Argument `path` muss dabei der Pfad sein, unter dem die `.txt`-Datei mit den Cookies gespeichert ist.
+Die Cookies können wir dann mit der Funktion `add_cookies()` aus dem Paket `cookiemonster` speichern. Das Argument muss dabei der Pfad sein, unter dem die `.txt`-Datei mit den Cookies gespeichert ist.
 
 ```{r}
 #| eval: false
-cookies <- get_cookies(path = "./data/tiktok_cookies.txt") # Dateipfad anpassen
+add_cookies(path = "./data/tiktok_cookies.txt") # Dateipfad anpassen
 ```
 
 ## Authentifizierung: Check
