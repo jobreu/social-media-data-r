@@ -1,7 +1,15 @@
+# R files
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
 .Renviron
+
+# Quarto files
 /.quarto/
 **/*.quarto_ipynb
+
+# Data files
+data/bluesky_data.csv
+data/youtube_data.csv
+data/topicmodels/

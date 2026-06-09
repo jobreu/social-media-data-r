@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Erhebungsmethoden – Sammlung und Analyse von Social-Media-Daten mit R</title>
+<title>10&nbsp; Erhebungsmethoden – Sammlung und Analyse von Social-Media-Daten mit R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -54,7 +54,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./10-bluesky-collection.html" rel="next">
-<link href="./08-text-data.html" rel="prev">
+<link href="./07-wrangling-variables.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -105,7 +105,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-collection-methods.html">Daten sammeln</a></li><li class="breadcrumb-item"><a href="./09-collection-methods.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-collection-methods.html">Daten sammeln</a></li><li class="breadcrumb-item"><a href="./09-collection-methods.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -217,12 +217,6 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variablen verändern</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-text-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Arbeiten mit Textdaten</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -237,25 +231,25 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09-collection-methods.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10-bluesky-collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Datensammlung: <em>Bluesky</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Datensammlung: <em>Bluesky</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11-tiktok-collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Datensammlung: <em>TikTok</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Datensammlung: <em>TikTok</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12-youtube-collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Datensammlung: <em>YouTube</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Datensammlung: <em>YouTube</em></span></span></a>
   </div>
 </li>
       </ul>
@@ -263,7 +257,7 @@ div.csl-indent {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Tipps &amp; Tricks</span></a>
+ <span class="menu-text">Datenanalyse</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -271,56 +265,97 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./analysis-methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Analysemethoden</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preprocessing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Preprocessing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./descriptive-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Descriptive Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sent-dict.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Sentiment-Analyse und diktionärbasierte Ansätze</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topicmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Topic Models</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tipps &amp; Tricks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./16-errors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15-message-warning-error.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Meldungen, Warnungen, Fehler</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Meldungen, Warnungen, Fehler</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14-help.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">🆘 Hilfe!</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">🆘 Hilfe!</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18-function-lifecycle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Aus dem Leben einer Funktion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Aus dem Leben einer Funktion</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13-comments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Kommentare in R-Skripten</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Kommentare in R-Skripten</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./names.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Namen in <code>R</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Namen in <code>R</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./codebooks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Codebücher</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Codebücher</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17-paths.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Dateipfade</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Dateipfade</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Projekte in <em>RStudio</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Projekte in <em>RStudio</em></span></span></a>
   </div>
 </li>
       </ul>
@@ -341,17 +376,17 @@ div.csl-indent {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#ausgewählte-plattformen" id="toc-ausgewählte-plattformen" class="nav-link active" data-scroll-target="#ausgewählte-plattformen"><span class="header-section-number">11.1</span> Ausgewählte Plattformen</a></li>
-  <li><a href="#beobachtungseinheiten-sampling" id="toc-beobachtungseinheiten-sampling" class="nav-link" data-scroll-target="#beobachtungseinheiten-sampling"><span class="header-section-number">11.2</span> Beobachtungseinheiten &amp; Sampling</a></li>
+  <li><a href="#ausgewählte-plattformen" id="toc-ausgewählte-plattformen" class="nav-link active" data-scroll-target="#ausgewählte-plattformen"><span class="header-section-number">10.1</span> Ausgewählte Plattformen</a></li>
+  <li><a href="#beobachtungseinheiten-sampling" id="toc-beobachtungseinheiten-sampling" class="nav-link" data-scroll-target="#beobachtungseinheiten-sampling"><span class="header-section-number">10.2</span> Beobachtungseinheiten &amp; Sampling</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/09-collection-methods.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-collection-methods.html">Daten sammeln</a></li><li class="breadcrumb-item"><a href="./09-collection-methods.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-collection-methods.html">Daten sammeln</a></li><li class="breadcrumb-item"><a href="./09-collection-methods.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-collection-methods" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></span></h1>
+<h1 class="title"><span id="sec-collection-methods" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></span></h1>
 </div>
 
 
@@ -372,13 +407,13 @@ div.csl-indent {
 <p>Eine ausführliche Einführung in Web Scraping und die Nutzung von APIs geht über den Rahmen dieses Buches hinaus, aber die nachfolgende Abbildung aus Deubel et al. <span class="citation" data-cites="DeubelEtAl2024">(<a href="references.html#ref-DeubelEtAl2024" role="doc-biblioref">2024, S. 7</a>)</span> bietet einen vereinfachten visuellen Vergleich der beiden Methoden.</p>
 <p><img src="./images/api-scraping.png" class="img-fluid quarto-figure quarto-figure-center" alt="API vs.&nbsp;Web Scraping"> Umnfangreichere Einführungen zu Web Scraping und APIs für den Datenzugang finden sich in den entsprechenden <em>GESIS Guides to Digital Behavioral Data</em> von Soldnet et al. <span class="citation" data-cites="SoldnerEtAl2024a SoldnerEtAl2024b">(<a href="references.html#ref-SoldnerEtAl2024a" role="doc-biblioref">2024</a>; <a href="references.html#ref-SoldnerEtAl2024b" role="doc-biblioref">2024</a>)</span>.</p>
 <p>Viele Social-Media-Plattformen bieten APIs an, über die Forschende auf Daten zugreifen können. Einen guten – wenn auch stellenweise bereits etwas veralteten – Überblick bietet die Webseite <a href="https://paulcbauer.github.io/apis_for_social_scientists_a_review/"><em>APIs for social scientists: A collaborative review</em></a>.</p>
-<section id="ausgewählte-plattformen" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="ausgewählte-plattformen"><span class="header-section-number">11.1</span> Ausgewählte Plattformen</h2>
+<section id="ausgewählte-plattformen" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="ausgewählte-plattformen"><span class="header-section-number">10.1</span> Ausgewählte Plattformen</h2>
 <p>Für diesen Kurs konzentrieren wir uns auf die folgenden Plattformen:</p>
 <ul>
-<li><p><em>Bluesky</em> (<a href="10-bluesky-collection.html" class="quarto-xref"><span>Kapitel 12</span></a>)</p></li>
-<li><p><em>TikTok</em> (<a href="11-tiktok-collection.html" class="quarto-xref"><span>Kapitel 13</span></a>)</p></li>
-<li><p><em>YouTube</em> (<a href="12-youtube-collection.html" class="quarto-xref"><span>Kapitel 14</span></a>)</p></li>
+<li><p><em>Bluesky</em> (<a href="10-bluesky-collection.html" class="quarto-xref"><span>Kapitel 11</span></a>)</p></li>
+<li><p><em>TikTok</em> (<a href="11-tiktok-collection.html" class="quarto-xref"><span>Kapitel 12</span></a>)</p></li>
+<li><p><em>YouTube</em> (<a href="12-youtube-collection.html" class="quarto-xref"><span>Kapitel 13</span></a>)</p></li>
 </ul>
 <p>Die Auswahl dieser Plattformen hat dabei v.a. zwei Gründe:</p>
 <ol type="1">
@@ -387,8 +422,8 @@ div.csl-indent {
 </ol>
 <p>Wir gehen dabei in aufsteigender Reihenfolge der Schwierigkeit des Datenzugangs vor, d.h. wir beginnen mit <em>Bluesky</em>, für das es eine offene API gibt, gefolgt von <em>TikTok</em>, für das wir eine sogenannte “Hidden API” nutzen, und <em>YouTube</em>, für das wir einen API Key benötigen.</p>
 </section>
-<section id="beobachtungseinheiten-sampling" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="beobachtungseinheiten-sampling"><span class="header-section-number">11.2</span> Beobachtungseinheiten &amp; Sampling</h2>
+<section id="beobachtungseinheiten-sampling" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="beobachtungseinheiten-sampling"><span class="header-section-number">10.2</span> Beobachtungseinheiten &amp; Sampling</h2>
 <p>Die Beobachtungseinheiten für <em>Bluesky</em> und <em>TikTok</em> sind die Accounts von Kandidierenden zur deutschen Bundestagswahl 2025. Die Informationen zu diesen stammen aus dem Datensatz <a href="https://doi.org/10.4232/1.14773"><em>Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025</em></a> <span class="citation" data-cites="BreuerEtAl2026">(<a href="references.html#ref-BreuerEtAl2026" role="doc-biblioref">Breuer et al., 2026</a>)</span>. Wir nutzen für diese beiden Plattformen in den Beispielen entsprechend ein accountbasiertes Sampling.</p>
 <p>Unsere Beobachtungseinheiten für <em>YouTube</em> sind die Videos zu bestimmten Themen oder auch aus bestimmten Kanälen, die wir z.B. über die Websuche der Plattform identifizieren können.</p>
 
@@ -822,13 +857,13 @@ Soldner, F., Bacaksızlar Turbic, N. G., Mirelmi, P., &amp; Kohne, J. (2024). <e
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./08-text-data.html" class="pagination-link" aria-label="Arbeiten mit Textdaten">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Arbeiten mit Textdaten</span></span>
+      <a href="./07-wrangling-variables.html" class="pagination-link" aria-label="Variablen verändern">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variablen verändern</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./10-bluesky-collection.html" class="pagination-link" aria-label="Datensammlung: *Bluesky*">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Datensammlung: <em>Bluesky</em></span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Datensammlung: <em>Bluesky</em></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

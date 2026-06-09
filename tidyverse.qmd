@@ -73,6 +73,6 @@ Man kann den Pipe Operator also im Prinzip lesen als Nimm `data`, mache dies dam
 
 Das mag aktuell noch sehr abstrakt klingen, aber die Nutzung sollte mit den konkreten Beispielen in den folgenden Kapiteln deutlicher werden.
 
-Seit Version 4.1.0 gibt es in `R` auch einen nativen Pipe Operator (`|>`), der ähnliche Funktionalitäten bietet. Es gibt jedoch einige Unterschiede zwischen den beiden Pipe-Operatoren. Diese werden im [Blog-Post [*Differences between the base R and magrittr pipes*] auf der `tidyverse`-Webseite](https://tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/) ausführlich erklärt.
+Seit Version 4.1.0 gibt es in `R` auch einen nativen Pipe Operator (`|>`), der ähnliche Funktionalitäten bietet. Es gibt jedoch einige Unterschiede zwischen den beiden Pipe-Operatoren. Diese werden im [Blog-Post [*Differences between the base R and magrittr pipes*] auf der `tidyverse`-Webseite](https://tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/) sowie in einem [Discussion Thread auf *Stack Overflow*](https://stackoverflow.com/questions/67633022/what-are-the-differences-between-rs-native-pipe-and-the-magrittr-pipe) ausführlich erklärt.
 
 *RStudio* bietet eine Tastenkombination zum Einfügen des Pipe Operators aus dem `tidyverse` (`%>%`): `Strg + Alt + M` (Windows & Linux) bzw. `Cmd + Option + M` (Mac). Aus diesem Grund nutzen wir in diesem Kurs den Pipe Operator aus dem `tidyverse` und nicht den nativen Pipe Operator aus Base `R`.

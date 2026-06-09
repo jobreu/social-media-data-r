@@ -1,0 +1,351 @@
+# Descriptive Analysis {#sec-descriptive}
+
+Nachdem wir die Daten gesammelt und aufbereitet haben (siehe @sec-preprocessing), können wir mit der Analyse beginnen. In diesem Abschnitt beschäftigen wir uns mit deskriptiven Methoden, also solchen, die die Daten in ihrer Rohform beschreiben. Dazu gehören z.B. Häufigkeiten von Wörtern, @-Mentions oder Hashtags.
+
+## Setup
+
+Um die Daten analysieren zu können, müssen wir diese sowie die benötigten Pakete laden und wie in @sec-preprocessing beschrieben aufbereiten.
+
+```{r}
+#| warning: false
+#| message: false
+
+# Pakete laden
+library(quanteda)
+library(tidyverse)
+
+# Daten einlesen
+bs_posts <- read.csv("./data/bluesky_data.csv") # Dateipfad ggf. anpassen
+comments_yt <- read.csv("./data/youtube_data.csv") # Dateipfad ggf. anpassen
+
+# Korpus erstellen
+bluesky_corpus <- bs_posts %>% 
+  distinct(uri, .keep_all = TRUE) %>% # jeder Post sollte nur einmal im Korpus vorkommen
+  filter(is_reskeet == FALSE) %>% # keine Reposts
+  select(uri, cid,
+         author_handle, author_name,
+         indexed_at, reply_count, repost_count,
+         like_count, quote_count,
+         is_reskeet,
+         text) %>% 
+  corpus(docid_field = "uri",
+         text_field = "text")
+
+youtube_corpus <- comments_yt %>%
+  select(CommentID, VideoID, ParentID,
+         AuthorDisplayName,
+         PublishedAt, ReplyCount, LikeCount,
+         Comment) %>% 
+  corpus(docid_field = "CommentID",
+         text_field = "Comment")
+
+# Tokenisierung & Bereinigung
+tokens_bluesky <- tokens(bluesky_corpus,
+                       remove_punct = TRUE,
+                       remove_symbols = TRUE,
+                       remove_numbers = TRUE,
+                       remove_url = TRUE)
+
+tokens_youtube <- tokens(youtube_corpus,
+                       remove_punct = TRUE,
+                       remove_symbols = TRUE,
+                       remove_numbers = TRUE,
+                       remove_url = TRUE)
+
+# Kleinschreibung & Stoppwörter
+tokens_bluesky <- tokens_bluesky %>%
+  tokens_tolower() %>% # Kleinschreibung
+  tokens_remove(stopwords("de")) %>%  # Entfernung von deutschen Stoppwörtern
+  tokens_remove("dass") # Entfernung von "dass"
+
+tokens_youtube <- tokens_youtube %>%
+  tokens_tolower() %>% # Kleinschreibung
+  tokens_remove(stopwords("de")) %>%  # Entfernung von deutschen Stoppwörtern
+  tokens_remove("dass") # Entfernung von "dass"
+
+# DFM erstellen
+dfm_bluesky <- dfm(tokens_bluesky)
+
+dfm_youtube <- dfm(tokens_youtube)
+```
+
+Für die deskttriptiven Analysen nutzen wir zudem zwei der Erweiterungspakete von `quanteda`, nämlich [`quanteda.textstats`](https://github.com/quanteda/quanteda.textstats) und [`quanteda.textplots`](https://github.com/quanteda/quanteda.textplots). Diese müssen ebenfalls installiert und geladen werden.
+
+```{r}
+#| eval: false
+install.packages("quanteda.textstats")
+install.packages("quanteda.textplots")
+```
+
+```{r}
+library(quanteda.textstats)
+library(quanteda.textplots)
+```
+
+## Worthäufigkeiten
+
+Mit der Funktion `textstat_frequency()` aus dem Paket `quanteda.textstats` können wir die Häufigkeiten von Wörtern in einem Korpus berechnen. Diese Funktion gibt eine Tabelle zurück, in der die Wörter nach ihrer Häufigkeit sortiert sind. Wir können spezifizieren, wie viele Wörter wir in der Tabelle haben wollen, indem wir das Argument `n` angeben.
+
+```{r}
+dfm_bluesky %>%
+  dfm_remove(pattern = c("bsky.social",
+                         "@*", "#*")) %>% # Entfernung von Bluesky-Links, Mentions und Hashtags 
+  textstat_frequency(n = 20) # Anzahl der häufigsten Wörter, die angezeigt werden sollen
+```
+
+Die Variable `frequency` gibt an, wie oft ein Wort im gesamten Korpus vorkommt. Die Variable `docfreq` gibt an, in wie vielen Dokumenten ein Wort vorkommt.
+
+```{r}
+dfm_youtube %>%
+  dfm_remove(pattern = c("youtube.com",
+                         "@*", "#*")) %>% # Entfernung von YouTube-Links, Mentions und Hashtags 
+  textstat_frequency(n = 20) # Anzahl der häufigsten Wörter, die angezeigt werden sollen
+```
+
+### Visualisierung von Worthäufigkeiten
+
+Worthäufigkeiten lassen sich auch in unterschiedlichen Formen visualisieren.
+
+::: {.callout-note title="Datenvisualisierung mit ggplot2" collapse="true"}
+Für die Visualisierung der Daten ntutzen wir neben `quanteda.textplots` das sehr umfangreiche Paket [`ggplot2`](https://ggplot2.tidyverse.org/), das auch Teil des `tidyverse` ist (siehe @sec-tidyverse).
+Neben der Dokumentation zum Paket gibt es ausführliche Einführungen u.a. im [entsprechenden Abschnitt des Buchs *R for Data Science*](https://r4ds.hadley.nz/visualize.html) sowie den Büchern [*The Art of Data Visualization with ggplot2*](https://nrennie.rbind.io/art-of-viz/) von Nicola Rennie und [*Modern Data Visualization with R*](https://rkabacoff.github.io/datavis/) von Rober Kabacoff, die es auch beide als kostenfreie Online-Versionen gibt.
+:::
+
+Eine oft genutzte Form der Visualisierung von Worthäufigkeiten ist die Wortwolke (word cloud). Diese lässt sich mit der Funktion `textplot_wordcloud()` aus dem Paket `quanteda.textplots` erstellen. In einer Wortwolke werden die Wörter in unterschiedlicher Größe dargestellt, wobei die Größe eines Wortes proportional zu seiner Häufigkeit im Korpus ist. Je häufiger ein Wort vorkommt, desto größer wird es dargestellt. Wortwolken sind recht anschaulich, um einen ersten visuellen Eindruck von den Daten zu bekommen. Für echte Analysen sind sie aber nur eingeschränkt geeignet, u.a. weil sie schnell unübersichtlich werden. Um die Anzahl der dargestellten Wörter zu reduzieren, kann man die `quanteda`-Funktion `dfm_trim()` verwenden. Diese erlaubt es, Wörter anhand der minimalen oder maximalen (Term) Frequency oder Document Frequency (s.o.) zu filtern.
+
+```{r}
+dfm_bluesky %>% 
+  dfm_remove(pattern = c("bsky.social",
+                         "@*", "#*")) %>% # Entfernung von Bluesky-Links, Mentions und Hashtags 
+  dfm_trim(min_termfreq = 100) %>% # Entfernung von Wörtern, die weniger als 100 Mal im Korpus vorkommen
+  textplot_wordcloud()
+```
+
+```{r}
+dfm_youtube %>%
+  dfm_remove(pattern = c("youtube.com",
+                         "@*", "#*")) %>% # Entfernung von YouTube-Links, Mentions und Hashtags 
+    dfm_trim(min_termfreq = 50) %>% # Entfernung von Wörtern, die weniger als 50 Mal im Korpus vorkommen
+  textplot_wordcloud()
+```
+
+Eine alternative und für die Analyse von Textdaten oft besser geeignete Form der Visualisierung von Worthäufigkeiten ist das Balkendiagramm. 
+
+```{r}
+freq_bs <- dfm_bluesky %>% 
+  dfm_remove(pattern = c("bsky.social", "dass",
+                         "@*", "#*")) %>%  
+  textstat_frequency(n = 20)
+
+ggplot(freq_bs,
+       aes(x = frequency, y = reorder(feature, frequency))) +
+  geom_col() + 
+  labs(x = "Frequency", y = "Feature") +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.05)))
+```
+
+::: {.callout-note title="Mehrsprachige Daten" collapse="true"}
+Wir sehen in den Worthäufigkeiten für die *Bluesky*-Posts, dass diese offenbar teilweise auch auf Englisch verfasst wurden. Mehrsprachige Daten kommen im Social-Media-Kontext häufig vor. Um mit diesen zu arbeiten gibt es mehrere Optionen. 
+
+Man kann alle Texte in eine Sprache übersetzen. I.d.R. ist eine Übersetzung ins Englische am sinnvollsten, weil die meisten Pakete und Modelle für die Analyse damit am besten umgehen können. Für die automatische Übersetzung von Texten in `R` gibt es mehrere Pakete, die auf APIs von unterschiedlichen Übersetzungstools zugreifen. Zu den bekanntesten Optionen gehören [`deeplr`](https://github.com/zumbov2/deeplr), [`googleLanguageR`](https://github.com/ropensci/googleLanguageR) und [`polyglotr`](https://tomeriko96.github.io/polyglotr/).
+
+Eine weitere Option ist die Erkennung von Sprachen für die Filterung oder separate Analyse. Auch für die Erkennung von Sprachen in Textdaten gibt es verschiedene Pakete in `R`, wie z.B. [`cld3`](https://docs.ropensci.org/cld3/), [`textcat`](https://cran.r-project.org/web/packages/textcat/index.html) oder [`fastText`](https://mlampros.github.io/fastText/) (siehe dazu auch das [Tutorial von Lampros Mouselimis](https://cran.r-project.org/web/packages/fastText/vignettes/language_identification.html)).
+
+Die dritte Option ist die Nutzung komplexerer Modelle, die auf sogenannten Word Embeddings basieren und mit mehrsprachigen Daten umgehen können, z.B. Multilingual BERT (mBERT) oder XLM-RoBERTa. Diese Modelle können direkt mit Texten in unterschiedlichen Sprachen arbeiten, ohne dass eine Übersetzung notwendig ist. Allerdings erfordern diese Modelle in der Regel auch mehr Rechenleistung und sind komplexer in der Anwendung als die anderen Optionen. Ein `R`-Paket, dass die Nutzung solcher Modelle ermöglicht, ist [`text`](https://r-text.org/).
+:::
+
+## @-Mentions und Hashtags
+
+Nach der gleichen Logik wie bei den Worthäufigkeiten können wir auch die Häufigkeiten von @-Mentions und Hashtags berechnen. Dazu müssen wir diese aus den Texten extrahieren. Dies geht mit der Funktion `tokens_select()` aus dem Paket `quanteda`. Diese erlaubt es, Tokens anhand von Mustern zu selektieren. Für @-Mentions ist das Muster `@*` und für Hashtags `#*`.
+
+```{r}
+dfm_bluesky %>% 
+  dfm_select(pattern = "@*") %>%  # Auswahl von @-Mentions
+  textstat_frequency(n = 10) # Anzahl der häufigsten @-Mentions, die angezeigt werden sollen
+```
+
+Dass die Account-Namen teilweise abgeschnitten sind, liegt daran, dass wir bei der Erstellung der DFM Satzzeichen entfernt haben.
+
+```{r}
+dfm_bluesky %>% 
+  dfm_select(pattern = "#*") %>%  # Auswahl von Hashtags
+  textstat_frequency(n = 10) # Anzahl der häufigsten Hashtags, die angezeigt werden sollen
+```
+
+```{r}
+hashtags_bs <- dfm_bluesky %>% 
+  dfm_select(pattern = "#*") %>%  # Auswahl von Hashtags
+  textstat_frequency(n = 10) # Anzahl der häufigsten Hashtags, die angezeigt werden sollen
+
+ggplot(hashtags_bs,
+       aes(x = frequency, y = reorder(feature, frequency))) +
+  geom_col() +
+  labs(x = "Frequency", y = "Hashtag") +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.05)))
+```
+
+::: {.callout-note title="Regular Expressions" collapse="true"}
+Für die Filterung oder Extraktion von bestimmten Mustern in Texten können nicht nur exakte Wörter oder Phrasen,  (exact matching)sondern auch sogenannte [reguläre Ausdrücke (regular expressions)](https://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck) genutzt werden. Reguläre Ausdrücke sind eine Art von Suchmustern, mit denen komplexere Suchanfragen formuliert werden können. Sie ermöglichen es z.B. nach Wörtern zu suchen, die mit einem bestimmten Präfix oder Suffix beginnen oder enden, oder nach Wörtern, die bestimmte Zeichen enthalten oder nicht enthalten. In `quanteda` können reguläre Ausdrücke in Funktionen wie `tokens_select()` oder `dfm_select()` verwendet werden, indem man das Argument `valuetype = "regex"` angibt.
+
+Auch in der Datenaufbereitung können reguläre Ausdrücke z.B. in Kombination mit den Funktionen aus dem [Paket `stringr`](https://stringr.tidyverse.org/) genutzt werden, um bestimmte Muster zu erkennen, extrahieren, löschen oder ersetzen. Eine Einführung in Regular Expressions geht über den Rahmen dieses Buchs hinaus. Es gibt jedoch einige `R`-Pakete, die die Erstellung von Regular Expressions erleichtern. Zu diesen gehören [`rex`](https://rex.r-lib.org/), [`rebus`](https://cran.r-project.org/web/packages/rebus/index.html), [`RVerbalExpressions`](https://rverbalexpressions.netlify.app/) und [`qdapRegex`](https://github.com/trinker/qdapRegex). Zudem sind LLM-basierte Chatbots auch recht gut darin, Regular Expressions zu erstellen.
+:::
+
+## Alternativen zu Worthäufigkeiten
+
+Die Analyse von Worthäufigkeiten in Social-Media-Daten kann nützlich sein, um einen ersten Eindruck von den Daten zu bekommen. Allerdings haben Worthäufigkeiten auch einige Nachteile. So können sie z.B. durch die Präsenz von häufigen, aber wenig aussagekräftigen Wörtern (z.B. "und", "der", "die") verzerrt werden. Die Entfernung von Stoppwörtern (siehe @sec-preprocessing) sowie die Reduktion der DFM über `dfm_trim()` sind zwei Möglichkeiten, diesem Problem zu begegnen. 
+
+::: {.callout-note title="Zipfsches Gesetz" collapse="true"}
+Über alle Sprachen hinweg folgt die Häufigkeitsverteilung von Wörtern in einem großen Korpus dem sog. Zipf[schen Gesetz]()https://de.wikipedia.org/wiki/Zipfsches_Gesetz. KVereinfacht gesagt besagt dieses, dass wenige Wörter sehr häufig vorkommen, während die meisten Wörter nur sehr selten vorkommen.
+Die Formel für das Zipfsche Gesetz lautet:
+$$\text{word frequency} \propto \frac{1}{\text{word rank}}.$$
+In Worten ausgedrückt besagt dies, dass die Häufigkeit eines Wortes umgekehrt proportional zu seinem Rang in der Häufigkeitsliste ist. Das häufigste Wort (Rang 1) ist also doppelt so häufig wie das zweithäufigste Wort (Rang 2), dreimal so häufig wie das dritthäufigste Wort (Rang 3) und so weiter. 
+
+Das Zipfsche Gesetz hat Auswirkungen auf die Analyse von Textdaten, da es bedeutet, dass die meisten Wörter in einem Korpus eher selten vorkommen. Es ist daher wichtig, bei der Analyse von Textdaten nicht nur auf die häufigsten Wörter zu achten, sondern auch auf die selteneren Wörter, die möglicherweise wichtige Informationen enthalten.
+:::
+
+### TF-IDF-Gewichtung
+
+Neben der Filterung gibt es jedoch noch eine weitere Option: die Gewichtung von Tokens. Eine häufgig genutzte Methode hierfür ist die sogenannte Term Frequency-Inverse Document Frequency (TF-IDF) Gewichtung. Diese Methode gewichtet Tokens basierend darauf, wie häufig sie in einem Dokument vorkommen (Term Frequency) und wie selten sie im gesamten Korpus vorkommen (Inverse Document Frequency). Tokens, die häufig in einem Dokument vorkommen, aber selten im gesamten Korpus, erhalten eine höhere Gewichtung als Tokens, die häufig im gesamten Korpus vorkommen. Die Formel zur Berechnung von TF-IDF lautet:
+
+$$w_{i,j} = \mathrm{tf}_{i,j} \times \log \left( \frac{N}{\mathrm{df}_i} \right)$$
+
+w~i,j~: Gewicht des Worts i im Dokument j
+
+tf~i,j~: Häufigkeit des Worts i im Dokument j (Term Frequency)
+
+N: Anzahl aller Dokumente im Korpus
+
+df~i~: Anzahl der Dokumente, in denen das Wort i vorkommt (Document Frequency)
+
+In `quanteda` kann die TF-IDF-Gewichtung mit der Funktion `dfm_tfidf()` angewendet werden. Im nachfolgenden Beispiel wird die TF-IDF-Gewichtung auf eine DFM angewendet, die zuvor gefiltert und gruppiert wurde. Zunächst wird die DFM gefiltert, um nur die Posts von vier Politiker_innenn zu behalten. Anschließend werden die Zeilen basierend auf der Dokumentenvariable `author_handle` gruppiert, um die Posts der einzelnen Politiker_innen zu kombinieren. Schließlich wird die TF-IDF-Gewichtung angewendet, um die Tokens entsprechend ihrer Häufigkeit in den Dokumenten und im gesamten Korpus zu gewichten.
+
+```{r}
+tfidf_bluesky <- dfm_bluesky %>% 
+  dfm_remove(pattern = c("bsky.social",
+                         "@*", "#*")) %>% 
+  dfm_subset(author_handle %in% c("serapgueler.bsky.social",
+                                  "larsklingbeil.bsky.social",
+                                  "nouripour.bsky.social",
+                                  "heidireichinnek.dielinkebt.de")) %>% # Auswahl von Dokumenten (Posts) von vier Accounts 
+  dfm_group(groups = author_handle) %>% # Gruppierung der Dokumente basierend auf der Dokumentenvariable "author_handle"
+  dfm_tfidf() # Anwendung der TF-IDF-Gewichtung
+
+tfidf_bluesky
+```
+
+Um die nach TF-IDF gewichteten Tokens zu explorieren, müssen wir sie in einen `data.frame` umwandeln.
+
+```{r}
+tfidf_df <- convert(tfidf_bluesky, to = "data.frame")
+
+tfidf_long <- tfidf_df %>% 
+  pivot_longer(
+    cols = -doc_id,          
+    names_to = "word",       
+    values_to = "tfidf"      
+  ) %>%
+  rename(politician = doc_id)
+```
+
+Mit dieser Datenstruktur können wir die Ergebnis auch wieder mit `ggplot2` visualisieren. Für die Sortierung der Begriffe nach TF-IDF benötigten wir zusätzlich eine Funktion aus dem Paket `tidytext`. In diesem Beispiel werden die Top 5 Wörter für jede:n Politiker:in nach ihrer TF-IDF-Gewichtung dargestellt.
+
+```{r}
+library(tidytext)
+
+top_words <- tfidf_long %>% 
+  group_by(politician) %>% 
+  slice_max(tfidf, n = 5, with_ties = FALSE) %>% 
+  ungroup()
+
+ggplot(top_words, aes(x = tfidf,
+                      y = reorder_within(word, tfidf, politician),
+                      fill = politician)) +
+  geom_col(show.legend = FALSE) +
+  scale_y_reordered() +
+  facet_wrap(~politician, ncol = 2, scales = "free_y") +
+  labs(
+    title = "Wörter mit den höchsten TF-IDF-Werten pro Account",
+    x = "TF-IDF",
+    y = NULL
+  ) +
+  theme_minimal()
+```
+
+An der Visualisierung sehen wir, dass die Wörter mit den höchsten TF-IDF-Werten für jede:n Politiker_in unterschiedlich sind. Wir können daran also teilweise schon bestimmte Themen erkennen, die für die Posts der jeweiligen Politiker:innen charakteristisch sind. Mit der Identifikation von Themen in Texten befassen wir uns noch eingehender in @sec-topicmodels zu Topic Models.
+
+### Keyness-Analyse
+
+Die [Keyness-Analyse](https://tutorials.quanteda.io/statistical-analysis/keyness/) ist eine Methode, um die Wörter zu identifizieren, die in einem bestimmten Korpus oder einer bestimmten Gruppe von Dokumenten im Vergleich zu einem Referenzkorpus oder einer anderen Gruppe von Dokumenten besonders häufig oder selten vorkommen. In `quanteda` kann die Keyness-Analyse mit der Funktion `textstat_keyness()` durchgeführt werden. Diese Funktion berechnet die Keyness-Werte für jedes Wort basierend auf der Häufigkeit des Wortes in der Zielgruppe im Vergleich zur Häufigkeit des Wortes in der Referenzgruppe. Die Keyness-Werte können dann verwendet werden, um die Wörter zu identifizieren, die in der Zielgruppe besonders charakteristisch sind.
+
+```{r}
+tstat_key <- dfm_bluesky %>% 
+  dfm_remove(pattern = c("bsky.social",
+                         "@*", "#*")) %>%  
+  textstat_keyness(target = dfm_bluesky$author_handle == "katharinadroege.bsky.social") # Auswahl der Zielgruppe (Posts von Katharina Dröge)
+
+textplot_keyness(tstat_key)
+```
+
+Wer genau hinschaut, sieht, dass eine Keyness-Analyse streng genommen kein rein deskriptives Verfahren ist, sondern eine inferenzstatistische Methode, da sie auf einem statistischen Test basiert (Chi^2-Test), um die Signifikanz der Keyness-Werte zu bestimmen. Dennoch wird sie oft in der deskriptiven Analyse von Textdaten verwendet, um die charakteristischen Wörter einer bestimmten Gruppe von Dokumenten zu identifizieren.
+
+## Weitere deskriptive Analysen am Beispiel von *YouTube*-Daten
+
+In @sec-preprocessing wurden bereits das Paket [`tubecleanR`](github.com/gesiscss/tubecleanR) zur Aufbereitung von *YouTube*-Daten sowie das zugehörige [Tutorial in der *KODAQS Toolbox*](https://kodaqs-toolbox.gesis.org/github.com/gesiscss/tubecleanr_tool/index/) erwähnt. In diesem Abschnitt wollen wir uns ein paar weitere Analysebeispiele anschauen, die darauf aufbauen.
+
+Die zentrale Funktion des Pakets `tubecleanr` ist `parse_yt_comments()`, die eine Reihe von Aufbereitungsschritten durchführt (u.a. die Erkennung und Extraktion von URLs, User Mentions und Emojis).
+
+Da das Paket nur auf *GitHub* verfürbar ist, müssen wir es mit einer Funktion aus dem `remotes`-Paket installieren (siehe @sec-pkgs). Unter Windows benötigen wir dafür zudem die `Rtools` (siehe @sec-install). 
+
+*Hinweis*: Wir können die Funktion `install_github` aus dem Paket `remotes` auch nutzen, ohne das Paket zu laden. Dies geht, indem wir vor die Funktion den Namen des Pakets + `::` schreiben (siehe dazu auch @sec-names).
+
+```{r}
+#| eval: false
+remotes::install_github("gesiscss/tubecleanR")
+```
+
+```{r}
+library(tubecleanR)
+```
+
+```{r}
+# Aufbereitung der YouTube-Daten mit der Funktion parse_yt_comments()
+cleaned_comments <- parse_yt_comments(comments_yt,
+                                     package = "vosonSML") # Angabe des Pakets, mit dem die Daten gesammelt wurden
+
+glimpse(cleaned_comments)
+```
+
+Eine mögliche Visualisierung der aufbereiteten Daten ist das Plotten der häufigsten Emojis.
+
+```{r}
+cleaned_comments %>% 
+  unnest_longer(Emoji) %>% 
+  filter(!is.na(Emoji)) %>% 
+  count(Emoji, sort = TRUE) %>% 
+  slice_max(n, n = 10) %>% 
+  ggplot(aes(x = reorder(Emoji, n), y = n)) +
+  geom_col(fill = "steelblue") +
+  coord_flip() +
+  labs(title = "Top 10 Emojis", x = "Emoji", y = "Häufigkeit") +
+  theme_minimal()
+```
+
+Eine weitere Möglichkeit ist die Darstellung der Anzahl der Kommentare über die Zeit.
+
+```{r}
+cleaned_comments %>% 
+  filter(!is.na(Published)) %>% 
+  mutate(date = as.Date(Published)) %>% 
+  count(date) %>% 
+  arrange(date) %>% 
+  mutate(cumulative_comments = cumsum(n)) %>% 
+  ggplot(aes(x = date, y = cumulative_comments)) +
+  geom_line(color = "steelblue", 
+            linewidth = 1) +
+  labs(
+    title = "Kumulative Anzahl von Kommentaren über die Zeit",
+    x = "Datum",
+    y = "Kumulative Kommentare"
+  ) +
+  theme_minimal()
+```

@@ -54,7 +54,7 @@ Um Vignetten nutzen zu können, muss man zunächst wissen, ob ein Paket überhau
 vignette(package = "dplyr")
 
 # Zugriff auf eine bestimmte Vignette
-vignette("colwise ")
+vignette("colwise")
 
 ```
 

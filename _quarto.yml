@@ -10,7 +10,7 @@ lang: de
 book:
   title: "Sammlung und Analyse von Social-Media-Daten mit R"
   author: "Johannes Breuer"
-  date: "05-21-2026"
+  date: "06-09-2026"
   repo-url: "https://github.com/jobreu/social-media-data-r"
   repo-actions: [edit, issue]
   page-footer:
@@ -33,13 +33,19 @@ book:
       - tidyverse.qmd
       - 06-wrangling-df.qmd
       - 07-wrangling-variables.qmd
-      - 08-text-data.qmd
     - part: "Daten sammeln"
       chapters:
       - 09-collection-methods.qmd
       - 10-bluesky-collection.qmd
       - 11-tiktok-collection.qmd
       - 12-youtube-collection.qmd
+    - part: "Datenanalyse"
+      chapters:
+      - analysis-methods.qmd
+      - preprocessing.qmd
+      - descriptive-analysis.qmd
+      - sent-dict.qmd
+      - topicmodels.qmd
     - part: "Tipps & Tricks"
       chapters:
       - 16-errors.qmd

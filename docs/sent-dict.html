@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>17&nbsp; Sentiment-Analyse und diktionärbasierte Ansätze – Sammlung und Analyse von Social-Media-Daten mit R</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./topicmodels.html" rel="next">
+<link href="./descriptive-analysis.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7c69b197886ae2a34062761d21e44731.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./analysis-methods.html">Datenanalyse</a></li><li class="breadcrumb-item"><a href="./sent-dict.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Sentiment-Analyse und diktionärbasierte Ansätze</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Sammlung und Analyse von Social-Media-Daten mit R</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/jobreu/social-media-data-r" title="Quellcode" class="quarto-navigation-tool px-1" aria-label="Quellcode"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorwort</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Grundlagen</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arbeiten mit <em>RStudio</em></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objekte in <code>R</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pakete</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-import-export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Importieren &amp; exportieren von Daten in `R`</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-wrangling-df.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Datensätze verändern</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-wrangling-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variablen verändern</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Daten sammeln</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-collection-methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-bluesky-collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Datensammlung: <em>Bluesky</em></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-tiktok-collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Datensammlung: <em>TikTok</em></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-youtube-collection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Datensammlung: <em>YouTube</em></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Datenanalyse</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Analysemethoden</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preprocessing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Preprocessing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./descriptive-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Descriptive Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sent-dict.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Sentiment-Analyse und diktionärbasierte Ansätze</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topicmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Topic Models</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tipps &amp; Tricks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-message-warning-error.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Meldungen, Warnungen, Fehler</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-help.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">🆘 Hilfe!</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-function-lifecycle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Aus dem Leben einer Funktion</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-comments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Kommentare in R-Skripten</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./names.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Namen in <code>R</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./codebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Codebücher</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-paths.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Dateipfade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Projekte in <em>RStudio</em></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup"><span class="header-section-number">17.1</span> Setup</a></li>
+  <li><a href="#sentiment-analyse" id="toc-sentiment-analyse" class="nav-link" data-scroll-target="#sentiment-analyse"><span class="header-section-number">17.2</span> Sentiment-Analyse</a>
+  <ul class="collapse">
+  <li><a href="#sentiment-analyse-mit-quanteda" id="toc-sentiment-analyse-mit-quanteda" class="nav-link" data-scroll-target="#sentiment-analyse-mit-quanteda"><span class="header-section-number">17.2.1</span> Sentiment-Analyse mit <code>quanteda</code></a></li>
+  <li><a href="#weitere-optionen-für-die-sentiment-analyse-in-r" id="toc-weitere-optionen-für-die-sentiment-analyse-in-r" class="nav-link" data-scroll-target="#weitere-optionen-für-die-sentiment-analyse-in-r"><span class="header-section-number">17.2.2</span> Weitere Optionen für die Sentiment-Analyse in <code>R</code></a></li>
+  </ul></li>
+  <li><a href="#weitere-diktionärbasierte-ansätze" id="toc-weitere-diktionärbasierte-ansätze" class="nav-link" data-scroll-target="#weitere-diktionärbasierte-ansätze"><span class="header-section-number">17.3</span> Weitere diktionärbasierte Ansätze</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/sent-dict.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./analysis-methods.html">Datenanalyse</a></li><li class="breadcrumb-item"><a href="./sent-dict.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Sentiment-Analyse und diktionärbasierte Ansätze</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-sentdict" class="quarto-section-identifier"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Sentiment-Analyse und diktionärbasierte Ansätze</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Eine in der Analyse von Social-Media-Daten sehr häufig genutzte Methode ist die <strong>Sentiment-Analyse</strong>. Hierbei wird versucht, die Stimmung oder Emotion in einem Text zu bestimmen, z.B. ob ein Post oder Kommentar positiv, negativ oder neutral ist. Bei der Sentiment-Analyse kommen zumeist sogenannte <strong>Diktionäre (dictionaries)</strong> zum Einsatz kommen. Diese können aber auch genutzt werden, um andere Konstrukte zu messen wie z.B. Populismus.</p>
+<section id="setup" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="setup"><span class="header-section-number">17.1</span> Setup</h2>
+<p>Wie immer müssen wir zunächst die benötigten Pakete laden, die Daten importieren und diese aufbereiten. Wir nutzen in diesem Abschnitt nur <em>Bluesky</em>-Daten.</p>
+<p><strong>Wichtig</strong>: Bei der Sentiment-Analyse arbeiten wir mit den Tokens. D.h. wir müssen keine DFM erstellen.</p>
+<p>Zur Erinnerung: Die Aufbereitung der Daten wird in <a href="preprocessing.html" class="quarto-xref"><span>Kapitel 15</span></a> beschrieben. Eine ausführliche Beschreibung zur Sammlung der Daten von <em>Bluesky</em> findet sich in <a href="10-bluesky-collection.html" class="quarto-xref"><span>Kapitel 11</span></a>. Ein Beispiel-Skript zur Sammlung solcher Daten ist im Skript <a href="https://jobreu.github.io/social-media-data-r/scripts/collect_data.R"><code>collect_data.R</code></a> zu finden.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pakete laden</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quanteda)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Package version: 4.3.1
+Unicode version: 15.1
+ICU version: 74.1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Parallel computing: 8 of 8 threads used.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>See https://quanteda.io for tutorials and examples.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Paket 'tidyverse' wurde unter R Version 4.5.3 erstellt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Paket 'ggplot2' wurde unter R Version 4.5.3 erstellt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Paket 'purrr' wurde unter R Version 4.5.2 erstellt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Paket 'stringr' wurde unter R Version 4.5.2 erstellt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.6.0
+✔ ggplot2   4.0.3     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.2.0     </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daten einlesen</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>bs_posts <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"./data/bluesky_data.csv"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Korpus erstellen</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>bluesky_corpus <span class="ot">&lt;-</span> bs_posts <span class="sc">%&gt;%</span> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(uri, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co"># jeder Post sollte nur einmal im Korpus vorkommen</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(is_reskeet <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="co"># keine Reposts</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(uri, cid,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>         author_handle, author_name,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>         indexed_at, reply_count, repost_count,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>         like_count, quote_count,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>         is_reskeet,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>         text) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">corpus</span>(<span class="at">docid_field =</span> <span class="st">"uri"</span>,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">text_field =</span> <span class="st">"text"</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Tokenisierung &amp; Bereinigung</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>tokens_bluesky <span class="ot">&lt;-</span> <span class="fu">tokens</span>(bluesky_corpus,</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_punct =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_symbols =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_url =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Kleinschreibung &amp; Stoppwörter</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>tokens_bluesky <span class="ot">&lt;-</span> tokens_bluesky <span class="sc">%&gt;%</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_tolower</span>() <span class="sc">%&gt;%</span> <span class="co"># Kleinschreibung</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"de"</span>)) <span class="sc">%&gt;%</span>  <span class="co"># Entfernung von deutschen Stoppwörtern</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_remove</span>(<span class="st">"dass"</span>) <span class="co"># Entfernung von "dass"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="sentiment-analyse" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="sentiment-analyse"><span class="header-section-number">17.2</span> Sentiment-Analyse</h2>
+<p>Wie so oft gibt es für die Sentiment-Analyse viele verschiedene Ansätze, Methoden und Pakete. in <code>R</code> Die Auswahl sollte von der jeweiligen Fragestellung und der Art der Daten abhängen. Ein wichtiger Faktor ist dabei insb. auch die Sprache, in der die Daten vorliegen (siehe hierzu auch die Infobox “Mehrsprachige Daten” in <a href="descriptive-analysis.html" class="quarto-xref"><span>Kapitel 16</span></a>).</p>
+<section id="sentiment-analyse-mit-quanteda" class="level3" data-number="17.2.1">
+<h3 data-number="17.2.1" class="anchored" data-anchor-id="sentiment-analyse-mit-quanteda"><span class="header-section-number">17.2.1</span> Sentiment-Analyse mit <code>quanteda</code></h3>
+<p>Auch für die Sentiment-Analyse gibt es ein Erweiterungspaket für <code>quanteda</code> namens <a href="https://github.com/quanteda/quanteda.sentiment"><code>quanteda.sentiment</code></a>. Dieses bietet eine Reihe von Optionen für unterschiedliche Arten der Sentimentanalyse sowie verschiedene Sprachen. Das das Paket (noch) nicht auf <em>CRAN</em> zu finden ist, müssen wir es von <em>GitHub</em> installieren.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"quanteda/quanteda.sentiment"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quanteda.sentiment)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attache Paket: 'quanteda.sentiment'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Das folgende Objekt ist maskiert 'package:quanteda':
+
+    data_dictionary_LSD2015</code></pre>
+</div>
+</div>
+<p><code>quanteda.sentiment</code> bietet verschiedene Diktionäre für die Setntimen-Analyse. Das <code>ReadMe</code> im <a href="https://github.com/quanteda/quanteda.sentiment"><em>GitHub</em>-Repository</a> zum Paket bietet eine Übersicht. Neben den Sprachen, die diese abdecken, unterscheiden sich die Diktionäre auch darin, ob sie <em>Polarität</em> (polarity) und/oder <em>Valenz</em> (valence) für die Zuweisung von Sentiment Scores nutzen. <em>Polarität</em> ist eine Kategorie von zwei „Polen“ (wie negativ und positiv), während <em>Valenz</em> ein numerisches Gewicht ist.</p>
+<p>Im nachfolgenden Beispiel nutzen wir Diktionär für Sentiment in deutschen politischen Texten von Rauh <span class="citation" data-cites="Rauh2018">(<a href="references.html#ref-Rauh2018" role="doc-biblioref">2018</a>)</span>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dfm_de_rauh <span class="ot">&lt;-</span> <span class="fu">dfm</span>(<span class="fu">tokens_lookup</span>(tokens_bluesky,</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">dictionary =</span> data_dictionary_Rauh))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Um das Ergebnis wieder mit den Daten zu verbinden, müssen wir die DFM erst in einen <code>data.frame</code> umwandeln und diesen dann mit den ursprünglichen Daten zusammenführen. Für den zweiten Schritt ist ein sogenannter “Join” nötig. Für die Verknüpfung mehrerer Data Frames bietet das Paket <code>dplyr</code> zahlreiche Funktionen. Diese behandeln wir hier im Buch nicht, aber es gibt eine ausführliche Einführung im <a href="https://r4ds.hadley.nz/joins.html">entsprechenden Kapitel des Buchs <em>R for Data Science</em></a>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>results_rauh <span class="ot">&lt;-</span> <span class="fu">convert</span>(dfm_de_rauh, <span class="at">to =</span> <span class="st">"data.frame"</span>) <span class="sc">%&gt;%</span> <span class="co"># Umwandlung der DFM in einen data.frame</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">net_sentiment =</span> (positive <span class="sc">+</span> neg_negative) <span class="sc">-</span> (negative <span class="sc">+</span> neg_positive)) <span class="co"># Berechnung eines Nettosentiment-Scores</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(results_rauh)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 2,555
+Columns: 6
+$ doc_id        &lt;chr&gt; "at://did:plc:hngkefcientj2tq2gnspgfol/app.bsky.feed.pos…
+$ neg_negative  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ neg_positive  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ negative      &lt;dbl&gt; 3, 0, 1, 1, 1, 4, 2, 4, 2, 4, 1, 1, 1, 0, 4, 0, 2, 5, 0,…
+$ positive      &lt;dbl&gt; 6, 2, 1, 9, 4, 6, 3, 4, 1, 5, 0, 3, 1, 5, 0, 0, 2, 1, 3,…
+$ net_sentiment &lt;dbl&gt; 3, 2, 0, 8, 3, 2, 1, 0, -1, 1, -1, 2, 0, 5, -4, 0, 0, -4…</code></pre>
+</div>
+</div>
+<p>Das Diktionär von Rauh bietet neben den Kategorien “positive” und “negative” auch die Kategorien “neg_positive” und “neg_negative”. Diese beziehen sich auf Negationen. Aus diesen vier Variablen berechnen wir hier Nettosentiment-Score für jeden Post. Diese Daten können wir nun mit den ursprünglichen Daten zu den Posts verknüpfen.</p>
+<p><strong>NB</strong>: Der resultierende Datensatz hat weniger Zeilen als die ursprünglichen Daten, da nicht alle Posts Wörter enthalten, die im Diktionär von Rauh vorkommen.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>results_rauh <span class="ot">&lt;-</span> results_rauh <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(bs_posts, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"doc_id"</span> <span class="ot">=</span> <span class="st">"uri"</span>))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Nun können wir uns z.B. die Posts mit den höchsten oder den niedrigesten Nettosentiment-Scores anschauen.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>results_rauh <span class="sc">%&gt;%</span> <span class="co"># Positivste Posts</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(net_sentiment)) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(text, net_sentiment, author_handle) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                                                                                                                                                                                                                                                                                 text
+1                 Herzlichen Glückwunsch an Yasmin Fahimi zur Wiederwahl als Vorsitzende des #DGB – und zu diesem starken Ergebnis! Viel Erfolg für den wichtigen Einsatz für gute Arbeit, soziale Gerechtigkeit und starken Zusammenhalt. Auf gute Zusammenarbeit weiterhin!\n\nwww.handelsblatt.com/politik/deut...
+2             Wir wollen das Leben bezahlbar machen. Natur und Klima schützen. Die Wirtschaft stärken und nachhaltige Jobs schaffen. Frieden in Freiheit sichern und Vielfalt. Wir wollen, dass unser Land einfach funktioniert. Eine gute Zukunft für alle Kinder. #ZusammenWachsen\n\nwww.gruene.de/artikel/zusa...
+3                Auch wenn noch nicht alle Stimmbezirke ausgezählt sind: Mehr als 40 Prozent Erststimmen sind ein tolles Ergebnis, über das ich mich riesig freue. Ganz herzlichen Dank allen, die mir Ihr Vertrauen geschenkt haben, und den vielen Wahlkämpferinnen und Wahlkämpfern für Euren großartigen Einsatz!
+4                                                                    Weihnachten erinnert uns daran, wie wichtig Gemeinschaft, Nähe und Hoffnung sind. Gerade in herausfordernden Zeiten zählt dieser Zusammenhalt besonders. Ich wünsche Euch allen frohe Weihnachten und ein besinnliches Fest mit Euren Liebsten 🎄
+5  Mit herzlichen Grüßen an all diejenigen, die Lust haben mitzumachen –\n\nbeim Einsatz für Klimaschutz, Vielfalt, Gleichberechtigung, eine moderne Wirtschaft, ein Leben, das bezahlbar ist &amp; ein Land, das einfach funktioniert.\n\nLiebe Grüße auch an @britta-hasselmann.de beim DFB-Pokalfinale! 😎\n\n#ldknrw25
+6                                                                            Unser Ziel ist es, die Wettbewerbsfähigkeit unserer Wirtschaft zu stärken und nachhaltige Investitionen zu fördern. Dieser Erfolg im Strompreisbereich ist ein Schritt in die richtige Richtung, um unsere Wirtschaft weiter zu stärken.
+7                                  Hervorragende Initiative von Friedrich Merz. Das eingefrorene 🇷🇺 Vermögen zu nutzen, um €140 Mrd. für die Verteidigung der Ukraine zu mobilisieren, ist moralisch richtig &amp; strategisch geboten. Es würde die Sicherheit Europas substanziell stärken.\nwww.ft.com/content/3aac...
+8                                                 43,82 Prozent sind es geworden. Wie ihr seht, freuen wir uns alle riesig über dieses tolle Ergebnis. Ganz herzlichen Dank an alle Wählerinnen &amp; Wähler für das große Vertrauen! Jetzt heißt es anpacken - für unsere Region, für Deutschland &amp; ein sicheres Europa!
+9                                   Nichts von den US-Ankündigungen ist besonders überraschend. Aber sie machen einmal mehr deutlich, dass Europa seine Sicherheit selbst organisieren muss, wenn es bestehen will. Die Wiederherstellung von Sicherheit muss unbedingte Priorität der nächsten Bundesregierung sein.
+10                                           Herzlichen Glückwunsch liebe Reem Alabali-Radovan zu Deiner neuen Aufgabe! Du übernimmst ein starkes Team und große Aufgaben: Globale Verantwortung wahrzunehmen, Armut zu bekämpfen und Perspektiven zu schaffen. Ich wünsche Dir viel Erfolg und eine glückliche Hand!
+   net_sentiment               author_handle
+1             12 katharinadroege.bsky.social
+2             11 katharinadroege.bsky.social
+3             10       nroettgen.bsky.social
+4             10       nroettgen.bsky.social
+5             10 katharinadroege.bsky.social
+6             10       nouripour.bsky.social
+7              9       nroettgen.bsky.social
+8              9       nroettgen.bsky.social
+9              9       nroettgen.bsky.social
+10             9   svenjaschulze.bsky.social</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>results_rauh <span class="sc">%&gt;%</span> <span class="co"># Negativste Posts</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(net_sentiment) <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(text, net_sentiment, author_handle) <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                                                                                                                                                                                                                                                                     text
+1         Zwei Jahre ist es her, dass #JinaMahsaAmini vom Mullah-Regime brutal ermordet wurde, weil sie angeblich ihr Kopftuch falsch trug. Auch wenn sich das Regime seitdem mit Terror &amp; Gewalt an der Macht hält, hat es die große Mehrheit der Menschen im Land längst verloren. Sie wollen Freiheit!
+2                                                                                                                                          Der Terroranschlag in Jerusalem ist unfassbar grausam und erschütternd. Ich bin in tiefer Trauer in Gedanken bei den Verletzten und den Angehörigen der Opfer.
+3                      Ich bin bestürzt, dass der Polizeibeamte in #Mannheim seinen schweren Verletzungen erlegen ist. Mein tiefstes Beileid gilt Familie, Freund*innen und Kolleg*innen. Die furchtbare Tat gegen ihn und alle weiteren Verletzten wird mit der Härte des Rechtsstaates verfolgt werden.
+4  Wir erleben gerade in Echtzeit, wie gefährlich unsere Abhängigkeiten von China sind. Firmen, auch im Rüstungsbereich, müssen ihre Produktion drosseln, weil Peking Exportkontrollen für wichtige Rohstoffe eingeführt hat. De-Risking ist zwingend notwendig. \n\nwww.handelsblatt.com/politik/inte...
+5           Wir haben nicht den Luxus, dass es nur eine außenpolitische Herausforderung gibt: Auch die geopolitische Rivalität, die von #China ausgeht, beschäftigt uns. Wir werden das strategische De-Risiking von China jetzt endlich angehen. Wirtschaftliche Abhängigkeiten müssen reduziert werden.
+6     Jamshid Sharmahd wurde entführt, gefoltert &amp; hingerichtet. Man kann nur tiefste Abscheu vor dem Mullah-Regime empfinden. Bei aller Trauer muss man leider auch sagen, dass die 🇩🇪 Iranpolitik erneut gescheitert ist. Meine Gedanken sind bei Jamshids Familie, die so für sein Leben gekämpft hat.
+7                                                                Ich verurteile die Gewalt gegen Studenten und Demonstranten in Bangladesch. Die Versammlungsfreiheit ist ein Grundrecht in einer Demokratie. Die Regierung muss das harte Durchgreifen und die Abschaltung des Internets sofort beenden.
+8                                         Auch unter der Vorgängerregierung herrschte wenig Interesse am Iran. Spätestens nachdem Teheran 2022 ein weiteres EU-Verhandlungsverbot ausschlug und die Revolution im eigenen Land brutal unterdrückte, hätte das Auswärtige Amt seinen Kurs wechseln müssen.
+9                Sehr schade und enttäuschend, dass Grüne und FDP gegen den @cducsu.de Antrag zur sofortigen Lieferung von Taurus an die Ukraine gestimmt haben. Wenn sie ihre öffentlichen Aussagen ernst meinen, dann müssen sie jetzt selbst einen Antrag einbringen. Alles andere wäre unglaubwürdig.
+10                   Allein der Begriff „Lifestyle-Teilzeit“ ist unverschämt. Er erkennt die Lebensrealität vieler nicht an.\n\nAnstatt herablassend über die Menschen im Land zu sprechen, sollte die CDU endlich ihren Job machen. Das heißt auch, für mehr Kinderbetreuung und Pflegeplätze zu sorgen.
+   net_sentiment               author_handle
+1             -6       nroettgen.bsky.social
+2             -6 katharinadroege.bsky.social
+3             -6 katharinadroege.bsky.social
+4             -5       nroettgen.bsky.social
+5             -5       nroettgen.bsky.social
+6             -5       nroettgen.bsky.social
+7             -5       nroettgen.bsky.social
+8             -5       nroettgen.bsky.social
+9             -5       nroettgen.bsky.social
+10            -5 katharinadroege.bsky.social</code></pre>
+</div>
+</div>
+</section>
+<section id="weitere-optionen-für-die-sentiment-analyse-in-r" class="level3" data-number="17.2.2">
+<h3 data-number="17.2.2" class="anchored" data-anchor-id="weitere-optionen-für-die-sentiment-analyse-in-r"><span class="header-section-number">17.2.2</span> Weitere Optionen für die Sentiment-Analyse in <code>R</code></h3>
+<p>Neben <code>quanteda.sentiment</code> gibt es noch einige andere <code>R</code>-Pakete, die für die Sentiment-Analyse verwendet werden können. So bietet z.B. auch das Paket <code>tidytext</code> Möglichkeiten für die Sentiment-Analyse. Eine ausführliche Einführung dazu gibt es im <a href="https://www.tidytextmining.com/sentiment">entsprechenden Kapitel des Buchs <em>Text Mining with R: A Tidy Approach</em></a>.</p>
+<p>Einen diktionärbasierten Ansatz für die Sentiment-Analyse verfolgt auch das Paket <a href="https://github.com/mjockers/syuzhet"><code>syuzhet</code></a>.</p>
+<p>Das Paket <a href="https://github.com/trinker/sentimentr"><code>sentimentr</code></a> erlaubt die Berechnung der Polarität von Texten in englischer Sprache auf Satzebene. Dabei berücksichtigt es auch sogenannte “Valence Shifters” (d.h. Negationen, Verstärker, Abschwächer).</p>
+<p>Komplexere Ansätze für die Sentiment-Analyse bieten z.B. die Pakete <a href="https://benwiseman.github.io/sentiment.ai/#Overview"><code>sentiment.ai</code></a> und <a href="https://github.com/atomashevic/transforEmotion"><code>transforEmotion</code></a>. Letzteres nutze sogenannte [Transformer](https://de.wikipedia.org/wiki/Transformer_(Maschinelles_Lernen)-Modelle. Beide benötigen allerdings auch eine <code>Python</code>-Installation.</p>
+<p>Sentiment-Analysen sind auch mit Large Language Models (LLMs) möglich. Ein interessantes <code>R</code>-Paket für die automatisierte Inhaltsanalyse mit LLMs, das auch für die Sentiment-Analyse eingesetzt werden kann, ist <a href="https://github.com/cbpuschmann/klaus"><code>klaus</code></a>.</p>
+</section>
+</section>
+<section id="weitere-diktionärbasierte-ansätze" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="weitere-diktionärbasierte-ansätze"><span class="header-section-number">17.3</span> Weitere diktionärbasierte Ansätze</h2>
+<p>Neben der Sentiment-Analyse können Diktionäre auch genutzt werden, um andere Konstrukte zu messen. Ein Beispiel hierfür ist die Messung von Populismus. Hierfür gibt es das Paket <a href="https://github.com/jogrue/popdictR"><code>popdictR</code></a>, welches das auf dem Populismus-Diktionär von Gründl <span class="citation" data-cites="Grundl2020">(<a href="references.html#ref-Grundl2020" role="doc-biblioref">2020</a>)</span> basiert. Dieses Paket wurde allerdings seit einiger Zeit nicht mehr aktualisiert und ist daher nur mit älteren Versionen von <code>quanteda</code> kompatibel.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-Grundl2020" class="csl-entry" role="listitem">
+Gründl, J. (2020). Populist Ideas on Social Media: <span>A</span> Dictionary-Based Measurement of Populist Communication. <em>New Media &amp; Society</em>, 146144482097697. <a href="https://doi.org/10.1177/1461444820976970">https://doi.org/10.1177/1461444820976970</a>
+</div>
+<div id="ref-Rauh2018" class="csl-entry" role="listitem">
+Rauh, C. (2018). Validating a Sentiment Dictionary for <span>German</span> Political Language—a Workbench Note. <em>Journal of Information Technology &amp; Politics</em>, <em>15</em>(4), 319–343. <a href="https://doi.org/10.1080/19331681.2018.1485608">https://doi.org/10.1080/19331681.2018.1485608</a>
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./descriptive-analysis.html" class="pagination-link" aria-label="Descriptive Analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Descriptive Analysis</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./topicmodels.html" class="pagination-link" aria-label="Topic Models">
+        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Topic Models</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Materials created by Johannes Breuer</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/sent-dict.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

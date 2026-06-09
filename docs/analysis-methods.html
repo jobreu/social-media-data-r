@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Arbeiten mit Textdaten – Sammlung und Analyse von Social-Media-Daten mit R</title>
+<title>14&nbsp; Analysemethoden – Sammlung und Analyse von Social-Media-Daten mit R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -58,7 +58,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -68,8 +88,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./09-collection-methods.html" rel="next">
-<link href="./07-wrangling-variables.html" rel="prev">
+<link href="./preprocessing.html" rel="next">
+<link href="./12-youtube-collection.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +140,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./08-text-data.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Arbeiten mit Textdaten</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./analysis-methods.html">Datenanalyse</a></li><li class="breadcrumb-item"><a href="./analysis-methods.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Analysemethoden</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -232,12 +252,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variablen verändern</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-text-data.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Arbeiten mit Textdaten</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -252,25 +266,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09-collection-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10-bluesky-collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Datensammlung: <em>Bluesky</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Datensammlung: <em>Bluesky</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11-tiktok-collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Datensammlung: <em>TikTok</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Datensammlung: <em>TikTok</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12-youtube-collection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Datensammlung: <em>YouTube</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Datensammlung: <em>YouTube</em></span></span></a>
   </div>
 </li>
       </ul>
@@ -278,7 +292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Tipps &amp; Tricks</span></a>
+ <span class="menu-text">Datenanalyse</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -286,56 +300,97 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./analysis-methods.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Analysemethoden</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preprocessing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Preprocessing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./descriptive-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Descriptive Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sent-dict.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Sentiment-Analyse und diktionärbasierte Ansätze</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topicmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Topic Models</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tipps &amp; Tricks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./16-errors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">🛠️Troubleshooting 101</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15-message-warning-error.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Meldungen, Warnungen, Fehler</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Meldungen, Warnungen, Fehler</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14-help.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">🆘 Hilfe!</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">🆘 Hilfe!</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18-function-lifecycle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Aus dem Leben einer Funktion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Aus dem Leben einer Funktion</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13-comments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Kommentare in R-Skripten</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Kommentare in R-Skripten</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./names.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Namen in <code>R</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Namen in <code>R</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./codebooks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Codebücher</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Codebücher</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17-paths.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Dateipfade</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Dateipfade</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Projekte in <em>RStudio</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Projekte in <em>RStudio</em></span></span></a>
   </div>
 </li>
       </ul>
@@ -356,19 +411,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#stringr" id="toc-stringr" class="nav-link active" data-scroll-target="#stringr"><span class="header-section-number">10.1</span> <code>stringr</code></a></li>
-  <li><a href="#regular-expressions-regex" id="toc-regular-expressions-regex" class="nav-link" data-scroll-target="#regular-expressions-regex"><span class="header-section-number">10.2</span> Regular Expressions (Regex)</a></li>
-  <li><a href="#core-regex-building-blocks" id="toc-core-regex-building-blocks" class="nav-link" data-scroll-target="#core-regex-building-blocks"><span class="header-section-number">10.3</span> Core Regex Building Blocks</a></li>
-  <li><a href="#building-a-regex-pattern" id="toc-building-a-regex-pattern" class="nav-link" data-scroll-target="#building-a-regex-pattern"><span class="header-section-number">10.4</span> Building a Regex Pattern</a></li>
+  <li><a href="#arten-von-analysemethoden" id="toc-arten-von-analysemethoden" class="nav-link active" data-scroll-target="#arten-von-analysemethoden"><span class="header-section-number">14.1</span> Arten von Analysemethoden</a></li>
+  <li><a href="#setup-pakete-daten" id="toc-setup-pakete-daten" class="nav-link" data-scroll-target="#setup-pakete-daten"><span class="header-section-number">14.2</span> Setup: Pakete &amp; Daten</a>
+  <ul class="collapse">
+  <li><a href="#pakete" id="toc-pakete" class="nav-link" data-scroll-target="#pakete"><span class="header-section-number">14.2.1</span> Pakete</a></li>
+  <li><a href="#daten" id="toc-daten" class="nav-link" data-scroll-target="#daten"><span class="header-section-number">14.2.2</span> Daten</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/08-text-data.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/analysis-methods.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./08-text-data.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Arbeiten mit Textdaten</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./analysis-methods.html">Datenanalyse</a></li><li class="breadcrumb-item"><a href="./analysis-methods.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Analysemethoden</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-textdata" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Arbeiten mit Textdaten</span></span></h1>
+<h1 class="title"><span id="sec-analysis" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Analysemethoden</span></span></h1>
 </div>
 
 
@@ -385,95 +442,99 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="stringr" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="stringr"><span class="header-section-number">10.1</span> <code>stringr</code></h2>
-<p>Das <a href="https://stringr.tidyverse.org/">Paket <code>stringr</code></a> aus dem <code>tidyverse</code> bietet eine Vielzahl von Funktionen, mit denen Sie Textdaten in <code>R</code> bearbeiten und analysieren können.</p>
-<p>Die wichtigsten Funktionen sind:</p>
+<p>Der Fokus in diesem Buch und im zugehörigen Kurs liegt auf der quantitativen Textanalyse. Eine weitere im Kontext von Social-Media-Daten häufig angewandte Methode ist die Netzwerkanalyse. Diese behandeln wir hier nicht, aber <a href="https://cssbook.net/content/chapter13.html">Kapitel 13 aus dem Buch <em>Computational Analysis of Communication</em></a> gibt hier eine gute Einführung.</p>
+<p><strong>Wichtiger Hinweis</strong>: Das Buch und der Kurs können nur eine kurze Einführung in die Grundlagen der quantitativen Textanalyse geben. Es gibt viele weitere Themen, die wir hier nicht behandeln können. Hierzu lohnt sich ein Blick in andere Einführungen. Neben dem bereits mehrfach erwähnten Buch <em>Computational Analysis of Communication</em> sind z.B. folgende Bücher und Kurse empfehlenswert:</p>
 <ul>
-<li><p><code>str_detect()</code>: Überprüft, ob ein bestimmtes Muster in einem Text vorhanden ist.</p></li>
-<li><p><code>str_extract()</code>: Extrahiert das erste Vorkommen eines Musters aus einem Text.</p></li>
-<li><p><code>str_replace()</code>: Ersetzt das erste Vorkommen eines Musters durch einen anderen Text.</p></li>
-<li><p><code>str_replace_all()</code>: Ersetzt alle Vorkommen eines Musters durch einen anderen Text.</p></li>
+<li><p>Das Buch <a href="https://www.tidytextmining.com/">*Text Mining with R - A Tidy Approach</a> von Julia Silge und David Robinson (kostenlose online Version verfügbar)</p></li>
+<li><p>die <a href="https://valeriehase-automatisierte-inhaltsanalyse.share.connect.posit.cloud/">Materialien zum Forschungsseminar <em>Text as data</em></a> von Valerie Hase</p></li>
+<li><p>der Workshop <a href="https://tm4ss.github.io/docs/index.html"><em>Text mining in R for the social sciences and digital humanities</em></a> von Andreas Niekler und Gregor Wiedemann</p></li>
+<li><p><a href="https://api.rpubs.com/cbpuschmann/AIR1">*Automatisierte Inhaltsanalyse mit R</a> von Cornelius Puschmann und <a href="https://automatedcontentanalysis.com/"><em>Automated Content Analysis</em></a> von Chung-hong Chan</p></li>
 </ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Netzwerk- &amp; Textanalyse">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Netzwerk- &amp; Textanalyse
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Es ist auch möglich, die Netzwerkanalyse mit der quantitativen Textanalyse zu kombinieren <span class="citation" data-cites="Bail2016">(<a href="references.html#ref-Bail2016" role="doc-biblioref">Bail, 2016</a>)</span>. Dies geht z.B. mit dem <code>R</code>-Paket <a href="https://github.com/cbail/textnets"><code>textnets</code></a> (siehe auch das <a href="https://cbail.github.io/SICSS_Text_Networks.html">Tutorial vom Paket-Autor Chris Bail</a>).</p>
+</div>
+</div>
+</div>
+<section id="arten-von-analysemethoden" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="arten-von-analysemethoden"><span class="header-section-number">14.1</span> Arten von Analysemethoden</h2>
+<p>In der quantitativen Textanalyse gibt es viele unterschiedliche Auswertungsmethoden. Diese lassen sich wie folgt kategorisieren:</p>
+<ul>
+<li><p><strong>Deskriptive Methoden</strong>: Hierbei werden die Daten in ihrer Rohform beschrieben, z.B. durch Häufigkeiten von Wörtern, Links und Hashtags. Diese behandeln wir in <a href="descriptive-analysis.html" class="quarto-xref"><span>Kapitel 16</span></a>.</p></li>
+<li><p><strong>Sentiment-Analyse</strong> und <strong>diktionär:basierte Methoden</strong> HBei der Sentiment-Analyse wird versucht,die Stimmung oder Haltung in einem Text zu bestimmen, z.B. ob ein TPos pauf Social Media ositiv, negativ oder neutral ist. DBei der Sentiment-Analyse können auch sogenannte Diktionäre (dictionaries) zum Einsatz kommen. Diese können aber auch genutzt werden, um andere Konstrukte zu messen wie z.B. Populismus. Diese beiden Methoden behandeln wir in <a href="sent-dict.html" class="quarto-xref"><span>Kapitel 17</span></a>.</p></li>
+<li><p><strong>Unsupervised Machine Learning</strong>: Hierbei werden Algorithmen eingesetzt, um Muster in den Daten zu erkennen, ohne dass diese vorher definiert wurden. Ein Beispiel hierfür ist die Topic-Modellierung, bei der versucht wird, Themen in einem Textkorpus zu identifizieren. Diese Methode behandeln wir in <a href="topicmodels.html" class="quarto-xref"><span>Kapitel 18</span></a>.</p></li>
+<li><p><strong>Supervised Machine Learning</strong>: Hierbei werden Algorithmen eingesetzt, um Muster in den Daten zu erkennen, die vorher definiert wurden. Ein Beispiel hierfür ist die Textklassifikation, bei der versucht wird, Texte in vordefinierte Kategorien einzuteilen. Diese Methode behandeln wir hier aus Platz- und Zeitgründen nicht, aber <a href="https://cssbook.net/content/chapter08.html">Kapitel 8 aus dem Buch <em>Computational Analysis of Communication</em></a> behandelt diese ausführlich.</p></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Large Language Models">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Large Language Models
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Textdaten können auch mit Large Language Models (LLMs) analysiert werden. Ein interessantes <code>R</code>-Paket für die automatisierte Inhaltsanalyse mit LLMs ist <a href="https://github.com/cbpuschmann/klaus"><code>klaus</code></a>. Mit diesem kann man auch <a href="https://docs.hpc.gwdg.de/services/ai-services/chat-ai/index.html"><em>Chat AI</em> von der GWDG nutzen</a>, auf das viele Unis in Deutschland Zugriff haben. Gute Einführungen in die Nutzung von LLMs für die Analyse von Textdaten bieten z.B. die Paper von Farjam et al. <span class="citation" data-cites="FarjamEtAl2025">(<a href="references.html#ref-FarjamEtAl2025" role="doc-biblioref">2025</a>)</span> und <span class="citation" data-cites="FoisyEtAl2025">(<a href="references.html#ref-FoisyEtAl2025" role="doc-biblioref">2025</a>)</span>.</p>
+</div>
+</div>
+</div>
+<p>Bevor die genannten Analysemethoden genutzt werden können, müssen die Daten jedoch zunächst aufbereitet werden. Dieser Prozess wird als <strong>Preprocessing</strong> bezeichnet und umfasst i.d.R. mehrere Schritte. Mit diesen befassen wir uns im <a href="preprocessing.html" class="quarto-xref"><span>Kapitel 15</span></a>.</p>
 </section>
-<section id="regular-expressions-regex" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="regular-expressions-regex"><span class="header-section-number">10.2</span> Regular Expressions (Regex)</h2>
-<p>Ein sehr mächtiges Werkzeug, um bestimmte Muster in Texten zu erkennen und herauszufiltern oder zu extrahieren sind sog. Reguläre Ausdrücke (Regular Expressions oder Regex).</p>
-<p>Reguläre Ausdrücke sind im Grunde eine komplexe Suchsprache (die viel mehr und genauere Optionen anbietet als z.B. die Wildcard <code>*</code> in Suchanfragen).</p>
-<p>Es gibt viele Vorlagen (z.B. für Zahlen, Zeichen oder auch komplexere Muster wie Daten oder Telefonnummern) und Tools, die einem bei der Erstellung von Regex helfen können.</p>
-<p>Regular Expressions sind sehr nützlich und mächtig in Kombination mit den Funktionen von <code>stringr</code>, um komplexe Textmuster zu erkennen, zu extrahieren oder zu ersetzen.</p>
-</section>
-<section id="core-regex-building-blocks" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="core-regex-building-blocks"><span class="header-section-number">10.3</span> Core Regex Building Blocks</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Concept</th>
-<th style="text-align: left;">Symbol in R</th>
-<th style="text-align: left;">What it matches</th>
-<th style="text-align: left;">Example Match</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><strong>Any Character</strong></td>
-<td style="text-align: left;"><code>.</code></td>
-<td style="text-align: left;">Any single character (except a new line)</td>
-<td style="text-align: left;"><code>a</code>, <code>9</code>, <code>%</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Digits</strong></td>
-<td style="text-align: left;"><code>\\d</code></td>
-<td style="text-align: left;">Any single number</td>
-<td style="text-align: left;"><code>0</code>, <code>7</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Words</strong></td>
-<td style="text-align: left;"><code>\\w</code></td>
-<td style="text-align: left;">Any letter, number, or underscore</td>
-<td style="text-align: left;"><code>R</code>, <code>x</code>, <code>_</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Whitespace</strong></td>
-<td style="text-align: left;"><code>\\s</code></td>
-<td style="text-align: left;">Spaces, tabs, or new lines</td>
-<td style="text-align: left;">(a space)</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="building-a-regex-pattern" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="building-a-regex-pattern"><span class="header-section-number">10.4</span> Building a Regex Pattern</h2>
-<p>Let’s extract the username from the text: <strong><code>@rstats_guru</code></strong></p>
-<div class="fragment">
-<p><strong>1.</strong> <code>@</code> <em>(Matches the literal @ symbol)</em></p>
-</div>
-<div class="fragment">
-<p><strong>2.</strong> <code>\\w</code> <em>(Matches the first word character, the ‘r’)</em></p>
-</div>
-<div class="fragment">
-<p><strong>3.</strong> <code>+</code> <em>(Expands the match to the rest of the word ‘stats_guru’)</em></p>
-</div>
-<p><br></p>
-<div class="fragment">
-<p><strong>Final Code:</strong> <code>str_extract(text, "@\\w+")</code></p>
-</div>
-<p>Extract user names and URLs from the <code>Comment</code> variable in the <code>yt_demo</code> dataset.</p>
+<section id="setup-pakete-daten" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="setup-pakete-daten"><span class="header-section-number">14.2</span> Setup: Pakete &amp; Daten</h2>
+<section id="pakete" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="pakete"><span class="header-section-number">14.2.1</span> Pakete</h3>
+<p>Es gibt viele verschiedene Pakete für die Aufbereitung und Analyse von Textdaten in <code>R</code>. Einige davon werden wir in den nächsten Abschnitten kennenlernen. Ein sehr umfangreiches Paket, mit dem wir viel arbeiten werden, ist <a href="https://quanteda.io/"><code>quanteda</code></a> <span class="citation" data-cites="BenoitEtAl2018">(<a href="references.html#ref-BenoitEtAl2018" role="doc-biblioref">Benoit et al., 2018</a>)</span>. Neben einem großen Funktionsumfang und einer sehr guten Dokumentation bietet <code>quanteda</code> zudem auch eine Reihe hilfreicher <a href="https://tutorials.quanteda.io/">Tutorials</a> an, welche die Nutzung erleichtern.</p>
+<p>Wie gewohnt, müssen wir das Paket zunächst einmalig installieren und dann in jedem Skript bzw. in jeder <code>R</code>-Sitzung (Session) laden, in dem/der wir es nutzen wollen.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>yt_demo_cleaned <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span>  </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">username =</span> <span class="fu">str_extract</span>(Comment, <span class="st">"@</span><span class="sc">\\</span><span class="st">w+"</span>),</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">url =</span> <span class="fu">str_extract</span>(Comment, <span class="st">"https?://</span><span class="sc">\\</span><span class="st">S+"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"quanteda"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quanteda)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>Für <code>quanteda</code> gibt es auch eine Reihe von Erweiterungspaketen (wie z.B. <a href="https://github.com/quanteda/quanteda.textstats"><code>quanteda.textstats</code></a>. Diese müssen ebenfalls installiert und geladen werden. Dies machen wir dann jeweils in den Abschnitten, in denen wir diese nutzen.</p>
+<p>Ein weiteres umfangreiches Paket für die Aufbereitung und Analyse von Textdaten ist <a href="https://juliasilge.github.io/tidytext/"><code>tidytext</code></a>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidytext"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="daten" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="daten"><span class="header-section-number">14.2.2</span> Daten</h3>
+<p>In den Analysebeispielen in den nächsten Kapiteln arbeiten wir mit Daten von <em>Bluesky</em> und <em>YouTube</em>. Wie diese gesammelt werden können, wird in <a href="10-bluesky-collection.html" class="quarto-xref"><span>Kapitel 11</span></a> und <a href="12-youtube-collection.html" class="quarto-xref"><span>Kapitel 13</span></a> beschrieben. Da Daten, die über die APIs dieser Plattformen gesammelt werden, nicht einfach über <em>GitHub</em> geteilt werden können, müssen Sie diese vor dem Durcharbeiten der Beispiele in den Kapitel zur Aufbereitung und Auswertung selbst entsprechende Datensätze sammeln und diese lokal speichern.</p>
+<p>Wie immer müssen Sie die Dateinamen und Pfade in den Code-Beispielen entsprechend anpassen, damit diese auf Ihrem Computer funktionieren (siehe @ sec-import und <a href="17-paths.html" class="quarto-xref"><span>Kapitel 26</span></a>). In den Beispielen gehen wir davon aus, dass die Daten im Ordner <code>data</code> liegen und die Dateien <code>bluesky_data.csv</code> und <code>youtube_data.csv</code> heißen. Ein Beispiel-Skript zur Sammlung solcher Daten ist im Skript <a href="https://jobreu.github.io/social-media-data-r/scripts/collect_data.R"><code>collect_data.R</code></a> zu finden.</p>
+<p>Sollten Sie keine eigenen <em>Bluesky</em>- oder <em>YouTube</em>-Daten sammeln können, können Sie alternativ auch die <a href="https://github.com/gesiscss/tubecleanr_tool/blob/master/data/simulated_yt.csv">simulierten <em>YouTube</em>-Daten</a> aus dem <a href="https://kodaqs-toolbox.gesis.org/github.com/gesiscss/tubecleanr_tool/index/">Tutorial</a> zum <code>R</code>-Paket <a href="github.com/gesiscss/tubecleanR">Paket <code>tubecleanR</code></a> nutzen.</p>
+<p><em>Hinweis</em>: Mit leichten Anpassungen lassen sich die Code-Beispiele auch auf Daten von anderen Plattformen wie z.B. <em>TikTok</em> anwenden.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-Bail2016" class="csl-entry" role="listitem">
+Bail, C. A. (2016). Combining Natural Language Processing and Network Analysis to Examine How Advocacy Organizations Stimulate Conversation on Social Media. <em>Proceedings of the National Academy of Sciences</em>, <em>113</em>(42), 11823–11828. <a href="https://doi.org/10.1073/pnas.1607151113">https://doi.org/10.1073/pnas.1607151113</a>
+</div>
+<div id="ref-BenoitEtAl2018" class="csl-entry" role="listitem">
+Benoit, K., Watanabe, K., Wang, H., Nulty, P., Obeng, A., Müller, S., &amp; Matsuo, A. (2018). Quanteda: <span>An R</span> Package for the Quantitative Analysis of Textual Data. <em>Journal of Open Source Software</em>, <em>3</em>(30), 774. <a href="https://doi.org/10.21105/joss.00774">https://doi.org/10.21105/joss.00774</a>
+</div>
+<div id="ref-FarjamEtAl2025" class="csl-entry" role="listitem">
+Farjam, M., Meyer, H., &amp; Lohkamp, M. (2025). A <span>Practical Guide</span> and <span>Case Study</span> on <span>How</span> to <span>Instruct LLMs</span> for <span>Automated Coding During Content Analysis</span>. <em>Social Science Computer Review</em>, 08944393251349541. <a href="https://doi.org/10.1177/08944393251349541">https://doi.org/10.1177/08944393251349541</a>
+</div>
+<div id="ref-FoisyEtAl2025" class="csl-entry" role="listitem">
+Foisy, L.-O. M., Proulx, É., Cadieux, H., Gilbert, J., Rivest, J., Bouillon, A., &amp; Dufresne, Y. (2025). Prompting the <span>Machine</span>: <span>Introducing</span> an <span>LLM Data Extraction Method</span> for <span>Social Scientists</span>. <em>Social Science Computer Review</em>, 08944393251344865. <a href="https://doi.org/10.1177/08944393251344865">https://doi.org/10.1177/08944393251344865</a>
+</div>
+</div>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -886,13 +947,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./07-wrangling-variables.html" class="pagination-link" aria-label="Variablen verändern">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variablen verändern</span></span>
+      <a href="./12-youtube-collection.html" class="pagination-link" aria-label="Datensammlung: *YouTube*">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Datensammlung: <em>YouTube</em></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./09-collection-methods.html" class="pagination-link" aria-label="Erhebungsmethoden">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./preprocessing.html" class="pagination-link" aria-label="Preprocessing">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Preprocessing</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -904,7 +965,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/08-text-data.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/analysis-methods.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</p>
 </div>

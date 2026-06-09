@@ -1,0 +1,465 @@
+---
+title: "Sammlung von Social-Media-Daten mit R"
+subtitle: "Seminarsitzung 6"
+author: "Prof. Dr. Johannes Breuer"
+date: "2026-06-11"
+date-format: long
+
+# Optional: Add branding just to the title slide
+title-slide-attributes:
+  data-background-color: "#0F2E3D" # A dark blue background
+  data-background-image: "../images/logo.png"
+  data-background-size: "15%"
+  data-background-position: "top right"
+---
+
+# Setup {background-color="#4A90E2"}
+
+## Reminder: Buch zum Kurs 📖
+
+Im Buch zum Kurs finden Sie ausführlichere Informationen zu den Themen, die wir in dieser Sitzung behandeln. Sie finden dieses online über den folgenden Link: [https://jobreu.github.io/social-media-data-r/](https://jobreu.github.io/social-media-data-r/)
+
+## Pakete
+
+Für die Analyse der Daten von *YouTube* und *Bluesky* nutzen wir verschiedene Pakete.
+Sie können diese jeweils einzöeln installieren oder einmal gesammelt:
+
+```{r}
+#| eval: false
+
+install.packages(c("quanteda",
+                   "quanteda.textstats",
+                   "quanteda.textplots",
+                   "tidtext",
+                   "topicmodels",
+                   "stm"
+                   ))
+```
+
+## Pakete
+
+Zusätzlich nutzen wir auch ein Pakets, das nur über *GitHub* verfügbar sind. Diese können wir mit einer Funktion aus dem Paket `remotes` installieren (zur Erinnerung: unter Windows benötigen wir hierfür auch die `Rtools`):
+
+```{r}
+#| eval: false
+
+remotes::install_github("quanteda/quanteda.sentiment")
+```
+
+## Daten
+
+Für die Beispiele in dieser Sitzung verwenden wir Daten von *Bluesky* und *YouTube*. Wir gehen  davon aus, dass diese gesammelt und als `bluesky_data.csv` bzw. `youtube_data.csv` lokal gespeichert wurden.
+
+Ein Beispiel-Skript zur Sammlung solcher Daten ist im Skript [`collect_data.R`](https://jobreu.github.io/social-media-data-r/scripts/collect_data.R) zu finden.
+
+```{r}
+bs_posts <- read.csv("../data/bluesky_data.csv") # Dateipfad ggf. anpassen
+
+comments_yt <- read.csv("../data/youtube_data.csv") # Dateipfad ggf. anpassen
+```
+
+# Preprocessing {background-color="#4A90E2"}
+
+## Was ist Preprocessing?
+
+*Preprocessing* bezeichnet alle Schritte, die nötig sind, um die Daten für die Analyse vorzubereiten. Das Preprocessing für Textdaten (insb. solche aus Social Media) ist i.d.R. umfangreicher und Entscheidungen dazu sind einflussreicher als z.B. für Surveydaten, denn die Daten sind in aller Regel…
+
+- nicht für genuin die Forschung generiert (sog. „found data“)
+
+- unstrukturierter
+
+- heterogener
+
+- umfangreicher
+
+## Preprocessing von Textdaten
+
+Bei der Aufbereitung von Textdaten gibt es entsprechend einige Harausforderungen. Zwei der wichtigsten sind hierbei:
+
+1. Die Auswahl und Abfolge der Preprocessing-Schritte, da diese die Analyseergebnisse beeinflussen.
+
+2. Der Umgang mit unterschiedlichen Textarten, -längen und Sprachen (sowie ggf. unterschiedlicher Zeichen)
+
+## Textdaten-Vokabeln 1 {.smaller}
+
+::: {.incremental}
+- **String**: Ein String ist eine Folge von Zeichen, z.B. ein Wort, ein Satz oder ein ganzer Text.
+
+- **Textkorpus**: Ein Textkorpus ist eine Sammlung von Dokumenten. In unserem Fall also z.B. eine Sammlung von *Bluesky*-Posts oder *YouTube*-Kommentaren. Ein Textkorpus kann auch Metadaten zu den Dokumenten enthalten (im Social-Media-Kontext z.B. User Names oder Zeitstempel zur Veröffentlichung).
+
+- **Dokument**: Ein Dokument ist eine einzelne Einheit in einem Textkorpus. Für unseren Anwendungsfall also z.B. ein *Bluesky*-Post oder ein *YouTube*-Kommentar. Ein Dokument kann aus einem oder mehreren Strings bestehen.
+:::
+
+## Textdaten-Vokabeln 2 {.smaller}
+
+::: {.incremental}
+- **Token**: Ein Token ist eine einzelne Einheit in einem Text, z.B. ein Wort, ein Satzzeichen oder ein Hashtag. Das Aufteilen eines Textes in Tokens wird als *Tokenisierung* bezeichnet.
+
+- **Type**: Ein Type ist ein einzigartiges Token. Wenn z.B. das Wort "Hallo" in einem Text dreimal vorkommt ("Hallo Hallo Hallo"), dann gibt es drei Tokens, aber nur einen Type ("Hallo").
+
+- **Vokabular**: Das Vokabular ist die Menge aller Types in einem Textkorpus. In vorherigen Beispiel wäre das Vokabular also {"Hallo"}.
+
+- **Document-Feature-Matrix (DFM)** (auch Document-Term-Matrix; DTM): Eine DFM ist eine Matrix, in der die Zeilen Dokumente (z.B. Tweets, YouTube-Kommentare) und die Spalten Features (z.B. Wörter, Hashtags) darstellen. Die Werte in der Matrix geben an, wie oft ein bestimmtes Feature in einem bestimmten Dokument vorkommt.
+:::
+
+## Preprocessing-Schritte {.smaller}
+
+Es gibt viele verschiedene mögliche Preprocessing-Schritte für Textdaten. Die Auswahl und Abfolge der Schritte hängt von verschiedenen Faktoren ab, z.B. von der Art der Daten, der geplanten Analyse und den Forschungsfragen. Schritte, die sehr häufig sinnvoll bzw. nötig sind:
+
+- Erstellung eines Textkorpus
+
+- Tokenisierung (tokenization)
+
+- Entfernung oder Extraktion bestimmter Muster oder Symbole (z.B. Zeichensetzung, Zahlen, Emoji, URLs…)
+
+- Kleinschreibung (lowercasing)
+
+- Entfernung von Stoppwörtern (stopword removal)
+
+- Erstellung einer Document-Feature-Matrix (DFM)
+
+## Erstellung eines Textkorpus: Bluesky
+
+```{r}
+library(tidyverse)
+library(quanteda)
+
+bluesky_corpus <- bs_posts %>% 
+  distinct(uri, .keep_all = TRUE) %>% # jeder Post sollte nur einmal im Korpus vorkommen
+  filter(is_reskeet == FALSE) %>% # keine Reposts
+  select(uri, cid,
+         author_handle, author_name,
+         indexed_at, reply_count, repost_count,
+         like_count, quote_count,
+         is_reskeet,
+         text) %>% 
+  corpus(docid_field = "uri",
+         text_field = "text")
+```
+
+## Erstellung eines Textkorpus: YouTube
+
+```{r}
+youtube_corpus <- comments_yt %>%
+  select(CommentID, VideoID, ParentID,
+         AuthorDisplayName,
+         PublishedAt, ReplyCount, LikeCount,
+         Comment) %>% 
+  corpus(docid_field = "CommentID",
+         text_field = "Comment")
+```
+
+## Tokenisierung & Muster/Symbole entfernen: Bluesky
+
+```{r}
+tokens_bluesky <- tokens(bluesky_corpus,
+                       remove_punct = TRUE,
+                       remove_symbols = TRUE,
+                       remove_numbers = TRUE,
+                       remove_url = TRUE)
+```
+
+## Tokenisierung & Muster/Symbole entfernen: YouTube
+
+```{r}
+tokens_youtube <- tokens(youtube_corpus,
+                       remove_punct = TRUE,
+                       remove_symbols = TRUE,
+                       remove_numbers = TRUE,
+                       remove_url = TRUE)
+```
+
+## Kleinschreibung & Entfernung von Stoppwörtern: Bluesky
+
+```{r}
+tokens_bluesky <- tokens_bluesky %>%
+  tokens_tolower() %>% # Kleinschreibung
+  tokens_remove(stopwords("de")) %>%  # Entfernung von deutschen Stoppwörtern
+  tokens_remove("dass") # Entfernung von "dass"
+```
+
+## Kleinschreibung & Entfernung von Stoppwörtern: YouTube
+
+```{r}
+tokens_youtube <- tokens_youtube %>%
+  tokens_tolower() %>% # Kleinschreibung
+  tokens_remove(stopwords("de")) %>%  # Entfernung von deutschen Stoppwörtern
+  tokens_remove("dass") # Entfernung von "dass"
+```
+
+## Erstellung einer Document-Feature-Matrix (DFM)
+
+```{r}
+dfm_bluesky <- dfm(tokens_bluesky)
+
+dfm_youtube <- dfm(tokens_youtube)
+```
+
+# Deskriptive Auswertungen {background-color="#4A90E2"}
+
+## Worthäufigkeiten: Bluesky
+
+```{r}
+library(quanteda.textstats)
+
+dfm_bluesky %>%
+  dfm_remove(pattern = c("bsky.social",
+                         "@*", "#*")) %>% # Entfernung von Bluesky-Links, Mentions und Hashtags 
+  textstat_frequency(n = 10) # Anzahl der häufigsten Wörter, die angezeigt werden sollen
+```
+
+## Worthäufigkeiten: YouTube
+
+```{r}
+dfm_youtube %>%
+  dfm_remove(pattern = c("youtube.com",
+                         "@*", "#*")) %>% # Entfernung von YouTube-Links, Mentions und Hashtags 
+  textstat_frequency(n = 10) # Anzahl der häufigsten Wörter, die angezeigt werden sollen
+```
+
+## Visualisierung von Worthäufigkeiten: Wortwolke
+
+```{r}
+#| output-location: column
+
+library(quanteda.textplots)
+
+dfm_youtube %>%
+  dfm_remove(pattern = c("youtube.com",
+                         "@*", "#*")) %>% # Entfernung von YouTube-Links, Mentions und Hashtags 
+    dfm_trim(min_termfreq = 50) %>% # Entfernung von Wörtern, die weniger als 50 Mal im Korpus vorkommen
+  textplot_wordcloud()
+```
+
+## Visualisierung von Worthäufigkeiten: Balkendiagramm
+
+```{r}
+#| output-location: column
+
+freq_bs <- dfm_bluesky %>% 
+  dfm_remove(pattern = c("bsky.social", "dass",
+                         "@*", "#*")) %>%  
+  textstat_frequency(n = 20)
+
+ggplot(freq_bs,
+       aes(x = frequency, y = reorder(feature, frequency))) +
+  geom_col() + 
+  labs(x = "Frequency", y = "Feature") +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.05)))
+```
+
+## Hashtags
+
+```{r}
+dfm_bluesky %>% 
+  dfm_select(pattern = "#*") %>%  # Auswahl von Hashtags
+  textstat_frequency(n = 10) # Anzahl der häufigsten Hashtags, die angezeigt werden sollen
+```
+
+## Keyness-Analyse
+
+```{r}
+#| output-location: column
+
+tstat_key <- dfm_bluesky %>% 
+  dfm_remove(pattern = c("bsky.social",
+                         "@*", "#*")) %>%  
+  textstat_keyness(target = dfm_bluesky$author_handle == "katharinadroege.bsky.social") # Auswahl der Zielgruppe (Posts von Katharina Dröge)
+
+textplot_keyness(tstat_key)
+```
+
+# Sentiment-Analyse {background-color="#4A90E2"}
+
+## Was ist Sentiment-Analyse?
+
+Die **Sentiment-Analyse** kommt für Social-Media-Daten häufig zum Einsatz. Ziel ist es dabei, die Stimmung oder Emotion in einem Text zu bestimmen, z.B. ob ein Post oder Kommentar positiv, negativ oder neutral ist. Bei der Sentiment-Analyse kommen zumeist sogenannte **Diktionäre (dictionaries)** zum Einsatz kommen.
+
+## Sentiment-Analyse mit quanteda.sentiment
+
+```{r}
+library(quanteda.sentiment)
+```
+
+`quanteda.sentiment` bietet verschiedene Diktionäre für die Setntimen-Analyse. Das `ReadMe` im [*GitHub*-Repository](https://github.com/quanteda/quanteda.sentiment) zum Paket bietet eine Übersicht.
+
+## Sentiment-Analyse mit quanteda.sentiment: Beispiel
+
+Im nachfolgenden Beispiel nutzen wir Diktionär für Sentiment in deutschen politischen Texten von Rauh [-@Rauh2018].
+
+```{r}
+dfm_de_rauh <- dfm(tokens_lookup(tokens_bluesky,
+                                 dictionary = data_dictionary_Rauh))
+```
+
+## Sentiment-Analyse: Ergebnis
+
+```{r}
+results_rauh <- convert(dfm_de_rauh, to = "data.frame") %>% # Umwandlung der DFM in einen data.frame
+  mutate(net_sentiment = (positive + neg_negative) - (negative + neg_positive)) # Berechnung eines Nettosentiment-Scores
+
+glimpse(results_rauh)
+```
+
+## Verknüpfung von Sentiment mit Post-Daten
+
+```{r}
+results_rauh <- results_rauh %>% 
+  left_join(bs_posts, by = c("doc_id" = "uri"))
+```
+
+## Posts mit hohem Nettosentiment
+
+```{r}
+results_rauh %>% # Positivste Posts
+  arrange(desc(net_sentiment)) %>% 
+  select(text, net_sentiment, author_handle) %>% 
+  head(10)
+```
+
+## Posts mit niedrigem Nettosentiment
+
+```{r}
+results_rauh %>% # Negativste Posts
+  arrange(net_sentiment) %>%
+  select(text, net_sentiment, author_handle) %>%
+  head(10)
+```
+
+# Topic Models {background-color="#4A90E2"}
+
+## Was sind Topic Models? {.smaller}
+
+Topic Modeling ist eine Methode aus der Kategorie des Unsupervised Machine Learning, mit der versucht wird, Themen in einem Textkorpus zu identifizieren (siehe hierzu auch den entsprechenden.
+
+1. *Themen sind Mischungen aus Wörtern*: Ein Thema ist eine Ansammlung von Wörtern mit unterschiedlichen Wahrscheinlichkeiten. Beim Thema „Sport“ ist die Wahrscheinlichkeit, dass das Wort „Ball“ vorkommt, hoch, während die Wahrscheinlichkeit für das Wort „Demokratie“ sehr gering ist.
+
+2. *Dokumente sind Mischungen aus Themen*: Ein einzelnes Dokument kann mehrere Themen enthalten. Ein Zeitungsartikel könnte z.B. zu 60 % aus Sport, zu 30 % aus Finanzen und zu 10 % aus Politik bestehen.
+
+## LDA
+
+Die älteste und am weitesten verbreitete Methode für die Topic-Modellierung ist die **Latent Dirichlet Allocation (LDA)**. Diese ist im `R`-Paket [`topicmodels`](https://cran.r-project.org/web/packages/topicmodels/index.html) [@GrunHornik2011] implementiert.
+
+```{r}
+library(topicmodels)
+```
+
+## LDA: Vorbereitung
+
+Um die Berechnung des Topic Models etwas zu beschleunigen, reduzieren wir die Anzahl der Wörter in der DFM , indem wir nur Wörter behalten, die in mindestens 5 Posts bzw. Kommentaren enthalten sind. Im Gegensatz zu den vorheringen Analysen behalten wir allerdings die Hashtags für die Topic Models.
+
+```{r}
+dfm_bluesky_trimmed <- dfm_bluesky %>% 
+  dfm_remove(pattern = c("bsky.social",
+                           "@*")) %>%
+  dfm_trim(min_docfreq = 5)
+
+dfm_youtube_trimmed <- dfm_youtube %>%
+  dfm_remove(pattern = c("youtube.com",
+                         "@*")) %>%
+  dfm_trim(min_docfreq = 5)
+```
+
+## LDA: Berechnung
+
+```{r}
+#| eval: false
+
+k <- 5 # Anzahl der Themen
+
+# LDA für YouTube
+lda_yt <- LDA(convert(dfm_youtube_trimmed, 
+                         to = "topicmodels"), # LDA erwartet eine DFM im Format des Pakets topicmodels, daher müssen wir die DFM mit convert() umwandeln
+                 k = k, 
+                 control = list(seed = 1234)) # Setzen eines Seeds für Reproduzierbarkeit
+
+terms(lda_yt, 10) # Ausgabe der 10 wahrscheinlichsten Wörter pro Thema
+```
+
+```{r}
+#| echo: false
+
+lda_yt <- readRDS("../data/topicmodels/lda_youtube.rds")
+
+terms(lda_yt, 10)
+```
+
+## STM
+
+Eine Weiterentwicklung von LDA ist das **Structural Topic Model (STM)**, welches im `R`-Paket [`stm`](https://www.structuraltopicmodel.com/) [@RobertsEtAl2019] implementiert ist. STM ermöglicht es, externe Variablen bzw. Metadaten zu Dokumenten (z.B. Autor:innen, Zeit, Parteizugehörigkeit) direkt in die Berechnung der Themen einzubeziehen. Dies kann die Identifikation von Themen verbessern und ermöglicht es, die Beziehung zwischen Themen und diesen Variablen zu untersuchen.
+
+```{r}
+library(stm)
+```
+
+## STM: Beispiel
+
+```{r}
+#| eval: false
+
+# DFM in STM-Format umwandeln
+stm_data <- convert(dfm_youtube_trimmed, to = "stm")
+
+# STM berechnen
+stm_model <- stm(documents = stm_data$documents, 
+                 vocab = stm_data$vocab, 
+                 K = 5, 
+                 prevalence = ~ LikeCount, 
+                 data = stm_data$meta, 
+                 seed = 1234,
+                 verbose = FALSE)
+
+# Top Wörter pro Thema
+labelTopics(stm_model)
+```
+
+```{r}
+#| echo: false
+
+stm_model <- readRDS("../data/topicmodels/stm_youtube.rds")
+stm_data <- readRDS("../data/topicmodels/stm_data_youtube.rds")
+
+labelTopics(stm_model)
+```
+
+## STM: Beziehung zwischen Themen und Variablen
+
+```{r}
+#| output-location: column
+
+# Effekt des Like Counts auf die Themenzuordnung schätzen
+effect <- estimateEffect(1:5 ~ LikeCount, stm_model, meta = stm_data$meta)
+
+# Effekt plotten (hier mit base R)
+plot(effect,
+     covariate = "LikeCount",
+     topics = 1:5,
+     model = stm_model,
+     method = "continuous",
+     xlab = "Like Count",
+     ylab = "Expected Topic Proportion")
+```
+
+## Weitere Optionen für Topic Models
+
+- Biterm Topic Model [BTM; @YanEtAl2013]: `R`-Paket [`btm`](https://github.com/bnosac/BTM)
+
+- Keyword Assisted Topic Model [keyATM; @EshimaEtAl2024]: `R`-Paket [`keyATM`](https://keyatm.github.io/keyATM/)
+
+- Seeded LDA [@WatanabeBaturo2024]: `R`-Paket [`seededlda`](https://koheiw.github.io/seededlda/)
+
+# Ausblick {background-color="#4A90E2"}
+
+## Nächste Sitzungen
+
+- ab nächster Sitzung am 18.06.: Gruppenarbeit
+
+- Vorschlag: 3-4 Gruppen à 3-4 Personen
+
+- Aufgabe am 18.06.: Entwicklung einer Forschungsfrage und Formulierung eines ersten Plans für die Sammlung, Aufbereitung und Analyse der Daten
+
+- Vorstellung der Ideen in Kurzpräsentationen (5-10 Minuten) in der Sitzung am 25.06.
+
+*Hinweis* bzw. Erinnerung: Die Sitzung am 18.06. wird nicht durch den Dozenten betreut
+
+## References

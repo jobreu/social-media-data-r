@@ -1,0 +1,73 @@
+# Analysemethoden {#sec-analysis}
+
+Der Fokus in diesem Buch und im zugehörigen Kurs liegt auf der quantitativen Textanalyse. Eine weitere im Kontext von Social-Media-Daten häufig angewandte Methode ist die Netzwerkanalyse. Diese behandeln wir hier nicht, aber [Kapitel 13 aus dem Buch *Computational Analysis of Communication*](https://cssbook.net/content/chapter13.html) gibt hier eine gute Einführung.
+
+**Wichtiger Hinweis**: Das Buch und der Kurs können nur eine kurze Einführung in die Grundlagen der quantitativen Textanalyse geben. Es gibt viele weitere Themen, die wir hier nicht behandeln können. Hierzu lohnt sich ein Blick in andere Einführungen. Neben dem bereits mehrfach erwähnten Buch *Computational Analysis of Communication* sind z.B. folgende Bücher und Kurse empfehlenswert:
+
+- Das Buch [*Text Mining with R - A Tidy Approach*](https://www.tidytextmining.com/) von Julia Silge und David Robinson (kostenlose online Version verfügbar)
+
+- die [Materialien zum Forschungsseminar *Text as data*](https://valeriehase-automatisierte-inhaltsanalyse.share.connect.posit.cloud/) von Valerie Hase
+
+- der Workshop [*Text mining in R for the social sciences and digital humanities*](https://tm4ss.github.io/docs/index.html) von Andreas Niekler und Gregor Wiedemann
+
+- [*Automatisierte Inhaltsanalyse mit R*](https://api.rpubs.com/cbpuschmann/AIR1) von Cornelius Puschmann und [*Automated Content Analysis*](https://automatedcontentanalysis.com/) von Chung-hong Chan
+
+::: {.callout-note title="Netzwerk- & Textanalyse" collapse="true"}
+Es ist auch möglich, die Netzwerkanalyse mit der quantitativen Textanalyse zu kombinieren [@Bail2016]. Dies geht z.B. mit dem `R`-Paket [`textnets`](https://github.com/cbail/textnets) (siehe auch das [Tutorial vom Paket-Autor Chris Bail](https://cbail.github.io/SICSS_Text_Networks.html)).
+:::
+
+## Arten von Analysemethoden
+
+In der quantitativen Textanalyse gibt es viele unterschiedliche Auswertungsmethoden. Diese lassen sich wie folgt kategorisieren:
+
+- **Deskriptive Methoden**: Hierbei werden die Daten in ihrer Rohform beschrieben, z.B. durch Häufigkeiten von Wörtern, Links und Hashtags. Diese behandeln wir in @sec-descriptive.
+
+- **Sentiment-Analyse** und **diktionär:basierte Methoden** HBei der Sentiment-Analyse wird versucht,die Stimmung oder Haltung in einem Text zu bestimmen, z.B. ob ein TPos pauf Social Media ositiv, negativ oder neutral ist. DBei der Sentiment-Analyse können auch sogenannte Diktionäre (dictionaries) zum Einsatz kommen. Diese können aber auch genutzt werden, um andere Konstrukte zu messen wie z.B. Populismus. Diese beiden Methoden behandeln wir in @sec-sentdict.
+
+- **Unsupervised Machine Learning**: Hierbei werden Algorithmen eingesetzt, um Muster in den Daten zu erkennen, ohne dass diese vorher definiert wurden. Ein Beispiel hierfür ist die Topic-Modellierung, bei der versucht wird, Themen in einem Textkorpus zu identifizieren. Diese Methode behandeln wir in @sec-topicmodels.
+
+- **Supervised Machine Learning**: Hierbei werden Algorithmen eingesetzt, um Muster in den Daten zu erkennen, die vorher definiert wurden. Ein Beispiel hierfür ist die Textklassifikation, bei der versucht wird, Texte in vordefinierte Kategorien einzuteilen. Diese Methode behandeln wir hier aus Platz- und Zeitgründen nicht, aber [Kapitel 8 aus dem Buch *Computational Analysis of Communication*](https://cssbook.net/content/chapter08.html) behandelt diese ausführlich.
+
+::: {.callout-note title="Large Language Models" collapse="true"}
+Textdaten können auch mit Large Language Models (LLMs) analysiert werden. Ein interessantes `R`-Paket für die automatisierte Inhaltsanalyse mit LLMs ist [`klaus`](https://github.com/cbpuschmann/klaus). Mit diesem kann man auch [*Chat AI* von der GWDG nutzen](https://docs.hpc.gwdg.de/services/ai-services/chat-ai/index.html), auf das viele Unis in Deutschland Zugriff haben. Gute Einführungen in die Nutzung von LLMs für die Analyse von Textdaten bieten z.B. die Paper von Farjam et al. [-@FarjamEtAl2025] und [-@FoisyEtAl2025]. 
+:::
+
+Bevor die genannten Analysemethoden genutzt werden können, müssen die Daten jedoch zunächst aufbereitet werden. Dieser Prozess wird als **Preprocessing** bezeichnet und umfasst i.d.R. mehrere Schritte. Mit diesen befassen wir uns im @sec-preprocessing.
+
+
+## Setup: Pakete & Daten
+
+### Pakete
+
+Es gibt viele verschiedene Pakete für die Aufbereitung und Analyse von Textdaten in `R`. Einige davon werden wir in den nächsten Abschnitten kennenlernen. Ein sehr umfangreiches Paket, mit dem wir viel arbeiten werden, ist [`quanteda`](https://quanteda.io/) [@BenoitEtAl2018]. Neben einem großen Funktionsumfang und einer sehr guten Dokumentation bietet `quanteda` zudem auch eine Reihe hilfreicher [Tutorials](https://tutorials.quanteda.io/) an, welche die Nutzung erleichtern.
+
+Wie gewohnt, müssen wir das Paket zunächst einmalig installieren und dann in jedem Skript bzw. in jeder `R`-Sitzung (Session) laden, in dem/der wir es nutzen wollen.
+
+```{r}
+#| eval: false
+install.packages("quanteda")
+
+library(quanteda)
+```
+
+Für `quanteda` gibt es auch eine Reihe von Erweiterungspaketen (wie z.B. [`quanteda.textstats`](https://github.com/quanteda/quanteda.textstats). Diese müssen ebenfalls installiert und geladen werden. Dies machen wir dann jeweils in den Abschnitten, in denen wir diese nutzen.
+
+Ein weiteres umfangreiches Paket für die Aufbereitung und Analyse von Textdaten ist [`tidytext`](https://juliasilge.github.io/tidytext/).
+
+```{r}
+#| eval: false
+
+install.packages("tidytext")
+
+library(tidytext)
+```
+
+### Daten
+
+In den Analysebeispielen in den nächsten Kapiteln arbeiten wir mit Daten von *Bluesky* und *YouTube*. Wie diese gesammelt werden können, wird in @sec-bluesky-collection und @sec-youtube-collection beschrieben. Da Daten, die über die APIs dieser Plattformen gesammelt werden, nicht einfach über *GitHub* geteilt werden können, müssen Sie diese vor dem Durcharbeiten der Beispiele in den Kapitel zur Aufbereitung und Auswertung selbst entsprechende Datensätze sammeln und diese lokal speichern.
+
+Wie immer müssen Sie die Dateinamen und Pfade in den Code-Beispielen entsprechend anpassen, damit diese auf Ihrem Computer funktionieren (siehe @ sec-import und @sec-paths). In den Beispielen gehen wir davon aus, dass die Daten im Ordner `data` liegen und die Dateien `bluesky_data.csv` und `youtube_data.csv` heißen. Ein Beispiel-Skript zur Sammlung solcher Daten ist im Skript [`collect_data.R`](https://jobreu.github.io/social-media-data-r/scripts/collect_data.R) zu finden.
+
+Sollten Sie keine eigenen *Bluesky*- oder *YouTube*-Daten sammeln können, können Sie alternativ auch die [simulierten *YouTube*-Daten](https://github.com/gesiscss/tubecleanr_tool/blob/master/data/simulated_yt.csv) aus dem [Tutorial](https://kodaqs-toolbox.gesis.org/github.com/gesiscss/tubecleanr_tool/index/) zum `R`-Paket [Paket `tubecleanR`](github.com/gesiscss/tubecleanR) nutzen.
+
+*Hinweis*: Mit leichten Anpassungen lassen sich die Code-Beispiele auch auf Daten von anderen Plattformen wie z.B. *TikTok* anwenden.

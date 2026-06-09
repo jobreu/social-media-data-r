@@ -1,0 +1,233 @@
+# Preprocessing {#sec-preprocessing}
+
+Bevor wir Social-Media-Daten auswerten können, müssen wir diese aufbereiten. Insb. im Kontext von Textdaten wird dies auch als *Preprocessing* bezeichnet (zur Erinnerung: allgemeine Informationen zur Datenaufbereitung in `R` sind in @sec-wrangdf und @sec-wrangvar zu finden).
+
+Kurz gesagt bezeichnet *Preprocessing* alle Schritte, die nötig sind, um die Daten für die Analyse vorzubereiten. Das Preprocessing für Textdaten (insb. solche aus Social Media) ist i.d.R. umfangreicher und Entscheidungen dazu sind einflussreicher als z.B. für Surveydaten, denn die Daten sind in aller Regel…
+
+- nicht für genuin die Forschung generiert (sog. „found data“)
+
+- unstrukturierter
+
+- heterogener
+
+- umfangreicher
+
+Bei der Aufbereitung von Textdaten gibt es entsprechend einige Harausforderungen. Zwei der wichtigsten sind hierbei:
+
+1. Die Auswahl und Abfolge der Preprocessing-Schritte, da diese die Analyseergebnisse beeinflussen.
+
+2. Der Umgang mit unterschiedlichen Textarten, -längen und Sprachen (sowie ggf. unterschiedlicher Zeichen)
+
+::: {.callout-note title="Character Encoding" collapse="true"}
+Ein Thema, dem man bei der Arbeit mit Textdaten häufig begegnet, ist das sogennnnannte *Character Encoding*. Hierbei handelt es sich um die Art und Weise, wie Zeichen in Textdaten codiert werden. Es gibt verschiedene Arten von Character Encoding. ASCII ist der älteste Standard. Er enthält lediglich 128 Zeichen  aus dem englischsprachigen Alphabet. Es gibt auch eigene Encodings für verschiedene Sprachräume (z.B. ISO-8859-1 bzw. Latin-1 für Westeuropa). Der umfangreichste Standard ist [UTF-8](https://www.youtube.com/watch?v=MijmeoH9LT4). Dieser die enthält Zeichen aller Sprachen sowie Emoji. Wenn die Daten in einem anderen Encoding vorliegen als das, was `R` erwartet, kann es zu Problemen bei der Verarbeitung der Daten kommen. Wenn man die Auswahl hat, ist es in aller Regel am besten, mit UTF-8 zu arbeiten.
+:::
+
+## Textdaten-Vokabeln
+
+Bevor wir uns mit den Preprocessing-Schritten beschäftigen, sollten wir zunächst einige wichtige Begriffe klären, die im Kontext von Textdaten häufig verwendet werden:
+
+- **String**: Ein String ist eine Folge von Zeichen, z.B. ein Wort, ein Satz oder ein ganzer Text.
+
+- **Textkorpus**: Ein Textkorpus ist eine Sammlung von Dokumenten. In unserem Fall also z.B. eine Sammlung von *Bluesky*-Posts oder *YouTube*-Kommentaren. Ein Textkorpus kann auch Metadaten zu den Dokumenten enthalten (im Social-Media-Kontext z.B. User Names oder Zeitstempel zur Veröffentlichung).
+
+- **Dokument**: Ein Dokument ist eine einzelne Einheit in einem Textkorpus. Für unseren Anwendungsfall also z.B. ein *Bluesky*-Post oder ein *YouTube*-Kommentar. Ein Dokument kann aus einem oder mehreren Strings bestehen.
+
+- **Token**: Ein Token ist eine einzelne Einheit in einem Text, z.B. ein Wort, ein Satzzeichen oder ein Hashtag. Das Aufteilen eines Textes in Tokens wird als *Tokenisierung* bezeichnet.
+
+- **Type**: Ein Type ist ein einzigartiges Token. Wenn z.B. das Wort "Hallo" in einem Text dreimal vorkommt ("Hallo Hallo Hallo"), dann gibt es drei Tokens, aber nur einen Type ("Hallo").
+
+- **Vokabular**: Das Vokabular ist die Menge aller Types in einem Textkorpus. In vorherigen Beispiel wäre das Vokabular also {"Hallo"}.
+
+- **Document-Feature-Matrix (DFM)** (auch Document-Term-Matrix; DTM): Eine DFM ist eine Matrix, in der die Zeilen Dokumente (z.B. Tweets, YouTube-Kommentare) und die Spalten Features (z.B. Wörter, Hashtags) darstellen. Die Werte in der Matrix geben an, wie oft ein bestimmtes Feature in einem bestimmten Dokument vorkommt.
+
+## Preprocessing-Schritte
+
+Es gibt viele verschiedene mögliche Preprocessing-Schritte für Textdaten. Die Auswahl und Abfolge der Schritte hängt von verschiedenen Faktoren ab, z.B. von der Art der Daten, der geplanten Analyse und den Forschungsfragen. Es gibt jedoch einige Schritte, die in vielen Fällen sinnvoll sein können:
+
+- Erstellung eines Textkorpus
+
+- Tokenisierung (tokenization)
+
+- Entfernung oder Extraktion bestimmter Muster oder Symbole (z.B. Zeichensetzung, Zahlen, Emoji, URLs…)
+
+- Kleinschreibung (lowercasing)
+
+- Entfernung von Stoppwörtern (stopword removal)
+
+- Erstellung einer Document-Feature-Matrix (DFM)
+
+## Setup
+
+Für das Preprocessing nutzen wir Funktionen aus dem Paket [`quanteda`]. Zudem nutzen wir auch wieder Pakete und Funktionen aus dem [`tidyverse`].
+
+```{r}
+library(quanteda)
+library(tidyverse)
+```
+
+Für die Beispiele verwenden wir Daten von *Bluesky* und *YouTube*. Wir gehen hier/nachfolgend davon aus, dass Sie diese gesammelt und als `bluesky_data.csv` bzw. `youtube_data.csv` lokal gespeichert haben. Hinweise dazu, wie Sie diese Daten sammeln und speichern können, finden Sie im Abschnitt *Daten* am Ende von @sec-analysis.
+
+```{r}
+bs_posts <- read.csv("./data/bluesky_data.csv") # Dateipfad ggf. anpassen
+
+comments_yt <- read.csv("./data/youtube_data.csv") # Dateipfad ggf. anpassen
+```
+
+## Erstellung eines Textkorpus
+
+Ein häufiger erster Schritt bei der Aufbereitung von Textdaten ist die Erstellung eines Textkorpus. Hierbei werden die einzelnen Dokumente (in unseren Beispielen *Bluesky*-Posts, oder *YouTube*-Kommentare) in einer geeigneten Datenstruktur gespeichert, die auch Metadaten zu den Dokumenten enthalten kann (z.B. User Names oder Zeitstempel zur Veröffentlichung).
+
+### Bluesky
+```{r}
+bluesky_corpus <- bs_posts %>% 
+  distinct(uri, .keep_all = TRUE) %>% # jeder Post sollte nur einmal im Korpus vorkommen
+  filter(is_reskeet == FALSE) %>% # keine Reposts
+  select(uri, cid,
+         author_handle, author_name,
+         indexed_at, reply_count, repost_count,
+         like_count, quote_count,
+         is_reskeet,
+         text) %>% 
+  corpus(docid_field = "uri",
+         text_field = "text")
+
+bluesky_corpus
+```
+
+Jeder Posts ist ein Dokument in diesem Korpus. `docvars` sind die Dokumentvariablen, also die Metadaten zu den Dokumenten. Hier sind das alle inkludierten Variablen außer der Dokument- bzw. Post-ID (`uri`) und dem Text des Posts (`text`).
+
+### YouTube
+
+```{r}
+youtube_corpus <- comments_yt %>%
+  select(CommentID, VideoID, ParentID,
+         AuthorDisplayName,
+         PublishedAt, ReplyCount, LikeCount,
+         Comment) %>% 
+  corpus(docid_field = "CommentID",
+         text_field = "Comment")
+
+youtube_corpus
+```
+
+Jeder Kommentar ist ein Dokument in diesem Korpus. `docvars` sind die Dokumentvariablen, also die Metadaten zu den Dokumenten. Hier sind das alle inkludierten Variablen außer der Dokument- bzw. Kommentar-ID (`CommentID`) und dem Text des Kommentars (`Comment`).
+
+## Tokenisierung & Entfernung bestimmter Muster und Symbole
+
+Es gibt sehr viele verschiedene sogenannte „Tokenizer“. Wir nutzen hier den Standard-Tokenizer von `quanteda`, der Wörter, Satzzeichen, Emojis, URLs und Hashtags als Tokens behandelt. Zusätzlich nutzen wir Argumente für die Funktion `tokens()`, um Satzzeichen (punctuation), Symbole, Zahlen und URLs zu entfernen. Es gibt weitere Optionen, die wir hier aber nicht verwenden (siehe `?tokens`).
+
+### Bluesky
+
+```{r}
+tokens_bluesky <- tokens(bluesky_corpus,
+                       remove_punct = TRUE,
+                       remove_symbols = TRUE,
+                       remove_numbers = TRUE,
+                       remove_url = TRUE)
+
+tokens_bluesky
+```
+
+### YouTube
+
+```{r}
+tokens_youtube <- tokens(youtube_corpus,
+                       remove_punct = TRUE,
+                       remove_symbols = TRUE,
+                       remove_numbers = TRUE,
+                       remove_url = TRUE)
+
+tokens_youtube
+```
+
+::: {.callout-note title="Bag of Words" collapse="true"}
+Wenn Texte in Tokens zerlegt und diese gezählt werden, gehen syntaktische Informationen und die Reihenfolge von und Beziehungen zwischen Wörtern/Tokens verloren (z.B. auch Negation). Diese Art der Repräsentation von Textdaten wird als "Bag of Words" bezeichnet. Wenn das gemeinsame Auftreten von Wörtern/Tokens wichtig für die Analyse ist, zerlegt man Texte nicht in einzelne Wörter/Tokens (sog. Unigramme/unigrams), sondern Kombinationen von zwei (bigrams), drei (trigrams) oder mehr (n-grams) Wörter/Tokens.
+Trotz dieser Einschränkungen ist die Bag-of-Words-Repräsentation eine der am häufigsten genutzten Darstellungen von Textdaten für die Analyse, da sie einfach zu erstellen und zu interpretieren ist.
+:::
+
+## Kleinschreibung & Entfernung von Stoppwörtern
+
+Weitere häufig genutzte Schritte sind die Umwandlung aller Tokens in Kleinbuchstaben (lowercasing) und die Entfernung von Stoppwörtern (stopword removal). 
+
+Ob man den Schritt der Kleinschreibung durchführt, hängt von verschiedenen Faktoren ab. Dazu gehören z.B.:
+
+- die Sprache(n), in der/denen die Texte vorliegen
+
+- die geplante Analyse (ob die Großschreibung für die Analyse relevant ist, z.B. bei der Erkennung von Eigennamen)
+
+I.d.R. empfiehlt es sich, diesen Schritt zumindest für die Analyse von deutschen Texten durchzuführen, da die Großschreibung im Deutschen nicht nur am Satzanfang, sondern auch bei Nomen genutzt wird. Bei der Analyse von englischen Texten ist dies weniger relevant, da die Großschreibung hier nur am Satzanfang und bei Eigennamen genutzt wird. 
+
+Stoppwörter sind Wörter, die sehr häufig vorkommen aber in der Regel keine oder nur wenig Bedeutung für die Analyse haben, z.B. "und", "der", "die", "das" im Deutschen. Es gibt verschiedene Listen von Stoppwörtern, z.B. die von `quanteda` bereitgestellten Listen für verschiedene Sprachen (siehe `?stopwords`).
+
+```{r}
+length(stopwords("de"))# Anzahl der Stoppwörter in der deutschen Liste von `quanteda`
+length(stopwords("en")) # Anzahl der Stoppwörter in der englischen Liste von `quanteda`
+```
+
+Man kann mit der Funktion `tokens_remove()` von `quanteda` auch noch andere Wörter und Muster entfernen. Z..B. ist das Wort "dass" nicht in der deutschen Liste von Stoppwörtern von `quanteda` enthalten, aber es ist inhaltlich für sozialwissenschaftliche Analysen in aller Regel nicht interessant.
+
+Das Paket `tidytext` bietet eine deutlich längere Liste an Stoppwörtern, jedoch nur für die englische Sprache (siehe `?stop_words`).
+
+```{r}
+nrow(tidytext::stop_words) # Anzahl der Stoppwörter in der englischen Liste von `tidytext`
+```
+
+### Bluesky
+```{r}
+tokens_bluesky <- tokens_bluesky %>%
+  tokens_tolower() %>% # Kleinschreibung
+  tokens_remove(stopwords("de")) %>%  # Entfernung von deutschen Stoppwörtern
+  tokens_remove("dass") # Entfernung von "dass"
+```
+
+### YouTube
+
+```{r}
+tokens_youtube <- tokens_youtube %>%
+  tokens_tolower() %>% # Kleinschreibung
+  tokens_remove(stopwords("de")) %>%  # Entfernung von deutschen Stoppwörtern
+  tokens_remove("dass") # Entfernung von "dass"
+```
+
+## Erstellung einer Document-Feature-Matrix (DFM)
+
+Die Erstellung einer Document-Feature-Matrix (DFM) ist ein wichtiger Schritt im Preprocessing von Textdaten, da sie die Grundlage für viele Analysemethoden bildet. Eine DFM ist eine Matrix, in der die Zeilen Dokumente (in unseren Beispielen also *Bluesky*-Posts oder *YouTube*-Kommentare) und die Spalten Features (z.B. Wörter oder Hashtags) darstellen. Die Werte in den Zellen der Matrix geben an, wie oft ein bestimmtes Feature (z.B. ein Wort) in einem bestimmten Dokument (z.B. einem Post oder Kommentar) vorkommt.
+
+### Bluesky
+
+```{r}
+dfm_bluesky <- dfm(tokens_bluesky)
+
+dfm_bluesky
+```
+
+Zur Erklärung: Die "documents" sind die Anzahl der Posts, die "Features" sind die Anzahl der einzigartigen Tokens (Types) im Korpus. Die Angabe "xx.yy% sparse" bedeutet, dass xx.yy% der Zellen in der DFM den Wert 0 haben, also dass das entsprechende Feature in dem entsprechenden Dokument nicht vorkommt.
+
+### YouTube
+
+```{r}
+dfm_youtube <- dfm(tokens_youtube)
+
+dfm_youtube
+```
+
+## Alternative Pakete für das Preprocessing
+
+Eine weitere interessante Option für das Preprocessing von Textdaten in `R` ist das [Paket `textclean`](https://github.com/trinker/textclean). Dieses kommt u.a. auch im [*KODAQS Toolbox* Tutorial zur Aufbereitung von Textdaten](https://kodaqs-toolbox.gesis.org/github.com/YannikPeters/DQ_Tool_TextPreprocessing/index/) zum Einsatz.
+
+Ein Paket speziell für die Aufbereitung von *YouTube*-Daten ist
+[`tubecleanR`](github.com/gesiscss/tubecleanR) für *YouTube*-Daten. Auch zu diesem gibt es ein umfangreiches
+[Tutorial in der *KODAQS Toolbox*](https://kodaqs-toolbox.gesis.org/github.com/gesiscss/tubecleanr_tool/index/).
+
+
+## Weitere Aufbereitungsschritte
+
+Neben den in den zuvor präsentierten Schritten sind auch weitere Preprocessing-Schritte möglich. Zu diesen gehören z.B. die Erkennung von Sprachen oder Pipelines, die Reduktion von Wörtern auf ihren Wortstamm durch [Stemming](https://de.wikipedia.org/wiki/Stemming) aus dem Natural Language Processing (NLP), z.B. für die [Lemmatisierung](https://de.wikipedia.org/wiki/Lemma_(Lexikographie)#Lemmatisierung) oder [Part-of-Speech (POS) Tagging](https://de.wikipedia.org/wiki/Part-of-speech-Tagging). 
+
+Mit NLP Pipelines für das Preprocessing befassen wir uns hier nicht weiter, aber es gibt zwei `R`-Pakete, die hierfür umfangreiche Funktionen bieten: [`udpipe`](https://bnosac.github.io/udpipe/en/) und [`spacyr`](https://spacyr.quanteda.io/). Letzteres ist ein Wrapper für die sehr mächtige `Python` NLP Library [`spacy`](https://spacy.io/), weshalb man für die Nutzung auch `Python` und das Paket [`reticulate`](https://rstudio.github.io/reticulate/) benötigt. Mögliche Anwendungsfälle können z.B. die Begrenzung von Analysen auf bestimmte Wortarten (z.B. Adjektive und/oder Nomen) oder die Identifikationen sogenannter "Named Entities" ([Named Entity Recognition](https://de.wikipedia.org/wiki/Named-entity_recognition); NER) wie Personen, Orte oder Organisationen sein. Im Buch *Computational Analysis of Communication* gibt es einen eigenen [Abschnitt zum "Linguistic Preprocessing"](https://cssbook.net/content/chapter10.html#sec-nlp).
+
+Auch für die Erkennung von Sprachen in Textdaten gibt es verschiedene Pakete in `R`, z.B. [`cld3`](https://docs.ropensci.org/cld3/), [`textcat`](https://cran.r-project.org/web/packages/textcat/index.html) oder [`fastText`](https://mlampros.github.io/fastText/) (siehe dazu auch das [Tutorial von Lampros Mouselimis](https://cran.r-project.org/web/packages/fastText/vignettes/language_identification.html)). 
+
+## Weitere Repräsentationen von Textdaten
+
+Neben Tokens und Document-Feature-Matrizen (DFMs) können auch andere Repräsentationen von Textdaten für die Analyse genutzt werden. Hierzu gehören insb. sog. n-grams, Collocations und Word Embeddings. Auf diese werden wir hier nicht näher eingehen, aber sie werden auch in [entsprechenden Unterkapiteln des Online-Buchs *Computational Analysis of Communication*](https://cssbook.net/content/chapter10.html#sec-ngram) erklärt.
