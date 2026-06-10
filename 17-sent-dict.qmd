@@ -120,7 +120,7 @@ Einen diktionärbasierten Ansatz für die Sentiment-Analyse verfolgt auch das Pa
 
 Das Paket [`sentimentr`](https://github.com/trinker/sentimentr) erlaubt die Berechnung der Polarität von Texten in englischer Sprache auf Satzebene. Dabei berücksichtigt es auch sogenannte "Valence Shifters" (d.h. Negationen, Verstärker, Abschwächer).
 
-Komplexere Ansätze für die Sentiment-Analyse bieten z.B. die Pakete [`sentiment.ai`](https://benwiseman.github.io/sentiment.ai/#Overview) und [`transforEmotion`](https://github.com/atomashevic/transforEmotion). Letzteres nutze sogenannte [Transformer](https://de.wikipedia.org/wiki/Transformer_(Maschinelles_Lernen)-Modelle. Beide benötigen allerdings auch eine `Python`-Installation.
+Komplexere Ansätze für die Sentiment-Analyse bieten z.B. die Pakete [`sentiment.ai`](https://benwiseman.github.io/sentiment.ai/#Overview) und [`transforEmotion`](https://github.com/atomashevic/transforEmotion). Letzteres nutze sogenannte [Transformer](https://de.wikipedia.org/wiki/Transformer_(Maschinelles_Lernen))-Modelle. Beide benötigen allerdings auch eine `Python`-Installation.
 
 Sentiment-Analysen sind auch mit Large Language Models (LLMs) möglich. Ein interessantes `R`-Paket für die automatisierte Inhaltsanalyse mit LLMs, das auch für die Sentiment-Analyse eingesetzt werden kann, ist [`klaus`](https://github.com/cbpuschmann/klaus).
 

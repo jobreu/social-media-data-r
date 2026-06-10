@@ -58,9 +58,12 @@ Es gibt viele verschiedene mögliche Preprocessing-Schritte für Textdaten. Die 
 
 ## Setup
 
-Für das Preprocessing nutzen wir Funktionen aus dem Paket [`quanteda`]. Zudem nutzen wir auch wieder Pakete und Funktionen aus dem [`tidyverse`].
+Für das Preprocessing nutzen wir Funktionen aus dem Paket `quanteda`. Zudem nutzen wir auch wieder Pakete und Funktionen aus dem `tidyverse`.
 
 ```{r}
+#| warn: false
+#| message: false
+
 library(quanteda)
 library(tidyverse)
 ```
@@ -114,7 +117,7 @@ Jeder Kommentar ist ein Dokument in diesem Korpus. `docvars` sind die Dokumentva
 
 ## Tokenisierung & Entfernung bestimmter Muster und Symbole
 
-Es gibt sehr viele verschiedene sogenannte „Tokenizer“. Wir nutzen hier den Standard-Tokenizer von `quanteda`, der Wörter, Satzzeichen, Emojis, URLs und Hashtags als Tokens behandelt. Zusätzlich nutzen wir Argumente für die Funktion `tokens()`, um Satzzeichen (punctuation), Symbole, Zahlen und URLs zu entfernen. Es gibt weitere Optionen, die wir hier aber nicht verwenden (siehe `?tokens`).
+Es gibt sehr viele verschiedene sogenannte „[Tokenizer](https://huggingface.co/learn/llm-course/en/chapter2/4)“. Wir nutzen hier den Standard-Tokenizer von `quanteda`, der Wörter, Satzzeichen, Emojis, URLs und Hashtags als Tokens behandelt. Zusätzlich nutzen wir Argumente für die Funktion `tokens()`, um Satzzeichen (punctuation), Symbole, Zahlen und URLs zu entfernen. Es gibt weitere Optionen, die wir hier aber nicht verwenden (siehe `?tokens`).
 
 ### Bluesky
 
@@ -141,7 +144,7 @@ tokens_youtube
 ```
 
 ::: {.callout-note title="Bag of Words" collapse="true"}
-Wenn Texte in Tokens zerlegt und diese gezählt werden, gehen syntaktische Informationen und die Reihenfolge von und Beziehungen zwischen Wörtern/Tokens verloren (z.B. auch Negation). Diese Art der Repräsentation von Textdaten wird als "Bag of Words" bezeichnet. Wenn das gemeinsame Auftreten von Wörtern/Tokens wichtig für die Analyse ist, zerlegt man Texte nicht in einzelne Wörter/Tokens (sog. Unigramme/unigrams), sondern Kombinationen von zwei (bigrams), drei (trigrams) oder mehr (n-grams) Wörter/Tokens.
+Wenn Texte in Tokens zerlegt und diese gezählt werden, gehen syntaktische Informationen und die Reihenfolge von und Beziehungen zwischen Wörtern/Tokens verloren (z.B. auch Negation). Diese Art der Repräsentation von Textdaten wird als "[Bag of Words](https://en.wikipedia.org/wiki/Bag-of-words_model)" bezeichnet. Wenn das gemeinsame Auftreten von Wörtern/Tokens wichtig für die Analyse ist, zerlegt man Texte nicht in einzelne Wörter/Tokens (sog. Unigramme/unigrams), sondern Kombinationen von zwei (bigrams), drei (trigrams) oder mehr (n-grams) Wörter/Tokens.
 Trotz dieser Einschränkungen ist die Bag-of-Words-Repräsentation eine der am häufigsten genutzten Darstellungen von Textdaten für die Analyse, da sie einfach zu erstellen und zu interpretieren ist.
 :::
 

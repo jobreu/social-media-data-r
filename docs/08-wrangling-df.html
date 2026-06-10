@@ -399,7 +399,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#zeilen-filtern" id="toc-zeilen-filtern" class="nav-link" data-scroll-target="#zeilen-filtern"><span class="header-section-number">9.1</span> Zeilen filtern</a></li>
   <li><a href="#veränderung-der-reihenfolge-der-zeilen" id="toc-veränderung-der-reihenfolge-der-zeilen" class="nav-link" data-scroll-target="#veränderung-der-reihenfolge-der-zeilen"><span class="header-section-number">9.2</span> Veränderung der Reihenfolge der Zeilen</a></li>
   <li><a href="#befehle-verketten" id="toc-befehle-verketten" class="nav-link" data-scroll-target="#befehle-verketten"><span class="header-section-number">9.3</span> Befehle verketten</a></li>
-  <li><a href="#datensätze-zusammenführen-sec-merge" id="toc-datensätze-zusammenführen-sec-merge" class="nav-link" data-scroll-target="#datensätze-zusammenführen-sec-merge"><span class="header-section-number">9.4</span> Datensätze zusammenführen [#sec-merge]</a></li>
+  <li><a href="#sec-merge" id="toc-sec-merge" class="nav-link" data-scroll-target="#sec-merge"><span class="header-section-number">9.4</span> Datensätze zusammenführen</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/08-wrangling-df.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
@@ -680,8 +680,8 @@ $ LikeCount         &lt;dbl&gt; 400, 390, 380, 370, 360, 350, 350, 340, 330, 330
 </div>
 </div>
 </section>
-<section id="datensätze-zusammenführen-sec-merge" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="datensätze-zusammenführen-sec-merge"><span class="header-section-number">9.4</span> Datensätze zusammenführen [#sec-merge]</h2>
+<section id="sec-merge" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="sec-merge"><span class="header-section-number">9.4</span> Datensätze zusammenführen</h2>
 <p>Manchmal ist es notwendig, mehrere Datensätze zusammenzuführen, z.B. wenn die Daten in mehreren Dateien gespeichert sind oder wenn man Daten aus verschiedenen Quellen kombinieren möchte.</p>
 <p>Das Paket <code>dplyr</code> bietet zahlreiche Möglichkeiten, um Datensätze auf unterschiedliche Weise zusammenzuführen. Die einfachsten Varianten sind die Funktionen <code>bind_rows()</code> und <code>bind_cols()</code>. Diese fügen einem Datensatz Zeilen (Rows) bzw. Fälle oder Spalten (columns) bzw. Variablen hinzu.</p>
 <p><strong>Wichtig</strong>: Damit die Funktionen <code>bind_rows()</code> und <code>bind_cols()</code> funktionieren, müssen die Datensätze, die zusammengeführt werden sollen, die gleiche Anzahl von Spalten bzw. Zeilen haben. Zudem müssen die Spaltennamen in den Datensätzen, die mit <code>bind_rows()</code> zusammengeführt werden sollen, übereinstimmen und für <code>bind_cols()</code> muss die Reihenfolge der Zeilen in den beiden Datensätzen dieselbe sein.</p>

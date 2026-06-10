@@ -2,6 +2,8 @@
 
 Topic Modeling ist eine Methode aus der Kategorie des Unsupervised Machine Learning, mit der versucht wird, Themen in einem Textkorpus zu identifizieren (siehe hierzu auch den entsprechenden [Abschnitt im Buch *Computational Analysis of Communication*](https://cssbook.net/content/chapter11.html#sec-unsupervised).
 
+Man kann sich Topic Models in gewisser Weise als Kombination von Faktorenanalyse und Clustering vorstellen. Wie bei der Faktorenanalyse werden die Themen als latente Variablen betrachtet, die durch die beobachteten Wörter in den Dokumenten definiert sind. Wie beim Clustering werden Dokumente basierend auf ihrer Ähnlichkeit in Bezug auf die Themen gruppiert. Es geht also um die Reduktion von Dimensionen (von Wörtern zu Themen) und die Gruppierung (von Dokumenten nach Themen).
+
 Für Topic Models gibt es im wesentlichen zwei Grundannahmen:
 
 1. *Themen sind Mischungen aus Wörtern*: Ein Thema ist eine Ansammlung von Wörtern mit unterschiedlichen Wahrscheinlichkeiten. Beim Thema „Sport“ ist die Wahrscheinlichkeit, dass das Wort „Ball“ vorkommt, hoch, während die Wahrscheinlichkeit für das Wort „Demokratie“ sehr gering ist.
@@ -92,6 +94,9 @@ install.packages("topicmodels")
 ```
 
 ```{r}
+#| warning: false
+#| message: false
+
 library(topicmodels)
 ```
 

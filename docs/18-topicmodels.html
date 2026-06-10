@@ -471,6 +471,7 @@ window.Quarto = {
 
 
 <p>Topic Modeling ist eine Methode aus der Kategorie des Unsupervised Machine Learning, mit der versucht wird, Themen in einem Textkorpus zu identifizieren (siehe hierzu auch den entsprechenden <a href="https://cssbook.net/content/chapter11.html#sec-unsupervised">Abschnitt im Buch <em>Computational Analysis of Communication</em></a>.</p>
+<p>Man kann sich Topic Models in gewisser Weise als Kombination von Faktorenanalyse und Clustering vorstellen. Wie bei der Faktorenanalyse werden die Themen als latente Variablen betrachtet, die durch die beobachteten Wörter in den Dokumenten definiert sind. Wie beim Clustering werden Dokumente basierend auf ihrer Ähnlichkeit in Bezug auf die Themen gruppiert. Es geht also um die Reduktion von Dimensionen (von Wörtern zu Themen) und die Gruppierung (von Dokumenten nach Themen).</p>
 <p>Für Topic Models gibt es im wesentlichen zwei Grundannahmen:</p>
 <ol type="1">
 <li><p><em>Themen sind Mischungen aus Wörtern</em>: Ein Thema ist eine Ansammlung von Wörtern mit unterschiedlichen Wahrscheinlichkeiten. Beim Thema „Sport“ ist die Wahrscheinlichkeit, dass das Wort „Ball“ vorkommt, hoch, während die Wahrscheinlichkeit für das Wort „Demokratie“ sehr gering ist.</p></li>
@@ -550,34 +551,31 @@ window.Quarto = {
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(topicmodels)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'topicmodels' wurde unter R Version 4.5.3 erstellt</code></pre>
-</div>
 </div>
 <p>Um die Berechnung des Topic Models etwas zu beschleunigen, reduzieren wir die Anzahl der Wörter in der DFM , indem wir nur Wörter behalten, die in mindestens 5 Posts bzw. Kommentaren enthalten sind. Zur Erinnerung: Wir können in der Funktion <code>stm_trim()</code> auch andere Werte für die minimale und/oder maximale Term Frequency und Document Frequency wählen (siehe <a href="16-descriptive-analysis.html" class="quarto-xref"><span>Kapitel 16</span></a>). Im Gegensatz zu den vorheringen Analysen behalten wir allerdings die Hashtags für die Topic Models.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dfm_bluesky_trimmed <span class="ot">&lt;-</span> dfm_bluesky <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"bsky.social"</span>,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"@*"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_trim</span>(<span class="at">min_docfreq =</span> <span class="dv">5</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>dfm_youtube_trimmed <span class="ot">&lt;-</span> dfm_youtube <span class="sc">%&gt;%</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"youtube.com"</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"@*"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_trim</span>(<span class="at">min_docfreq =</span> <span class="dv">5</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dfm_bluesky_trimmed <span class="ot">&lt;-</span> dfm_bluesky <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"bsky.social"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"@*"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_trim</span>(<span class="at">min_docfreq =</span> <span class="dv">5</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>dfm_youtube_trimmed <span class="ot">&lt;-</span> dfm_youtube <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"youtube.com"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"@*"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_trim</span>(<span class="at">min_docfreq =</span> <span class="dv">5</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Nun können wir Topic Models für die beiden Korpora berechnen. Hierfür müssen wir zunächst die Anzahl der Themen festlegen, die wir entdecken wollen. In diesem Beispiel wählen wir 5 Themen für beide Korpora. Es ist jedoch wichtig zu beachten, dass die Wahl der Anzahl der Themen eine wichtige Rolle spielt und von der spezifischen Fragestellung und den Daten abhängt.</p>
 <p><em>Hinweis</em>: Je nach Umfang der Daten und der Anzahl der Themen kann die Berechnung eines LDA-Models einige Zeit in Anspruch nehmen.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># Anzahl der Themen</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># LDA für YouTube</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>lda_yt <span class="ot">&lt;-</span> <span class="fu">LDA</span>(<span class="fu">convert</span>(dfm_youtube_trimmed, </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">to =</span> <span class="st">"topicmodels"</span>), <span class="co"># LDA erwartet eine DFM im Format des Pakets topicmodels, daher müssen wir die DFM mit convert() umwandeln</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">k =</span> k, </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">control =</span> <span class="fu">list</span>(<span class="at">seed =</span> <span class="dv">1234</span>)) <span class="co"># Setzen eines Seeds für Reproduzierbarkeit</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">terms</span>(lda_yt, <span class="dv">10</span>) <span class="co"># Ausgabe der 10 wahrscheinlichsten Wörter pro Thema</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># Anzahl der Themen</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># LDA für YouTube</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>lda_yt <span class="ot">&lt;-</span> <span class="fu">LDA</span>(<span class="fu">convert</span>(dfm_youtube_trimmed, </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">to =</span> <span class="st">"topicmodels"</span>), <span class="co"># LDA erwartet eine DFM im Format des Pakets topicmodels, daher müssen wir die DFM mit convert() umwandeln</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">k =</span> k, </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">control =</span> <span class="fu">list</span>(<span class="at">seed =</span> <span class="dv">1234</span>)) <span class="co"># Setzen eines Seeds für Reproduzierbarkeit</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">terms</span>(lda_yt, <span class="dv">10</span>) <span class="co"># Ausgabe der 10 wahrscheinlichsten Wörter pro Thema</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -595,13 +593,13 @@ window.Quarto = {
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LDA für Bluesky</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>lda_bs <span class="ot">&lt;-</span> <span class="fu">LDA</span>(<span class="fu">convert</span>(dfm_bluesky_trimmed, </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">to =</span> <span class="st">"topicmodels"</span>), <span class="co"># LDA erwartet eine DFM im Format des Pakets topicmodels, daher müssen wir die DFM mit convert() umwandeln</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">k =</span> k, </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">control =</span> <span class="fu">list</span>(<span class="at">seed =</span> <span class="dv">1234</span>)) <span class="co"># Setzen eines Seeds für Reproduzierbarkeit</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">terms</span>(lda_bs, <span class="dv">10</span>) <span class="co"># Ausgabe der 10 wahrscheinlichsten Wörter pro Thema</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LDA für Bluesky</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>lda_bs <span class="ot">&lt;-</span> <span class="fu">LDA</span>(<span class="fu">convert</span>(dfm_bluesky_trimmed, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">to =</span> <span class="st">"topicmodels"</span>), <span class="co"># LDA erwartet eine DFM im Format des Pakets topicmodels, daher müssen wir die DFM mit convert() umwandeln</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">k =</span> k, </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">control =</span> <span class="fu">list</span>(<span class="at">seed =</span> <span class="dv">1234</span>)) <span class="co"># Setzen eines Seeds für Reproduzierbarkeit</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">terms</span>(lda_bs, <span class="dv">10</span>) <span class="co"># Ausgabe der 10 wahrscheinlichsten Wörter pro Thema</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -621,42 +619,42 @@ window.Quarto = {
 <p>Wie man sehen kann, sind die Themen, die von LDA entdeckt werden, nicht immer leicht zu interpretieren. Um die Identifikation von Themen zu verbessern, gibt es mehrere Optionen. Neben der Anpassung der Anzahl der Themen kann auch die Datenaufbereitung einen großen Einfluss auf die Ergebnisse haben. So können z.B. weitere Tokens entfernt oder die minimale bzw. maximale Term Frequency oder Document Frequency angepasst werden.</p>
 <p>Um eine wiederholte Berechnung zu vermeiden und um mit den Ergebnissen auch später nioch weitarbeiten zu können, empfiehlt es sich, die berechneten Modelle sowie die zugehärigen DFMs zu speichern. Dies geht z.B. mit der Funktion <code>saveRDS()</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LDA-Modelle speichern</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(lda_yt, <span class="st">"./data/topicmodels/lda_youtube.rds"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(lda_bs, <span class="st">"./data/topicmodels/lda_bluesky.rds"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># DFM-Modelle speichern</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dfm_youtube_trimmed, <span class="st">"./data/topicmodels/dfm_youtube_trimmed.rds"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dfm_bluesky_trimmed, <span class="st">"./data/topicmodels/dfm_bluesky_trimmed.rds"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LDA-Modelle speichern</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(lda_yt, <span class="st">"./data/topicmodels/lda_youtube.rds"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(lda_bs, <span class="st">"./data/topicmodels/lda_bluesky.rds"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># DFM-Modelle speichern</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dfm_youtube_trimmed, <span class="st">"./data/topicmodels/dfm_youtube_trimmed.rds"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dfm_bluesky_trimmed, <span class="st">"./data/topicmodels/dfm_bluesky_trimmed.rds"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="stm" class="level2" data-number="18.3">
 <h2 data-number="18.3" class="anchored" data-anchor-id="stm"><span class="header-section-number">18.3</span> STM</h2>
 <p>Eine Weiterentwicklung von LDA ist das <strong>Structural Topic Model (STM)</strong>, welches im <code>R</code>-Paket <a href="https://www.structuraltopicmodel.com/"><code>stm</code></a> <span class="citation" data-cites="RobertsEtAl2019">(<a href="references.html#ref-RobertsEtAl2019" role="doc-biblioref">Roberts et al., 2019</a>)</span> implementiert ist. STM ermöglicht es, externe Variablen bzw. Metadaten zu Dokumenten (z.B. Autor:innen, Zeit, Parteizugehörigkeit) direkt in die Berechnung der Themen einzubeziehen. Dies kann die Identifikation von Themen verbessern und ermöglicht es, die Beziehung zwischen Themen und diesen Variablen zu untersuchen. Mit einem STM und dem Paket <code>stm</code> lassen sich auch Veränderungen von Themen über die Zeit untersuchen. Mit deinem Ansatz fällt STM zwischen die Kategorien Unsupervised und Supervised, weshalb man solche Methoden auch als Semi-Supervised beschreibt.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"stm"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"stm"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stm)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stm)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Es gibt für ein STM verschiedene Möglichkeiten, wie die externen Variablen in die Berechnung einbezogen werden können: Als sogenannten “Prevalence Covariates” oder als “Content Covariates”. Prevalence gibt an, inwieweit ein Dokument mit einem Thema in Verbindung steht. Content bezieht sich auf die innerhalb eines Themas verwendeten Begriffe. So lässt sich z.B. untersuchen, ob es bestimmte Variablen (Eigenschaften eines Dokuments) gibt, welche die Häufigkeit eines Themas beeinflussen (Prevalence) oder ob es Unterschiede zwischen Gruppen in den typischen Wörtern für ein Thema gibt (Content). Sowohl <code>prevalence</code> als auch <code>content</code> sind Argumente der Funktion <code>stm()</code>. Da es bei <code>content</code> um Gruppenvergleiche kann als Eingabe hier nur eine einzige kategoriale Variable (ein Faktor) verwendet werden. Für <code>prevalence</code> sind auch kontinuierliche numerische Variablen möglich.</p>
 <p>Im nachfolgenden Beispiele berechnen wir ein STM für die <em>Bluesky</em>-Daten und nutzen den Like Count der Kommentare als “Prevalence Covariate”.</p>
 <p><em>Hinweis</em>: Die Berechnung eines STM ist deutlich rechenintensiver als die Berechnung eines LDA, weshalb es hier etwas länger dauern kann, bis die Ergebnisse vorliegen.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DFM in STM-Format umwandeln</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>stm_data <span class="ot">&lt;-</span> <span class="fu">convert</span>(dfm_youtube_trimmed, <span class="at">to =</span> <span class="st">"stm"</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># STM berechnen</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>stm_model <span class="ot">&lt;-</span> <span class="fu">stm</span>(<span class="at">documents =</span> stm_data<span class="sc">$</span>documents, </span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">vocab =</span> stm_data<span class="sc">$</span>vocab, </span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">K =</span> <span class="dv">5</span>, </span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prevalence =</span> <span class="sc">~</span> LikeCount, </span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> stm_data<span class="sc">$</span>meta, </span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">seed =</span> <span class="dv">1234</span>,</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Top Wörter pro Thema</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="fu">labelTopics</span>(stm_model)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DFM in STM-Format umwandeln</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>stm_data <span class="ot">&lt;-</span> <span class="fu">convert</span>(dfm_youtube_trimmed, <span class="at">to =</span> <span class="st">"stm"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># STM berechnen</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>stm_model <span class="ot">&lt;-</span> <span class="fu">stm</span>(<span class="at">documents =</span> stm_data<span class="sc">$</span>documents, </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">vocab =</span> stm_data<span class="sc">$</span>vocab, </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">K =</span> <span class="dv">5</span>, </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prevalence =</span> <span class="sc">~</span> LikeCount, </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> stm_data<span class="sc">$</span>meta, </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">seed =</span> <span class="dv">1234</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Top Wörter pro Thema</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="fu">labelTopics</span>(stm_model)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -690,21 +688,21 @@ Topic 5 Top Words:
 <p>Was die Labels für die Top Words bedeuten, wird in der Dokumentation der Funktion <code>labelTopics()</code> ausführlich erklärt. “Highest Prob” sind die Wörter mit der höchsten Wahrscheinlichkeit in einem Thema. “FREX” sind die Wörter, die sowohl häufig als auch exklusiv für ein Thema sind.</p>
 <p>Weitere Infos:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>?labelTopics</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>?labelTopics</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Da wir im STM die Anzahl der Likes als “Prevalence Covariate” genutzt haben, können wir nun untersuchen, ob es einen Zusammenhang zwischen der Anzahl der Likes und der Wahrscheinlichkeit gibt, dass ein Dokument einem bestimmten Thema zugeordnet wird. Hierfür können wir die Funktion <code>estimateEffect()</code> nutzen.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effekt des Like Counts auf die Themenzuordnung schätzen</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>effect <span class="ot">&lt;-</span> <span class="fu">estimateEffect</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> LikeCount, stm_model, <span class="at">meta =</span> stm_data<span class="sc">$</span>meta)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Effekt plotten (hier mit base R)</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(effect,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">covariate =</span> <span class="st">"LikeCount"</span>,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">topics =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">model =</span> stm_model,</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">method =</span> <span class="st">"continuous"</span>,</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Like Count"</span>,</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Expected Topic Proportion"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effekt des Like Counts auf die Themenzuordnung schätzen</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>effect <span class="ot">&lt;-</span> <span class="fu">estimateEffect</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> LikeCount, stm_model, <span class="at">meta =</span> stm_data<span class="sc">$</span>meta)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Effekt plotten (hier mit base R)</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(effect,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">covariate =</span> <span class="st">"LikeCount"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">topics =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">model =</span> stm_model,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">method =</span> <span class="st">"continuous"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Like Count"</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Expected Topic Proportion"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -715,11 +713,11 @@ Topic 5 Top Words:
 </div>
 <p>Auch hier können bzw. sollten wir das Modell sowie die zugehörigen Daten speichern, um später damit weiterarbeiten zu können.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># STM-Modell speichern</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(stm_model, <span class="st">"./data/topicmodels/stm_youtube.rds"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># STM-Daten speichern</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(stm_data, <span class="st">"./data/topicmodels/stm_data_youtube.rds"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># STM-Modell speichern</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(stm_model, <span class="st">"./data/topicmodels/stm_youtube.rds"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># STM-Daten speichern</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(stm_data, <span class="st">"./data/topicmodels/stm_data_youtube.rds"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="evaluation-und-validierung-von-topic-models" class="level2" data-number="18.4">

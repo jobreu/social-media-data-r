@@ -177,7 +177,7 @@ yt_demo_new <- yt_demo %>%
 glimpse(yt_demo_new)
 ```
 
-## Datensätze zusammenführen [#sec-merge]
+## Datensätze zusammenführen {#sec-merge}
 
 Manchmal ist es notwendig, mehrere Datensätze zusammenzuführen, z.B. wenn die Daten in mehreren Dateien gespeichert sind oder wenn man Daten aus verschiedenen Quellen kombinieren möchte. 
 

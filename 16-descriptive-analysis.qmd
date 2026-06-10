@@ -78,6 +78,9 @@ install.packages("quanteda.textplots")
 ```
 
 ```{r}
+#| warning: false
+#| message: false
+
 library(quanteda.textstats)
 library(quanteda.textplots)
 ```
@@ -185,7 +188,7 @@ ggplot(hashtags_bs,
 ```
 
 ::: {.callout-note title="Regular Expressions" collapse="true"}
-Für die Filterung oder Extraktion von bestimmten Mustern in Texten können nicht nur exakte Wörter oder Phrasen,  (exact matching)sondern auch sogenannte [reguläre Ausdrücke (regular expressions)](https://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck) genutzt werden. Reguläre Ausdrücke sind eine Art von Suchmustern, mit denen komplexere Suchanfragen formuliert werden können. Sie ermöglichen es z.B. nach Wörtern zu suchen, die mit einem bestimmten Präfix oder Suffix beginnen oder enden, oder nach Wörtern, die bestimmte Zeichen enthalten oder nicht enthalten. In `quanteda` können reguläre Ausdrücke in Funktionen wie `tokens_select()` oder `dfm_select()` verwendet werden, indem man das Argument `valuetype = "regex"` angibt.
+Für die Filterung oder Extraktion von bestimmten Mustern in Texten können nicht nur exakte Wörter oder Phrasen (exact matching), sondern auch sogenannte [reguläre Ausdrücke (regular expressions)](https://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck) genutzt werden. Reguläre Ausdrücke sind eine Art von Suchmustern, mit denen komplexere Suchanfragen formuliert werden können. Sie ermöglichen es z.B. nach Wörtern zu suchen, die mit einem bestimmten Präfix oder Suffix beginnen oder enden, oder nach Wörtern, die bestimmte Zeichen enthalten oder nicht enthalten. In `quanteda` können reguläre Ausdrücke in Funktionen wie `tokens_select()` oder `dfm_select()` verwendet werden, indem man das Argument `valuetype = "regex"` angibt.
 
 Auch in der Datenaufbereitung können reguläre Ausdrücke z.B. in Kombination mit den Funktionen aus dem [Paket `stringr`](https://stringr.tidyverse.org/) genutzt werden, um bestimmte Muster zu erkennen, extrahieren, löschen oder ersetzen. Eine Einführung in Regular Expressions geht über den Rahmen dieses Buchs hinaus. Es gibt jedoch einige `R`-Pakete, die die Erstellung von Regular Expressions erleichtern. Zu diesen gehören [`rex`](https://rex.r-lib.org/), [`rebus`](https://cran.r-project.org/web/packages/rebus/index.html), [`RVerbalExpressions`](https://rverbalexpressions.netlify.app/) und [`qdapRegex`](https://github.com/trinker/qdapRegex). Zudem sind LLM-basierte Chatbots auch recht gut darin, Regular Expressions zu erstellen.
 :::
@@ -195,7 +198,7 @@ Auch in der Datenaufbereitung können reguläre Ausdrücke z.B. in Kombination m
 Die Analyse von Worthäufigkeiten in Social-Media-Daten kann nützlich sein, um einen ersten Eindruck von den Daten zu bekommen. Allerdings haben Worthäufigkeiten auch einige Nachteile. So können sie z.B. durch die Präsenz von häufigen, aber wenig aussagekräftigen Wörtern (z.B. "und", "der", "die") verzerrt werden. Die Entfernung von Stoppwörtern (siehe @sec-preprocessing) sowie die Reduktion der DFM über `dfm_trim()` sind zwei Möglichkeiten, diesem Problem zu begegnen. 
 
 ::: {.callout-note title="Zipfsches Gesetz" collapse="true"}
-Über alle Sprachen hinweg folgt die Häufigkeitsverteilung von Wörtern in einem großen Korpus dem sog. Zipf[schen Gesetz]()https://de.wikipedia.org/wiki/Zipfsches_Gesetz. KVereinfacht gesagt besagt dieses, dass wenige Wörter sehr häufig vorkommen, während die meisten Wörter nur sehr selten vorkommen.
+Über alle Sprachen hinweg folgt die Häufigkeitsverteilung von Wörtern in einem großen Korpus dem sog. [Zipfschen Gesetz](https://de.wikipedia.org/wiki/Zipfsches_Gesetz). KVereinfacht gesagt besagt dieses, dass wenige Wörter sehr häufig vorkommen, während die meisten Wörter nur sehr selten vorkommen.
 Die Formel für das Zipfsche Gesetz lautet:
 $$\text{word frequency} \propto \frac{1}{\text{word rank}}.$$
 In Worten ausgedrückt besagt dies, dass die Häufigkeit eines Wortes umgekehrt proportional zu seinem Rang in der Häufigkeitsliste ist. Das häufigste Wort (Rang 1) ist also doppelt so häufig wie das zweithäufigste Wort (Rang 2), dreimal so häufig wie das dritthäufigste Wort (Rang 3) und so weiter. 
@@ -275,7 +278,9 @@ An der Visualisierung sehen wir, dass die Wörter mit den höchsten TF-IDF-Werte
 
 ### Keyness-Analyse
 
-Die [Keyness-Analyse](https://tutorials.quanteda.io/statistical-analysis/keyness/) ist eine Methode, um die Wörter zu identifizieren, die in einem bestimmten Korpus oder einer bestimmten Gruppe von Dokumenten im Vergleich zu einem Referenzkorpus oder einer anderen Gruppe von Dokumenten besonders häufig oder selten vorkommen. In `quanteda` kann die Keyness-Analyse mit der Funktion `textstat_keyness()` durchgeführt werden. Diese Funktion berechnet die Keyness-Werte für jedes Wort basierend auf der Häufigkeit des Wortes in der Zielgruppe im Vergleich zur Häufigkeit des Wortes in der Referenzgruppe. Die Keyness-Werte können dann verwendet werden, um die Wörter zu identifizieren, die in der Zielgruppe besonders charakteristisch sind.
+Die [Keyness-Analyse](https://tutorials.quanteda.io/statistical-analysis/keyness/) ist eine Methode, um die Wörter zu identifizieren, die in einem bestimmten Korpus oder einer bestimmten Gruppe von Dokumenten im Vergleich zu einem Referenzkorpus oder einer anderen Gruppe von Dokumenten besonders häufig oder selten vorkommen. In `quanteda` kann die Keyness-Analyse mit der Funktion `textstat_keyness()` durchgeführt werden. Diese Funktion berechnet die Keyness-Werte für jedes Wort basierend auf der Häufigkeit des Wortes in der Zielgruppe im Vergleich zur Häufigkeit des Wortes in der Referenzgruppe. Die Keyness-Werte können dann verwendet werden, um die Wörter zu identifizieren, die in der Zielgruppe besonders charakteristisch sind. 
+
+Im nachfolgenden Beispiel wird eine Keyness-Analyse durchgeführt, um die Wörter zu identifizieren, die in den Posts von Katharina Dröge im Vergleich zu den Posts der anderen Politiker:innen besonders häufig oder selten vorkommen. Die Ergebnisse werden mit der Funktion `textplot_keyness()` aus dem Paket `quanteda.textplots` visualisiert.
 
 ```{r}
 tstat_key <- dfm_bluesky %>% 
@@ -286,7 +291,7 @@ tstat_key <- dfm_bluesky %>%
 textplot_keyness(tstat_key)
 ```
 
-Wer genau hinschaut, sieht, dass eine Keyness-Analyse streng genommen kein rein deskriptives Verfahren ist, sondern eine inferenzstatistische Methode, da sie auf einem statistischen Test basiert (Chi^2-Test), um die Signifikanz der Keyness-Werte zu bestimmen. Dennoch wird sie oft in der deskriptiven Analyse von Textdaten verwendet, um die charakteristischen Wörter einer bestimmten Gruppe von Dokumenten zu identifizieren.
+Wer genau hinschaut, sieht, dass eine Keyness-Analyse streng genommen kein rein deskriptives Verfahren ist, sondern eine inferenzstatistische Methode, da sie auf einem statistischen Test basiert (*Chi^2^*-Test), um die Signifikanz der Keyness-Werte zu bestimmen. Dennoch wird sie oft in der deskriptiven Analyse von Textdaten verwendet, um die charakteristischen Wörter einer bestimmten Gruppe von Dokumenten zu identifizieren.
 
 ## Weitere deskriptive Analysen am Beispiel von *YouTube*-Daten
 

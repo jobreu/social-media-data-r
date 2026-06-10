@@ -526,24 +526,18 @@ window.Quarto = {
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"quanteda.textplots"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quanteda.textstats)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'quanteda.textstats' wurde unter R Version 4.5.2 erstellt</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quanteda.textplots)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'quanteda.textplots' wurde unter R Version 4.5.2 erstellt</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quanteda.textstats)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quanteda.textplots)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="worthäufigkeiten" class="level2" data-number="16.2">
 <h2 data-number="16.2" class="anchored" data-anchor-id="worthäufigkeiten"><span class="header-section-number">16.2</span> Worthäufigkeiten</h2>
 <p>Mit der Funktion <code>textstat_frequency()</code> aus dem Paket <code>quanteda.textstats</code> können wir die Häufigkeiten von Wörtern in einem Korpus berechnen. Diese Funktion gibt eine Tabelle zurück, in der die Wörter nach ihrer Häufigkeit sortiert sind. Wir können spezifizieren, wie viele Wörter wir in der Tabelle haben wollen, indem wir das Argument <code>n</code> angeben.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dfm_bluesky <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"bsky.social"</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"@*"</span>, <span class="st">"#*"</span>)) <span class="sc">%&gt;%</span> <span class="co"># Entfernung von Bluesky-Links, Mentions und Hashtags </span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textstat_frequency</span>(<span class="at">n =</span> <span class="dv">20</span>) <span class="co"># Anzahl der häufigsten Wörter, die angezeigt werden sollen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dfm_bluesky <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"bsky.social"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"@*"</span>, <span class="st">"#*"</span>)) <span class="sc">%&gt;%</span> <span class="co"># Entfernung von Bluesky-Links, Mentions und Hashtags </span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textstat_frequency</span>(<span class="at">n =</span> <span class="dv">20</span>) <span class="co"># Anzahl der häufigsten Wörter, die angezeigt werden sollen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       feature frequency rank docfreq group
 1     menschen       288    1     258   all
@@ -570,10 +564,10 @@ window.Quarto = {
 </div>
 <p>Die Variable <code>frequency</code> gibt an, wie oft ein Wort im gesamten Korpus vorkommt. Die Variable <code>docfreq</code> gibt an, in wie vielen Dokumenten ein Wort vorkommt.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dfm_youtube <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"youtube.com"</span>,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"@*"</span>, <span class="st">"#*"</span>)) <span class="sc">%&gt;%</span> <span class="co"># Entfernung von YouTube-Links, Mentions und Hashtags </span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textstat_frequency</span>(<span class="at">n =</span> <span class="dv">20</span>) <span class="co"># Anzahl der häufigsten Wörter, die angezeigt werden sollen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dfm_youtube <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"youtube.com"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"@*"</span>, <span class="st">"#*"</span>)) <span class="sc">%&gt;%</span> <span class="co"># Entfernung von YouTube-Links, Mentions und Hashtags </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textstat_frequency</span>(<span class="at">n =</span> <span class="dv">20</span>) <span class="co"># Anzahl der häufigsten Wörter, die angezeigt werden sollen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       feature frequency rank docfreq group
 1          afd       411    1     341   all
@@ -619,11 +613,11 @@ window.Quarto = {
 </div>
 <p>Eine oft genutzte Form der Visualisierung von Worthäufigkeiten ist die Wortwolke (word cloud). Diese lässt sich mit der Funktion <code>textplot_wordcloud()</code> aus dem Paket <code>quanteda.textplots</code> erstellen. In einer Wortwolke werden die Wörter in unterschiedlicher Größe dargestellt, wobei die Größe eines Wortes proportional zu seiner Häufigkeit im Korpus ist. Je häufiger ein Wort vorkommt, desto größer wird es dargestellt. Wortwolken sind recht anschaulich, um einen ersten visuellen Eindruck von den Daten zu bekommen. Für echte Analysen sind sie aber nur eingeschränkt geeignet, u.a. weil sie schnell unübersichtlich werden. Um die Anzahl der dargestellten Wörter zu reduzieren, kann man die <code>quanteda</code>-Funktion <code>dfm_trim()</code> verwenden. Diese erlaubt es, Wörter anhand der minimalen oder maximalen (Term) Frequency oder Document Frequency (s.o.) zu filtern.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dfm_bluesky <span class="sc">%&gt;%</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"bsky.social"</span>,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"@*"</span>, <span class="st">"#*"</span>)) <span class="sc">%&gt;%</span> <span class="co"># Entfernung von Bluesky-Links, Mentions und Hashtags </span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_trim</span>(<span class="at">min_termfreq =</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="co"># Entfernung von Wörtern, die weniger als 100 Mal im Korpus vorkommen</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textplot_wordcloud</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dfm_bluesky <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"bsky.social"</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"@*"</span>, <span class="st">"#*"</span>)) <span class="sc">%&gt;%</span> <span class="co"># Entfernung von Bluesky-Links, Mentions und Hashtags </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_trim</span>(<span class="at">min_termfreq =</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="co"># Entfernung von Wörtern, die weniger als 100 Mal im Korpus vorkommen</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textplot_wordcloud</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -633,11 +627,11 @@ window.Quarto = {
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dfm_youtube <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"youtube.com"</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"@*"</span>, <span class="st">"#*"</span>)) <span class="sc">%&gt;%</span> <span class="co"># Entfernung von YouTube-Links, Mentions und Hashtags </span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dfm_trim</span>(<span class="at">min_termfreq =</span> <span class="dv">50</span>) <span class="sc">%&gt;%</span> <span class="co"># Entfernung von Wörtern, die weniger als 50 Mal im Korpus vorkommen</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textplot_wordcloud</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dfm_youtube <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"youtube.com"</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"@*"</span>, <span class="st">"#*"</span>)) <span class="sc">%&gt;%</span> <span class="co"># Entfernung von YouTube-Links, Mentions und Hashtags </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dfm_trim</span>(<span class="at">min_termfreq =</span> <span class="dv">50</span>) <span class="sc">%&gt;%</span> <span class="co"># Entfernung von Wörtern, die weniger als 50 Mal im Korpus vorkommen</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textplot_wordcloud</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -648,16 +642,16 @@ window.Quarto = {
 </div>
 <p>Eine alternative und für die Analyse von Textdaten oft besser geeignete Form der Visualisierung von Worthäufigkeiten ist das Balkendiagramm.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>freq_bs <span class="ot">&lt;-</span> dfm_bluesky <span class="sc">%&gt;%</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"bsky.social"</span>, <span class="st">"dass"</span>,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"@*"</span>, <span class="st">"#*"</span>)) <span class="sc">%&gt;%</span>  </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textstat_frequency</span>(<span class="at">n =</span> <span class="dv">20</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(freq_bs,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> frequency, <span class="at">y =</span> <span class="fu">reorder</span>(feature, frequency))) <span class="sc">+</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Frequency"</span>, <span class="at">y =</span> <span class="st">"Feature"</span>) <span class="sc">+</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>)))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>freq_bs <span class="ot">&lt;-</span> dfm_bluesky <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"bsky.social"</span>, <span class="st">"dass"</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"@*"</span>, <span class="st">"#*"</span>)) <span class="sc">%&gt;%</span>  </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textstat_frequency</span>(<span class="at">n =</span> <span class="dv">20</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(freq_bs,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> frequency, <span class="at">y =</span> <span class="fu">reorder</span>(feature, frequency))) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Frequency"</span>, <span class="at">y =</span> <span class="st">"Feature"</span>) <span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>)))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -691,9 +685,9 @@ window.Quarto = {
 <h2 data-number="16.3" class="anchored" data-anchor-id="mentions-und-hashtags"><span class="header-section-number">16.3</span> @-Mentions und Hashtags</h2>
 <p>Nach der gleichen Logik wie bei den Worthäufigkeiten können wir auch die Häufigkeiten von @-Mentions und Hashtags berechnen. Dazu müssen wir diese aus den Texten extrahieren. Dies geht mit der Funktion <code>tokens_select()</code> aus dem Paket <code>quanteda</code>. Diese erlaubt es, Tokens anhand von Mustern zu selektieren. Für @-Mentions ist das Muster <code>@*</code> und für Hashtags <code>#*</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dfm_bluesky <span class="sc">%&gt;%</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_select</span>(<span class="at">pattern =</span> <span class="st">"@*"</span>) <span class="sc">%&gt;%</span>  <span class="co"># Auswahl von @-Mentions</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textstat_frequency</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="co"># Anzahl der häufigsten @-Mentions, die angezeigt werden sollen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dfm_bluesky <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_select</span>(<span class="at">pattern =</span> <span class="st">"@*"</span>) <span class="sc">%&gt;%</span>  <span class="co"># Auswahl von @-Mentions</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textstat_frequency</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="co"># Anzahl der häufigsten @-Mentions, die angezeigt werden sollen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              feature frequency rank docfreq group
 1             @gruene        69    1      69   all
@@ -710,9 +704,9 @@ window.Quarto = {
 </div>
 <p>Dass die Account-Namen teilweise abgeschnitten sind, liegt daran, dass wir bei der Erstellung der DFM Satzzeichen entfernt haben.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dfm_bluesky <span class="sc">%&gt;%</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_select</span>(<span class="at">pattern =</span> <span class="st">"#*"</span>) <span class="sc">%&gt;%</span>  <span class="co"># Auswahl von Hashtags</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textstat_frequency</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="co"># Anzahl der häufigsten Hashtags, die angezeigt werden sollen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dfm_bluesky <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_select</span>(<span class="at">pattern =</span> <span class="st">"#*"</span>) <span class="sc">%&gt;%</span>  <span class="co"># Auswahl von Hashtags</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textstat_frequency</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="co"># Anzahl der häufigsten Hashtags, die angezeigt werden sollen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        feature frequency rank docfreq group
 1      #ukraine       117    1     117   all
@@ -728,15 +722,15 @@ window.Quarto = {
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>hashtags_bs <span class="ot">&lt;-</span> dfm_bluesky <span class="sc">%&gt;%</span> </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_select</span>(<span class="at">pattern =</span> <span class="st">"#*"</span>) <span class="sc">%&gt;%</span>  <span class="co"># Auswahl von Hashtags</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textstat_frequency</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="co"># Anzahl der häufigsten Hashtags, die angezeigt werden sollen</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hashtags_bs,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> frequency, <span class="at">y =</span> <span class="fu">reorder</span>(feature, frequency))) <span class="sc">+</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Frequency"</span>, <span class="at">y =</span> <span class="st">"Hashtag"</span>) <span class="sc">+</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>)))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>hashtags_bs <span class="ot">&lt;-</span> dfm_bluesky <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_select</span>(<span class="at">pattern =</span> <span class="st">"#*"</span>) <span class="sc">%&gt;%</span>  <span class="co"># Auswahl von Hashtags</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textstat_frequency</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="co"># Anzahl der häufigsten Hashtags, die angezeigt werden sollen</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hashtags_bs,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> frequency, <span class="at">y =</span> <span class="fu">reorder</span>(feature, frequency))) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Frequency"</span>, <span class="at">y =</span> <span class="st">"Hashtag"</span>) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>)))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -757,7 +751,7 @@ window.Quarto = {
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Für die Filterung oder Extraktion von bestimmten Mustern in Texten können nicht nur exakte Wörter oder Phrasen, (exact matching)sondern auch sogenannte <a href="https://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck">reguläre Ausdrücke (regular expressions)</a> genutzt werden. Reguläre Ausdrücke sind eine Art von Suchmustern, mit denen komplexere Suchanfragen formuliert werden können. Sie ermöglichen es z.B. nach Wörtern zu suchen, die mit einem bestimmten Präfix oder Suffix beginnen oder enden, oder nach Wörtern, die bestimmte Zeichen enthalten oder nicht enthalten. In <code>quanteda</code> können reguläre Ausdrücke in Funktionen wie <code>tokens_select()</code> oder <code>dfm_select()</code> verwendet werden, indem man das Argument <code>valuetype = "regex"</code> angibt.</p>
+<p>Für die Filterung oder Extraktion von bestimmten Mustern in Texten können nicht nur exakte Wörter oder Phrasen (exact matching), sondern auch sogenannte <a href="https://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck">reguläre Ausdrücke (regular expressions)</a> genutzt werden. Reguläre Ausdrücke sind eine Art von Suchmustern, mit denen komplexere Suchanfragen formuliert werden können. Sie ermöglichen es z.B. nach Wörtern zu suchen, die mit einem bestimmten Präfix oder Suffix beginnen oder enden, oder nach Wörtern, die bestimmte Zeichen enthalten oder nicht enthalten. In <code>quanteda</code> können reguläre Ausdrücke in Funktionen wie <code>tokens_select()</code> oder <code>dfm_select()</code> verwendet werden, indem man das Argument <code>valuetype = "regex"</code> angibt.</p>
 <p>Auch in der Datenaufbereitung können reguläre Ausdrücke z.B. in Kombination mit den Funktionen aus dem <a href="https://stringr.tidyverse.org/">Paket <code>stringr</code></a> genutzt werden, um bestimmte Muster zu erkennen, extrahieren, löschen oder ersetzen. Eine Einführung in Regular Expressions geht über den Rahmen dieses Buchs hinaus. Es gibt jedoch einige <code>R</code>-Pakete, die die Erstellung von Regular Expressions erleichtern. Zu diesen gehören <a href="https://rex.r-lib.org/"><code>rex</code></a>, <a href="https://cran.r-project.org/web/packages/rebus/index.html"><code>rebus</code></a>, <a href="https://rverbalexpressions.netlify.app/"><code>RVerbalExpressions</code></a> und <a href="https://github.com/trinker/qdapRegex"><code>qdapRegex</code></a>. Zudem sind LLM-basierte Chatbots auch recht gut darin, Regular Expressions zu erstellen.</p>
 </div>
 </div>
@@ -778,7 +772,7 @@ window.Quarto = {
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Über alle Sprachen hinweg folgt die Häufigkeitsverteilung von Wörtern in einem großen Korpus dem sog. Zipf<a href="">schen Gesetz</a>https://de.wikipedia.org/wiki/Zipfsches_Gesetz. KVereinfacht gesagt besagt dieses, dass wenige Wörter sehr häufig vorkommen, während die meisten Wörter nur sehr selten vorkommen. Die Formel für das Zipfsche Gesetz lautet: <span class="math display">\[\text{word frequency} \propto \frac{1}{\text{word rank}}.\]</span> In Worten ausgedrückt besagt dies, dass die Häufigkeit eines Wortes umgekehrt proportional zu seinem Rang in der Häufigkeitsliste ist. Das häufigste Wort (Rang 1) ist also doppelt so häufig wie das zweithäufigste Wort (Rang 2), dreimal so häufig wie das dritthäufigste Wort (Rang 3) und so weiter.</p>
+<p>Über alle Sprachen hinweg folgt die Häufigkeitsverteilung von Wörtern in einem großen Korpus dem sog. <a href="https://de.wikipedia.org/wiki/Zipfsches_Gesetz">Zipfschen Gesetz</a>. KVereinfacht gesagt besagt dieses, dass wenige Wörter sehr häufig vorkommen, während die meisten Wörter nur sehr selten vorkommen. Die Formel für das Zipfsche Gesetz lautet: <span class="math display">\[\text{word frequency} \propto \frac{1}{\text{word rank}}.\]</span> In Worten ausgedrückt besagt dies, dass die Häufigkeit eines Wortes umgekehrt proportional zu seinem Rang in der Häufigkeitsliste ist. Das häufigste Wort (Rang 1) ist also doppelt so häufig wie das zweithäufigste Wort (Rang 2), dreimal so häufig wie das dritthäufigste Wort (Rang 3) und so weiter.</p>
 <p>Das Zipfsche Gesetz hat Auswirkungen auf die Analyse von Textdaten, da es bedeutet, dass die meisten Wörter in einem Korpus eher selten vorkommen. Es ist daher wichtig, bei der Analyse von Textdaten nicht nur auf die häufigsten Wörter zu achten, sondern auch auf die selteneren Wörter, die möglicherweise wichtige Informationen enthalten.</p>
 </div>
 </div>
@@ -793,17 +787,17 @@ window.Quarto = {
 <p>df<sub>i</sub>: Anzahl der Dokumente, in denen das Wort i vorkommt (Document Frequency)</p>
 <p>In <code>quanteda</code> kann die TF-IDF-Gewichtung mit der Funktion <code>dfm_tfidf()</code> angewendet werden. Im nachfolgenden Beispiel wird die TF-IDF-Gewichtung auf eine DFM angewendet, die zuvor gefiltert und gruppiert wurde. Zunächst wird die DFM gefiltert, um nur die Posts von vier Politiker_innenn zu behalten. Anschließend werden die Zeilen basierend auf der Dokumentenvariable <code>author_handle</code> gruppiert, um die Posts der einzelnen Politiker_innen zu kombinieren. Schließlich wird die TF-IDF-Gewichtung angewendet, um die Tokens entsprechend ihrer Häufigkeit in den Dokumenten und im gesamten Korpus zu gewichten.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tfidf_bluesky <span class="ot">&lt;-</span> dfm_bluesky <span class="sc">%&gt;%</span> </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"bsky.social"</span>,</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"@*"</span>, <span class="st">"#*"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_subset</span>(author_handle <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"serapgueler.bsky.social"</span>,</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"larsklingbeil.bsky.social"</span>,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"nouripour.bsky.social"</span>,</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"heidireichinnek.dielinkebt.de"</span>)) <span class="sc">%&gt;%</span> <span class="co"># Auswahl von Dokumenten (Posts) von vier Accounts </span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_group</span>(<span class="at">groups =</span> author_handle) <span class="sc">%&gt;%</span> <span class="co"># Gruppierung der Dokumente basierend auf der Dokumentenvariable "author_handle"</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_tfidf</span>() <span class="co"># Anwendung der TF-IDF-Gewichtung</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>tfidf_bluesky</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>tfidf_bluesky <span class="ot">&lt;-</span> dfm_bluesky <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"bsky.social"</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"@*"</span>, <span class="st">"#*"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_subset</span>(author_handle <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"serapgueler.bsky.social"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"larsklingbeil.bsky.social"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"nouripour.bsky.social"</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"heidireichinnek.dielinkebt.de"</span>)) <span class="sc">%&gt;%</span> <span class="co"># Auswahl von Dokumenten (Posts) von vier Accounts </span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_group</span>(<span class="at">groups =</span> author_handle) <span class="sc">%&gt;%</span> <span class="co"># Gruppierung der Dokumente basierend auf der Dokumentenvariable "author_handle"</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_tfidf</span>() <span class="co"># Anwendung der TF-IDF-Gewichtung</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>tfidf_bluesky</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Document-feature matrix of: 4 documents, 11,985 features (91.44% sparse) and 3 docvars.
                                features
@@ -829,37 +823,37 @@ docs                             realer   kampf
 </div>
 <p>Um die nach TF-IDF gewichteten Tokens zu explorieren, müssen wir sie in einen <code>data.frame</code> umwandeln.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tfidf_df <span class="ot">&lt;-</span> <span class="fu">convert</span>(tfidf_bluesky, <span class="at">to =</span> <span class="st">"data.frame"</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>tfidf_long <span class="ot">&lt;-</span> tfidf_df <span class="sc">%&gt;%</span> </span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span>doc_id,          </span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"word"</span>,       </span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"tfidf"</span>      </span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">politician =</span> doc_id)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tfidf_df <span class="ot">&lt;-</span> <span class="fu">convert</span>(tfidf_bluesky, <span class="at">to =</span> <span class="st">"data.frame"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>tfidf_long <span class="ot">&lt;-</span> tfidf_df <span class="sc">%&gt;%</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span>doc_id,          </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"word"</span>,       </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"tfidf"</span>      </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">politician =</span> doc_id)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Mit dieser Datenstruktur können wir die Ergebnis auch wieder mit <code>ggplot2</code> visualisieren. Für die Sortierung der Begriffe nach TF-IDF benötigten wir zusätzlich eine Funktion aus dem Paket <code>tidytext</code>. In diesem Beispiel werden die Top 5 Wörter für jede:n Politiker:in nach ihrer TF-IDF-Gewichtung dargestellt.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>top_words <span class="ot">&lt;-</span> tfidf_long <span class="sc">%&gt;%</span> </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(politician) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(tfidf, <span class="at">n =</span> <span class="dv">5</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(top_words, <span class="fu">aes</span>(<span class="at">x =</span> tfidf,</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y =</span> <span class="fu">reorder_within</span>(word, tfidf, politician),</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">fill =</span> politician)) <span class="sc">+</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_reordered</span>() <span class="sc">+</span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>politician, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Wörter mit den höchsten TF-IDF-Werten pro Account"</span>,</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"TF-IDF"</span>,</span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>top_words <span class="ot">&lt;-</span> tfidf_long <span class="sc">%&gt;%</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(politician) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(tfidf, <span class="at">n =</span> <span class="dv">5</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(top_words, <span class="fu">aes</span>(<span class="at">x =</span> tfidf,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y =</span> <span class="fu">reorder_within</span>(word, tfidf, politician),</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">fill =</span> politician)) <span class="sc">+</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_reordered</span>() <span class="sc">+</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>politician, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Wörter mit den höchsten TF-IDF-Werten pro Account"</span>,</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"TF-IDF"</span>,</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -873,13 +867,14 @@ docs                             realer   kampf
 <section id="keyness-analyse" class="level3" data-number="16.4.2">
 <h3 data-number="16.4.2" class="anchored" data-anchor-id="keyness-analyse"><span class="header-section-number">16.4.2</span> Keyness-Analyse</h3>
 <p>Die <a href="https://tutorials.quanteda.io/statistical-analysis/keyness/">Keyness-Analyse</a> ist eine Methode, um die Wörter zu identifizieren, die in einem bestimmten Korpus oder einer bestimmten Gruppe von Dokumenten im Vergleich zu einem Referenzkorpus oder einer anderen Gruppe von Dokumenten besonders häufig oder selten vorkommen. In <code>quanteda</code> kann die Keyness-Analyse mit der Funktion <code>textstat_keyness()</code> durchgeführt werden. Diese Funktion berechnet die Keyness-Werte für jedes Wort basierend auf der Häufigkeit des Wortes in der Zielgruppe im Vergleich zur Häufigkeit des Wortes in der Referenzgruppe. Die Keyness-Werte können dann verwendet werden, um die Wörter zu identifizieren, die in der Zielgruppe besonders charakteristisch sind.</p>
+<p>Im nachfolgenden Beispiel wird eine Keyness-Analyse durchgeführt, um die Wörter zu identifizieren, die in den Posts von Katharina Dröge im Vergleich zu den Posts der anderen Politiker:innen besonders häufig oder selten vorkommen. Die Ergebnisse werden mit der Funktion <code>textplot_keyness()</code> aus dem Paket <code>quanteda.textplots</code> visualisiert.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tstat_key <span class="ot">&lt;-</span> dfm_bluesky <span class="sc">%&gt;%</span> </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"bsky.social"</span>,</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"@*"</span>, <span class="st">"#*"</span>)) <span class="sc">%&gt;%</span>  </span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textstat_keyness</span>(<span class="at">target =</span> dfm_bluesky<span class="sc">$</span>author_handle <span class="sc">==</span> <span class="st">"katharinadroege.bsky.social"</span>) <span class="co"># Auswahl der Zielgruppe (Posts von Katharina Dröge)</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">textplot_keyness</span>(tstat_key)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>tstat_key <span class="ot">&lt;-</span> dfm_bluesky <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfm_remove</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"bsky.social"</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"@*"</span>, <span class="st">"#*"</span>)) <span class="sc">%&gt;%</span>  </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textstat_keyness</span>(<span class="at">target =</span> dfm_bluesky<span class="sc">$</span>author_handle <span class="sc">==</span> <span class="st">"katharinadroege.bsky.social"</span>) <span class="co"># Auswahl der Zielgruppe (Posts von Katharina Dröge)</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">textplot_keyness</span>(tstat_key)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -888,7 +883,7 @@ docs                             realer   kampf
 </div>
 </div>
 </div>
-<p>Wer genau hinschaut, sieht, dass eine Keyness-Analyse streng genommen kein rein deskriptives Verfahren ist, sondern eine inferenzstatistische Methode, da sie auf einem statistischen Test basiert (Chi^2-Test), um die Signifikanz der Keyness-Werte zu bestimmen. Dennoch wird sie oft in der deskriptiven Analyse von Textdaten verwendet, um die charakteristischen Wörter einer bestimmten Gruppe von Dokumenten zu identifizieren.</p>
+<p>Wer genau hinschaut, sieht, dass eine Keyness-Analyse streng genommen kein rein deskriptives Verfahren ist, sondern eine inferenzstatistische Methode, da sie auf einem statistischen Test basiert (<em>Chi<sup>2</sup></em>-Test), um die Signifikanz der Keyness-Werte zu bestimmen. Dennoch wird sie oft in der deskriptiven Analyse von Textdaten verwendet, um die charakteristischen Wörter einer bestimmten Gruppe von Dokumenten zu identifizieren.</p>
 </section>
 </section>
 <section id="weitere-deskriptive-analysen-am-beispiel-von-youtube-daten" class="level2" data-number="16.5">
@@ -898,17 +893,17 @@ docs                             realer   kampf
 <p>Da das Paket nur auf <em>GitHub</em> verfürbar ist, müssen wir es mit einer Funktion aus dem <code>remotes</code>-Paket installieren (siehe <a href="05-packages.html" class="quarto-xref"><span>Kapitel 5</span></a>). Unter Windows benötigen wir dafür zudem die <code>Rtools</code> (siehe <a href="01-installation.html" class="quarto-xref"><span>Kapitel 1</span></a>).</p>
 <p><em>Hinweis</em>: Wir können die Funktion <code>install_github</code> aus dem Paket <code>remotes</code> auch nutzen, ohne das Paket zu laden. Dies geht, indem wir vor die Funktion den Namen des Pakets + <code>::</code> schreiben (siehe dazu auch <a href="24-names.html" class="quarto-xref"><span>Kapitel 24</span></a>).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"gesiscss/tubecleanR"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"gesiscss/tubecleanR"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tubecleanR)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tubecleanR)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufbereitung der YouTube-Daten mit der Funktion parse_yt_comments()</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>cleaned_comments <span class="ot">&lt;-</span> <span class="fu">parse_yt_comments</span>(comments_yt,</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">package =</span> <span class="st">"vosonSML"</span>) <span class="co"># Angabe des Pakets, mit dem die Daten gesammelt wurden</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(cleaned_comments)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aufbereitung der YouTube-Daten mit der Funktion parse_yt_comments()</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>cleaned_comments <span class="ot">&lt;-</span> <span class="fu">parse_yt_comments</span>(comments_yt,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">package =</span> <span class="st">"vosonSML"</span>) <span class="co"># Angabe des Pakets, mit dem die Daten gesammelt wurden</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(cleaned_comments)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 2,584
 Columns: 15
@@ -931,16 +926,16 @@ $ CommentID        &lt;chr&gt; "UgwiakmTsk6z-aXOB394AaABAg", "UgzciKZHDm2Rn7S77r
 </div>
 <p>Eine mögliche Visualisierung der aufbereiteten Daten ist das Plotten der häufigsten Emojis.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>cleaned_comments <span class="sc">%&gt;%</span> </span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_longer</span>(Emoji) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Emoji)) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Emoji, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(n, <span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Emoji, n), <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 10 Emojis"</span>, <span class="at">x =</span> <span class="st">"Emoji"</span>, <span class="at">y =</span> <span class="st">"Häufigkeit"</span>) <span class="sc">+</span></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cleaned_comments <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_longer</span>(Emoji) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Emoji)) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Emoji, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(n, <span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Emoji, n), <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 10 Emojis"</span>, <span class="at">x =</span> <span class="st">"Emoji"</span>, <span class="at">y =</span> <span class="st">"Häufigkeit"</span>) <span class="sc">+</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -951,21 +946,21 @@ $ CommentID        &lt;chr&gt; "UgwiakmTsk6z-aXOB394AaABAg", "UgzciKZHDm2Rn7S77r
 </div>
 <p>Eine weitere Möglichkeit ist die Darstellung der Anzahl der Kommentare über die Zeit.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>cleaned_comments <span class="sc">%&gt;%</span> </span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Published)) <span class="sc">%&gt;%</span> </span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(Published)) <span class="sc">%&gt;%</span> </span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(date) <span class="sc">%&gt;%</span> </span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date) <span class="sc">%&gt;%</span> </span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cumulative_comments =</span> <span class="fu">cumsum</span>(n)) <span class="sc">%&gt;%</span> </span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> cumulative_comments)) <span class="sc">+</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, </span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Kumulative Anzahl von Kommentaren über die Zeit"</span>,</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Datum"</span>,</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Kumulative Kommentare"</span></span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cleaned_comments <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Published)) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(Published)) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(date) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cumulative_comments =</span> <span class="fu">cumsum</span>(n)) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> cumulative_comments)) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, </span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Kumulative Anzahl von Kommentaren über die Zeit"</span>,</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Datum"</span>,</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Kumulative Kommentare"</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
