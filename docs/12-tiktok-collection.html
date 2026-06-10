@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Funktionen – Sammlung und Analyse von Social-Media-Daten mit R</title>
+<title>12&nbsp; Datensammlung: TikTok – Sammlung und Analyse von Social-Media-Daten mit R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -58,7 +58,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -68,8 +88,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./05-packages.html" rel="next">
-<link href="./03-objects.html" rel="prev">
+<link href="./13-youtube-collection.html" rel="next">
+<link href="./11-bluesky-collection.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +140,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-installation.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./04-functions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-collection-methods.html">Daten sammeln</a></li><li class="breadcrumb-item"><a href="./12-tiktok-collection.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Datensammlung: <em>TikTok</em></span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -187,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-functions.html" class="sidebar-item-text sidebar-link active">
+  <a href="./04-functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></span></a>
   </div>
 </li>
@@ -257,7 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-tiktok-collection.html" class="sidebar-item-text sidebar-link">
+  <a href="./12-tiktok-collection.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Datensammlung: <em>TikTok</em></span></span></a>
   </div>
 </li>
@@ -386,15 +406,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup"><span class="header-section-number">12.1</span> Setup</a>
+  <ul class="collapse">
+  <li><a href="#pakete-laden" id="toc-pakete-laden" class="nav-link" data-scroll-target="#pakete-laden"><span class="header-section-number">12.1.1</span> Pakete laden</a></li>
+  <li><a href="#authentifizierung" id="toc-authentifizierung" class="nav-link" data-scroll-target="#authentifizierung"><span class="header-section-number">12.1.2</span> Authentifizierung</a></li>
+  </ul></li>
+  <li><a href="#daten-sammeln" id="toc-daten-sammeln" class="nav-link" data-scroll-target="#daten-sammeln"><span class="header-section-number">12.2</span> Daten sammeln</a>
+  <ul class="collapse">
+  <li><a href="#profilinformationen" id="toc-profilinformationen" class="nav-link" data-scroll-target="#profilinformationen"><span class="header-section-number">12.2.1</span> Profilinformationen</a></li>
+  <li><a href="#videos" id="toc-videos" class="nav-link" data-scroll-target="#videos"><span class="header-section-number">12.2.2</span> Videos</a></li>
+  <li><a href="#weitere-daten" id="toc-weitere-daten" class="nav-link" data-scroll-target="#weitere-daten"><span class="header-section-number">12.2.3</span> Weitere Daten</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/12-tiktok-collection.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-installation.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./04-functions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-collection-methods.html">Daten sammeln</a></li><li class="breadcrumb-item"><a href="./12-tiktok-collection.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Datensammlung: <em>TikTok</em></span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-functions" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></span></h1>
+<h1 class="title"><span id="sec-tiktok-collection" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Datensammlung: <em>TikTok</em></span></span></h1>
 </div>
 
 
@@ -411,54 +447,207 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Für das allermeiste, was wir in <code>R</code> machen, verwenden wir Funktionen. Eine Funktion in <code>R</code> ist wie eine Art Mini-Programm, mit dem wir bestimmte Aufgaben ausführen können.</p>
-<p>Vereinfacht gesagt: Eine Funktion nimmt eine Eingabe (Inpurt), verarbeitet diese und erzeugt eine Ausgabe (Output).</p>
-<p>Funktionen verfügen in der Regel über sogenannte Argumente, die festlegen, was genau eine Funktion macht. Im einfachsten Fall benötigt eine Funktion lediglich eine Eingabe (einen Wert oder ein Objekt) als einziges Argument (und manche Funktionen benötigen sogar gar kein Argument).</p>
-<p>Die grundlegende Anatomie einer Funktion in <code>R</code> sieht wie folgt aus:</p>
+<section id="setup" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="setup"><span class="header-section-number">12.1</span> Setup</h2>
+<section id="pakete-laden" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="pakete-laden"><span class="header-section-number">12.1.1</span> Pakete laden</h3>
+<p>Zur Sammlung von <em>TikTok</em>-Daten nutzen wir das Paket <a href="https://jbgruber.github.io/traktok/"><code>traktok</code></a>. Dieses bietet Funktionen für den Zugriff auf Daten über die <a href="https://developers.tiktok.com/products/research-api/"><em>TikTok</em> Research API</a>, für die man sich bewerben muss, sowie eine sogenannte “Hidden API” bzw. “Unofficial API” (über Web Scraping).</p>
+<p>Wie immer müssen wir das Paket zunächst (einmalig) installieren und dann (in jeder Sitzung) laden.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funktionsname</span>(<span class="at">argument1 =</span> wert1, <span class="at">argument2 =</span> wert2, ...)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"traktok"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Der <code>funktionsname</code> ist ein Name, der angibt, welche Funktion Sie verwenden möchten. Darauf folgen in Klammern ein oder mehrere Argumente, die bestimmte Werte annehmen können.</p>
-<p>Beispiele für einfache Funktionen in <code>R</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion ohne Argumente</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>() <span class="co"># Gibt das aktuelle Datum zurück</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2026-06-10"</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(traktok)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion mit einem Argument</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>) <span class="co"># Berechnet die Quadratwurzel von 16</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion mit mehreren Argumenten</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.14159</span>, <span class="at">digits =</span> <span class="dv">2</span>) <span class="co"># Rundet die Zahl auf 2 Dezimalstellen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3.14</code></pre>
-</div>
-</div>
-<p>Funktionen können erforlicher (required) und optionale (optional) Argumente haben. Im vorherigen Beispiel war das Argument <code>digits</code> bei der Funktion <code>round()</code> optional. Für optionale Argumente gibt es in den Funktionen in der Regel Standardwerte, die man aber durch das Spezifizieren des Arguments überschreiben kann. Ob ein Argument erforderlich oder optional ist, kann man in der Dokumentation bzw. dem sogenannten Help File herausfinden. Die Hilfe zu Funktionen kann man in <em>RStudio</em> aufrufen, indem man ein <code>?</code> vor den Namen der Funktion schreibt und die <code>()</code> dahinter weglässt.</p>
-<p>Wenn im Help File unter “Usage” hinter den Argumenten ein <code>=</code> und ein Wert stehen, handelt es sich um optionale Argumente. In vielen Funktionen ist das erste Argument eine Eingabe. Dies kann ein einzelner Wert, ein Vektor oder ein Dataframe sein. Dieses Argument ist erforderlich (required) und in der Dokumentation bzw. dem Help File i.d.R. mit <code>x</code> benannt. Mehr zum Thema Hilfe in <code>R</code> ist im <a href="21-help.html" class="quarto-xref"><span>Kapitel 21</span></a> zu finden.</p>
+<p>Zusätzlich nutzen wir auch in diesem Abschnitt Funktionen aus den <code>tidyverse</code>-Paketen. Sofern dies in der aktuellen <code>R</code>-Session noch nicht geschehen ist, müssen wir auch diese Pakete erst laden</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hilfe zu einer Funktion aufrufen</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>?round</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Das Ergebnis einer Funktion kann man natürlich auch einem Objekt zuweisen, um es später weiterzuverwenden.</p>
-<p>Verschiedene Funktionen können mit unterschiedlichen Arten von Eingaben (Inputs) arbeiten und produzieren auch unterschiedliche Ausgaben (Outputs).</p>
-<p>Die Funktion <code>mean()</code> beispielsweise benötigt einen numerischen Vektor aus Input und liefert einen einzelnen numerischen Wert (den Mittelwert der Werte aus dem Vektor) als Output.</p>
+</section>
+<section id="authentifizierung" class="level3" data-number="12.1.2">
+<h3 data-number="12.1.2" class="anchored" data-anchor-id="authentifizierung"><span class="header-section-number">12.1.2</span> Authentifizierung</h3>
+<p>Wir nutzen hier die <a href="https://jbgruber.github.io/traktok/articles/unofficial-api.html">“Unofficial API”</a>. Um diese nutzen zu können, müssen wir uns mit einem <em>TikTok</em>-Account im Browser einloggen und die Cookies für die Webseite speichern. Das geht am einfachsten mit den Browser-Plugins <a href="https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc?pli=1"><em>Get cookies.txt</em></a> für <em>Chrome</em> bzw. <a href="https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/"><em>cookies.txt</em></a> für <em>Firefox</em>.</p>
+<p>Sobald wir die Cookies für <em>TikTok</em> gespeichert haben, können wir sie mithilfe des <a href="https://github.com/JBGruber/cookiemonster"><code>R</code>-Pakets <code>cookiemonster</code></a> speichern.</p>
+<p>Auch dieses müssen wir natürlich erst einmal installieren und laden.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>zahlen <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>mittelwert <span class="ot">&lt;-</span> <span class="fu">mean</span>(zahlen)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>mittelwert</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"cookiemonster"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cookiemonster)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Die Cookies können wir dann mit der Funktion <code>add_cookies()</code> speichern. Das Argument muss dabei der Pfad (siehe <a href="26-paths.html" class="quarto-xref"><span>Kapitel 26</span></a>) sein, unter dem die <code>.txt</code>-Datei mit den Cookies gespeichert ist.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_cookies</span>(<span class="at">path =</span> <span class="st">"./data/tiktok_cookies.txt"</span>) <span class="co"># Dateipfad anpassen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Ob alles funktioniert hat, können wir dann mit der Funktion <code>auth_check()</code> aus dem Paket <code>traktok</code> überprüfen.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">auth_check</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ Hidden API authenticated</code></pre>
+</div>
+</div>
+<p><strong>Wichtiger Hinweis</strong>: Der Zugang über die “Hidden” bzw. “Unofficial API” ist nicht so stabil wie derjenige über die offizielle Research API. Es kann daher sein, dass Funktionen für die Hidden API nicht funktionieren, weil Anfragen geblockt werden. Es ist auch möglich, dass man bei der Verwendung dieser Funktionen im Browser Captchas lösen muss. Mehr dazu findet sich im <a href="https://jbgruber.github.io/traktok/articles/unofficial-api.html">Abschnitt zur Unofficial API in der Dokumentation von <code>traktok</code></a>.</p>
+</section>
+</section>
+<section id="daten-sammeln" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="daten-sammeln"><span class="header-section-number">12.2</span> Daten sammeln</h2>
+<p>Die Informationen zu den Accounts, von denen wir Daten sammeln wollen, stammen aus dem Datensatz <a href="https://doi.org/10.4232/1.14773"><em>Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025</em></a> <span class="citation" data-cites="BreuerEtAl2026">(<a href="references.html#ref-BreuerEtAl2026" role="doc-biblioref">Breuer et al., 2026</a>)</span>. Beispiele dafür, wie Sie Accounts aus diesem Datensatz auswählen können, finden Sie im Skript <a href="./scripts/get_accounts.R"><em>get_accounts.R</em></a>.</p>
+<p><em>Hinweis</em>: Eine weitere Informationsquelle für <em>TikTok</em>-Accounts ist auch der Datensatz <a href="https://doi.org/10.7802/2862"><em>Social Media Accounts (TikTok, YouTube, X/Twitter) of the Candidates in the 2025 German Federal Election</em></a> <span class="citation" data-cites="SteupEtAl2025">(<a href="references.html#ref-SteupEtAl2025" role="doc-biblioref">Steup et al., 2025</a>)</span>.</p>
+<p>Wir wählen hier beispielhaft aus dem Datensatz von Breuer et al. <span class="citation" data-cites="BreuerEtAl2026">(<a href="references.html#ref-BreuerEtAl2026" role="doc-biblioref">2026</a>)</span> Accounts von prominenten Politiker_innen von der CDU, der SPD, den Grünen, der Linken und der FDP.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tt_accounts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"serapguelermdb"</span>, <span class="st">"lars.klingbeil"</span>,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">"katharina.droege"</span>, <span class="st">"heidireichinnek"</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"christianduerr"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="profilinformationen" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="profilinformationen"><span class="header-section-number">12.2.1</span> Profilinformationen</h3>
+<p>Profilinformationen zu einem Account können mit der Funktion <code>tt_user_info_hidden()</code> abgerufen werden</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tt_user <span class="ot">&lt;-</span> <span class="fu">tt_user_info_hidden</span>(<span class="st">"serapguelermdb"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(tt_user)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3</code></pre>
+<pre><code>Rows: 1
+Columns: 46
+$ id                               &lt;chr&gt; "6805862662515704837"
+$ short_id                         &lt;chr&gt; ""
+$ user_name                        &lt;chr&gt; "serapguelermdb"
+$ nickname                         &lt;chr&gt; "Serap Güler"
+$ avatar_larger                    &lt;chr&gt; "https://p16-common-sign.tiktokcdn-eu…
+$ avatar_medium                    &lt;chr&gt; "https://p16-common-sign.tiktokcdn-eu…
+$ avatar_thumb                     &lt;chr&gt; "https://p16-common-sign.tiktokcdn-eu…
+$ signature                        &lt;chr&gt; "Staatsministerin im Auswärtigen Amt …
+$ create_time                      &lt;dttm&gt; 2020-03-19 11:27:21
+$ verified                         &lt;lgl&gt; FALSE
+$ secUid                           &lt;chr&gt; "MS4wLjABAAAAVPaQKMby3pyhpm44VYipCEmV…
+$ ftc                              &lt;lgl&gt; FALSE
+$ relation                         &lt;int&gt; 0
+$ open_favorite                    &lt;lgl&gt; FALSE
+$ comment_setting                  &lt;int&gt; 0
+$ commerce_user_info_commerce_user &lt;lgl&gt; FALSE
+$ duet_setting                     &lt;int&gt; 0
+$ stitch_setting                   &lt;int&gt; 0
+$ private_account                  &lt;lgl&gt; FALSE
+$ secret                           &lt;lgl&gt; FALSE
+$ is_a_d_virtual                   &lt;lgl&gt; FALSE
+$ room_id                          &lt;chr&gt; ""
+$ unique_id_modify_time            &lt;int&gt; 0
+$ tt_seller                        &lt;lgl&gt; FALSE
+$ download_setting                 &lt;int&gt; 0
+$ profile_tab_show_music_tab       &lt;lgl&gt; FALSE
+$ profile_tab_show_question_tab    &lt;lgl&gt; FALSE
+$ profile_tab_show_play_list_tab   &lt;lgl&gt; FALSE
+$ following_visibility             &lt;int&gt; 1
+$ recommend_reason                 &lt;chr&gt; ""
+$ now_invitation_card_url          &lt;chr&gt; ""
+$ nick_name_modify_time            &lt;dttm&gt; 2024-07-09 13:00:34
+$ is_embed_banned                  &lt;lgl&gt; FALSE
+$ can_exp_playlist                 &lt;lgl&gt; TRUE
+$ profile_embed_permission         &lt;int&gt; 1
+$ language                         &lt;chr&gt; "de"
+$ suggest_account_bind             &lt;lgl&gt; FALSE
+$ is_organization                  &lt;int&gt; 0
+$ `_user_story_status`             &lt;int&gt; 0
+$ follower_count                   &lt;int&gt; 1481
+$ following_count                  &lt;int&gt; 48
+$ heart                            &lt;int&gt; 5661
+$ heart_count                      &lt;int&gt; 5661
+$ video_count                      &lt;int&gt; 38
+$ digg_count                       &lt;int&gt; 0
+$ friend_count                     &lt;int&gt; 23</code></pre>
 </div>
 </div>
-<p>Sie können in <code>R</code> Funktionen selbst definieren. Allerdings nutzen wir zumeist Funktionen, die in Paketen enthalten sind. Was es mit denen auf sich hat, betrachten wir im folgenden <a href="05-packages.html" class="quarto-xref"><span>Kapitel 5</span></a>.</p>
+<p>Um Profilinformationen zu mehreren Accounts gleichzeitig abzurufen, können wir die Funktion <code>map_df()</code> aus dem <a href="https://purrr.tidyverse.org/"><code>purrr</code>-Paket</a> nutzen. Diese führt eine Funktion für mehrere verschiedene Argumente (in unserem Fall Accounts) aus und verbindet die Ergebnisse zu einem Dataframe.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>tt_users <span class="ot">&lt;-</span> <span class="fu">map_df</span>(tt_accounts,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                 <span class="sc">~</span><span class="fu">tt_user_info_hidden</span>(<span class="at">username =</span> .x)) <span class="co"># die Funktion wird für jeden Account aus dem Vektor "tt_accounts" ausgeführt, wobei ".x" den aktuellen Account aus der Liste repräsentiert </span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(tt_users)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 5
+Columns: 50
+$ id                                 &lt;chr&gt; "6805862662515704837", "67573458688…
+$ short_id                           &lt;chr&gt; "", "", "", "", ""
+$ user_name                          &lt;chr&gt; "serapguelermdb", "lars.klingbeil",…
+$ nickname                           &lt;chr&gt; "Serap Güler", "larsklingbeil", "Ka…
+$ avatar_larger                      &lt;chr&gt; "https://p19-common-sign.tiktokcdn-…
+$ avatar_medium                      &lt;chr&gt; "https://p16-common-sign.tiktokcdn-…
+$ avatar_thumb                       &lt;chr&gt; "https://p16-common-sign.tiktokcdn-…
+$ signature                          &lt;chr&gt; "Staatsministerin im Auswärtigen Am…
+$ create_time                        &lt;dttm&gt; 2020-03-19 11:27:21, 2019-11-09 17:…
+$ verified                           &lt;lgl&gt; FALSE, TRUE, FALSE, TRUE, FALSE
+$ secUid                             &lt;chr&gt; "MS4wLjABAAAAVPaQKMby3pyhpm44VYipC…
+$ ftc                                &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ relation                           &lt;int&gt; 0, 0, 0, 0, 0
+$ open_favorite                      &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ comment_setting                    &lt;int&gt; 0, 0, 0, 0, 0
+$ commerce_user_info_commerce_user   &lt;lgl&gt; FALSE, TRUE, FALSE, TRUE, FALSE
+$ duet_setting                       &lt;int&gt; 0, 0, 0, 0, 0
+$ stitch_setting                     &lt;int&gt; 0, 0, 0, 0, 0
+$ private_account                    &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ secret                             &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ is_a_d_virtual                     &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ room_id                            &lt;chr&gt; "", "", "", "", ""
+$ unique_id_modify_time              &lt;int&gt; 0, 0, 0, 0, 0
+$ tt_seller                          &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ download_setting                   &lt;int&gt; 0, 0, 0, 0, 0
+$ profile_tab_show_music_tab         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ profile_tab_show_question_tab      &lt;lgl&gt; FALSE, TRUE, FALSE, FALSE, FALSE
+$ profile_tab_show_play_list_tab     &lt;lgl&gt; FALSE, FALSE, FALSE, TRUE, FALSE
+$ following_visibility               &lt;int&gt; 1, 1, 1, 1, 1
+$ recommend_reason                   &lt;chr&gt; "", "", "", "", ""
+$ now_invitation_card_url            &lt;chr&gt; "", "", "", "", ""
+$ nick_name_modify_time              &lt;dttm&gt; 2024-07-09 13:00:34, NA, 2024-11-17…
+$ is_embed_banned                    &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ can_exp_playlist                   &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE
+$ profile_embed_permission           &lt;int&gt; 1, 1, 1, 1, 1
+$ language                           &lt;chr&gt; "de", "de", "de", "de", "en"
+$ suggest_account_bind               &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE
+$ is_organization                    &lt;int&gt; 0, 0, 0, 1, 0
+$ `_user_story_status`               &lt;int&gt; 0, 0, 0, 0, 0
+$ follower_count                     &lt;int&gt; 1481, 35400, 10100, 689000, 7840
+$ following_count                    &lt;int&gt; 48, 175, 156, 283, 97
+$ heart                              &lt;int&gt; 5661, 360200, 129300, 22600000, 893…
+$ heart_count                        &lt;int&gt; 5661, 360200, 129300, 22600000, 893…
+$ video_count                        &lt;int&gt; 38, 167, 199, 432, 153
+$ digg_count                         &lt;int&gt; 0, 0, 0, 0, 0
+$ friend_count                       &lt;int&gt; 23, 84, 86, 182, 66
+$ bio_link_link                      &lt;chr&gt; NA, "linktr.ee/larsklingbeil", "htt…
+$ bio_link_risk                      &lt;int&gt; NA, 0, 0, 0, NA
+$ commerce_user_info_category        &lt;chr&gt; NA, "Persönliches Konto", NA, "Öffe…
+$ commerce_user_info_category_button &lt;lgl&gt; NA, FALSE, NA, FALSE, NA</code></pre>
+</div>
+</div>
+<p>Für eine Textanalyse können wir die Profilbeschreibungstexte der Accounts nutzen, die in der Variable <code>signature</code> zu finden sind.</p>
+</section>
+<section id="videos" class="level3" data-number="12.2.2">
+<h3 data-number="12.2.2" class="anchored" data-anchor-id="videos"><span class="header-section-number">12.2.2</span> Videos</h3>
+<p>Die Videos eines Accounts können mit der Funktion <code>tt_user_videos_hidden()</code> abgerufen werden. Leider funktioniert diese aktuell (Stand 26.05.2026) nicht verlässlich. Sie können ausprobieren, diese lokal auf Ihrem Rechner auszuführen. Es empfiehlt sich dabei, das Argument <code>solve_captchas</code> auf <code>TRUE</code> zu setzen, damit Sie ggf. erscheinende Captchas in Ihrem Browser lösen können.</p>
+<p>Wenn Sie Freude am Lösen von CAPTCHAs haben/entwickeln (wollen), ist das Browser Game <a href="https://neal.fun/not-a-robot/"><em>I’m Not a Robot</em></a> zu empfehlen 🤖</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tt_videos <span class="ot">&lt;-</span> <span class="fu">tt_uservideos_hidden</span>(<span class="st">"serapguelermdb"</span>,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">solve_captchas =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(tt_videos)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="weitere-daten" class="level3" data-number="12.2.3">
+<h3 data-number="12.2.3" class="anchored" data-anchor-id="weitere-daten"><span class="header-section-number">12.2.3</span> Weitere Daten</h3>
+<p>Das Paket <code>traktok</code> bietet auch Funktionen, um Daten zu den Following und Followed Accounts zu sammeln. Dies geht mit den Funktionen <code>tt_get_follower_hidden()</code> bzw. <code>tt_get_following_hidden()</code></p>
+<p>Da wir uns im Kurs auf die Analyse von Textdaten konzentrieren und die Netzwerkanalyse ausklammern, werden wir diese Daten hier nicht weiter betrachten. Weitere Informationen zu diesen Funktionen finden Sie in der <a href="https://jbgruber.github.io/atrrr/">Dokumentation zum Paket <code>atrrr</code></a>.</p>
+<p>Eine Einführung in die Netzwerkanalyse bietet u.a. <a href="https://cssbook.net/content/chapter13.html">Kapitel 13 im Online-Buch <em>Computational Analysis of Communication</em></a>.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-BreuerEtAl2026" class="csl-entry" role="listitem">
+Breuer, J., Soldner, F., Shankaran, V., Fröhling, L., Bauer, P., Sältzer, M., Weiß, J., &amp; Chen, S. (2026). <em><span>Social Media Accounts of German Candidates from the German Federal Election 2025 [Social-Media-Konten der deutschen Kandidierenden bei der Bundestagswahl 2025]</span></em>. GESIS. <a href="https://doi.org/10.4232/1.14694">https://doi.org/10.4232/1.14694</a>
+</div>
+<div id="ref-SteupEtAl2025" class="csl-entry" role="listitem">
+Steup, J. M., Kielbassa, P., Neumeier, A., &amp; Riedl, J. (2025). <em>Social <span>Media Accounts</span> (<span>TikTok</span>, <span>YouTube</span>, <span>X</span>/<span>Twitter</span>) of the <span>Candidates</span> in the 2025 <span>German Federal Election</span></em>. GESIS Data Archive. <a href="https://doi.org/10.7802/2862">https://doi.org/10.7802/2862</a>
+</div>
+</div>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -870,13 +1059,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./03-objects.html" class="pagination-link" aria-label="Objekte in `R`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objekte in <code>R</code></span></span>
+      <a href="./11-bluesky-collection.html" class="pagination-link" aria-label="Datensammlung: *Bluesky*">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Datensammlung: <em>Bluesky</em></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./05-packages.html" class="pagination-link" aria-label="Pakete">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pakete</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./13-youtube-collection.html" class="pagination-link" aria-label="Datensammlung: *YouTube*">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Datensammlung: <em>YouTube</em></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -888,7 +1077,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/04-functions.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/12-tiktok-collection.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</p>
 </div>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Funktionen – Sammlung und Analyse von Social-Media-Daten mit R</title>
+<title>10&nbsp; Erhebungsmethoden – Sammlung und Analyse von Social-Media-Daten mit R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,42 +23,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-</style>
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -68,8 +53,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./05-packages.html" rel="next">
-<link href="./03-objects.html" rel="prev">
+<link href="./11-bluesky-collection.html" rel="next">
+<link href="./09-wrangling-variables.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-installation.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./04-functions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-collection-methods.html">Daten sammeln</a></li><li class="breadcrumb-item"><a href="./10-collection-methods.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -187,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-functions.html" class="sidebar-item-text sidebar-link active">
+  <a href="./04-functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></span></a>
   </div>
 </li>
@@ -245,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-collection-methods.html" class="sidebar-item-text sidebar-link">
+  <a href="./10-collection-methods.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></span></a>
   </div>
 </li>
@@ -386,15 +371,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#ausgewählte-plattformen" id="toc-ausgewählte-plattformen" class="nav-link active" data-scroll-target="#ausgewählte-plattformen"><span class="header-section-number">10.1</span> Ausgewählte Plattformen</a></li>
+  <li><a href="#beobachtungseinheiten-sampling" id="toc-beobachtungseinheiten-sampling" class="nav-link" data-scroll-target="#beobachtungseinheiten-sampling"><span class="header-section-number">10.2</span> Beobachtungseinheiten &amp; Sampling</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/10-collection-methods.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-installation.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./04-functions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-collection-methods.html">Daten sammeln</a></li><li class="breadcrumb-item"><a href="./10-collection-methods.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-functions" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></span></h1>
+<h1 class="title"><span id="sec-collection-methods" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Erhebungsmethoden</span></span></h1>
 </div>
 
 
@@ -411,54 +403,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Für das allermeiste, was wir in <code>R</code> machen, verwenden wir Funktionen. Eine Funktion in <code>R</code> ist wie eine Art Mini-Programm, mit dem wir bestimmte Aufgaben ausführen können.</p>
-<p>Vereinfacht gesagt: Eine Funktion nimmt eine Eingabe (Inpurt), verarbeitet diese und erzeugt eine Ausgabe (Output).</p>
-<p>Funktionen verfügen in der Regel über sogenannte Argumente, die festlegen, was genau eine Funktion macht. Im einfachsten Fall benötigt eine Funktion lediglich eine Eingabe (einen Wert oder ein Objekt) als einziges Argument (und manche Funktionen benötigen sogar gar kein Argument).</p>
-<p>Die grundlegende Anatomie einer Funktion in <code>R</code> sieht wie folgt aus:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funktionsname</span>(<span class="at">argument1 =</span> wert1, <span class="at">argument2 =</span> wert2, ...)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Der <code>funktionsname</code> ist ein Name, der angibt, welche Funktion Sie verwenden möchten. Darauf folgen in Klammern ein oder mehrere Argumente, die bestimmte Werte annehmen können.</p>
-<p>Beispiele für einfache Funktionen in <code>R</code>:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion ohne Argumente</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>() <span class="co"># Gibt das aktuelle Datum zurück</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2026-06-10"</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion mit einem Argument</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>) <span class="co"># Berechnet die Quadratwurzel von 16</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion mit mehreren Argumenten</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.14159</span>, <span class="at">digits =</span> <span class="dv">2</span>) <span class="co"># Rundet die Zahl auf 2 Dezimalstellen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3.14</code></pre>
-</div>
-</div>
-<p>Funktionen können erforlicher (required) und optionale (optional) Argumente haben. Im vorherigen Beispiel war das Argument <code>digits</code> bei der Funktion <code>round()</code> optional. Für optionale Argumente gibt es in den Funktionen in der Regel Standardwerte, die man aber durch das Spezifizieren des Arguments überschreiben kann. Ob ein Argument erforderlich oder optional ist, kann man in der Dokumentation bzw. dem sogenannten Help File herausfinden. Die Hilfe zu Funktionen kann man in <em>RStudio</em> aufrufen, indem man ein <code>?</code> vor den Namen der Funktion schreibt und die <code>()</code> dahinter weglässt.</p>
-<p>Wenn im Help File unter “Usage” hinter den Argumenten ein <code>=</code> und ein Wert stehen, handelt es sich um optionale Argumente. In vielen Funktionen ist das erste Argument eine Eingabe. Dies kann ein einzelner Wert, ein Vektor oder ein Dataframe sein. Dieses Argument ist erforderlich (required) und in der Dokumentation bzw. dem Help File i.d.R. mit <code>x</code> benannt. Mehr zum Thema Hilfe in <code>R</code> ist im <a href="21-help.html" class="quarto-xref"><span>Kapitel 21</span></a> zu finden.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hilfe zu einer Funktion aufrufen</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>?round</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Das Ergebnis einer Funktion kann man natürlich auch einem Objekt zuweisen, um es später weiterzuverwenden.</p>
-<p>Verschiedene Funktionen können mit unterschiedlichen Arten von Eingaben (Inputs) arbeiten und produzieren auch unterschiedliche Ausgaben (Outputs).</p>
-<p>Die Funktion <code>mean()</code> beispielsweise benötigt einen numerischen Vektor aus Input und liefert einen einzelnen numerischen Wert (den Mittelwert der Werte aus dem Vektor) als Output.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>zahlen <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>mittelwert <span class="ot">&lt;-</span> <span class="fu">mean</span>(zahlen)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>mittelwert</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3</code></pre>
-</div>
-</div>
-<p>Sie können in <code>R</code> Funktionen selbst definieren. Allerdings nutzen wir zumeist Funktionen, die in Paketen enthalten sind. Was es mit denen auf sich hat, betrachten wir im folgenden <a href="05-packages.html" class="quarto-xref"><span>Kapitel 5</span></a>.</p>
+<p>Es gibt verschiedene Zugangswege zu Social-Media-Daten, die jeweils eigene Vorteile und Herausforderungen mit sich bringen <span class="citation" data-cites="BreuerEtAl2020">(<a href="references.html#ref-BreuerEtAl2020" role="doc-biblioref">Breuer et al., 2020</a>)</span>. Die in der Forschung bislang am häufigsten genutzten Optionen sind Application Programming Interfaces (APIs) und Web Scraping.</p>
+<p>Eine ausführliche Einführung in Web Scraping und die Nutzung von APIs geht über den Rahmen dieses Buches hinaus, aber die nachfolgende Abbildung aus Deubel et al. <span class="citation" data-cites="DeubelEtAl2024">(<a href="references.html#ref-DeubelEtAl2024" role="doc-biblioref">2024, S. 7</a>)</span> bietet einen vereinfachten visuellen Vergleich der beiden Methoden.</p>
+<p><img src="./images/api-scraping.png" class="img-fluid quarto-figure quarto-figure-center" alt="API vs.&nbsp;Web Scraping"> Umnfangreichere Einführungen zu Web Scraping und APIs für den Datenzugang finden sich in den entsprechenden <em>GESIS Guides to Digital Behavioral Data</em> von Soldnet et al. <span class="citation" data-cites="SoldnerEtAl2024a SoldnerEtAl2024b">(<a href="references.html#ref-SoldnerEtAl2024a" role="doc-biblioref">2024</a>; <a href="references.html#ref-SoldnerEtAl2024b" role="doc-biblioref">2024</a>)</span>.</p>
+<p>Viele Social-Media-Plattformen bieten APIs an, über die Forschende auf Daten zugreifen können. Einen guten – wenn auch stellenweise bereits etwas veralteten – Überblick bietet die Webseite <a href="https://paulcbauer.github.io/apis_for_social_scientists_a_review/"><em>APIs for social scientists: A collaborative review</em></a>.</p>
+<section id="ausgewählte-plattformen" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="ausgewählte-plattformen"><span class="header-section-number">10.1</span> Ausgewählte Plattformen</h2>
+<p>Für diesen Kurs konzentrieren wir uns auf die folgenden Plattformen:</p>
+<ul>
+<li><p><em>Bluesky</em> (<a href="11-bluesky-collection.html" class="quarto-xref"><span>Kapitel 11</span></a>)</p></li>
+<li><p><em>TikTok</em> (<a href="12-tiktok-collection.html" class="quarto-xref"><span>Kapitel 12</span></a>)</p></li>
+<li><p><em>YouTube</em> (<a href="13-youtube-collection.html" class="quarto-xref"><span>Kapitel 13</span></a>)</p></li>
+</ul>
+<p>Die Auswahl dieser Plattformen hat dabei v.a. zwei Gründe:</p>
+<ol type="1">
+<li><p>Sie sind relevant für Forschung zu politischer Kommunikation.</p></li>
+<li><p>Der Zugang zu Daten von diesen Plattformen ist vergleichsweise einfach, da sie entweder eine vergleichsweise offene API anbieten oder die Daten über Web Scraping relativ leicht zugänglich sind.</p></li>
+</ol>
+<p>Wir gehen dabei in aufsteigender Reihenfolge der Schwierigkeit des Datenzugangs vor, d.h. wir beginnen mit <em>Bluesky</em>, für das es eine offene API gibt, gefolgt von <em>TikTok</em>, für das wir eine sogenannte “Hidden API” nutzen, und <em>YouTube</em>, für das wir einen API Key benötigen.</p>
+</section>
+<section id="beobachtungseinheiten-sampling" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="beobachtungseinheiten-sampling"><span class="header-section-number">10.2</span> Beobachtungseinheiten &amp; Sampling</h2>
+<p>Die Beobachtungseinheiten für <em>Bluesky</em> und <em>TikTok</em> sind die Accounts von Kandidierenden zur deutschen Bundestagswahl 2025. Die Informationen zu diesen stammen aus dem Datensatz <a href="https://doi.org/10.4232/1.14773"><em>Social-Media-Konten der Kandidierenden bei der Bundestagswahl 2025</em></a> <span class="citation" data-cites="BreuerEtAl2026">(<a href="references.html#ref-BreuerEtAl2026" role="doc-biblioref">Breuer et al., 2026</a>)</span>. Wir nutzen für diese beiden Plattformen in den Beispielen entsprechend ein accountbasiertes Sampling.</p>
+<p>Unsere Beobachtungseinheiten für <em>YouTube</em> sind die Videos zu bestimmten Themen oder auch aus bestimmten Kanälen, die wir z.B. über die Websuche der Plattform identifizieren können.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-BreuerEtAl2020" class="csl-entry" role="listitem">
+Breuer, J., Bishop, L., &amp; Kinder-Kurlanda, K. (2020). The Practical and Ethical Challenges in Acquiring and Sharing Digital Trace Data: Negotiating Public-Private Partnerships. <em>New Media &amp; Society</em>, <em>22</em>(11), 2058–2080. <a href="https://doi.org/10.1177/1461444820924622">https://doi.org/10.1177/1461444820924622</a>
+</div>
+<div id="ref-BreuerEtAl2026" class="csl-entry" role="listitem">
+Breuer, J., Soldner, F., Shankaran, V., Fröhling, L., Bauer, P., Sältzer, M., Weiß, J., &amp; Chen, S. (2026). <em><span>Social Media Accounts of German Candidates from the German Federal Election 2025 [Social-Media-Konten der deutschen Kandidierenden bei der Bundestagswahl 2025]</span></em>. GESIS. <a href="https://doi.org/10.4232/1.14694">https://doi.org/10.4232/1.14694</a>
+</div>
+<div id="ref-DeubelEtAl2024" class="csl-entry" role="listitem">
+Deubel, A., Breuer, J., Kohne, J., &amp; Mohseni, M. R. (2024). <em>Overview of <span>Working</span> with <span>Data</span> from <span>YouTube</span> (<span>GESIS Guides</span> to <span>Digital Behavioral Data</span>, 12)</em>. GESIS - Leibniz-Institute for the Social Sciences. <a href="https://doi.org/10.60762/GGDBD24012.1.0">https://doi.org/10.60762/GGDBD24012.1.0</a>
+</div>
+<div id="ref-SoldnerEtAl2024b" class="csl-entry" role="listitem">
+Soldner, F., Bacaksizlar Turbic, N. G., &amp; Mirelmi, P. (2024). <em>How to Collect Online Data through Web Scraping (<span>GESIS Guides</span> to <span>Digital Behavioral Data</span>, 10)</em>. GESIS - Leibniz-Institute for the Social Sciences. <a href="https://doi.org/10.60762/GGDBD24010.1.0">https://doi.org/10.60762/GGDBD24010.1.0</a>
+</div>
+<div id="ref-SoldnerEtAl2024a" class="csl-entry" role="listitem">
+Soldner, F., Bacaksızlar Turbic, N. G., Mirelmi, P., &amp; Kohne, J. (2024). <em>How to <span>Collect Web Data</span> via <span>APIs</span> (<span>GESIS Guides</span> to <span>Digital Behavioral Data</span>, 9)</em>. GESIS - Leibniz-Institute for the Social Sciences. <a href="https://doi.org/10.60762/GGDBD24009.1.0">https://doi.org/10.60762/GGDBD24009.1.0</a>
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -870,13 +857,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./03-objects.html" class="pagination-link" aria-label="Objekte in `R`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objekte in <code>R</code></span></span>
+      <a href="./09-wrangling-variables.html" class="pagination-link" aria-label="Variablen verändern">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variablen verändern</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./05-packages.html" class="pagination-link" aria-label="Pakete">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pakete</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./11-bluesky-collection.html" class="pagination-link" aria-label="Datensammlung: *Bluesky*">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Datensammlung: <em>Bluesky</em></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -888,7 +875,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/04-functions.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/10-collection-methods.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</p>
 </div>

@@ -269,6 +269,34 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 </div>
 </section></section>
 <section>
+<section id="analysemethoden" class="title-slide slide level1 center" data-background-color="#4A90E2">
+<h1>Analysemethoden</h1>
+
+</section>
+<section id="fokus-im-kurs" class="slide level2">
+<h2>Fokus im Kurs</h2>
+<p>Der Fokus im Kurs liegt auf der <strong>quantitativen Textanalyse</strong>. Eine weitere im Kontext von Social-Media-Daten häufig angewandte Methode ist die Netzwerkanalyse. Diese behandeln wir hier nicht, aber <a href="https://cssbook.net/content/chapter13.html">Kapitel 13 aus dem Buch <em>Computational Analysis of Communication</em></a> gibt hier eine gute Einführung.</p>
+</section>
+<section id="arten-von-analysemethoden" class="slide level2">
+<h2>Arten von Analysemethoden</h2>
+<p>In der quantitativen Textanalyse gibt es viele unterschiedliche Auswertungsmethoden.</p>
+<ul>
+<li class="fragment"><p><strong>Deskriptive Methoden</strong>: Hierbei werden die Daten in ihrer Rohform beschrieben, z.B. durch Häufigkeiten von Wörtern, Links und Hashtags.</p></li>
+<li class="fragment"><p><strong>Sentiment-Analyse</strong> und <strong>diktionär:basierte Methoden</strong> HBei der Sentiment-Analyse wird versucht,die Stimmung oder Haltung in einem Text zu bestimmen, z.B. ob ein TPos pauf Social Media ositiv, negativ oder neutral ist. DBei der Sentiment-Analyse können auch sogenannte Diktionäre (dictionaries) zum Einsatz kommen. Diese können aber auch genutzt werden, um andere Konstrukte zu messen wie z.B. Populismus.</p></li>
+</ul>
+</section>
+<section id="arten-von-analysemethoden-1" class="slide level2">
+<h2>Arten von Analysemethoden</h2>
+<ul>
+<li><strong>Unsupervised Machine Learning</strong>: Hierbei werden Algorithmen eingesetzt, um Muster in den Daten zu erkennen, ohne dass diese vorher definiert wurden. Ein Beispiel hierfür ist die Topic-Modellierung, bei der versucht wird, Themen in einem Textkorpus zu identifizieren.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li><strong>Supervised Machine Learning</strong>: Hierbei werden Algorithmen eingesetzt, um Muster in den Daten zu erkennen, die vorher definiert wurden. Ein Beispiel hierfür ist die Textklassifikation, bei der versucht wird, Texte in vordefinierte Kategorien einzuteilen. Diese Methode behandeln wir aus Zeitgründen nicht, aber <a href="https://cssbook.net/content/chapter08.html">Kapitel 8 aus dem Buch <em>Computational Analysis of Communication</em></a> behandelt diese ausführlich.</li>
+</ul>
+</div>
+</section></section>
+<section>
 <section id="preprocessing" class="title-slide slide level1 center" data-background-color="#4A90E2">
 <h1>Preprocessing</h1>
 
@@ -312,12 +340,12 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <h2>Preprocessing-Schritte</h2>
 <p>Es gibt viele verschiedene mögliche Preprocessing-Schritte für Textdaten. Die Auswahl und Abfolge der Schritte hängt von verschiedenen Faktoren ab, z.B. von der Art der Daten, der geplanten Analyse und den Forschungsfragen. Schritte, die sehr häufig sinnvoll bzw. nötig sind:</p>
 <ul>
-<li><p>Erstellung eines Textkorpus</p></li>
-<li><p>Tokenisierung (tokenization)</p></li>
-<li><p>Entfernung oder Extraktion bestimmter Muster oder Symbole (z.B. Zeichensetzung, Zahlen, Emoji, URLs…)</p></li>
-<li><p>Kleinschreibung (lowercasing)</p></li>
-<li><p>Entfernung von Stoppwörtern (stopword removal)</p></li>
-<li><p>Erstellung einer Document-Feature-Matrix (DFM)</p></li>
+<li class="fragment"><p>Erstellung eines Textkorpus</p></li>
+<li class="fragment"><p>Tokenisierung (tokenization)</p></li>
+<li class="fragment"><p>Entfernung oder Extraktion bestimmter Muster oder Symbole (z.B. Zeichensetzung, Zahlen, Emoji, URLs…)</p></li>
+<li class="fragment"><p>Kleinschreibung (lowercasing)</p></li>
+<li class="fragment"><p>Entfernung von Stoppwörtern (stopword removal)</p></li>
+<li class="fragment"><p>Erstellung einer Document-Feature-Matrix (DFM)</p></li>
 </ul>
 </section>
 <section id="erstellung-eines-textkorpus-bluesky" class="slide level2">
@@ -797,8 +825,8 @@ Topic 5 Top Words:
 <section id="weitere-optionen-für-topic-models" class="slide level2">
 <h2>Weitere Optionen für Topic Models</h2>
 <ul>
-<li><p>Biterm Topic Model [BTM; <span class="citation" data-cites="YanEtAl2013">Yan et al. (<a href="#/references" role="doc-biblioref" onclick="">2013</a>)</span>]: <code>R</code>-Paket <a href="https://github.com/bnosac/BTM"><code>btm</code></a></p></li>
-<li><p>Keyword Assisted Topic Model [keyATM; <span class="citation" data-cites="EshimaEtAl2024">Eshima et al. (<a href="#/references" role="doc-biblioref" onclick="">2024</a>)</span>]: <code>R</code>-Paket <a href="https://keyatm.github.io/keyATM/"><code>keyATM</code></a></p></li>
+<li><p>Biterm Topic Model (BTM) <span class="citation" data-cites="YanEtAl2013">(<a href="#/references" role="doc-biblioref" onclick="">Yan et al., 2013</a>)</span>: <code>R</code>-Paket <a href="https://github.com/bnosac/BTM"><code>btm</code></a></p></li>
+<li><p>Keyword Assisted Topic Model (keyATM) <span class="citation" data-cites="EshimaEtAl2024">(<a href="#/references" role="doc-biblioref" onclick="">Eshima et al., 2024</a>)</span>: <code>R</code>-Paket <a href="https://keyatm.github.io/keyATM/"><code>keyATM</code></a></p></li>
 <li><p>Seeded LDA <span class="citation" data-cites="WatanabeBaturo2024">(<a href="#/references" role="doc-biblioref" onclick="">Watanabe &amp; Baturo, 2024</a>)</span>: <code>R</code>-Paket <a href="https://koheiw.github.io/seededlda/"><code>seededlda</code></a></p></li>
 </ul>
 </section></section>
@@ -807,13 +835,20 @@ Topic 5 Top Words:
 <h1>Ausblick</h1>
 
 </section>
+<section id="shk-stellen-am-cais" class="slide level2">
+<h2>SHK-Stelle(n) am CAIS</h2>
+<p>Ich suche aktuell 1-2 studentische Hilfskräfte für mein Team am CAIS. Wenn Sie Interesse haben, sprechen Sie mich gerne an oder schreiben mir.</p>
+<p>Dauerausschreibung SHK-Stelle am CAIS: https://cais-research.de/aktuelles/stellen/</p>
+</section>
 <section id="nächste-sitzungen" class="slide level2">
 <h2>Nächste Sitzungen</h2>
 <ul>
-<li><p>ab nächster Sitzung am 18.06.: Gruppenarbeit</p></li>
-<li><p>Vorschlag: 3-4 Gruppen à 3-4 Personen</p></li>
-<li><p>Aufgabe am 18.06.: Entwicklung einer Forschungsfrage und Formulierung eines ersten Plans für die Sammlung, Aufbereitung und Analyse der Daten</p></li>
-<li><p>Vorstellung der Ideen in Kurzpräsentationen (5-10 Minuten) in der Sitzung am 25.06.</p></li>
+<li>ab nächster Sitzung am 18.06.: Gruppenarbeit</li>
+</ul>
+<ul>
+<li class="fragment"><p>Vorschlag: 3-4 Gruppen à 3-4 Personen</p></li>
+<li class="fragment"><p>Aufgabe am 18.06.: Entwicklung einer Forschungsfrage und Formulierung eines ersten Plans für die Sammlung, Aufbereitung und Analyse der Daten</p></li>
+<li class="fragment"><p>Vorstellung der Ideen in Kurzpräsentationen (5-10 Minuten) in der Sitzung am 25.06.</p></li>
 </ul>
 <p><em>Hinweis</em> bzw. Erinnerung: Die Sitzung am 18.06. wird nicht durch den Dozenten betreut</p>
 </section>

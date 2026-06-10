@@ -58,6 +58,30 @@ bs_posts <- read.csv("../data/bluesky_data.csv") # Dateipfad ggf. anpassen
 comments_yt <- read.csv("../data/youtube_data.csv") # Dateipfad ggf. anpassen
 ```
 
+# Analysemethoden {background-color="#4A90E2"}
+
+## Fokus im Kurs
+
+Der Fokus im Kurs liegt auf der **quantitativen Textanalyse**. Eine weitere im Kontext von Social-Media-Daten häufig angewandte Methode ist die Netzwerkanalyse. Diese behandeln wir hier nicht, aber [Kapitel 13 aus dem Buch *Computational Analysis of Communication*](https://cssbook.net/content/chapter13.html) gibt hier eine gute Einführung.
+
+## Arten von Analysemethoden
+
+In der quantitativen Textanalyse gibt es viele unterschiedliche Auswertungsmethoden.
+
+::: {.incremental}
+- **Deskriptive Methoden**: Hierbei werden die Daten in ihrer Rohform beschrieben, z.B. durch Häufigkeiten von Wörtern, Links und Hashtags. 
+
+- **Sentiment-Analyse** und **diktionär:basierte Methoden** HBei der Sentiment-Analyse wird versucht,die Stimmung oder Haltung in einem Text zu bestimmen, z.B. ob ein TPos pauf Social Media ositiv, negativ oder neutral ist. DBei der Sentiment-Analyse können auch sogenannte Diktionäre (dictionaries) zum Einsatz kommen. Diese können aber auch genutzt werden, um andere Konstrukte zu messen wie z.B. Populismus.
+:::
+
+## Arten von Analysemethoden
+
+- **Unsupervised Machine Learning**: Hierbei werden Algorithmen eingesetzt, um Muster in den Daten zu erkennen, ohne dass diese vorher definiert wurden. Ein Beispiel hierfür ist die Topic-Modellierung, bei der versucht wird, Themen in einem Textkorpus zu identifizieren.
+
+::: {.fragment}
+- **Supervised Machine Learning**: Hierbei werden Algorithmen eingesetzt, um Muster in den Daten zu erkennen, die vorher definiert wurden. Ein Beispiel hierfür ist die Textklassifikation, bei der versucht wird, Texte in vordefinierte Kategorien einzuteilen. Diese Methode behandeln wir aus Zeitgründen nicht, aber [Kapitel 8 aus dem Buch *Computational Analysis of Communication*](https://cssbook.net/content/chapter08.html) behandelt diese ausführlich.
+:::
+
 # Preprocessing {background-color="#4A90E2"}
 
 ## Was ist Preprocessing?
@@ -106,6 +130,7 @@ Bei der Aufbereitung von Textdaten gibt es entsprechend einige Harausforderungen
 
 Es gibt viele verschiedene mögliche Preprocessing-Schritte für Textdaten. Die Auswahl und Abfolge der Schritte hängt von verschiedenen Faktoren ab, z.B. von der Art der Daten, der geplanten Analyse und den Forschungsfragen. Schritte, die sehr häufig sinnvoll bzw. nötig sind:
 
+::: {.incremental}
 - Erstellung eines Textkorpus
 
 - Tokenisierung (tokenization)
@@ -117,6 +142,7 @@ Es gibt viele verschiedene mögliche Preprocessing-Schritte für Textdaten. Die 
 - Entfernung von Stoppwörtern (stopword removal)
 
 - Erstellung einer Document-Feature-Matrix (DFM)
+:::
 
 ## Erstellung eines Textkorpus: Bluesky
 
@@ -442,18 +468,26 @@ plot(effect,
 
 ## Weitere Optionen für Topic Models
 
-- Biterm Topic Model [BTM; @YanEtAl2013]: `R`-Paket [`btm`](https://github.com/bnosac/BTM)
+- Biterm Topic Model (BTM) [@YanEtAl2013]: `R`-Paket [`btm`](https://github.com/bnosac/BTM)
 
-- Keyword Assisted Topic Model [keyATM; @EshimaEtAl2024]: `R`-Paket [`keyATM`](https://keyatm.github.io/keyATM/)
+- Keyword Assisted Topic Model (keyATM) [@EshimaEtAl2024]: `R`-Paket [`keyATM`](https://keyatm.github.io/keyATM/)
 
 - Seeded LDA [@WatanabeBaturo2024]: `R`-Paket [`seededlda`](https://koheiw.github.io/seededlda/)
 
 # Ausblick {background-color="#4A90E2"}
 
+## SHK-Stelle(n) am CAIS
+
+Ich suche aktuell 1-2 studentische Hilfskräfte für mein Team am CAIS.
+Wenn Sie Interesse haben, sprechen Sie mich gerne an oder schreiben mir.
+
+Dauerausschreibung SHK-Stelle am CAIS: https://cais-research.de/aktuelles/stellen/
+
 ## Nächste Sitzungen
 
 - ab nächster Sitzung am 18.06.: Gruppenarbeit
 
+::: {.incremental}
 - Vorschlag: 3-4 Gruppen à 3-4 Personen
 
 - Aufgabe am 18.06.: Entwicklung einer Forschungsfrage und Formulierung eines ersten Plans für die Sammlung, Aufbereitung und Analyse der Daten
@@ -461,5 +495,6 @@ plot(effect,
 - Vorstellung der Ideen in Kurzpräsentationen (5-10 Minuten) in der Sitzung am 25.06.
 
 *Hinweis* bzw. Erinnerung: Die Sitzung am 18.06. wird nicht durch den Dozenten betreut
+:::
 
 ## References

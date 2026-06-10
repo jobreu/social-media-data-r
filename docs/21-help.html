@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Funktionen – Sammlung und Analyse von Social-Media-Daten mit R</title>
+<title>21&nbsp; 🆘 Hilfe! – Sammlung und Analyse von Social-Media-Daten mit R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,8 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./05-packages.html" rel="next">
-<link href="./03-objects.html" rel="prev">
+<link href="./22-function-lifecycle.html" rel="next">
+<link href="./20-message-warning-error.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-installation.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./04-functions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./19-errors.html">Tipps &amp; Tricks</a></li><li class="breadcrumb-item"><a href="./21-help.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">🆘 Hilfe!</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-functions.html" class="sidebar-item-text sidebar-link active">
+  <a href="./04-functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></span></a>
   </div>
 </li>
@@ -333,7 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./21-help.html" class="sidebar-item-text sidebar-link">
+  <a href="./21-help.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">🆘 Hilfe!</span></span></a>
   </div>
 </li>
@@ -386,15 +386,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#help-files-zu-funktionen-und-paketen" id="toc-help-files-zu-funktionen-und-paketen" class="nav-link active" data-scroll-target="#help-files-zu-funktionen-und-paketen"><span class="header-section-number">21.1</span> Help Files zu Funktionen und Paketen</a></li>
+  <li><a href="#vignetten" id="toc-vignetten" class="nav-link" data-scroll-target="#vignetten"><span class="header-section-number">21.2</span> Vignetten</a></li>
+  <li><a href="#dokumentation-zu-paketen" id="toc-dokumentation-zu-paketen" class="nav-link" data-scroll-target="#dokumentation-zu-paketen"><span class="header-section-number">21.3</span> Dokumentation zu Paketen</a></li>
+  <li><a href="#foren-und-mailinglisten" id="toc-foren-und-mailinglisten" class="nav-link" data-scroll-target="#foren-und-mailinglisten"><span class="header-section-number">21.4</span> Foren und Mailinglisten</a></li>
+  <li><a href="#ki-chatbots" id="toc-ki-chatbots" class="nav-link" data-scroll-target="#ki-chatbots"><span class="header-section-number">21.5</span> KI-Chatbots</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/21-help.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-installation.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./04-functions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./19-errors.html">Tipps &amp; Tricks</a></li><li class="breadcrumb-item"><a href="./21-help.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">🆘 Hilfe!</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-functions" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></span></h1>
+<h1 class="title"><span id="sec-help" class="quarto-section-identifier"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">🆘 Hilfe!</span></span></h1>
 </div>
 
 
@@ -411,54 +421,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Für das allermeiste, was wir in <code>R</code> machen, verwenden wir Funktionen. Eine Funktion in <code>R</code> ist wie eine Art Mini-Programm, mit dem wir bestimmte Aufgaben ausführen können.</p>
-<p>Vereinfacht gesagt: Eine Funktion nimmt eine Eingabe (Inpurt), verarbeitet diese und erzeugt eine Ausgabe (Output).</p>
-<p>Funktionen verfügen in der Regel über sogenannte Argumente, die festlegen, was genau eine Funktion macht. Im einfachsten Fall benötigt eine Funktion lediglich eine Eingabe (einen Wert oder ein Objekt) als einziges Argument (und manche Funktionen benötigen sogar gar kein Argument).</p>
-<p>Die grundlegende Anatomie einer Funktion in <code>R</code> sieht wie folgt aus:</p>
+<p>Es gibt viele Möglichkeiten, Hilfe für Probleme in/mit <code>R</code> zu finden. Die wichtigsten Optionen sind:</p>
+<ul>
+<li><p>Help Files zu Funktionen und Paketen</p></li>
+<li><p>sogenannte Vignetten zu bestimmten Paketen</p></li>
+<li><p>(zusätzliche) Dokumentation zu Paketen (z.B. über eigene Webseiten)</p></li>
+<li><p>Foren und Mailinglisten</p></li>
+<li><p>KI-Chatbots</p></li>
+</ul>
+<p>Auf der Website des R-Projekts gibt es ein hilfreiches <a href="https://www.r-project.org/help.html">kurzes Tutorial zum Thema “Getting Help with R”</a>.</p>
+<section id="help-files-zu-funktionen-und-paketen" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="help-files-zu-funktionen-und-paketen"><span class="header-section-number">21.1</span> Help Files zu Funktionen und Paketen</h2>
+<p><code>R</code> hat ein eingebautes Hilfesystem, das es ermöglicht, Informationen zu Funktionen und Paketen abzurufen. Dazu kann man einfach die Funktion <code>?</code> verwenden, gefolgt vom Namen eines Pakets oder einer Funktion. Zum Beispiel:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funktionsname</span>(<span class="at">argument1 =</span> wert1, <span class="at">argument2 =</span> wert2, ...)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Funktion</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>?mean</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Paket</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>?dplyr</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Der <code>funktionsname</code> ist ein Name, der angibt, welche Funktion Sie verwenden möchten. Darauf folgen in Klammern ein oder mehrere Argumente, die bestimmte Werte annehmen können.</p>
-<p>Beispiele für einfache Funktionen in <code>R</code>:</p>
+<p>Hierdurch öffnet sich im “Help”-Tab in <em>RStudio</em> die entsprechende Hilfeseite. Auf dieser Seite finden Sie eine kurze Beschreibung der Funktion oder des Pakets, Informationen zu den Argumenten, die die Funktion erwartet, sowie Beispiele für die Verwendung der Funktion.</p>
+<p><em>Hinweis</em>: Für die Funktionen aus den Paketen des <code>tidyverse</code> gibt es auf der Hilfeseite auch angeben zum Status der Funktion entlang des sogenannten “Lifecycle”. Erklärungen dazu finden Sie im <a href="22-function-lifecycle.html" class="quarto-xref"><span>Kapitel 22</span></a>.</p>
+<p>Man kann auch alle Hilfedateien für ein bestimmtes Paket mit dem Befehl <code>help(package = „packagename“)</code>durchsuchen.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion ohne Argumente</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>() <span class="co"># Gibt das aktuelle Datum zurück</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2026-06-10"</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Alle Hilfedateien für das Paket dplyr durchsuchen</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="at">package =</span> <span class="st">"dplyr"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion mit einem Argument</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>) <span class="co"># Berechnet die Quadratwurzel von 16</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion mit mehreren Argumenten</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.14159</span>, <span class="at">digits =</span> <span class="dv">2</span>) <span class="co"># Rundet die Zahl auf 2 Dezimalstellen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3.14</code></pre>
-</div>
-</div>
-<p>Funktionen können erforlicher (required) und optionale (optional) Argumente haben. Im vorherigen Beispiel war das Argument <code>digits</code> bei der Funktion <code>round()</code> optional. Für optionale Argumente gibt es in den Funktionen in der Regel Standardwerte, die man aber durch das Spezifizieren des Arguments überschreiben kann. Ob ein Argument erforderlich oder optional ist, kann man in der Dokumentation bzw. dem sogenannten Help File herausfinden. Die Hilfe zu Funktionen kann man in <em>RStudio</em> aufrufen, indem man ein <code>?</code> vor den Namen der Funktion schreibt und die <code>()</code> dahinter weglässt.</p>
-<p>Wenn im Help File unter “Usage” hinter den Argumenten ein <code>=</code> und ein Wert stehen, handelt es sich um optionale Argumente. In vielen Funktionen ist das erste Argument eine Eingabe. Dies kann ein einzelner Wert, ein Vektor oder ein Dataframe sein. Dieses Argument ist erforderlich (required) und in der Dokumentation bzw. dem Help File i.d.R. mit <code>x</code> benannt. Mehr zum Thema Hilfe in <code>R</code> ist im <a href="21-help.html" class="quarto-xref"><span>Kapitel 21</span></a> zu finden.</p>
+</section>
+<section id="vignetten" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="vignetten"><span class="header-section-number">21.2</span> Vignetten</h2>
+<p>Viele <code>R</code>-Pakete bieten auch sogenannte Vignetten an. Bei diesen handelt es sich um Dokumente, die detailliertere Erläuterungen und Beispiele zu einigen Funktionen eines Pakets enthalten.</p>
+<p>Um Vignetten nutzen zu können, muss man zunächst wissen, ob ein Paket überhaupt Vignetten enthält und, falls ja, wie diese heißen. Mit diesen Informationen kann man dann auf die entsprechenden Vignetten zugreifen. In <em>RStudio</em> wird die Vignette aauch im “Help”-Tab angezeigt.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hilfe zu einer Funktion aufrufen</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>?round</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Alle Vignetten für das Paket dplyr anzeigen</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="at">package =</span> <span class="st">"dplyr"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Zugriff auf eine bestimmte Vignette</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">"colwise"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Das Ergebnis einer Funktion kann man natürlich auch einem Objekt zuweisen, um es später weiterzuverwenden.</p>
-<p>Verschiedene Funktionen können mit unterschiedlichen Arten von Eingaben (Inputs) arbeiten und produzieren auch unterschiedliche Ausgaben (Outputs).</p>
-<p>Die Funktion <code>mean()</code> beispielsweise benötigt einen numerischen Vektor aus Input und liefert einen einzelnen numerischen Wert (den Mittelwert der Werte aus dem Vektor) als Output.</p>
+<p>Es ist auch möglich, sich die Vignetten für ein Paket direkt im Browser anzeigen zu lassen.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>zahlen <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>mittelwert <span class="ot">&lt;-</span> <span class="fu">mean</span>(zahlen)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>mittelwert</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Alle Vignetten für das Paket dplyr im Browser anzeigen</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">browseVignettes</span>(<span class="at">package =</span> <span class="st">"dplyr"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-<p>Sie können in <code>R</code> Funktionen selbst definieren. Allerdings nutzen wir zumeist Funktionen, die in Paketen enthalten sind. Was es mit denen auf sich hat, betrachten wir im folgenden <a href="05-packages.html" class="quarto-xref"><span>Kapitel 5</span></a>.</p>
+</section>
+<section id="dokumentation-zu-paketen" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="dokumentation-zu-paketen"><span class="header-section-number">21.3</span> Dokumentation zu Paketen</h2>
+<p>Pakete, die auf <em>CRAN</em> verfügbar sind, enthalten sogenannte Reference Manuals (Referenzhandbücher) im <code>HTML</code>- und <code>PDF</code>-Format. Diese sind auf den jeweiligen <em>CRAN</em>-Webseiten der Pakete unter “Documentation” / “Reference Manual” zu finden (siehe z.B. die <a href="https://cran.r-project.org/web/packages/dplyr/index.html"><em>CRAN</em>-Webseite für das Paket <code>dplyr</code></a>).</p>
+<p>Einige Pakete verfügen zudem über eigene Websites mit ausführlicher Zusatzdokumentation (das <a href="https://quanteda.io/"><code>quanteda</code>-Paket für Textanalyse</a> ist hierfür ein gutes Beispiel).</p>
+<p>Wenn <code>R</code>-Pakete auf <em>GitHub</em> gehostet werden, enthält das zugehörige Repository in der Regel auch eine Dokumentation zum Paket (z.B. in der ReadMe-Datei). Sollten bei der Verwendung eines auf <em>GitHub</em> gehosteten Pakets Probleme auftreten, lohnt sich ggf. auch ein Blick in den Bereich “Issues” im <em>GitHub</em>-Repository zum Paket.</p>
+</section>
+<section id="foren-und-mailinglisten" class="level2" data-number="21.4">
+<h2 data-number="21.4" class="anchored" data-anchor-id="foren-und-mailinglisten"><span class="header-section-number">21.4</span> Foren und Mailinglisten</h2>
+<p>Es gibt zahlreiche <code>R</code>-bezogene Foren und Mailinglisten. Zwei wichtige (und hilfreiche) Foren für <code>R</code> sind <a href="https://stackoverflow.com/"><em>Stack Overflow</em></a> und die <a href="https://forum.posit.co/"><em>posit</em> Community</a>.</p>
+<p>Die Wahrscheinlichkeit ist groß, dass jemand die Frage(n), die Sie interessieren, bereits auf in einem dieser beiden Foren gestellt (und beantwortet) hat. Die Webseite des R-Projekts bietet auch einen <a href="https://www.r-project.org/mail.html">Überblick über <code>R</code>-Mailinglisten</a>.</p>
+</section>
+<section id="ki-chatbots" class="level2" data-number="21.5">
+<h2 data-number="21.5" class="anchored" data-anchor-id="ki-chatbots"><span class="header-section-number">21.5</span> KI-Chatbots</h2>
+<p>KI-Chatbots wie z.B. <em>ChatGPT</em> können ebenfalls eine wertvolle Ressource sein, um Hilfe bei der Arbeit mit <code>R</code> zu erhalten. Sie können Code generieren oder Fragen zu Paketen, Funktionen oder Fehlermeldungen beantworten. Wie immer bei der Arbeit mit KI gilt, dass diese Fehler machen kann. Daher sollten die Ausgaben stets mit Vorsicht genutzt und überprüft werden.</p>
+<p>Es gibt zudem einige Tools, mit denen KI bzw. auf dieser basierende Chatbots in <em>RStudio</em> integriert werden können. Dies ist z.B. <a href="https://docs.posit.co/ide/user/ide/guide/tools/copilot.html">für <em>GitHub Copilot</em> möglich</a> und <em>posit</em> bietet für <em>RStudio</em> und seine neue IDE <em>positron</em> auch das Tool <a href="https://posit-dev.github.io/assistant/"><em>Posit Assistant</em></a> an.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -870,13 +894,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./03-objects.html" class="pagination-link" aria-label="Objekte in `R`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objekte in <code>R</code></span></span>
+      <a href="./20-message-warning-error.html" class="pagination-link" aria-label="Meldungen, Warnungen, Fehler">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Meldungen, Warnungen, Fehler</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./05-packages.html" class="pagination-link" aria-label="Pakete">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pakete</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./22-function-lifecycle.html" class="pagination-link" aria-label="Aus dem Leben einer Funktion">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Aus dem Leben einer Funktion</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -888,7 +912,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/04-functions.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/21-help.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</p>
 </div>

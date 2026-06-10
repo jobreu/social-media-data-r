@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Funktionen – Sammlung und Analyse von Social-Media-Daten mit R</title>
+<title>8&nbsp; Datensätze verändern – Sammlung und Analyse von Social-Media-Daten mit R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,8 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./05-packages.html" rel="next">
-<link href="./03-objects.html" rel="prev">
+<link href="./09-wrangling-variables.html" rel="next">
+<link href="./07-tidyverse.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-installation.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./04-functions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./08-wrangling-df.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Datensätze verändern</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-functions.html" class="sidebar-item-text sidebar-link active">
+  <a href="./04-functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></span></a>
   </div>
 </li>
@@ -222,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-wrangling-df.html" class="sidebar-item-text sidebar-link">
+  <a href="./08-wrangling-df.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Datensätze verändern</span></span></a>
   </div>
 </li>
@@ -386,15 +386,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#erster-eindruck" id="toc-erster-eindruck" class="nav-link active" data-scroll-target="#erster-eindruck"><span class="header-section-number">8.1</span> 👀 Erster Eindruck</a></li>
+  <li><a href="#variablen-auswählen" id="toc-variablen-auswählen" class="nav-link" data-scroll-target="#variablen-auswählen"><span class="header-section-number">8.2</span> Variablen auswählen</a></li>
+  <li><a href="#variablen-umbenennen" id="toc-variablen-umbenennen" class="nav-link" data-scroll-target="#variablen-umbenennen"><span class="header-section-number">8.3</span> Variablen umbenennen</a></li>
+  <li><a href="#variablen-anders-anordnen" id="toc-variablen-anders-anordnen" class="nav-link" data-scroll-target="#variablen-anders-anordnen"><span class="header-section-number">9</span> Variablen anders anordnen</a>
+  <ul class="collapse">
+  <li><a href="#zeilen-filtern" id="toc-zeilen-filtern" class="nav-link" data-scroll-target="#zeilen-filtern"><span class="header-section-number">9.1</span> Zeilen filtern</a></li>
+  <li><a href="#veränderung-der-reihenfolge-der-zeilen" id="toc-veränderung-der-reihenfolge-der-zeilen" class="nav-link" data-scroll-target="#veränderung-der-reihenfolge-der-zeilen"><span class="header-section-number">9.2</span> Veränderung der Reihenfolge der Zeilen</a></li>
+  <li><a href="#befehle-verketten" id="toc-befehle-verketten" class="nav-link" data-scroll-target="#befehle-verketten"><span class="header-section-number">9.3</span> Befehle verketten</a></li>
+  <li><a href="#datensätze-zusammenführen-sec-merge" id="toc-datensätze-zusammenführen-sec-merge" class="nav-link" data-scroll-target="#datensätze-zusammenführen-sec-merge"><span class="header-section-number">9.4</span> Datensätze zusammenführen [#sec-merge]</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/08-wrangling-df.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-installation.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./04-functions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-tidyverse.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./08-wrangling-df.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Datensätze verändern</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-functions" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></span></h1>
+<h1 class="title"><span id="sec-wrangdf" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Datensätze verändern</span></span></h1>
 </div>
 
 
@@ -411,54 +426,270 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Für das allermeiste, was wir in <code>R</code> machen, verwenden wir Funktionen. Eine Funktion in <code>R</code> ist wie eine Art Mini-Programm, mit dem wir bestimmte Aufgaben ausführen können.</p>
-<p>Vereinfacht gesagt: Eine Funktion nimmt eine Eingabe (Inpurt), verarbeitet diese und erzeugt eine Ausgabe (Output).</p>
-<p>Funktionen verfügen in der Regel über sogenannte Argumente, die festlegen, was genau eine Funktion macht. Im einfachsten Fall benötigt eine Funktion lediglich eine Eingabe (einen Wert oder ein Objekt) als einziges Argument (und manche Funktionen benötigen sogar gar kein Argument).</p>
-<p>Die grundlegende Anatomie einer Funktion in <code>R</code> sieht wie folgt aus:</p>
+<p>Sobald wir Daten importiert haben, müssen wir diese in der Regel noch aufbereiten, bevor wir mit der Analyse beginnen können. Das Aufbereiten von Daten wird auch als Data Wrangling oder Data Cleaning bezeichnet.</p>
+<p>Um einen Eindruck davon zu bekommen, welche Aufbereitungsschritte nötig oder sinnvoll sein könnten, ist es hilfreich, sich die Daten zunächst einmal anzuschauen.</p>
+<section id="erster-eindruck" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="erster-eindruck"><span class="header-section-number">8.1</span> 👀 Erster Eindruck</h2>
+<p>Für einen ersten Eindruck bietet das Paket <code>dplyr</code> die Funktion <code>glimpse()</code>.</p>
+<p>Sofern dies in der aktuellen Sitzung noch nicht passiert ist, müssen wir zunächst wieder die <code>tidyverse</code>-Pakete laden und die Daten in <code>R</code> importieren (siehe dazu auch <a href="07-tidyverse.html" class="quarto-xref"><span>Kapitel 7</span></a> und <a href="06-import-export.html" class="quarto-xref"><span>Kapitel 6</span></a>). Danach können wir uns die Daten mit <code>glimpse()</code> anschauen.</p>
+<p><em>Hinweis</em>: Je nachdem, ob bzw. wo Sie die Daten aus <a href="06-import-export.html" class="quarto-xref"><span>Kapitel 6</span></a> gespeichert haben, müssen Sie den Dateipfad im folgenden Code ggf. anpassen.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funktionsname</span>(<span class="at">argument1 =</span> wert1, <span class="at">argument2 =</span> wert2, ...)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Paket 'tidyverse' wurde unter R Version 4.5.3 erstellt</code></pre>
 </div>
-<p>Der <code>funktionsname</code> ist ein Name, der angibt, welche Funktion Sie verwenden möchten. Darauf folgen in Klammern ein oder mehrere Argumente, die bestimmte Werte annehmen können.</p>
-<p>Beispiele für einfache Funktionen in <code>R</code>:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion ohne Argumente</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>() <span class="co"># Gibt das aktuelle Datum zurück</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Paket 'ggplot2' wurde unter R Version 4.5.3 erstellt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Paket 'purrr' wurde unter R Version 4.5.2 erstellt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Paket 'stringr' wurde unter R Version 4.5.2 erstellt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.6.0
+✔ ggplot2   4.0.3     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.2.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>yt_demo <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"./data/simulated_yt_export.csv"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 245 Columns: 8
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (4): VideoID, AuthorDisplayName, Comment, CommentID
+dbl  (1): LikeCount
+lgl  (1): ParentID
+dttm (2): PublishedAt, UpdatedAt
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(yt_demo)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2026-06-10"</code></pre>
+<pre><code>Rows: 245
+Columns: 8
+$ VideoID           &lt;chr&gt; "dQw4w9WgXcQ", "xyz789AbCde", "fGHjKlMnOpq", "PqRsTu…
+$ AuthorDisplayName &lt;chr&gt; "TechGuru88", "ArtLover22", "GamerProX", "MusicFanat…
+$ Comment           &lt;chr&gt; "This video changed my perspective! Highly recommend…
+$ LikeCount         &lt;dbl&gt; 154, 87, 301, 210, 95, 180, 120, 65, 250, 110, 190, …
+$ PublishedAt       &lt;dttm&gt; 2024-06-20 14:35:01, 2024-06-19 18:02:10, 2024-06-1…
+$ UpdatedAt         &lt;dttm&gt; 2024-06-20 14:35:01, 2024-06-19 18:02:10, 2024-06-1…
+$ ParentID          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ CommentID         &lt;chr&gt; "Ugw3KPnh-5QJnBpeymd4AaABAg", "Ugy9J-5h-1RKnBpeymd4A…</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion mit einem Argument</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>) <span class="co"># Berechnet die Quadratwurzel von 16</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion mit mehreren Argumenten</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.14159</span>, <span class="at">digits =</span> <span class="dv">2</span>) <span class="co"># Rundet die Zahl auf 2 Dezimalstellen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3.14</code></pre>
-</div>
-</div>
-<p>Funktionen können erforlicher (required) und optionale (optional) Argumente haben. Im vorherigen Beispiel war das Argument <code>digits</code> bei der Funktion <code>round()</code> optional. Für optionale Argumente gibt es in den Funktionen in der Regel Standardwerte, die man aber durch das Spezifizieren des Arguments überschreiben kann. Ob ein Argument erforderlich oder optional ist, kann man in der Dokumentation bzw. dem sogenannten Help File herausfinden. Die Hilfe zu Funktionen kann man in <em>RStudio</em> aufrufen, indem man ein <code>?</code> vor den Namen der Funktion schreibt und die <code>()</code> dahinter weglässt.</p>
-<p>Wenn im Help File unter “Usage” hinter den Argumenten ein <code>=</code> und ein Wert stehen, handelt es sich um optionale Argumente. In vielen Funktionen ist das erste Argument eine Eingabe. Dies kann ein einzelner Wert, ein Vektor oder ein Dataframe sein. Dieses Argument ist erforderlich (required) und in der Dokumentation bzw. dem Help File i.d.R. mit <code>x</code> benannt. Mehr zum Thema Hilfe in <code>R</code> ist im <a href="21-help.html" class="quarto-xref"><span>Kapitel 21</span></a> zu finden.</p>
+<p>Wenn wir uns den gesamten Datenstz in <em>RStudio</em> anschauen wollen, können wir die Funktion <code>View()</code> verwenden. Diese öffnet die Daten in einem neuen Tab und zeigt sie in einer tabellarischen Ansicht an.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hilfe zu einer Funktion aufrufen</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>?round</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(yt_demo)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Das Ergebnis einer Funktion kann man natürlich auch einem Objekt zuweisen, um es später weiterzuverwenden.</p>
-<p>Verschiedene Funktionen können mit unterschiedlichen Arten von Eingaben (Inputs) arbeiten und produzieren auch unterschiedliche Ausgaben (Outputs).</p>
-<p>Die Funktion <code>mean()</code> beispielsweise benötigt einen numerischen Vektor aus Input und liefert einen einzelnen numerischen Wert (den Mittelwert der Werte aus dem Vektor) als Output.</p>
+</section>
+<section id="variablen-auswählen" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="variablen-auswählen"><span class="header-section-number">8.2</span> Variablen auswählen</h2>
+<p>Um bestimmte Variablen aus einem Datensatz auszuwählen, können wir die Funktion <code>select()</code> aus dem Paket <code>dplyr</code> verwenden. Diese Funktion ermöglicht es uns, eine oder mehrere Variablen aus einem Datensatz auszuwählen und einen neuen Datensatz zu erstellen, der nur diese Variablen enthält.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>zahlen <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>mittelwert <span class="ot">&lt;-</span> <span class="fu">mean</span>(zahlen)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>mittelwert</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>yt_selected <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(AuthorDisplayName, Comment, LikeCount)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(yt_selected)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 245
+Columns: 3
+$ AuthorDisplayName &lt;chr&gt; "TechGuru88", "ArtLover22", "GamerProX", "MusicFanat…
+$ Comment           &lt;chr&gt; "This video changed my perspective! Highly recommend…
+$ LikeCount         &lt;dbl&gt; 154, 87, 301, 210, 95, 180, 120, 65, 250, 110, 190, …</code></pre>
+</div>
+</div>
+<p>Durch die Verwendung von <code>select()</code> ändert sich die Anzahl der Spalten im Datensatz.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(yt_demo)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(yt_selected)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
 </div>
-<p>Sie können in <code>R</code> Funktionen selbst definieren. Allerdings nutzen wir zumeist Funktionen, die in Paketen enthalten sind. Was es mit denen auf sich hat, betrachten wir im folgenden <a href="05-packages.html" class="quarto-xref"><span>Kapitel 5</span></a>.</p>
+<p>Um nicht alle Variablennamen tippen zu müssen, gibt es einige Möglichkeiten. Z.B. kann man im Datensatz aufeinanderfolgende Variablen im Befehl <code>select()</code> auswählen, indem man nur den Namen der ersten und letzten Variable nennt und diese durch einèn <code>:</code> trennt.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>yt_selected <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(AuthorDisplayName<span class="sc">:</span>LikeCount)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Es gibt auch noch viele weitere Optionen, um Variablen auszuwählen, z.B. die Auswahl von Variablen, die bestimmte Zeichenketten in ihren Namen enthalten oder die Auswahl von Variablen anhand ihres Typs. Weitere Informationen zu diesen Möglichkeiten finden Sie in der <a href="https://dplyr.tidyverse.org/reference/select.html">Dokumentation zur Funktion <code>select()</code></a>.</p>
+</section>
+<section id="variablen-umbenennen" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="variablen-umbenennen"><span class="header-section-number">8.3</span> Variablen umbenennen</h2>
+<p>Für die Umbenennung von Variablen gibt es zwei Optionen: Direkt bei der Auswahl mit <code>select()</code> oder unabhängig davon mit der Funktion <code>rename()</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>yt_renamed <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">author =</span> AuthorDisplayName, <span class="at">comment =</span> Comment, <span class="at">likes =</span> LikeCount)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(yt_renamed)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 245
+Columns: 3
+$ author  &lt;chr&gt; "TechGuru88", "ArtLover22", "GamerProX", "MusicFanatic_1", "Co…
+$ comment &lt;chr&gt; "This video changed my perspective! Highly recommend. 👍 https:…
+$ likes   &lt;dbl&gt; 154, 87, 301, 210, 95, 180, 120, 65, 250, 110, 190, 70, 350, 1…</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>yt_renamed <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">video_id =</span> VideoID,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">author =</span> AuthorDisplayName,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">comment =</span> Comment,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">likes =</span> LikeCount,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">published_at =</span> PublishedAt,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">updated_at =</span> UpdatedAt,</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">parent_id =</span> ParentID,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">comment_id =</span> CommentID)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(yt_renamed)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 245
+Columns: 8
+$ video_id     &lt;chr&gt; "dQw4w9WgXcQ", "xyz789AbCde", "fGHjKlMnOpq", "PqRsTuVwXyz…
+$ author       &lt;chr&gt; "TechGuru88", "ArtLover22", "GamerProX", "MusicFanatic_1"…
+$ comment      &lt;chr&gt; "This video changed my perspective! Highly recommend. 👍 h…
+$ likes        &lt;dbl&gt; 154, 87, 301, 210, 95, 180, 120, 65, 250, 110, 190, 70, 3…
+$ published_at &lt;dttm&gt; 2024-06-20 14:35:01, 2024-06-19 18:02:10, 2024-06-18 10:…
+$ updated_at   &lt;dttm&gt; 2024-06-20 14:35:01, 2024-06-19 18:02:10, 2024-06-18 10:…
+$ parent_id    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ comment_id   &lt;chr&gt; "Ugw3KPnh-5QJnBpeymd4AaABAg", "Ugy9J-5h-1RKnBpeymd4AabGAg…</code></pre>
+</div>
+</div>
+<p>Die Syntax für die Umbenennung von Variablen ist dabei <code>neuer_name = alter_name</code>. Es ist natürlich auch möglich, nur einige Variablen umzubenennen und die anderen unverändert zu lassen.</p>
+</section>
+<section id="variablen-anders-anordnen" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Variablen anders anordnen</h1>
+<p>Die Funktion <code>select()</code> kann auch verwendet werden, um die Reihenfolge der Variablen in einem Datensatz zu ändern. Dazu müssen Sie die Variablen in der gewünschten Reihenfolge angeben.</p>
+<p>Eine weitere Option ist die Funktion <code>relocate()</code>, mit der Sie Variablen an eine bestimmte Position verschieben können, z.B. an den Anfang oder das Ende des Datensatzes oder vor oder nach einer bestimmten Variable.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>yt_reordered <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(CommentID, <span class="at">.after =</span> Comment)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(yt_reordered)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 245
+Columns: 8
+$ VideoID           &lt;chr&gt; "dQw4w9WgXcQ", "xyz789AbCde", "fGHjKlMnOpq", "PqRsTu…
+$ AuthorDisplayName &lt;chr&gt; "TechGuru88", "ArtLover22", "GamerProX", "MusicFanat…
+$ Comment           &lt;chr&gt; "This video changed my perspective! Highly recommend…
+$ CommentID         &lt;chr&gt; "Ugw3KPnh-5QJnBpeymd4AaABAg", "Ugy9J-5h-1RKnBpeymd4A…
+$ LikeCount         &lt;dbl&gt; 154, 87, 301, 210, 95, 180, 120, 65, 250, 110, 190, …
+$ PublishedAt       &lt;dttm&gt; 2024-06-20 14:35:01, 2024-06-19 18:02:10, 2024-06-1…
+$ UpdatedAt         &lt;dttm&gt; 2024-06-20 14:35:01, 2024-06-19 18:02:10, 2024-06-1…
+$ ParentID          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</code></pre>
+</div>
+</div>
+<p>Wenn Sie eine Variable vor eine bestimmte andere Variable verschieben möchten, können Sie als Argument <code>.before</code> anstelle von <code>.after</code> verwenden.</p>
+<section id="zeilen-filtern" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="zeilen-filtern"><span class="header-section-number">9.1</span> Zeilen filtern</h2>
+<p>Um bestimmte Zeilen aus einem Datensatz auszuwählen, können Sie die Funktion <code>filter()</code> aus dem Paket <code>dplyr</code> verwenden. Diese Funktion ermöglicht es, Zeilen basierend auf bestimmten Bedingungen auszuwählen und einen neuen Datensatz zu erstellen, der nur diese Zeilen enthält.</p>
+<p>Um die Funktion <code>filter()</code> sinnvoll einsetzen zu können, ist es wichtig, die wichtigsten logischen Operatoren zu kennen, die in den Bedingungen verwendet werden können. Dazu gehören:</p>
+<ul>
+<li><p><code>==</code> (gleich)</p></li>
+<li><p><code>!=</code> (ungleich)</p></li>
+<li><p><code>&lt;</code> (kleiner als)</p></li>
+<li><p><code>&gt;</code> (größer als)</p></li>
+<li><p><code>&lt;=</code> (kleiner oder gleich)</p></li>
+<li><p><code>&gt;=</code> (größer oder gleich)</p></li>
+<li><p><code>&amp;</code> (und)</p></li>
+<li><p><code>|</code> (oder)</p></li>
+<li><p><code>!</code> (nicht)</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>yt_popular <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(LikeCount <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Durch die Verwendung von <code>filter()</code> ändert sich die Anzahl der Zeilen im Datensatz.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(yt_demo)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 245</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(yt_popular)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 132</code></pre>
+</div>
+</div>
+<p>Eine besondere zusätzliche Option bietet die Funktion <code>between()</code>, mit der Sie Zeilen auswählen können, deren Werte in einem bestimmten Bereich liegen.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>yt_moderately_popular <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(LikeCount, <span class="dv">50</span>, <span class="dv">100</span>))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Die Funktion <code>filter()</code> kann auch genutzt werden, um fehlende Werte (missing values) zu entfernen. Das Symbol für fehlende Werte in <code>R</code> ist <code>NA</code>. Hierzu müssen Sie <code>filter()</code> mit der Funktion <code>is.na()</code> kombinieren, um Zeilen auszuwählen, in denen eine bestimmte Variable fehlende Werte enthält, oder die Funktion <code>!is.na()</code>, um Zeilen auszuwählen, in denen eine bestimmte Variable keine fehlenden Werte enthält.</p>
+<p>Im nachfolgenden Beispiel werden alle Zeilen ausgewählt, in denen die Variable <code>ParentID</code> keinen fehlenden Wert enthält, d.h. alle Antworten auf Kommentare (also keine Top-Level-Kommentare).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>yt_responses <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(ParentID))</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(yt_responses)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<p>Wir sehen hier, dass in den simulierten Daten keine Antworten auf Kommentare enthalten sind, da die Anzahl der Zeilen im neuen Datensatz <code>yt_responses</code> gleich 0 ist (d.h. alle Zeilen im ursprünglichen Datensatz <code>yt_demo</code> haben ein <code>NA</code> in der Variable <code>ParentID</code>).</p>
+</section>
+<section id="veränderung-der-reihenfolge-der-zeilen" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="veränderung-der-reihenfolge-der-zeilen"><span class="header-section-number">9.2</span> Veränderung der Reihenfolge der Zeilen</h2>
+<p>Mit der Funktion <code>arrange()</code> aus dem Paket <code>dplyr</code> kann man die Reihenfolge der Zeilen in einem Datensatz zu ändern. Sie können die Zeilen basierend auf den Werten einer oder mehrerer Variablen sortieren. Standardmäßig werden die Zeilen in aufsteigender Reihenfolge sortiert. Sie können jedoch auch die Option <code>desc()</code> verwenden, um die Zeilen in absteigender Reihenfolge zu sortieren.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>yt_sorted <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(LikeCount))</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(yt_sorted)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 245
+Columns: 8
+$ VideoID           &lt;chr&gt; "sTuVwXyZaSs", "jKlMnOoPpJj", "zAbCdEfGgZz", "rStUvW…
+$ AuthorDisplayName &lt;chr&gt; "PetFanatic", "PetLoverB", "PetLoverA", "PetLoverL",…
+$ Comment           &lt;chr&gt; "Can't get enough of this! 😍", "Made me smile from e…
+$ LikeCount         &lt;dbl&gt; 400, 390, 380, 370, 360, 350, 350, 340, 330, 330, 32…
+$ PublishedAt       &lt;dttm&gt; 2024-02-02 20:00:00, 2024-02-11 20:20:00, 2024-02-2…
+$ UpdatedAt         &lt;dttm&gt; 2024-02-02 20:00:00, 2024-02-11 20:20:00, 2024-02-2…
+$ ParentID          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ CommentID         &lt;chr&gt; "Ugy5u-2b-7JL4", "Ugy5l-2s-7ZAu", "Ugw3b-9i-5OIn", "…</code></pre>
+</div>
+</div>
+</section>
+<section id="befehle-verketten" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="befehle-verketten"><span class="header-section-number">9.3</span> Befehle verketten</h2>
+<p>Wie im <a href="07-tidyverse.html" class="quarto-xref"><span>Kapitel 7</span></a> bereits erwähnt, können Sie mehrere Befehle miteinander verketten, um komplexere Datenmanipulationen durchzuführen. Dazu verwenden Sie den sogenannten “Pipe”-Operator <code>%&gt;%</code>, der es ermöglicht, die Ausgabe eines Befehls als Eingabe für den nächsten Befehl zu verwenden.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>yt_demo_new <span class="ot">&lt;-</span> yt_demo <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(LikeCount <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(AuthorDisplayName, Comment, LikeCount) <span class="sc">%&gt;%</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(LikeCount))</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(yt_demo_new)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 193
+Columns: 3
+$ AuthorDisplayName &lt;chr&gt; "PetFanatic", "PetLoverB", "PetLoverA", "PetLoverL",…
+$ Comment           &lt;chr&gt; "Can't get enough of this! 😍", "Made me smile from e…
+$ LikeCount         &lt;dbl&gt; 400, 390, 380, 370, 360, 350, 350, 340, 330, 330, 32…</code></pre>
+</div>
+</div>
+</section>
+<section id="datensätze-zusammenführen-sec-merge" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="datensätze-zusammenführen-sec-merge"><span class="header-section-number">9.4</span> Datensätze zusammenführen [#sec-merge]</h2>
+<p>Manchmal ist es notwendig, mehrere Datensätze zusammenzuführen, z.B. wenn die Daten in mehreren Dateien gespeichert sind oder wenn man Daten aus verschiedenen Quellen kombinieren möchte.</p>
+<p>Das Paket <code>dplyr</code> bietet zahlreiche Möglichkeiten, um Datensätze auf unterschiedliche Weise zusammenzuführen. Die einfachsten Varianten sind die Funktionen <code>bind_rows()</code> und <code>bind_cols()</code>. Diese fügen einem Datensatz Zeilen (Rows) bzw. Fälle oder Spalten (columns) bzw. Variablen hinzu.</p>
+<p><strong>Wichtig</strong>: Damit die Funktionen <code>bind_rows()</code> und <code>bind_cols()</code> funktionieren, müssen die Datensätze, die zusammengeführt werden sollen, die gleiche Anzahl von Spalten bzw. Zeilen haben. Zudem müssen die Spaltennamen in den Datensätzen, die mit <code>bind_rows()</code> zusammengeführt werden sollen, übereinstimmen und für <code>bind_cols()</code> muss die Reihenfolge der Zeilen in den beiden Datensätzen dieselbe sein.</p>
+<p>Wenn die obigen Bedingungen nicht erfüllt sind, gibt es viele andere Funktionen, mit denen Datensätze kombiniert werden können. Die wichtigsten sind die sogenannten <a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">“mutating joins”</a>, die einen neuen nach unterschiedlichen Regeln kombinierten Datensatz erstellen. Eine ausführliche Beschreibung aller sogenannten “Joins” finden Sie im <a href="https://r4ds.hadley.nz/joins.html">entsprechenden Kapitel des Online-Buchs <em>R for Data Science</em></a>.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -870,13 +1101,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./03-objects.html" class="pagination-link" aria-label="Objekte in `R`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objekte in <code>R</code></span></span>
+      <a href="./07-tidyverse.html" class="pagination-link" aria-label="`tidyverse`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./05-packages.html" class="pagination-link" aria-label="Pakete">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pakete</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./09-wrangling-variables.html" class="pagination-link" aria-label="Variablen verändern">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Variablen verändern</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -888,7 +1119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/04-functions.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/08-wrangling-df.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</p>
 </div>

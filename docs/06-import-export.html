@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Funktionen – Sammlung und Analyse von Social-Media-Daten mit R</title>
+<title>6&nbsp; Importieren &amp; exportieren von Daten in R – Sammlung und Analyse von Social-Media-Daten mit R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,8 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./05-packages.html" rel="next">
-<link href="./03-objects.html" rel="prev">
+<link href="./07-tidyverse.html" rel="next">
+<link href="./05-packages.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-installation.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./04-functions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-installation.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./06-import-export.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Importieren &amp; exportieren von Daten in `R`</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-functions.html" class="sidebar-item-text sidebar-link active">
+  <a href="./04-functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></span></a>
   </div>
 </li>
@@ -199,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-import-export.html" class="sidebar-item-text sidebar-link">
+  <a href="./06-import-export.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Importieren &amp; exportieren von Daten in `R`</span></span></a>
   </div>
 </li>
@@ -386,15 +386,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#import" id="toc-import" class="nav-link active" data-scroll-target="#import"><span class="header-section-number">6.1</span> Import</a>
+  <ul class="collapse">
+  <li><a href="#json" id="toc-json" class="nav-link" data-scroll-target="#json"><span class="header-section-number">6.1.1</span> JSON</a></li>
+  <li><a href="#csv" id="toc-csv" class="nav-link" data-scroll-target="#csv"><span class="header-section-number">6.1.2</span> CSV</a></li>
+  </ul></li>
+  <li><a href="#andere-datentypen" id="toc-andere-datentypen" class="nav-link" data-scroll-target="#andere-datentypen"><span class="header-section-number">6.2</span> Andere Datentypen</a></li>
+  <li><a href="#export" id="toc-export" class="nav-link" data-scroll-target="#export"><span class="header-section-number">6.3</span> Export</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/06-import-export.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-installation.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./04-functions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-installation.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./06-import-export.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Importieren &amp; exportieren von Daten in `R`</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-functions" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></span></h1>
+<h1 class="title"><span id="sec-import" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Importieren &amp; exportieren von Daten in <code>R</code></span></span></h1>
 </div>
 
 
@@ -411,54 +423,100 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Für das allermeiste, was wir in <code>R</code> machen, verwenden wir Funktionen. Eine Funktion in <code>R</code> ist wie eine Art Mini-Programm, mit dem wir bestimmte Aufgaben ausführen können.</p>
-<p>Vereinfacht gesagt: Eine Funktion nimmt eine Eingabe (Inpurt), verarbeitet diese und erzeugt eine Ausgabe (Output).</p>
-<p>Funktionen verfügen in der Regel über sogenannte Argumente, die festlegen, was genau eine Funktion macht. Im einfachsten Fall benötigt eine Funktion lediglich eine Eingabe (einen Wert oder ein Objekt) als einziges Argument (und manche Funktionen benötigen sogar gar kein Argument).</p>
-<p>Die grundlegende Anatomie einer Funktion in <code>R</code> sieht wie folgt aus:</p>
+<section id="import" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="import"><span class="header-section-number">6.1</span> Import</h2>
+<p>Auch wenn wir Daten in <code>R</code> selbst generieren bzw. eingeben können, kommen Daten in der Regel aus externen Quellen. In unserem konkreten Fall z.B. von Social-Media-Plattformen.</p>
+<p><code>R</code> kann Daten in vielen unterschiedlichen Formaten einlesen (importieren) und speichern (exportieren). Hierfür gibt es zahlreiche Funktionen und Pakete.</p>
+<p>Für die Arbeit mit Social-Media-Daten sind insbesondere folgende Formate relevant:</p>
+<ul>
+<li><p>JSON (JavaScript Object Notation): Ein weit verbreitetes Format für den Austausch von Daten, insbesondere in Webanwendungen.</p></li>
+<li><p>CSV (Comma-Separated Values): Ein einfaches Textformat, bei dem Daten durch Kommas getrennt werden. Es ist weit verbreitet und wird von vielen Anwendungen unterstützt.</p></li>
+</ul>
+<p>Beide Formate sind sowohl für Menschen als auch für Maschinen lesbar, wobei JSON für Menschen etwas schwieriger zu lesen ist.</p>
+<p>Sowohl JSON als auch CSV sind sogenannte Plain-Text-Formate, d.h. sie bestehen aus einfachem Text und können mit einem Texteditor wie z.B. Notepad++ (Win) oder Sublime Text (Win, macOS) geöffnet und bearbeitet werden.</p>
+<section id="json" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="json"><span class="header-section-number">6.1.1</span> JSON</h3>
+<p>JSON-Daten bestehen aus sogenannten Key-Value-Pairs und können verschachtelt sein. Hier ist ein Beispiel für JSON-Daten, die Informationen über Social-Media-Posts enthalten:</p>
+<p><code>[   {     "post_id": "7102938475",     "author": "@r_stats_guru",     "description": "Learn ggplot2 in 60 seconds! 📊 #rstats #dataviz",     "metrics": {       "views": 14500,       "likes": 3200,       "shares": 150     }   },   {     "post_id": "7102938476",     "author": "@quarto_tips",     "description": "Stop using standard markdown. Do this instead. 🚀 #coding",     "metrics": {       "views": 89000,       "likes": 12400,       "shares": 890     }   } ]</code></p>
+<p>Es gibt verschiedene Pakete, um JSON-Daten in <code>R</code> zu importieren. Eine beliebte Option ist das Paket <a href="https://github.com/jeroen/jsonlite"><code>jsonlite</code></a>.</p>
+<p>Wenn Sie <code>jsonlite</code> zum ersten Mal nutzen, müssen Sie das Paket vorher erst einmal installieren.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funktionsname</span>(<span class="at">argument1 =</span> wert1, <span class="at">argument2 =</span> wert2, ...)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"jsonlite"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Der <code>funktionsname</code> ist ein Name, der angibt, welche Funktion Sie verwenden möchten. Darauf folgen in Klammern ein oder mehrere Argumente, die bestimmte Werte annehmen können.</p>
-<p>Beispiele für einfache Funktionen in <code>R</code>:</p>
+<p>Dann können Sie das Paket laden und die Funktion <code>fromJSON()</code> verwenden, um JSON-Daten zu importieren.</p>
+<p><em>Hinweis</em>: Wenn Sie den nachfolgenden Code ausführen wollen, müssen Sie die Datei <code>json_example.json</code> erstellen, indem Sie die obigen Inhalte zwischen den <code>[]</code> kopieren, in einem Texteditor einfügen und die Datei dann als <code>json_example.json</code> speichern. Je nachdem, wo Sie die Datei speichern, müssen Sie dann auch noch den Dateipfad anpassen (mehr zu Dateipfaden in <a href="26-paths.html" class="quarto-xref"><span>Kapitel 26</span></a>).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion ohne Argumente</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>() <span class="co"># Gibt das aktuelle Datum zurück</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>json_data <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">"./data/json_example.json"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>json_data</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2026-06-10"</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion mit einem Argument</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>) <span class="co"># Berechnet die Quadratwurzel von 16</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion mit mehreren Argumenten</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.14159</span>, <span class="at">digits =</span> <span class="dv">2</span>) <span class="co"># Rundet die Zahl auf 2 Dezimalstellen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3.14</code></pre>
+<pre><code>     post_id        author
+1 7102938475 @r_stats_guru
+2 7102938476  @quarto_tips
+                                               description metrics.views
+1          Learn ggplot2 in 60 seconds! 📊 #rstats #dataviz         14500
+2 Stop using standard markdown. Do this instead. 🚀 #coding         89000
+  metrics.likes metrics.shares
+1          3200            150
+2         12400            890</code></pre>
 </div>
 </div>
-<p>Funktionen können erforlicher (required) und optionale (optional) Argumente haben. Im vorherigen Beispiel war das Argument <code>digits</code> bei der Funktion <code>round()</code> optional. Für optionale Argumente gibt es in den Funktionen in der Regel Standardwerte, die man aber durch das Spezifizieren des Arguments überschreiben kann. Ob ein Argument erforderlich oder optional ist, kann man in der Dokumentation bzw. dem sogenannten Help File herausfinden. Die Hilfe zu Funktionen kann man in <em>RStudio</em> aufrufen, indem man ein <code>?</code> vor den Namen der Funktion schreibt und die <code>()</code> dahinter weglässt.</p>
-<p>Wenn im Help File unter “Usage” hinter den Argumenten ein <code>=</code> und ein Wert stehen, handelt es sich um optionale Argumente. In vielen Funktionen ist das erste Argument eine Eingabe. Dies kann ein einzelner Wert, ein Vektor oder ein Dataframe sein. Dieses Argument ist erforderlich (required) und in der Dokumentation bzw. dem Help File i.d.R. mit <code>x</code> benannt. Mehr zum Thema Hilfe in <code>R</code> ist im <a href="21-help.html" class="quarto-xref"><span>Kapitel 21</span></a> zu finden.</p>
+<p>Da JSON-Dateien oft verschachtelt sind, kann es sein, dass die importierten Daten in <code>R</code> nicht direkt in einem für die Analyse geeigneten Format vorliegen. In diesem Fall müssen Sie die Daten möglicherweise noch weiter aufbereiten, z.B. indem Sie verschachtelte Listen in Data Frames umwandeln.</p>
+</section>
+<section id="csv" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="csv"><span class="header-section-number">6.1.2</span> CSV</h3>
+<p>CSV-Dateien sind einfacher strukturiert als JSON-Dateien und bestehen aus Zeilen und Spalten.</p>
+<p><code>R</code> bietet standardmäßig die Funktionen <code>read.csv()</code> und <code>read.csv2()</code> um CSV-Dateien einzulesen. Der Grund dafür, dass es zwei Funktionen gibt, ist, dass es verschiedene Varianten von CSV-Dateien gibt. Auch wenn wir sie als CSV für (Comma-Separated Values) heißen, sind Werte in den Dateien manchmal durch ein Semikolon oder ein Tabulator getrennt (für Letzteres wird manchmal auch die Dateiendung <code>.tsv</code> für tab-separated values verwendet). Je nach Sprache kann das Dezimaltrennzeichen zudem ein Komma oder ein Punkt sein.</p>
+<p>Ein Paket, das viele Funktionen für den Import und Export von verschiedenen Datentypen bietet, ist <a href="https://readr.tidyverse.org/"><code>readr</code></a>. <code>readr</code> ist Teil der Paketsammlung <code>tidyverse</code>, mit der wir fürs Data Wrangling arbeiten werden (für weitere Informationen zum <code>tidyverse</code> siehe <a href="07-tidyverse.html" class="quarto-xref"><span>Kapitel 7</span></a>). Zum Einlesen von CSV-Dateien bietet <code>readr</code> die Funktionen <code>read_csv()</code> und <code>read_csv2()</code>, die schneller und flexibler sind als die Funktionen <code>read.csv()</code> und <code>read.csv2()</code>, die <code>R</code> nativ mitbringt.</p>
+<p><em>Tipp</em>: Wenn Sie unsicher sind, welche Art von CSV-Datei vorliegt, können Sie es zunächst einfach mit <code>read_csv()</code> versuchen, und falls das nicht funktioniert, versuchen Sie es mit <code>read_csv2()</code>. Sollte das auch nicht funktionieren, schauen sie sich die Datei ggf. mit einem Texteditor an und nutzen Sie dann z.B. <code>read_tsv()</code> für tab-separated values oder die allgemeinere Funktion <code>read_delim()</code>, in der Sie über Argumente festlegen können, was die Trennzeichen sind.</p>
+<p><strong>Wichtiger Hinweis</strong>: Auch wenn es möglich ist, CSV-Dateien mtit <em>Excel</em> zu öffnen, sollten Sie dies vermeiden, da <em>Excel</em> die Daten oft automatisch formatiert und dabei Informationen verloren gehen können. Es ist daher besser, CSV-Dateien mit einem Texteditor oder direkt in <code>R</code> zu öffnen.</p>
+<p>Für die weiteren Beispiele nutzen wir simulierte <em>YouTube</em>-Daten aus dem <a href="https://kodaqs-toolbox.gesis.org/github.com/gesiscss/tubecleanr_tool/index/"><em>KODAQS Toolbox Tutorial</em> zum <code>R</code>-Paket <code>tubecleanr</code></a>. Wir können die CSV-Datei, die diese Daten enthält, direkt aus dem <em>GitHub</em>-Repository zu dem Tutorial herunterladen.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hilfe zu einer Funktion aufrufen</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>?round</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>yt_demo <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"https://raw.githubusercontent.com/gesiscss/tubecleanr_tool/refs/heads/master/data/simulated_yt.csv"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.</code></pre>
 </div>
-<p>Das Ergebnis einer Funktion kann man natürlich auch einem Objekt zuweisen, um es später weiterzuverwenden.</p>
-<p>Verschiedene Funktionen können mit unterschiedlichen Arten von Eingaben (Inputs) arbeiten und produzieren auch unterschiedliche Ausgaben (Outputs).</p>
-<p>Die Funktion <code>mean()</code> beispielsweise benötigt einen numerischen Vektor aus Input und liefert einen einzelnen numerischen Wert (den Mittelwert der Werte aus dem Vektor) als Output.</p>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 245 Columns: 8
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ";"
+chr  (4): VideoID, AuthorDisplayName, Comment, CommentID
+dbl  (1): LikeCount
+lgl  (1): ParentID
+dttm (2): PublishedAt, UpdatedAt
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>Auch hier braucht die Funktion als Argument mindestens den Pfad zur Datei, die eingelesen werden soll. In diesem Fall ist das ein URL-Pfad zu der CSV-Datei auf <em>GitHub</em>. Sie können aber natürlich auch einen lokalen Pfad angeben, wenn Sie die Datei zuvor heruntergeladen und auf Ihrem Computer gespeichert haben.</p>
+<p>Man kann (lokal gespeicherte) Datensätze auch über den Button “Import Dataset” im “Environment”-Tab in <em>RStudio</em> importieren. Allerdings ist es empfehlenswerter, auch für den Import von Daten Code in einem <code>R</code>-Skript zu nutzen.</p>
+<p>Wenn man den Pfad zu einer lokalen Datei nicht kennt, kann man diesen z.B. über die Suche im Datei-Explorer des Betriebssystems finden (mehr zu Dateipfaden in <a href="26-paths.html" class="quarto-xref"><span>Kapitel 26</span></a>). Alternativ kann man in <code>R</code> den Befehl <code>file.choose()</code> nutzen.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>zahlen <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>mittelwert <span class="ot">&lt;-</span> <span class="fu">mean</span>(zahlen)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>mittelwert</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="fu">file.choose</span>()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(file_path)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>Aufgrund der reduzierten Nachvollziehbarkeit und Reproduzierbarkeit ist es jedoch nicht empfehlenswert, <code>file.choose()</code> zu verwenden. Es ist besser, den Pfad zur Datei direkt im Code anzugeben (idealiter in Form eines relativen Pfads, siehe <a href="26-paths.html" class="quarto-xref"><span>Kapitel 26</span></a>), damit andere Personen (oder man selbst zu einem späteren Zeitpunkt) genau wissen, wo die Daten herkommen und wie sie importiert wurden.</p>
+</section>
+</section>
+<section id="andere-datentypen" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="andere-datentypen"><span class="header-section-number">6.2</span> Andere Datentypen</h2>
+<p>Neben JSON und CSV gibt es noch viele weitere Datenformate, die in <code>R</code> importiert und exportiert werden können, z.B. Excel-Dateien (<code>.xlsx</code>), SPSS-Dateien (<code>.sav</code>), Stata-Dateien (<code>.dta</code>) und viele mehr. Für jedes dieser Formate gibt es spezielle Pakete und Funktionen, die den Import und Export erleichtern. Zum Beispiel können Sie das Paket <a href="https://readxl.tidyverse.org/"><code>readxl</code></a> verwenden, um Excel-Dateien zu importieren, und das Paket <a href="https://haven.tidyverse.org/"><code>haven</code></a> für SPSS- und Stata-Dateien.</p>
+</section>
+<section id="export" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="export"><span class="header-section-number">6.3</span> Export</h2>
+<p>Nachdem wir Dateien in <code>R</code> importiert und möglicherweise bearbeitet haben, möchten wir die Daten oft auch wieder exportieren, um sie z.B. in anderen Anwendungen weiterzuverwenden oder zu teilen.<br>
+Auch hier bietet <code>R</code> zahlreiche Funktionen und Pakete, um Daten in verschiedenen Formaten zu exportieren. Für CSV-Dateien können Sie die Funktion <code>write_csv()</code> aus dem Paket <code>readr</code> nutzen. Um Daten zu exportieren, benötigen die entsprechenden Funktionen als Argumente im Mindesten das Objekt, das die Daen enthält und einen Dateipfad, unter dem die exportierte Datei gespeichert werden soll (mehr zu Dateipfaden gibt es im <a href="26-paths.html" class="quarto-xref"><span>Kapitel 26</span></a>).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(yt_demo, <span class="st">"./data/simulated_yt_export.csv"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Sie können in <code>R</code> Funktionen selbst definieren. Allerdings nutzen wir zumeist Funktionen, die in Paketen enthalten sind. Was es mit denen auf sich hat, betrachten wir im folgenden <a href="05-packages.html" class="quarto-xref"><span>Kapitel 5</span></a>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -870,13 +928,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./03-objects.html" class="pagination-link" aria-label="Objekte in `R`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objekte in <code>R</code></span></span>
+      <a href="./05-packages.html" class="pagination-link" aria-label="Pakete">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pakete</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./05-packages.html" class="pagination-link" aria-label="Pakete">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pakete</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./07-tidyverse.html" class="pagination-link" aria-label="`tidyverse`">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><code>tidyverse</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -888,7 +946,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/04-functions.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/06-import-export.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</p>
 </div>

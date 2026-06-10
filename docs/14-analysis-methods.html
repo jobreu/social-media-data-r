@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Funktionen – Sammlung und Analyse von Social-Media-Daten mit R</title>
+<title>14&nbsp; Analysemethoden – Sammlung und Analyse von Social-Media-Daten mit R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -58,7 +58,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -68,8 +88,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./05-packages.html" rel="next">
-<link href="./03-objects.html" rel="prev">
+<link href="./15-preprocessing.html" rel="next">
+<link href="./13-youtube-collection.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +140,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-installation.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./04-functions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./14-analysis-methods.html">Datenanalyse</a></li><li class="breadcrumb-item"><a href="./14-analysis-methods.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Analysemethoden</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -187,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-functions.html" class="sidebar-item-text sidebar-link active">
+  <a href="./04-functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></span></a>
   </div>
 </li>
@@ -280,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-analysis-methods.html" class="sidebar-item-text sidebar-link">
+  <a href="./14-analysis-methods.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Analysemethoden</span></span></a>
   </div>
 </li>
@@ -386,15 +406,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#arten-von-analysemethoden" id="toc-arten-von-analysemethoden" class="nav-link active" data-scroll-target="#arten-von-analysemethoden"><span class="header-section-number">14.1</span> Arten von Analysemethoden</a></li>
+  <li><a href="#setup-pakete-daten" id="toc-setup-pakete-daten" class="nav-link" data-scroll-target="#setup-pakete-daten"><span class="header-section-number">14.2</span> Setup: Pakete &amp; Daten</a>
+  <ul class="collapse">
+  <li><a href="#pakete" id="toc-pakete" class="nav-link" data-scroll-target="#pakete"><span class="header-section-number">14.2.1</span> Pakete</a></li>
+  <li><a href="#daten" id="toc-daten" class="nav-link" data-scroll-target="#daten"><span class="header-section-number">14.2.2</span> Daten</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/14-analysis-methods.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-installation.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./04-functions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./14-analysis-methods.html">Datenanalyse</a></li><li class="breadcrumb-item"><a href="./14-analysis-methods.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Analysemethoden</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-functions" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funktionen</span></span></h1>
+<h1 class="title"><span id="sec-analysis" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Analysemethoden</span></span></h1>
 </div>
 
 
@@ -411,54 +442,100 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Für das allermeiste, was wir in <code>R</code> machen, verwenden wir Funktionen. Eine Funktion in <code>R</code> ist wie eine Art Mini-Programm, mit dem wir bestimmte Aufgaben ausführen können.</p>
-<p>Vereinfacht gesagt: Eine Funktion nimmt eine Eingabe (Inpurt), verarbeitet diese und erzeugt eine Ausgabe (Output).</p>
-<p>Funktionen verfügen in der Regel über sogenannte Argumente, die festlegen, was genau eine Funktion macht. Im einfachsten Fall benötigt eine Funktion lediglich eine Eingabe (einen Wert oder ein Objekt) als einziges Argument (und manche Funktionen benötigen sogar gar kein Argument).</p>
-<p>Die grundlegende Anatomie einer Funktion in <code>R</code> sieht wie folgt aus:</p>
+<p>Der Fokus in diesem Buch und im zugehörigen Kurs liegt auf der quantitativen Textanalyse. Eine weitere im Kontext von Social-Media-Daten häufig angewandte Methode ist die Netzwerkanalyse. Diese behandeln wir hier nicht, aber <a href="https://cssbook.net/content/chapter13.html">Kapitel 13 aus dem Buch <em>Computational Analysis of Communication</em></a> gibt hier eine gute Einführung.</p>
+<p><strong>Wichtiger Hinweis</strong>: Das Buch und der Kurs können nur eine kurze Einführung in die Grundlagen der quantitativen Textanalyse geben. Es gibt viele weitere Themen, die wir hier nicht behandeln können. Hierzu lohnt sich ein Blick in andere Einführungen. Neben dem bereits mehrfach erwähnten Buch <em>Computational Analysis of Communication</em> sind z.B. folgende Bücher und Kurse empfehlenswert:</p>
+<ul>
+<li><p>Das Buch <a href="https://www.tidytextmining.com/"><em>Text Mining with R - A Tidy Approach</em></a> von Julia Silge und David Robinson (kostenlose online Version verfügbar)</p></li>
+<li><p>die <a href="https://valeriehase-automatisierte-inhaltsanalyse.share.connect.posit.cloud/">Materialien zum Forschungsseminar <em>Text as data</em></a> von Valerie Hase</p></li>
+<li><p>der Workshop <a href="https://tm4ss.github.io/docs/index.html"><em>Text mining in R for the social sciences and digital humanities</em></a> von Andreas Niekler und Gregor Wiedemann</p></li>
+<li><p><a href="https://api.rpubs.com/cbpuschmann/AIR1"><em>Automatisierte Inhaltsanalyse mit R</em></a> von Cornelius Puschmann und <a href="https://automatedcontentanalysis.com/"><em>Automated Content Analysis</em></a> von Chung-hong Chan</p></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Netzwerk- &amp; Textanalyse">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Netzwerk- &amp; Textanalyse
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Es ist auch möglich, die Netzwerkanalyse mit der quantitativen Textanalyse zu kombinieren <span class="citation" data-cites="Bail2016">(<a href="references.html#ref-Bail2016" role="doc-biblioref">Bail, 2016</a>)</span>. Dies geht z.B. mit dem <code>R</code>-Paket <a href="https://github.com/cbail/textnets"><code>textnets</code></a> (siehe auch das <a href="https://cbail.github.io/SICSS_Text_Networks.html">Tutorial vom Paket-Autor Chris Bail</a>).</p>
+</div>
+</div>
+</div>
+<section id="arten-von-analysemethoden" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="arten-von-analysemethoden"><span class="header-section-number">14.1</span> Arten von Analysemethoden</h2>
+<p>In der quantitativen Textanalyse gibt es viele unterschiedliche Auswertungsmethoden. Diese lassen sich wie folgt kategorisieren:</p>
+<ul>
+<li><p><strong>Deskriptive Methoden</strong>: Hierbei werden die Daten in ihrer Rohform beschrieben, z.B. durch Häufigkeiten von Wörtern, Links und Hashtags. Diese behandeln wir in <a href="16-descriptive-analysis.html" class="quarto-xref"><span>Kapitel 16</span></a>.</p></li>
+<li><p><strong>Sentiment-Analyse</strong> und <strong>diktionär:basierte Methoden</strong> HBei der Sentiment-Analyse wird versucht,die Stimmung oder Haltung in einem Text zu bestimmen, z.B. ob ein TPos pauf Social Media ositiv, negativ oder neutral ist. DBei der Sentiment-Analyse können auch sogenannte Diktionäre (dictionaries) zum Einsatz kommen. Diese können aber auch genutzt werden, um andere Konstrukte zu messen wie z.B. Populismus. Diese beiden Methoden behandeln wir in <a href="17-sent-dict.html" class="quarto-xref"><span>Kapitel 17</span></a>.</p></li>
+<li><p><strong>Unsupervised Machine Learning</strong>: Hierbei werden Algorithmen eingesetzt, um Muster in den Daten zu erkennen, ohne dass diese vorher definiert wurden. Ein Beispiel hierfür ist die Topic-Modellierung, bei der versucht wird, Themen in einem Textkorpus zu identifizieren. Diese Methode behandeln wir in <a href="18-topicmodels.html" class="quarto-xref"><span>Kapitel 18</span></a>.</p></li>
+<li><p><strong>Supervised Machine Learning</strong>: Hierbei werden Algorithmen eingesetzt, um Muster in den Daten zu erkennen, die vorher definiert wurden. Ein Beispiel hierfür ist die Textklassifikation, bei der versucht wird, Texte in vordefinierte Kategorien einzuteilen. Diese Methode behandeln wir hier aus Platz- und Zeitgründen nicht, aber <a href="https://cssbook.net/content/chapter08.html">Kapitel 8 aus dem Buch <em>Computational Analysis of Communication</em></a> behandelt diese ausführlich.</p></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Large Language Models">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Large Language Models
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Textdaten können auch mit Large Language Models (LLMs) analysiert werden. Ein interessantes <code>R</code>-Paket für die automatisierte Inhaltsanalyse mit LLMs ist <a href="https://github.com/cbpuschmann/klaus"><code>klaus</code></a>. Mit diesem kann man auch <a href="https://docs.hpc.gwdg.de/services/ai-services/chat-ai/index.html"><em>Chat AI</em> von der GWDG nutzen</a>, auf das viele Unis in Deutschland Zugriff haben. Gute Einführungen in die Nutzung von LLMs für die Analyse von Textdaten bieten z.B. die Paper von Farjam et al. <span class="citation" data-cites="FarjamEtAl2025">(<a href="references.html#ref-FarjamEtAl2025" role="doc-biblioref">2025</a>)</span> und <span class="citation" data-cites="FoisyEtAl2025">(<a href="references.html#ref-FoisyEtAl2025" role="doc-biblioref">2025</a>)</span>.</p>
+</div>
+</div>
+</div>
+<p>Bevor die genannten Analysemethoden genutzt werden können, müssen die Daten jedoch zunächst aufbereitet werden. Dieser Prozess wird als <strong>Preprocessing</strong> bezeichnet und umfasst i.d.R. mehrere Schritte. Mit diesen befassen wir uns im <a href="15-preprocessing.html" class="quarto-xref"><span>Kapitel 15</span></a>.</p>
+</section>
+<section id="setup-pakete-daten" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="setup-pakete-daten"><span class="header-section-number">14.2</span> Setup: Pakete &amp; Daten</h2>
+<section id="pakete" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="pakete"><span class="header-section-number">14.2.1</span> Pakete</h3>
+<p>Es gibt viele verschiedene Pakete für die Aufbereitung und Analyse von Textdaten in <code>R</code>. Einige davon werden wir in den nächsten Abschnitten kennenlernen. Ein sehr umfangreiches Paket, mit dem wir viel arbeiten werden, ist <a href="https://quanteda.io/"><code>quanteda</code></a> <span class="citation" data-cites="BenoitEtAl2018">(<a href="references.html#ref-BenoitEtAl2018" role="doc-biblioref">Benoit et al., 2018</a>)</span>. Neben einem großen Funktionsumfang und einer sehr guten Dokumentation bietet <code>quanteda</code> zudem auch eine Reihe hilfreicher <a href="https://tutorials.quanteda.io/">Tutorials</a> an, welche die Nutzung erleichtern.</p>
+<p>Wie gewohnt, müssen wir das Paket zunächst einmalig installieren und dann in jedem Skript bzw. in jeder <code>R</code>-Sitzung (Session) laden, in dem/der wir es nutzen wollen.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funktionsname</span>(<span class="at">argument1 =</span> wert1, <span class="at">argument2 =</span> wert2, ...)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"quanteda"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quanteda)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Der <code>funktionsname</code> ist ein Name, der angibt, welche Funktion Sie verwenden möchten. Darauf folgen in Klammern ein oder mehrere Argumente, die bestimmte Werte annehmen können.</p>
-<p>Beispiele für einfache Funktionen in <code>R</code>:</p>
+<p>Für <code>quanteda</code> gibt es auch eine Reihe von Erweiterungspaketen (wie z.B. <a href="https://github.com/quanteda/quanteda.textstats"><code>quanteda.textstats</code></a>. Diese müssen ebenfalls installiert und geladen werden. Dies machen wir dann jeweils in den Abschnitten, in denen wir diese nutzen.</p>
+<p>Ein weiteres umfangreiches Paket für die Aufbereitung und Analyse von Textdaten ist <a href="https://juliasilge.github.io/tidytext/"><code>tidytext</code></a>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion ohne Argumente</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>() <span class="co"># Gibt das aktuelle Datum zurück</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2026-06-10"</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidytext"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion mit einem Argument</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>) <span class="co"># Berechnet die Quadratwurzel von 16</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Funktion mit mehreren Argumenten</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.14159</span>, <span class="at">digits =</span> <span class="dv">2</span>) <span class="co"># Rundet die Zahl auf 2 Dezimalstellen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3.14</code></pre>
-</div>
-</div>
-<p>Funktionen können erforlicher (required) und optionale (optional) Argumente haben. Im vorherigen Beispiel war das Argument <code>digits</code> bei der Funktion <code>round()</code> optional. Für optionale Argumente gibt es in den Funktionen in der Regel Standardwerte, die man aber durch das Spezifizieren des Arguments überschreiben kann. Ob ein Argument erforderlich oder optional ist, kann man in der Dokumentation bzw. dem sogenannten Help File herausfinden. Die Hilfe zu Funktionen kann man in <em>RStudio</em> aufrufen, indem man ein <code>?</code> vor den Namen der Funktion schreibt und die <code>()</code> dahinter weglässt.</p>
-<p>Wenn im Help File unter “Usage” hinter den Argumenten ein <code>=</code> und ein Wert stehen, handelt es sich um optionale Argumente. In vielen Funktionen ist das erste Argument eine Eingabe. Dies kann ein einzelner Wert, ein Vektor oder ein Dataframe sein. Dieses Argument ist erforderlich (required) und in der Dokumentation bzw. dem Help File i.d.R. mit <code>x</code> benannt. Mehr zum Thema Hilfe in <code>R</code> ist im <a href="21-help.html" class="quarto-xref"><span>Kapitel 21</span></a> zu finden.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hilfe zu einer Funktion aufrufen</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>?round</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Das Ergebnis einer Funktion kann man natürlich auch einem Objekt zuweisen, um es später weiterzuverwenden.</p>
-<p>Verschiedene Funktionen können mit unterschiedlichen Arten von Eingaben (Inputs) arbeiten und produzieren auch unterschiedliche Ausgaben (Outputs).</p>
-<p>Die Funktion <code>mean()</code> beispielsweise benötigt einen numerischen Vektor aus Input und liefert einen einzelnen numerischen Wert (den Mittelwert der Werte aus dem Vektor) als Output.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>zahlen <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>mittelwert <span class="ot">&lt;-</span> <span class="fu">mean</span>(zahlen)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>mittelwert</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3</code></pre>
-</div>
-</div>
-<p>Sie können in <code>R</code> Funktionen selbst definieren. Allerdings nutzen wir zumeist Funktionen, die in Paketen enthalten sind. Was es mit denen auf sich hat, betrachten wir im folgenden <a href="05-packages.html" class="quarto-xref"><span>Kapitel 5</span></a>.</p>
+</section>
+<section id="daten" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="daten"><span class="header-section-number">14.2.2</span> Daten</h3>
+<p>In den Analysebeispielen in den nächsten Kapiteln arbeiten wir mit Daten von <em>Bluesky</em> und <em>YouTube</em>. Wie diese gesammelt werden können, wird in <a href="11-bluesky-collection.html" class="quarto-xref"><span>Kapitel 11</span></a> und <a href="13-youtube-collection.html" class="quarto-xref"><span>Kapitel 13</span></a> beschrieben. Da Daten, die über die APIs dieser Plattformen gesammelt werden, nicht einfach über <em>GitHub</em> geteilt werden können, müssen Sie diese vor dem Durcharbeiten der Beispiele in den Kapitel zur Aufbereitung und Auswertung selbst entsprechende Datensätze sammeln und diese lokal speichern.</p>
+<p>Wie immer müssen Sie die Dateinamen und Pfade in den Code-Beispielen entsprechend anpassen, damit diese auf Ihrem Computer funktionieren (siehe @ sec-import und <a href="26-paths.html" class="quarto-xref"><span>Kapitel 26</span></a>). In den Beispielen gehen wir davon aus, dass die Daten im Ordner <code>data</code> liegen und die Dateien <code>bluesky_data.csv</code> und <code>youtube_data.csv</code> heißen. Ein Beispiel-Skript zur Sammlung solcher Daten ist im Skript <a href="https://jobreu.github.io/social-media-data-r/scripts/collect_data.R"><code>collect_data.R</code></a> zu finden.</p>
+<p>Sollten Sie keine eigenen <em>Bluesky</em>- oder <em>YouTube</em>-Daten sammeln können, können Sie alternativ auch die <a href="https://github.com/gesiscss/tubecleanr_tool/blob/master/data/simulated_yt.csv">simulierten <em>YouTube</em>-Daten</a> aus dem <a href="https://kodaqs-toolbox.gesis.org/github.com/gesiscss/tubecleanr_tool/index/">Tutorial</a> zum <code>R</code>-Paket <a href="github.com/gesiscss/tubecleanR">Paket <code>tubecleanR</code></a> nutzen.</p>
+<p><em>Hinweis</em>: Mit leichten Anpassungen lassen sich die Code-Beispiele auch auf Daten von anderen Plattformen wie z.B. <em>TikTok</em> anwenden.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-Bail2016" class="csl-entry" role="listitem">
+Bail, C. A. (2016). Combining Natural Language Processing and Network Analysis to Examine How Advocacy Organizations Stimulate Conversation on Social Media. <em>Proceedings of the National Academy of Sciences</em>, <em>113</em>(42), 11823–11828. <a href="https://doi.org/10.1073/pnas.1607151113">https://doi.org/10.1073/pnas.1607151113</a>
+</div>
+<div id="ref-BenoitEtAl2018" class="csl-entry" role="listitem">
+Benoit, K., Watanabe, K., Wang, H., Nulty, P., Obeng, A., Müller, S., &amp; Matsuo, A. (2018). Quanteda: <span>An R</span> Package for the Quantitative Analysis of Textual Data. <em>Journal of Open Source Software</em>, <em>3</em>(30), 774. <a href="https://doi.org/10.21105/joss.00774">https://doi.org/10.21105/joss.00774</a>
+</div>
+<div id="ref-FarjamEtAl2025" class="csl-entry" role="listitem">
+Farjam, M., Meyer, H., &amp; Lohkamp, M. (2025). A <span>Practical Guide</span> and <span>Case Study</span> on <span>How</span> to <span>Instruct LLMs</span> for <span>Automated Coding During Content Analysis</span>. <em>Social Science Computer Review</em>, 08944393251349541. <a href="https://doi.org/10.1177/08944393251349541">https://doi.org/10.1177/08944393251349541</a>
+</div>
+<div id="ref-FoisyEtAl2025" class="csl-entry" role="listitem">
+Foisy, L.-O. M., Proulx, É., Cadieux, H., Gilbert, J., Rivest, J., Bouillon, A., &amp; Dufresne, Y. (2025). Prompting the <span>Machine</span>: <span>Introducing</span> an <span>LLM Data Extraction Method</span> for <span>Social Scientists</span>. <em>Social Science Computer Review</em>, 08944393251344865. <a href="https://doi.org/10.1177/08944393251344865">https://doi.org/10.1177/08944393251344865</a>
+</div>
+</div>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -870,13 +947,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./03-objects.html" class="pagination-link" aria-label="Objekte in `R`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objekte in <code>R</code></span></span>
+      <a href="./13-youtube-collection.html" class="pagination-link" aria-label="Datensammlung: *YouTube*">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Datensammlung: <em>YouTube</em></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./05-packages.html" class="pagination-link" aria-label="Pakete">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pakete</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./15-preprocessing.html" class="pagination-link" aria-label="Preprocessing">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Preprocessing</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -888,7 +965,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/04-functions.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jobreu/social-media-data-r/edit/main/14-analysis-methods.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/jobreu/social-media-data-r/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</p>
 </div>
