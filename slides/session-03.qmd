@@ -30,7 +30,7 @@ Sie können diese jeweils einzöeln installieren oder einmal gesammelt:
 install.packages(c("quanteda",
                    "quanteda.textstats",
                    "quanteda.textplots",
-                   "tidtext",
+                   "tidytext",
                    "topicmodels",
                    "stm"
                    ))
@@ -38,7 +38,7 @@ install.packages(c("quanteda",
 
 ## Pakete
 
-Zusätzlich nutzen wir auch ein Paket, das nur über *GitHub* verfügbar sind. Diese können wir mit einer Funktion aus dem Paket `remotes` installieren (zur Erinnerung: unter Windows benötigen wir hierfür auch die `Rtools`):
+Zusätzlich nutzen wir auch ein Paket, das nur über *GitHub* verfügbar sind. Dieses können wir mit einer Funktion aus dem Paket `remotes` installieren (zur Erinnerung: unter Windows benötigen wir hierfür auch die `Rtools`):
 
 ```{r}
 #| eval: false
@@ -50,7 +50,7 @@ remotes::install_github("quanteda/quanteda.sentiment")
 
 Für die Beispiele in dieser Sitzung verwenden wir Daten von *Bluesky* und *YouTube*. Wir gehen  davon aus, dass diese gesammelt und als `bluesky_data.csv` bzw. `youtube_data.csv` lokal gespeichert wurden.
 
-Ein Beispiel-Skript zur Sammlung solcher Daten ist im Skript [`collect_data.R`](https://jobreu.github.io/social-media-data-r/scripts/collect_data.R) zu finden.
+Ein Beispiel-Skript zur Sammlung solcher Daten ist im Skript [`collect_data.R`](https://github.com/jobreu/social-media-data-r/blob/main/scripts/collect_data.R) zu finden.
 
 ```{r}
 bs_posts <- read.csv("../data/bluesky_data.csv") # Dateipfad ggf. anpassen
@@ -71,7 +71,7 @@ In der quantitativen Textanalyse gibt es viele unterschiedliche Auswertungsmetho
 ::: {.incremental}
 - **Deskriptive Methoden**: Hierbei werden die Daten in ihrer Rohform beschrieben, z.B. durch Häufigkeiten von Wörtern, Links und Hashtags. 
 
-- **Sentiment-Analyse** und **diktionär:basierte Methoden** HBei der Sentiment-Analyse wird versucht,die Stimmung oder Haltung in einem Text zu bestimmen, z.B. ob ein TPos pauf Social Media ositiv, negativ oder neutral ist. DBei der Sentiment-Analyse können auch sogenannte Diktionäre (dictionaries) zum Einsatz kommen. Diese können aber auch genutzt werden, um andere Konstrukte zu messen wie z.B. Populismus.
+- **Sentiment-Analyse** und **diktionärbasierte Methoden** Bei der Sentiment-Analyse wird versucht, die Stimmung oder Haltung in einem Text zu bestimmen, z.B. ob ein Text auf Social Media positiv, negativ oder neutral ist. Bei der Sentiment-Analyse kommen häufig sogenannte Diktionäre (dictionaries) zum Einsatz. Diese können aber auch genutzt werden, um andere Konstrukte zu messen wie z.B. Populismus.
 :::
 
 ## Arten von Analysemethoden {.smaller}
@@ -98,7 +98,7 @@ In der quantitativen Textanalyse gibt es viele unterschiedliche Auswertungsmetho
 
 ## Preprocessing von Textdaten
 
-Bei der Aufbereitung von Textdaten gibt es entsprechend einige Harausforderungen. Zwei der wichtigsten sind hierbei:
+Bei der Aufbereitung von Textdaten gibt es entsprechend einige Herausforderungen. Zwei der wichtigsten sind hierbei:
 
 1. Die Auswahl und Abfolge der Preprocessing-Schritte, da diese die Analyseergebnisse beeinflussen.
 
@@ -123,7 +123,7 @@ Bei der Aufbereitung von Textdaten gibt es entsprechend einige Harausforderungen
 
 - **Vokabular**: Das Vokabular ist die Menge aller Types in einem Textkorpus. In vorherigen Beispiel wäre das Vokabular also {"Hallo"}.
 
-- **Document-Feature-Matrix (DFM)** (auch Document-Term-Matrix; DTM): Eine DFM ist eine Matrix, in der die Zeilen Dokumente (z.B. Tweets, YouTube-Kommentare) und die Spalten Features (z.B. Wörter, Hashtags) darstellen. Die Werte in der Matrix geben an, wie oft ein bestimmtes Feature in einem bestimmten Dokument vorkommt.
+- **Document-Feature-Matrix (DFM)** (auch Document-Term-Matrix; DTM): Eine DFM ist eine Matrix, in der die Zeilen Dokumente (z.B. Posts oder Kommentare) und die Spalten Features (z.B. Wörter, Hashtags) darstellen. Die Werte in der Matrix geben an, wie oft ein bestimmtes Feature in einem bestimmten Dokument vorkommt.
 :::
 
 ## Preprocessing-Schritte {.smaller}
@@ -299,7 +299,7 @@ textplot_keyness(tstat_key)
 
 ## Was ist Sentiment-Analyse?
 
-Die **Sentiment-Analyse** kommt für Social-Media-Daten häufig zum Einsatz. Ziel ist es dabei, die Stimmung oder Emotion in einem Text zu bestimmen, z.B. ob ein Post oder Kommentar positiv, negativ oder neutral ist. Bei der Sentiment-Analyse kommen zumeist sogenannte **Diktionäre (dictionaries)** zum Einsatz kommen.
+Die **Sentiment-Analyse** kommt für Social-Media-Daten häufig zum Einsatz. Ziel ist es dabei, die Stimmung oder Emotion in einem Text zu bestimmen, z.B. ob ein Post oder Kommentar positiv, negativ oder neutral ist. Bei der Sentiment-Analyse werden zumeist sogenannte **Diktionäre (dictionaries)** genutzt.
 
 ## Sentiment-Analyse mit quanteda.sentiment
 
@@ -307,11 +307,11 @@ Die **Sentiment-Analyse** kommt für Social-Media-Daten häufig zum Einsatz. Zie
 library(quanteda.sentiment)
 ```
 
-`quanteda.sentiment` bietet verschiedene Diktionäre für die Setntimen-Analyse. Das `ReadMe` im [*GitHub*-Repository](https://github.com/quanteda/quanteda.sentiment) zum Paket bietet eine Übersicht.
+`quanteda.sentiment` bietet verschiedene Diktionäre für die Setntiment-Analyse. Das `ReadMe` im [*GitHub*-Repository](https://github.com/quanteda/quanteda.sentiment) zum Paket bietet eine Übersicht.
 
 ## Sentiment-Analyse mit quanteda.sentiment: Beispiel
 
-Im nachfolgenden Beispiel nutzen wir Diktionär für Sentiment in deutschen politischen Texten von Rauh [-@Rauh2018].
+Im nachfolgenden Beispiel nutzen wir das Diktionär für Sentiment in deutschen politischen Texten von Rauh [-@Rauh2018].
 
 ```{r}
 dfm_de_rauh <- dfm(tokens_lookup(tokens_bluesky,
@@ -356,7 +356,7 @@ results_rauh %>% # Negativste Posts
 
 ## Was sind Topic Models? {.smaller}
 
-Topic Modeling ist eine Methode aus der Kategorie des Unsupervised Machine Learning, mit der versucht wird, Themen in einem Textkorpus zu identifizieren (siehe hierzu auch den entsprechenden.
+Topic Modeling ist eine Methode aus der Kategorie des Unsupervised Machine Learning, mit der versucht wird, Themen in einem Textkorpus zu identifizieren. Die Grundidee von Topic Models basiert auf zwei Annahmen:
 
 1. *Themen sind Mischungen aus Wörtern*: Ein Thema ist eine Ansammlung von Wörtern mit unterschiedlichen Wahrscheinlichkeiten. Beim Thema „Sport“ ist die Wahrscheinlichkeit, dass das Wort „Ball“ vorkommt, hoch, während die Wahrscheinlichkeit für das Wort „Demokratie“ sehr gering ist.
 

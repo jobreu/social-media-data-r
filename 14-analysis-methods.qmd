@@ -22,7 +22,7 @@ In der quantitativen Textanalyse gibt es viele unterschiedliche Auswertungsmetho
 
 - **Deskriptive Methoden**: Hierbei werden die Daten in ihrer Rohform beschrieben, z.B. durch Häufigkeiten von Wörtern, Links und Hashtags. Diese behandeln wir in @sec-descriptive.
 
-- **Sentiment-Analyse** und **diktionär:basierte Methoden** HBei der Sentiment-Analyse wird versucht,die Stimmung oder Haltung in einem Text zu bestimmen, z.B. ob ein TPos pauf Social Media ositiv, negativ oder neutral ist. DBei der Sentiment-Analyse können auch sogenannte Diktionäre (dictionaries) zum Einsatz kommen. Diese können aber auch genutzt werden, um andere Konstrukte zu messen wie z.B. Populismus. Diese beiden Methoden behandeln wir in @sec-sentdict.
+- **Sentiment-Analyse** und **diktionärbasierte Methoden** Bei der Sentiment-Analyse wird versucht, die Stimmung oder Haltung in einem Text zu bestimmen, z.B. ob ein Text auf Social Media positiv, negativ oder neutral ist. Bei der Sentiment-Analyse kommen häufig sogenannte Diktionäre (dictionaries) zum Einsatz. Diese können aber auch genutzt werden, um andere Konstrukte zu messen wie z.B. Populismus. Diese beiden Methoden behandeln wir in @sec-sentdict.
 
 - **Unsupervised Machine Learning**: Hierbei werden Algorithmen eingesetzt, um Muster in den Daten zu erkennen, ohne dass diese vorher definiert wurden. Ein Beispiel hierfür ist die Topic-Modellierung, bei der versucht wird, Themen in einem Textkorpus zu identifizieren. Diese Methode behandeln wir in @sec-topicmodels.
 
@@ -66,7 +66,7 @@ library(tidytext)
 
 In den Analysebeispielen in den nächsten Kapiteln arbeiten wir mit Daten von *Bluesky* und *YouTube*. Wie diese gesammelt werden können, wird in @sec-bluesky-collection und @sec-youtube-collection beschrieben. Da Daten, die über die APIs dieser Plattformen gesammelt werden, nicht einfach über *GitHub* geteilt werden können, müssen Sie diese vor dem Durcharbeiten der Beispiele in den Kapitel zur Aufbereitung und Auswertung selbst entsprechende Datensätze sammeln und diese lokal speichern.
 
-Wie immer müssen Sie die Dateinamen und Pfade in den Code-Beispielen entsprechend anpassen, damit diese auf Ihrem Computer funktionieren (siehe @ sec-import und @sec-paths). In den Beispielen gehen wir davon aus, dass die Daten im Ordner `data` liegen und die Dateien `bluesky_data.csv` und `youtube_data.csv` heißen. Ein Beispiel-Skript zur Sammlung solcher Daten ist im Skript [`collect_data.R`](https://jobreu.github.io/social-media-data-r/scripts/collect_data.R) zu finden.
+Wie immer müssen Sie die Dateinamen und Pfade in den Code-Beispielen entsprechend anpassen, damit diese auf Ihrem Computer funktionieren (siehe @ sec-import und @sec-paths). In den Beispielen gehen wir davon aus, dass die Daten im Ordner `data` liegen und die Dateien `bluesky_data.csv` und `youtube_data.csv` heißen. Ein Beispiel-Skript zur Sammlung solcher Daten ist im Skript [`collect_data.R`](https://github.com/jobreu/social-media-data-r/blob/main/scripts/collect_data.R) zu finden.
 
 Sollten Sie keine eigenen *Bluesky*- oder *YouTube*-Daten sammeln können, können Sie alternativ auch die [simulierten *YouTube*-Daten](https://github.com/gesiscss/tubecleanr_tool/blob/master/data/simulated_yt.csv) aus dem [Tutorial](https://kodaqs-toolbox.gesis.org/github.com/gesiscss/tubecleanr_tool/index/) zum `R`-Paket [Paket `tubecleanR`](github.com/gesiscss/tubecleanR) nutzen.
 

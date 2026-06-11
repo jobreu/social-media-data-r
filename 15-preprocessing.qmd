@@ -12,7 +12,7 @@ Kurz gesagt bezeichnet *Preprocessing* alle Schritte, die nötig sind, um die Da
 
 - umfangreicher
 
-Bei der Aufbereitung von Textdaten gibt es entsprechend einige Harausforderungen. Zwei der wichtigsten sind hierbei:
+Bei der Aufbereitung von Textdaten gibt es entsprechend einige Herausforderungen. Zwei der wichtigsten sind hierbei:
 
 1. Die Auswahl und Abfolge der Preprocessing-Schritte, da diese die Analyseergebnisse beeinflussen.
 
@@ -38,7 +38,7 @@ Bevor wir uns mit den Preprocessing-Schritten beschäftigen, sollten wir zunäch
 
 - **Vokabular**: Das Vokabular ist die Menge aller Types in einem Textkorpus. In vorherigen Beispiel wäre das Vokabular also {"Hallo"}.
 
-- **Document-Feature-Matrix (DFM)** (auch Document-Term-Matrix; DTM): Eine DFM ist eine Matrix, in der die Zeilen Dokumente (z.B. Tweets, YouTube-Kommentare) und die Spalten Features (z.B. Wörter, Hashtags) darstellen. Die Werte in der Matrix geben an, wie oft ein bestimmtes Feature in einem bestimmten Dokument vorkommt.
+- **Document-Feature-Matrix (DFM)** (auch Document-Term-Matrix; DTM): Eine DFM ist eine Matrix, in der die Zeilen Dokumente (z.B. Posts oder Kommentare) und die Spalten Features (z.B. Wörter, Hashtags) darstellen. Die Werte in der Matrix geben an, wie oft ein bestimmtes Feature in einem bestimmten Dokument vorkommt.
 
 ## Preprocessing-Schritte
 
@@ -61,7 +61,7 @@ Es gibt viele verschiedene mögliche Preprocessing-Schritte für Textdaten. Die 
 Für das Preprocessing nutzen wir Funktionen aus dem Paket `quanteda`. Zudem nutzen wir auch wieder Pakete und Funktionen aus dem `tidyverse`.
 
 ```{r}
-#| warn: false
+#| warning: false
 #| message: false
 
 library(quanteda)

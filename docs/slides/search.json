@@ -11,14 +11,14 @@
     "href": "session-03.html#pakete",
     "title": "Sammlung von Social-Media-Daten mit R",
     "section": "Pakete",
-    "text": "Pakete\nFür die Analyse der Daten von YouTube und Bluesky nutzen wir verschiedene Pakete. Sie können diese jeweils einzöeln installieren oder einmal gesammelt:\n\ninstall.packages(c(\"quanteda\",\n                   \"quanteda.textstats\",\n                   \"quanteda.textplots\",\n                   \"tidtext\",\n                   \"topicmodels\",\n                   \"stm\"\n                   ))"
+    "text": "Pakete\nFür die Analyse der Daten von YouTube und Bluesky nutzen wir verschiedene Pakete. Sie können diese jeweils einzöeln installieren oder einmal gesammelt:\n\ninstall.packages(c(\"quanteda\",\n                   \"quanteda.textstats\",\n                   \"quanteda.textplots\",\n                   \"tidytext\",\n                   \"topicmodels\",\n                   \"stm\"\n                   ))"
   },
   {
     "objectID": "session-03.html#pakete-1",
     "href": "session-03.html#pakete-1",
     "title": "Sammlung von Social-Media-Daten mit R",
     "section": "Pakete",
-    "text": "Pakete\nZusätzlich nutzen wir auch ein Paket, das nur über GitHub verfügbar sind. Diese können wir mit einer Funktion aus dem Paket remotes installieren (zur Erinnerung: unter Windows benötigen wir hierfür auch die Rtools):\n\nremotes::install_github(\"quanteda/quanteda.sentiment\")"
+    "text": "Pakete\nZusätzlich nutzen wir auch ein Paket, das nur über GitHub verfügbar sind. Dieses können wir mit einer Funktion aus dem Paket remotes installieren (zur Erinnerung: unter Windows benötigen wir hierfür auch die Rtools):\n\nremotes::install_github(\"quanteda/quanteda.sentiment\")"
   },
   {
     "objectID": "session-03.html#daten",
@@ -39,7 +39,7 @@
     "href": "session-03.html#arten-von-analysemethoden",
     "title": "Sammlung von Social-Media-Daten mit R",
     "section": "Arten von Analysemethoden",
-    "text": "Arten von Analysemethoden\nIn der quantitativen Textanalyse gibt es viele unterschiedliche Auswertungsmethoden.\n\nDeskriptive Methoden: Hierbei werden die Daten in ihrer Rohform beschrieben, z.B. durch Häufigkeiten von Wörtern, Links und Hashtags.\nSentiment-Analyse und diktionär:basierte Methoden HBei der Sentiment-Analyse wird versucht,die Stimmung oder Haltung in einem Text zu bestimmen, z.B. ob ein TPos pauf Social Media ositiv, negativ oder neutral ist. DBei der Sentiment-Analyse können auch sogenannte Diktionäre (dictionaries) zum Einsatz kommen. Diese können aber auch genutzt werden, um andere Konstrukte zu messen wie z.B. Populismus."
+    "text": "Arten von Analysemethoden\nIn der quantitativen Textanalyse gibt es viele unterschiedliche Auswertungsmethoden.\n\nDeskriptive Methoden: Hierbei werden die Daten in ihrer Rohform beschrieben, z.B. durch Häufigkeiten von Wörtern, Links und Hashtags.\nSentiment-Analyse und diktionärbasierte Methoden Bei der Sentiment-Analyse wird versucht, die Stimmung oder Haltung in einem Text zu bestimmen, z.B. ob ein Text auf Social Media positiv, negativ oder neutral ist. Bei der Sentiment-Analyse kommen häufig sogenannte Diktionäre (dictionaries) zum Einsatz. Diese können aber auch genutzt werden, um andere Konstrukte zu messen wie z.B. Populismus."
   },
   {
     "objectID": "session-03.html#arten-von-analysemethoden-1",
@@ -60,7 +60,7 @@
     "href": "session-03.html#preprocessing-von-textdaten",
     "title": "Sammlung von Social-Media-Daten mit R",
     "section": "Preprocessing von Textdaten",
-    "text": "Preprocessing von Textdaten\nBei der Aufbereitung von Textdaten gibt es entsprechend einige Harausforderungen. Zwei der wichtigsten sind hierbei:\n\nDie Auswahl und Abfolge der Preprocessing-Schritte, da diese die Analyseergebnisse beeinflussen.\nDer Umgang mit unterschiedlichen Textarten, -längen und Sprachen (sowie ggf. unterschiedlicher Zeichen)"
+    "text": "Preprocessing von Textdaten\nBei der Aufbereitung von Textdaten gibt es entsprechend einige Herausforderungen. Zwei der wichtigsten sind hierbei:\n\nDie Auswahl und Abfolge der Preprocessing-Schritte, da diese die Analyseergebnisse beeinflussen.\nDer Umgang mit unterschiedlichen Textarten, -längen und Sprachen (sowie ggf. unterschiedlicher Zeichen)"
   },
   {
     "objectID": "session-03.html#textdaten-vokabeln-1",
@@ -74,7 +74,7 @@
     "href": "session-03.html#textdaten-vokabeln-2",
     "title": "Sammlung von Social-Media-Daten mit R",
     "section": "Textdaten-Vokabeln 2",
-    "text": "Textdaten-Vokabeln 2\n\nToken: Ein Token ist eine einzelne Einheit in einem Text, z.B. ein Wort, ein Satzzeichen oder ein Hashtag. Das Aufteilen eines Textes in Tokens wird als Tokenisierung bezeichnet.\nType: Ein Type ist ein einzigartiges Token. Wenn z.B. das Wort “Hallo” in einem Text dreimal vorkommt (“Hallo Hallo Hallo”), dann gibt es drei Tokens, aber nur einen Type (“Hallo”).\nVokabular: Das Vokabular ist die Menge aller Types in einem Textkorpus. In vorherigen Beispiel wäre das Vokabular also {“Hallo”}.\nDocument-Feature-Matrix (DFM) (auch Document-Term-Matrix; DTM): Eine DFM ist eine Matrix, in der die Zeilen Dokumente (z.B. Tweets, YouTube-Kommentare) und die Spalten Features (z.B. Wörter, Hashtags) darstellen. Die Werte in der Matrix geben an, wie oft ein bestimmtes Feature in einem bestimmten Dokument vorkommt."
+    "text": "Textdaten-Vokabeln 2\n\nToken: Ein Token ist eine einzelne Einheit in einem Text, z.B. ein Wort, ein Satzzeichen oder ein Hashtag. Das Aufteilen eines Textes in Tokens wird als Tokenisierung bezeichnet.\nType: Ein Type ist ein einzigartiges Token. Wenn z.B. das Wort “Hallo” in einem Text dreimal vorkommt (“Hallo Hallo Hallo”), dann gibt es drei Tokens, aber nur einen Type (“Hallo”).\nVokabular: Das Vokabular ist die Menge aller Types in einem Textkorpus. In vorherigen Beispiel wäre das Vokabular also {“Hallo”}.\nDocument-Feature-Matrix (DFM) (auch Document-Term-Matrix; DTM): Eine DFM ist eine Matrix, in der die Zeilen Dokumente (z.B. Posts oder Kommentare) und die Spalten Features (z.B. Wörter, Hashtags) darstellen. Die Werte in der Matrix geben an, wie oft ein bestimmtes Feature in einem bestimmten Dokument vorkommt."
   },
   {
     "objectID": "session-03.html#preprocessing-schritte",
@@ -179,21 +179,21 @@
     "href": "session-03.html#was-ist-sentiment-analyse",
     "title": "Sammlung von Social-Media-Daten mit R",
     "section": "Was ist Sentiment-Analyse?",
-    "text": "Was ist Sentiment-Analyse?\nDie Sentiment-Analyse kommt für Social-Media-Daten häufig zum Einsatz. Ziel ist es dabei, die Stimmung oder Emotion in einem Text zu bestimmen, z.B. ob ein Post oder Kommentar positiv, negativ oder neutral ist. Bei der Sentiment-Analyse kommen zumeist sogenannte Diktionäre (dictionaries) zum Einsatz kommen."
+    "text": "Was ist Sentiment-Analyse?\nDie Sentiment-Analyse kommt für Social-Media-Daten häufig zum Einsatz. Ziel ist es dabei, die Stimmung oder Emotion in einem Text zu bestimmen, z.B. ob ein Post oder Kommentar positiv, negativ oder neutral ist. Bei der Sentiment-Analyse werden zumeist sogenannte Diktionäre (dictionaries) genutzt."
   },
   {
     "objectID": "session-03.html#sentiment-analyse-mit-quanteda.sentiment",
     "href": "session-03.html#sentiment-analyse-mit-quanteda.sentiment",
     "title": "Sammlung von Social-Media-Daten mit R",
     "section": "Sentiment-Analyse mit quanteda.sentiment",
-    "text": "Sentiment-Analyse mit quanteda.sentiment\n\nlibrary(quanteda.sentiment)\n\nquanteda.sentiment bietet verschiedene Diktionäre für die Setntimen-Analyse. Das ReadMe im GitHub-Repository zum Paket bietet eine Übersicht."
+    "text": "Sentiment-Analyse mit quanteda.sentiment\n\nlibrary(quanteda.sentiment)\n\nquanteda.sentiment bietet verschiedene Diktionäre für die Setntiment-Analyse. Das ReadMe im GitHub-Repository zum Paket bietet eine Übersicht."
   },
   {
     "objectID": "session-03.html#sentiment-analyse-mit-quanteda.sentiment-beispiel",
     "href": "session-03.html#sentiment-analyse-mit-quanteda.sentiment-beispiel",
     "title": "Sammlung von Social-Media-Daten mit R",
     "section": "Sentiment-Analyse mit quanteda.sentiment: Beispiel",
-    "text": "Sentiment-Analyse mit quanteda.sentiment: Beispiel\nIm nachfolgenden Beispiel nutzen wir Diktionär für Sentiment in deutschen politischen Texten von Rauh (2018).\n\ndfm_de_rauh &lt;- dfm(tokens_lookup(tokens_bluesky,\n                                 dictionary = data_dictionary_Rauh))"
+    "text": "Sentiment-Analyse mit quanteda.sentiment: Beispiel\nIm nachfolgenden Beispiel nutzen wir das Diktionär für Sentiment in deutschen politischen Texten von Rauh (2018).\n\ndfm_de_rauh &lt;- dfm(tokens_lookup(tokens_bluesky,\n                                 dictionary = data_dictionary_Rauh))"
   },
   {
     "objectID": "session-03.html#sentiment-analyse-ergebnis",
@@ -228,7 +228,7 @@
     "href": "session-03.html#was-sind-topic-models",
     "title": "Sammlung von Social-Media-Daten mit R",
     "section": "Was sind Topic Models?",
-    "text": "Was sind Topic Models?\nTopic Modeling ist eine Methode aus der Kategorie des Unsupervised Machine Learning, mit der versucht wird, Themen in einem Textkorpus zu identifizieren (siehe hierzu auch den entsprechenden.\n\nThemen sind Mischungen aus Wörtern: Ein Thema ist eine Ansammlung von Wörtern mit unterschiedlichen Wahrscheinlichkeiten. Beim Thema „Sport“ ist die Wahrscheinlichkeit, dass das Wort „Ball“ vorkommt, hoch, während die Wahrscheinlichkeit für das Wort „Demokratie“ sehr gering ist.\nDokumente sind Mischungen aus Themen: Ein einzelnes Dokument kann mehrere Themen enthalten. Ein Zeitungsartikel könnte z.B. zu 60 % aus Sport, zu 30 % aus Finanzen und zu 10 % aus Politik bestehen."
+    "text": "Was sind Topic Models?\nTopic Modeling ist eine Methode aus der Kategorie des Unsupervised Machine Learning, mit der versucht wird, Themen in einem Textkorpus zu identifizieren. Die Grundidee von Topic Models basiert auf zwei Annahmen:\n\nThemen sind Mischungen aus Wörtern: Ein Thema ist eine Ansammlung von Wörtern mit unterschiedlichen Wahrscheinlichkeiten. Beim Thema „Sport“ ist die Wahrscheinlichkeit, dass das Wort „Ball“ vorkommt, hoch, während die Wahrscheinlichkeit für das Wort „Demokratie“ sehr gering ist.\nDokumente sind Mischungen aus Themen: Ein einzelnes Dokument kann mehrere Themen enthalten. Ein Zeitungsartikel könnte z.B. zu 60 % aus Sport, zu 30 % aus Finanzen und zu 10 % aus Politik bestehen."
   },
   {
     "objectID": "session-03.html#lda",

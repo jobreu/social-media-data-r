@@ -245,7 +245,7 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"quanteda"</span>,</span>
 <span id="cb1-2"><a></a>                   <span class="st">"quanteda.textstats"</span>,</span>
 <span id="cb1-3"><a></a>                   <span class="st">"quanteda.textplots"</span>,</span>
-<span id="cb1-4"><a></a>                   <span class="st">"tidtext"</span>,</span>
+<span id="cb1-4"><a></a>                   <span class="st">"tidytext"</span>,</span>
 <span id="cb1-5"><a></a>                   <span class="st">"topicmodels"</span>,</span>
 <span id="cb1-6"><a></a>                   <span class="st">"stm"</span></span>
 <span id="cb1-7"><a></a>                   ))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -253,7 +253,7 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 </section>
 <section id="pakete-1" class="slide level2">
 <h2>Pakete</h2>
-<p>Zusätzlich nutzen wir auch ein Paket, das nur über <em>GitHub</em> verfügbar sind. Diese können wir mit einer Funktion aus dem Paket <code>remotes</code> installieren (zur Erinnerung: unter Windows benötigen wir hierfür auch die <code>Rtools</code>):</p>
+<p>Zusätzlich nutzen wir auch ein Paket, das nur über <em>GitHub</em> verfügbar sind. Dieses können wir mit einer Funktion aus dem Paket <code>remotes</code> installieren (zur Erinnerung: unter Windows benötigen wir hierfür auch die <code>Rtools</code>):</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"quanteda/quanteda.sentiment"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -261,7 +261,7 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <section id="daten" class="slide level2">
 <h2>Daten</h2>
 <p>Für die Beispiele in dieser Sitzung verwenden wir Daten von <em>Bluesky</em> und <em>YouTube</em>. Wir gehen davon aus, dass diese gesammelt und als <code>bluesky_data.csv</code> bzw. <code>youtube_data.csv</code> lokal gespeichert wurden.</p>
-<p>Ein Beispiel-Skript zur Sammlung solcher Daten ist im Skript <a href="https://jobreu.github.io/social-media-data-r/scripts/collect_data.R"><code>collect_data.R</code></a> zu finden.</p>
+<p>Ein Beispiel-Skript zur Sammlung solcher Daten ist im Skript <a href="https://github.com/jobreu/social-media-data-r/blob/main/scripts/collect_data.R"><code>collect_data.R</code></a> zu finden.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>bs_posts <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/bluesky_data.csv"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span>
 <span id="cb3-2"><a></a></span>
@@ -282,7 +282,7 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <p>In der quantitativen Textanalyse gibt es viele unterschiedliche Auswertungsmethoden.</p>
 <ul>
 <li class="fragment"><p><strong>Deskriptive Methoden</strong>: Hierbei werden die Daten in ihrer Rohform beschrieben, z.B. durch Häufigkeiten von Wörtern, Links und Hashtags.</p></li>
-<li class="fragment"><p><strong>Sentiment-Analyse</strong> und <strong>diktionär:basierte Methoden</strong> HBei der Sentiment-Analyse wird versucht,die Stimmung oder Haltung in einem Text zu bestimmen, z.B. ob ein TPos pauf Social Media ositiv, negativ oder neutral ist. DBei der Sentiment-Analyse können auch sogenannte Diktionäre (dictionaries) zum Einsatz kommen. Diese können aber auch genutzt werden, um andere Konstrukte zu messen wie z.B. Populismus.</p></li>
+<li class="fragment"><p><strong>Sentiment-Analyse</strong> und <strong>diktionärbasierte Methoden</strong> Bei der Sentiment-Analyse wird versucht, die Stimmung oder Haltung in einem Text zu bestimmen, z.B. ob ein Text auf Social Media positiv, negativ oder neutral ist. Bei der Sentiment-Analyse kommen häufig sogenannte Diktionäre (dictionaries) zum Einsatz. Diese können aber auch genutzt werden, um andere Konstrukte zu messen wie z.B. Populismus.</p></li>
 </ul>
 </section>
 <section id="arten-von-analysemethoden-1" class="slide level2 smaller">
@@ -313,7 +313,7 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 </section>
 <section id="preprocessing-von-textdaten" class="slide level2">
 <h2>Preprocessing von Textdaten</h2>
-<p>Bei der Aufbereitung von Textdaten gibt es entsprechend einige Harausforderungen. Zwei der wichtigsten sind hierbei:</p>
+<p>Bei der Aufbereitung von Textdaten gibt es entsprechend einige Herausforderungen. Zwei der wichtigsten sind hierbei:</p>
 <ol type="1">
 <li><p>Die Auswahl und Abfolge der Preprocessing-Schritte, da diese die Analyseergebnisse beeinflussen.</p></li>
 <li><p>Der Umgang mit unterschiedlichen Textarten, -längen und Sprachen (sowie ggf. unterschiedlicher Zeichen)</p></li>
@@ -333,7 +333,7 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 <li class="fragment"><p><strong>Token</strong>: Ein Token ist eine einzelne Einheit in einem Text, z.B. ein Wort, ein Satzzeichen oder ein Hashtag. Das Aufteilen eines Textes in Tokens wird als <em>Tokenisierung</em> bezeichnet.</p></li>
 <li class="fragment"><p><strong>Type</strong>: Ein Type ist ein einzigartiges Token. Wenn z.B. das Wort “Hallo” in einem Text dreimal vorkommt (“Hallo Hallo Hallo”), dann gibt es drei Tokens, aber nur einen Type (“Hallo”).</p></li>
 <li class="fragment"><p><strong>Vokabular</strong>: Das Vokabular ist die Menge aller Types in einem Textkorpus. In vorherigen Beispiel wäre das Vokabular also {“Hallo”}.</p></li>
-<li class="fragment"><p><strong>Document-Feature-Matrix (DFM)</strong> (auch Document-Term-Matrix; DTM): Eine DFM ist eine Matrix, in der die Zeilen Dokumente (z.B. Tweets, YouTube-Kommentare) und die Spalten Features (z.B. Wörter, Hashtags) darstellen. Die Werte in der Matrix geben an, wie oft ein bestimmtes Feature in einem bestimmten Dokument vorkommt.</p></li>
+<li class="fragment"><p><strong>Document-Feature-Matrix (DFM)</strong> (auch Document-Term-Matrix; DTM): Eine DFM ist eine Matrix, in der die Zeilen Dokumente (z.B. Posts oder Kommentare) und die Spalten Features (z.B. Wörter, Hashtags) darstellen. Die Werte in der Matrix geben an, wie oft ein bestimmtes Feature in einem bestimmten Dokument vorkommt.</p></li>
 </ul>
 </section>
 <section id="preprocessing-schritte" class="slide level2 smaller">
@@ -569,18 +569,18 @@ Prof.&nbsp;Dr.&nbsp;Johannes Breuer
 </section>
 <section id="was-ist-sentiment-analyse" class="slide level2">
 <h2>Was ist Sentiment-Analyse?</h2>
-<p>Die <strong>Sentiment-Analyse</strong> kommt für Social-Media-Daten häufig zum Einsatz. Ziel ist es dabei, die Stimmung oder Emotion in einem Text zu bestimmen, z.B. ob ein Post oder Kommentar positiv, negativ oder neutral ist. Bei der Sentiment-Analyse kommen zumeist sogenannte <strong>Diktionäre (dictionaries)</strong> zum Einsatz kommen.</p>
+<p>Die <strong>Sentiment-Analyse</strong> kommt für Social-Media-Daten häufig zum Einsatz. Ziel ist es dabei, die Stimmung oder Emotion in einem Text zu bestimmen, z.B. ob ein Post oder Kommentar positiv, negativ oder neutral ist. Bei der Sentiment-Analyse werden zumeist sogenannte <strong>Diktionäre (dictionaries)</strong> genutzt.</p>
 </section>
 <section id="sentiment-analyse-mit-quanteda.sentiment" class="slide level2">
 <h2>Sentiment-Analyse mit quanteda.sentiment</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">library</span>(quanteda.sentiment)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><code>quanteda.sentiment</code> bietet verschiedene Diktionäre für die Setntimen-Analyse. Das <code>ReadMe</code> im <a href="https://github.com/quanteda/quanteda.sentiment"><em>GitHub</em>-Repository</a> zum Paket bietet eine Übersicht.</p>
+<p><code>quanteda.sentiment</code> bietet verschiedene Diktionäre für die Setntiment-Analyse. Das <code>ReadMe</code> im <a href="https://github.com/quanteda/quanteda.sentiment"><em>GitHub</em>-Repository</a> zum Paket bietet eine Übersicht.</p>
 </section>
 <section id="sentiment-analyse-mit-quanteda.sentiment-beispiel" class="slide level2">
 <h2>Sentiment-Analyse mit quanteda.sentiment: Beispiel</h2>
-<p>Im nachfolgenden Beispiel nutzen wir Diktionär für Sentiment in deutschen politischen Texten von Rauh <span class="citation" data-cites="Rauh2018">(<a href="#/references" role="doc-biblioref" onclick="">2018</a>)</span>.</p>
+<p>Im nachfolgenden Beispiel nutzen wir das Diktionär für Sentiment in deutschen politischen Texten von Rauh <span class="citation" data-cites="Rauh2018">(<a href="#/references" role="doc-biblioref" onclick="">2018</a>)</span>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>dfm_de_rauh <span class="ot">&lt;-</span> <span class="fu">dfm</span>(<span class="fu">tokens_lookup</span>(tokens_bluesky,</span>
 <span id="cb21-2"><a></a>                                 <span class="at">dictionary =</span> data_dictionary_Rauh))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -685,7 +685,7 @@ $ net_sentiment &lt;dbl&gt; 3, 2, 0, 8, 3, 2, 1, 0, -1, 1, -1, 2, 0, 5, -4, 0, 0
 </section>
 <section id="was-sind-topic-models" class="slide level2 smaller">
 <h2>Was sind Topic Models?</h2>
-<p>Topic Modeling ist eine Methode aus der Kategorie des Unsupervised Machine Learning, mit der versucht wird, Themen in einem Textkorpus zu identifizieren (siehe hierzu auch den entsprechenden.</p>
+<p>Topic Modeling ist eine Methode aus der Kategorie des Unsupervised Machine Learning, mit der versucht wird, Themen in einem Textkorpus zu identifizieren. Die Grundidee von Topic Models basiert auf zwei Annahmen:</p>
 <ol type="1">
 <li><p><em>Themen sind Mischungen aus Wörtern</em>: Ein Thema ist eine Ansammlung von Wörtern mit unterschiedlichen Wahrscheinlichkeiten. Beim Thema „Sport“ ist die Wahrscheinlichkeit, dass das Wort „Ball“ vorkommt, hoch, während die Wahrscheinlichkeit für das Wort „Demokratie“ sehr gering ist.</p></li>
 <li><p><em>Dokumente sind Mischungen aus Themen</em>: Ein einzelnes Dokument kann mehrere Themen enthalten. Ein Zeitungsartikel könnte z.B. zu 60 % aus Sport, zu 30 % aus Finanzen und zu 10 % aus Politik bestehen.</p></li>

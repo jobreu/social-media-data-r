@@ -450,7 +450,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>heterogener</p></li>
 <li><p>umfangreicher</p></li>
 </ul>
-<p>Bei der Aufbereitung von Textdaten gibt es entsprechend einige Harausforderungen. Zwei der wichtigsten sind hierbei:</p>
+<p>Bei der Aufbereitung von Textdaten gibt es entsprechend einige Herausforderungen. Zwei der wichtigsten sind hierbei:</p>
 <ol type="1">
 <li><p>Die Auswahl und Abfolge der Preprocessing-Schritte, da diese die Analyseergebnisse beeinflussen.</p></li>
 <li><p>Der Umgang mit unterschiedlichen Textarten, -längen und Sprachen (sowie ggf. unterschiedlicher Zeichen)</p></li>
@@ -481,7 +481,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>Token</strong>: Ein Token ist eine einzelne Einheit in einem Text, z.B. ein Wort, ein Satzzeichen oder ein Hashtag. Das Aufteilen eines Textes in Tokens wird als <em>Tokenisierung</em> bezeichnet.</p></li>
 <li><p><strong>Type</strong>: Ein Type ist ein einzigartiges Token. Wenn z.B. das Wort “Hallo” in einem Text dreimal vorkommt (“Hallo Hallo Hallo”), dann gibt es drei Tokens, aber nur einen Type (“Hallo”).</p></li>
 <li><p><strong>Vokabular</strong>: Das Vokabular ist die Menge aller Types in einem Textkorpus. In vorherigen Beispiel wäre das Vokabular also {“Hallo”}.</p></li>
-<li><p><strong>Document-Feature-Matrix (DFM)</strong> (auch Document-Term-Matrix; DTM): Eine DFM ist eine Matrix, in der die Zeilen Dokumente (z.B. Tweets, YouTube-Kommentare) und die Spalten Features (z.B. Wörter, Hashtags) darstellen. Die Werte in der Matrix geben an, wie oft ein bestimmtes Feature in einem bestimmten Dokument vorkommt.</p></li>
+<li><p><strong>Document-Feature-Matrix (DFM)</strong> (auch Document-Term-Matrix; DTM): Eine DFM ist eine Matrix, in der die Zeilen Dokumente (z.B. Posts oder Kommentare) und die Spalten Features (z.B. Wörter, Hashtags) darstellen. Die Werte in der Matrix geben an, wie oft ein bestimmtes Feature in einem bestimmten Dokument vorkommt.</p></li>
 </ul>
 </section>
 <section id="preprocessing-schritte" class="level2" data-number="15.2">
@@ -499,27 +499,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setup" class="level2" data-number="15.3">
 <h2 data-number="15.3" class="anchored" data-anchor-id="setup"><span class="header-section-number">15.3</span> Setup</h2>
 <p>Für das Preprocessing nutzen wir Funktionen aus dem Paket <code>quanteda</code>. Zudem nutzen wir auch wieder Pakete und Funktionen aus dem <code>tidyverse</code>.</p>
-<div class="cell" data-warn="false">
+<div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quanteda)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'tidyverse' wurde unter R Version 4.5.3 erstellt</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'ggplot2' wurde unter R Version 4.5.3 erstellt</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'purrr' wurde unter R Version 4.5.2 erstellt</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Paket 'stringr' wurde unter R Version 4.5.2 erstellt</code></pre>
-</div>
 </div>
 <p>Für die Beispiele verwenden wir Daten von <em>Bluesky</em> und <em>YouTube</em>. Wir gehen hier/nachfolgend davon aus, dass Sie diese gesammelt und als <code>bluesky_data.csv</code> bzw. <code>youtube_data.csv</code> lokal gespeichert haben. Hinweise dazu, wie Sie diese Daten sammeln und speichern können, finden Sie im Abschnitt <em>Daten</em> am Ende von <a href="14-analysis-methods.html" class="quarto-xref"><span>Kapitel 14</span></a>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bs_posts <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"./data/bluesky_data.csv"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>comments_yt <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"./data/youtube_data.csv"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bs_posts <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"./data/bluesky_data.csv"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>comments_yt <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"./data/youtube_data.csv"</span>) <span class="co"># Dateipfad ggf. anpassen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="erstellung-eines-textkorpus" class="level2" data-number="15.4">
@@ -528,19 +516,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="bluesky" class="level3" data-number="15.4.1">
 <h3 data-number="15.4.1" class="anchored" data-anchor-id="bluesky"><span class="header-section-number">15.4.1</span> Bluesky</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bluesky_corpus <span class="ot">&lt;-</span> bs_posts <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(uri, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co"># jeder Post sollte nur einmal im Korpus vorkommen</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(is_reskeet <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="co"># keine Reposts</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(uri, cid,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>         author_handle, author_name,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>         indexed_at, reply_count, repost_count,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>         like_count, quote_count,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>         is_reskeet,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>         text) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">corpus</span>(<span class="at">docid_field =</span> <span class="st">"uri"</span>,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">text_field =</span> <span class="st">"text"</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>bluesky_corpus</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bluesky_corpus <span class="ot">&lt;-</span> bs_posts <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(uri, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co"># jeder Post sollte nur einmal im Korpus vorkommen</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(is_reskeet <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="co"># keine Reposts</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(uri, cid,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>         author_handle, author_name,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>         indexed_at, reply_count, repost_count,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>         like_count, quote_count,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>         is_reskeet,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>         text) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">corpus</span>(<span class="at">docid_field =</span> <span class="st">"uri"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">text_field =</span> <span class="st">"text"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>bluesky_corpus</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Corpus consisting of 2,555 documents and 9 docvars.
 at://did:plc:hngkefcientj2tq2gnspgfol/app.bsky.feed.post/3m6z2c5legs2o :
@@ -569,15 +557,15 @@ at://did:plc:hngkefcientj2tq2gnspgfol/app.bsky.feed.post/3m65ir4fxhc2d :
 <section id="youtube" class="level3" data-number="15.4.2">
 <h3 data-number="15.4.2" class="anchored" data-anchor-id="youtube"><span class="header-section-number">15.4.2</span> YouTube</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>youtube_corpus <span class="ot">&lt;-</span> comments_yt <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(CommentID, VideoID, ParentID,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>         AuthorDisplayName,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>         PublishedAt, ReplyCount, LikeCount,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>         Comment) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">corpus</span>(<span class="at">docid_field =</span> <span class="st">"CommentID"</span>,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">text_field =</span> <span class="st">"Comment"</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>youtube_corpus</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>youtube_corpus <span class="ot">&lt;-</span> comments_yt <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(CommentID, VideoID, ParentID,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>         AuthorDisplayName,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>         PublishedAt, ReplyCount, LikeCount,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>         Comment) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">corpus</span>(<span class="at">docid_field =</span> <span class="st">"CommentID"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">text_field =</span> <span class="st">"Comment"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>youtube_corpus</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Corpus consisting of 2,584 documents and 6 docvars.
 UgwiakmTsk6z-aXOB394AaABAg :
@@ -610,13 +598,13 @@ UgyePGHlkVEqidKaoXR4AaABAg :
 <section id="bluesky-1" class="level3" data-number="15.5.1">
 <h3 data-number="15.5.1" class="anchored" data-anchor-id="bluesky-1"><span class="header-section-number">15.5.1</span> Bluesky</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tokens_bluesky <span class="ot">&lt;-</span> <span class="fu">tokens</span>(bluesky_corpus,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_punct =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_symbols =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_url =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>tokens_bluesky</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tokens_bluesky <span class="ot">&lt;-</span> <span class="fu">tokens</span>(bluesky_corpus,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_punct =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_symbols =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_url =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>tokens_bluesky</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Tokens consisting of 2,555 documents and 9 docvars.
 at://did:plc:hngkefcientj2tq2gnspgfol/app.bsky.feed.post/3m6z2c5legs2o :
@@ -660,13 +648,13 @@ at://did:plc:hngkefcientj2tq2gnspgfol/app.bsky.feed.post/3m65ir4fxhc2d :
 <section id="youtube-1" class="level3" data-number="15.5.2">
 <h3 data-number="15.5.2" class="anchored" data-anchor-id="youtube-1"><span class="header-section-number">15.5.2</span> YouTube</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tokens_youtube <span class="ot">&lt;-</span> <span class="fu">tokens</span>(youtube_corpus,</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_punct =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_symbols =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_url =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>tokens_youtube</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tokens_youtube <span class="ot">&lt;-</span> <span class="fu">tokens</span>(youtube_corpus,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_punct =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_symbols =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">remove_url =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>tokens_youtube</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Tokens consisting of 2,584 documents and 6 docvars.
 UgwiakmTsk6z-aXOB394AaABAg :
@@ -729,11 +717,11 @@ UgyePGHlkVEqidKaoXR4AaABAg :
 <p>I.d.R. empfiehlt es sich, diesen Schritt zumindest für die Analyse von deutschen Texten durchzuführen, da die Großschreibung im Deutschen nicht nur am Satzanfang, sondern auch bei Nomen genutzt wird. Bei der Analyse von englischen Texten ist dies weniger relevant, da die Großschreibung hier nur am Satzanfang und bei Eigennamen genutzt wird.</p>
 <p>Stoppwörter sind Wörter, die sehr häufig vorkommen aber in der Regel keine oder nur wenig Bedeutung für die Analyse haben, z.B. “und”, “der”, “die”, “das” im Deutschen. Es gibt verschiedene Listen von Stoppwörtern, z.B. die von <code>quanteda</code> bereitgestellten Listen für verschiedene Sprachen (siehe <code>?stopwords</code>).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">stopwords</span>(<span class="st">"de"</span>))<span class="co"># Anzahl der Stoppwörter in der deutschen Liste von `quanteda`</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">stopwords</span>(<span class="st">"de"</span>))<span class="co"># Anzahl der Stoppwörter in der deutschen Liste von `quanteda`</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 231</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>)) <span class="co"># Anzahl der Stoppwörter in der englischen Liste von `quanteda`</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>)) <span class="co"># Anzahl der Stoppwörter in der englischen Liste von `quanteda`</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 175</code></pre>
 </div>
@@ -741,7 +729,7 @@ UgyePGHlkVEqidKaoXR4AaABAg :
 <p>Man kann mit der Funktion <code>tokens_remove()</code> von <code>quanteda</code> auch noch andere Wörter und Muster entfernen. Z..B. ist das Wort “dass” nicht in der deutschen Liste von Stoppwörtern von <code>quanteda</code> enthalten, aber es ist inhaltlich für sozialwissenschaftliche Analysen in aller Regel nicht interessant.</p>
 <p>Das Paket <code>tidytext</code> bietet eine deutlich längere Liste an Stoppwörtern, jedoch nur für die englische Sprache (siehe <code>?stop_words</code>).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(tidytext<span class="sc">::</span>stop_words) <span class="co"># Anzahl der Stoppwörter in der englischen Liste von `tidytext`</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(tidytext<span class="sc">::</span>stop_words) <span class="co"># Anzahl der Stoppwörter in der englischen Liste von `tidytext`</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1149</code></pre>
 </div>
@@ -749,19 +737,19 @@ UgyePGHlkVEqidKaoXR4AaABAg :
 <section id="bluesky-2" class="level3" data-number="15.6.1">
 <h3 data-number="15.6.1" class="anchored" data-anchor-id="bluesky-2"><span class="header-section-number">15.6.1</span> Bluesky</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tokens_bluesky <span class="ot">&lt;-</span> tokens_bluesky <span class="sc">%&gt;%</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_tolower</span>() <span class="sc">%&gt;%</span> <span class="co"># Kleinschreibung</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"de"</span>)) <span class="sc">%&gt;%</span>  <span class="co"># Entfernung von deutschen Stoppwörtern</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_remove</span>(<span class="st">"dass"</span>) <span class="co"># Entfernung von "dass"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tokens_bluesky <span class="ot">&lt;-</span> tokens_bluesky <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_tolower</span>() <span class="sc">%&gt;%</span> <span class="co"># Kleinschreibung</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"de"</span>)) <span class="sc">%&gt;%</span>  <span class="co"># Entfernung von deutschen Stoppwörtern</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_remove</span>(<span class="st">"dass"</span>) <span class="co"># Entfernung von "dass"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="youtube-2" class="level3" data-number="15.6.2">
 <h3 data-number="15.6.2" class="anchored" data-anchor-id="youtube-2"><span class="header-section-number">15.6.2</span> YouTube</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>tokens_youtube <span class="ot">&lt;-</span> tokens_youtube <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_tolower</span>() <span class="sc">%&gt;%</span> <span class="co"># Kleinschreibung</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"de"</span>)) <span class="sc">%&gt;%</span>  <span class="co"># Entfernung von deutschen Stoppwörtern</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_remove</span>(<span class="st">"dass"</span>) <span class="co"># Entfernung von "dass"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tokens_youtube <span class="ot">&lt;-</span> tokens_youtube <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_tolower</span>() <span class="sc">%&gt;%</span> <span class="co"># Kleinschreibung</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"de"</span>)) <span class="sc">%&gt;%</span>  <span class="co"># Entfernung von deutschen Stoppwörtern</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tokens_remove</span>(<span class="st">"dass"</span>) <span class="co"># Entfernung von "dass"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -771,9 +759,9 @@ UgyePGHlkVEqidKaoXR4AaABAg :
 <section id="bluesky-3" class="level3" data-number="15.7.1">
 <h3 data-number="15.7.1" class="anchored" data-anchor-id="bluesky-3"><span class="header-section-number">15.7.1</span> Bluesky</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>dfm_bluesky <span class="ot">&lt;-</span> <span class="fu">dfm</span>(tokens_bluesky)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>dfm_bluesky</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dfm_bluesky <span class="ot">&lt;-</span> <span class="fu">dfm</span>(tokens_bluesky)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>dfm_bluesky</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Document-feature matrix of: 2,555 documents, 12,512 features (99.86% sparse) and 9 docvars.
                                                                         features
@@ -864,9 +852,9 @@ docs                                                                     kampf
 <section id="youtube-3" class="level3" data-number="15.7.2">
 <h3 data-number="15.7.2" class="anchored" data-anchor-id="youtube-3"><span class="header-section-number">15.7.2</span> YouTube</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>dfm_youtube <span class="ot">&lt;-</span> <span class="fu">dfm</span>(tokens_youtube)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>dfm_youtube</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>dfm_youtube <span class="ot">&lt;-</span> <span class="fu">dfm</span>(tokens_youtube)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>dfm_youtube</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Document-feature matrix of: 2,584 documents, 9,819 features (99.89% sparse) and 6 docvars.
                             features
