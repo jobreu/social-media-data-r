@@ -38,7 +38,7 @@ install.packages(c("quanteda",
 
 ## Pakete
 
-Zusätzlich nutzen wir auch ein Pakets, das nur über *GitHub* verfügbar sind. Diese können wir mit einer Funktion aus dem Paket `remotes` installieren (zur Erinnerung: unter Windows benötigen wir hierfür auch die `Rtools`):
+Zusätzlich nutzen wir auch ein Paket, das nur über *GitHub* verfügbar sind. Diese können wir mit einer Funktion aus dem Paket `remotes` installieren (zur Erinnerung: unter Windows benötigen wir hierfür auch die `Rtools`):
 
 ```{r}
 #| eval: false
@@ -64,7 +64,7 @@ comments_yt <- read.csv("../data/youtube_data.csv") # Dateipfad ggf. anpassen
 
 Der Fokus im Kurs liegt auf der **quantitativen Textanalyse**. Eine weitere im Kontext von Social-Media-Daten häufig angewandte Methode ist die Netzwerkanalyse. Diese behandeln wir hier nicht, aber [Kapitel 13 aus dem Buch *Computational Analysis of Communication*](https://cssbook.net/content/chapter13.html) gibt hier eine gute Einführung.
 
-## Arten von Analysemethoden
+## Arten von Analysemethoden {.smaller}
 
 In der quantitativen Textanalyse gibt es viele unterschiedliche Auswertungsmethoden.
 
@@ -74,7 +74,7 @@ In der quantitativen Textanalyse gibt es viele unterschiedliche Auswertungsmetho
 - **Sentiment-Analyse** und **diktionär:basierte Methoden** HBei der Sentiment-Analyse wird versucht,die Stimmung oder Haltung in einem Text zu bestimmen, z.B. ob ein TPos pauf Social Media ositiv, negativ oder neutral ist. DBei der Sentiment-Analyse können auch sogenannte Diktionäre (dictionaries) zum Einsatz kommen. Diese können aber auch genutzt werden, um andere Konstrukte zu messen wie z.B. Populismus.
 :::
 
-## Arten von Analysemethoden
+## Arten von Analysemethoden {.smaller}
 
 - **Unsupervised Machine Learning**: Hierbei werden Algorithmen eingesetzt, um Muster in den Daten zu erkennen, ohne dass diese vorher definiert wurden. Ein Beispiel hierfür ist die Topic-Modellierung, bei der versucht wird, Themen in einem Textkorpus zu identifizieren.
 
@@ -470,9 +470,9 @@ plot(effect,
 
 - Biterm Topic Model (BTM) [@YanEtAl2013]: `R`-Paket [`btm`](https://github.com/bnosac/BTM)
 
-- Keyword Assisted Topic Model (keyATM) [@EshimaEtAl2024]: `R`-Paket [`keyATM`](https://keyatm.github.io/keyATM/)
-
 - Seeded LDA [@WatanabeBaturo2024]: `R`-Paket [`seededlda`](https://koheiw.github.io/seededlda/)
+
+- Keyword Assisted Topic Model (keyATM) [@EshimaEtAl2024]: `R`-Paket [`keyATM`](https://keyatm.github.io/keyATM/)
 
 # Ausblick {background-color="#4A90E2"}
 
